@@ -16,29 +16,29 @@
                     >
                       <v-tab :key="0">
                         <span>
-                          {{ $t("insights") }}
+                          {{ $t("price_level_list") }}
                         </span>
                       </v-tab>
 
                       <v-tab>
                         <span>
-                          {{ $t("channel") }}
+                          {{ $t("price_setting") }}
                         </span>
                       </v-tab>
                       <v-tab>
                         <span>
-                          {{ $t("reports") }}
+                          {{ $t("price_book") }}
                         </span>
                       </v-tab>
                       <v-tab>
                         <span>
-                          {{ $t("fee_payouts") }}
+                          {{ $t("pricing_analysis") }}
                         </span>
                       </v-tab>
 
                       <v-tab>
                         <span>
-                          {{ $t("connections") }}
+                          {{ $t("price_level_report") }}
                         </span>
                       </v-tab>
                
@@ -324,7 +324,7 @@
                   <v-tab-item>
                     <v-card flat>
                       <v-card-text class="">
-                        <Insight />
+                        <PriceLevelList />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -332,32 +332,32 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <Channel />
+                        <PriceSetting />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
 
                   <!-- from share funding -->
 
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item>
                     <v-card flat>
                       <v-card-text class="">
-                        <Report />
+                        <PriceBook />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
 
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <FeePayouts />
+                        <PricingAnalasis />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <AppConnection />
+                        <Report />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -379,11 +379,12 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    Insight: () => import("./Insight"),
-    Channel: () => import("./sales/sale_channels/Channel"),
-    FeePayouts: () => import("./sales/sale_channels/FeePayouts"),
-    Report: () => import("./sales/sale_channels/Report"),
-    AppConnection: () => import("./sales/sale_channels/app_connetion/AppConnection"),
+    PriceLevelList: () => import("./pricing_management/PriceLevelList"),
+    PriceSetting: () => import("./pricing_management/PriceSetting"),
+    PriceBook: () => import("./pricing_management/PriceBook"),
+    PricingAnalasis: () => import("./pricing_management/PricingAnalasis"),
+    Report: () => import("./pricing_management/Report"),
+
     
   },
   data: () => ({

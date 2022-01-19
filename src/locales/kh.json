@@ -4001,6 +4001,8 @@
      "s_account_types": "ប្រភេទគណនីបន្ទាប់បន្សំ",
      "s_chart_of_accounts": "តារាងគណនីបន្ទាប់បន្សំ",
      "s_accounts_center": "បញ្ជីគណនីបន្ទាប់បន្សំ",
-     "do_you_delete" : "Do you want to delete?"
+     "do_you_delete" : "Do you want to delete?",
+     "fee_payouts": "Fee & Payouts"
+
 
 }

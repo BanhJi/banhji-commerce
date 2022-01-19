@@ -53,13 +53,13 @@ const routes = [{
             }
         },
         {
-            path: 'customers',
-            name: 'Customers',
+            path: 'sale_channels',
+            name: 'sale_channels',
             component: () => import('../views/customers/Customers'),
             meta: {
                 moduleId: 2,
                 mainMenu: productTitle(dataStore.productType),
-                title: i18n.t('receivables_revenue')
+                title: i18n.t('sale_channels')
             }
         },
         {
@@ -372,13 +372,13 @@ const routes = [{
             }
         },
         {
-            path: 'vendors',
-            name: 'Vendors',
-            component: load('suppliers/Suppliers'),
+            path: 'pricing',
+            name: 'pricing',
+            component: load('customers/PricingManagement'),
             meta: {
                 moduleId: 3,
-                mainMenu: 'suppliers_purchases',
-                title: 'Payables'
+                mainMenu: 'pricing',
+                title: 'Pricing Management'
             }
         },
         {

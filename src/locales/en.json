@@ -4080,6 +4080,7 @@
      "success": "Success",
      "todo_every": "Todo every",
      "load_class": "Get Class list",
-     "do_you_delete" : "Do you want to delete?"
+     "do_you_delete" : "Do you want to delete?",
+     "fee_payouts": "Fee & Payouts"
 
 }
