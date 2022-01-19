@@ -1,0 +1,143 @@
+@font-face {
+  font-family: 'banhji-accounting-icon';
+  src:  url('fonts/banhji-accounting-icon.eot?dzak3k');
+  src:  url('fonts/banhji-accounting-icon.eot?dzak3k#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?dzak3k') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?dzak3k') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?dzak3k#banhji-accounting-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="b-"], [class*=" b-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'banhji-accounting-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.b-recivable:before {
+  content: "\e900";
+  color: #474747;
+}
+.b-payable:before {
+  content: "\e901";
+  color: #474747;
+}
+.b-payroll:before {
+  content: "\e902";
+  color: #474747;
+}
+.b-accounting:before {
+  content: "\e903";
+  color: #474747;
+}
+.b-service:before {
+  content: "\e904";
+  color: #474747;
+}
+.b-payment:before {
+  content: "\e905";
+  color: #474747;
+}
+.b-product:before {
+  content: "\e906";
+  color: #474747;
+}
+.b-financing:before {
+  content: "\e907";
+  color: #474747;
+}
+.b-funding:before {
+  content: "\e908";
+  color: #474747;
+}
+.b-insurance:before {
+  content: "\e909";
+  color: #474747;
+}
+.b-banking:before {
+  content: "\e90a";
+  color: #474747;
+}
+.b-billing:before {
+  content: "\e90b";
+  color: #474747;
+}
+.b-budget:before {
+  content: "\e90c";
+  color: #474747;
+}
+.b-overview:before {
+  content: "\e90d";
+  color: #474747;
+}
+.b-cash:before {
+  content: "\e90e";
+  color: #474747;
+}
+.b-compliance:before {
+  content: "\e90f";
+  color: #474747;
+}
+.b-commerce:before {
+  content: "\e910";
+  color: #474747;
+}
+.b-segment:before {
+  content: "\e911";
+  color: #474747;
+}
+.b-report:before {
+  content: "\e912";
+  color: #474747;
+}
+.b-management:before {
+  content: "\e913";
+  color: #474747;
+}
+.b-add:before {
+  content: "\e914";
+  color: #474747;
+}
+.b-chat:before {
+  content: "\e915";
+  color: #474747;
+}
+.b-close:before {
+  content: "\e916";
+  color: #474747;
+}
+.b-full:before {
+  content: "\e917";
+  color: #474747;
+}
+.b-logout:before {
+  content: "\e918";
+  color: #474747;
+}
+.b-mini:before {
+  content: "\e919";
+  color: #474747;
+}
+.b-modul:before {
+  content: "\e91a";
+  color: #474747;
+}
+.b-search:before {
+  content: "\e91b";
+  color: #474747;
+}
+.b-transation:before {
+  content: "\e91c";
+  color: #474747;
+}

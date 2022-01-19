@@ -1,0 +1,146 @@
+<template>
+    <v-row>
+        <v-col sm="12" cols="12" class="pt-0">
+            <v-card color="white" class="pl-2 no_border" elevation="0">
+                <h2 class="mb-0 font_20">{{$t('payment_management')}}</h2>
+                <p class="mb-0">{{$t('payment_management_desc')}}</p>
+                <!-- loading -->
+                <LoadingMe
+                        :isLoading="compeletLoading"
+                        :fullPage="false"
+                        :myLoading="true">
+
+                </LoadingMe>
+                <v-row class="">
+                    <v-col sm="3" cols="12" class="pb-0">
+                        <v-select class="mt-1"
+                                  :items="dateSorters"
+                                  clearable
+                                  outlined
+                                  placeholder="ALL"
+                        />
+                    </v-col>
+
+                    <v-col sm="3" cols="12" class="pb-0">
+                        <app-datepicker :initialDate="start_date" @emitDate="start_date = $event"/>
+                    </v-col>
+
+                    <v-col sm="3" cols="12" class="pb-0">
+                        <app-datepicker :initialDate="end_date" @emitDate="end_date = $event"/>
+                    </v-col>
+
+                    <v-col sm="1" cols="1" class="pb-0 pt-4">
+                        <v-btn color="primary white--text">
+                            <i class="b-search" style="font-size: 18px; color:#fff"/>
+                        </v-btn>
+                    </v-col>
+                    <v-col sm="2" cols="2" class="pb-0">
+                        <v-btn
+                                icon
+                                color="black"
+                                class="bg-none float-right ml-2"
+                        >
+                            <v-icon class="font_34">fa fa-file-excel</v-icon>
+                        </v-btn>
+                        <v-btn
+                                icon
+                                color="black"
+                                class="bg-none float-right ml-2"
+                        >
+                            <v-icon class="font_34">fa fa-print</v-icon>
+                        </v-btn>
+
+                    </v-col>
+
+                </v-row>
+                <v-row>
+                    <v-col sm="4" cols="12" class="pt-0">
+                        <v-card outlined dense class="pa-3 no_border white--text d-flex justify-space-between align-center" color="secondary" height="85px">
+                            <h3 class="text-left text-uppercase font_13 flex-1">{{ $t('average_payment_day') }}</h3>
+                            <h3 class="text-right font_20 flex-1">10</h3>
+                        </v-card>
+                    </v-col>
+                    <v-col sm="4" cols="12" class="pt-0">
+                        <v-card outlined dense class="pa-3 no_border white--text  d-flex justify-space-between align-center" color="third" height="85px">
+                            <h3 class="text-left text-uppercase font_13 flex-1">{{ $t('total_amount_paid') }}</h3>
+                            <h3 class="text-right  font_20  flex-1">10,000.00</h3>
+                        </v-card>
+                    </v-col>
+                    <v-col sm="4" cols="12" class="pt-0">
+                        <v-card outlined dense class="pa-3 no_border black--text d-flex justify-space-between align-center" color="grayBg" height="85px">
+                            <h3 class="text-left text-uppercase font_13 flex-1">{{ $t('early_due_date_payment') }}</h3>
+                            <h3 class="text-right mt-2 font_20 flex-1">10</h3>
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col sm="12" cols="12" class="py-0">
+                        <template>
+                            <v-simple-table class="attachment_table">
+                                <template v-slot:default>
+                                    <thead>
+                                    <tr>
+                                        <th>{{$t('name')}}</th>
+                                        <th>{{$t('billed_amount')}}</th>
+                                        <th>{{$t('payment_amount')}}</th>
+                                        <th>{{$t('date')}}</th>
+                                        <th>{{$t('source')}}</th>
+                                        <th>{{$t('status')}}</th>
+                                        <th>{{$t('action')}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </template>
+                            </v-simple-table>
+                        </template>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-col>
+    </v-row>
+</template>
+
+<script>
+    import LoadingMe from '@/components/Loading'
+    import DatePickerComponent from '@/components/custom_templates/DatePickerComponent'
+
+    export default {
+        name: "",
+        components: {
+            LoadingMe,
+            'app-datepicker': DatePickerComponent,
+            // BankConnection,
+        },
+        data: () => ({
+            start_date: "",
+            end_date: "",
+            dateSorters: ['Today', 'This Week', 'This Month', 'This Year'],
+            journal_entries: [],
+            // LoadingMe
+            compeletLoading: false,
+            isLoaded: false,
+        }),
+        methods: {
+        },
+        mounted() {
+        },
+        computed: {
+        },
+    };
+</script>
+<style scoped>
+.b-search:before{
+    color: #fff !important;
+}
+
+</style>

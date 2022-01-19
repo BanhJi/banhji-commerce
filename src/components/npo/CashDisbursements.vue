@@ -1,0 +1,193 @@
+<template>
+  <v-card  style="background: transparent ;" elevation="0" dense>
+    <chart
+      ref="cashBankChart"
+      :legend-position="'bottom'"
+      :legend-visible="false"
+      :tooltip="tooltip"
+      :series="series"
+      :series-defaults-type="'line'"
+      :series-defaults-style="'smooth'"
+      :category-axis-categories="categoryAxis"
+      :value-axis-labels-format="'{0}'"
+      :chartArea="chartArea"
+      :theme="'sass'"
+    />
+    <LoadingMe
+      type="loading"
+      :isLoading="showLoading"
+      :myLoading="true"
+      :fullPage="false"
+    />
+  </v-card>
+</template>
+
+<script>
+// import kendo from '@progress/kendo-ui';
+import { i18n } from "@/i18n";
+// import Helper from "@/helper.js";
+import { Chart } from "@progress/kendo-charts-vue-wrapper";
+
+const insightHandler = require("@/scripts/handler/workingcapital/insightHandler.js");
+
+export default {
+  name: "CashDisbursements",
+  props: ["height"],
+  components: {
+    chart: Chart,
+    LoadingMe: () => import("@/components/Loading"),
+  },
+  data: () => ({
+    totalCash: 0,
+    series: [],
+    // categoryAxis: [],
+    categoryAxis: [
+			i18n.t("jan"),
+			i18n.t("feb"),
+			i18n.t("mar"),
+			i18n.t("apr"),
+			i18n.t("may"),
+			i18n.t("jun"),
+			i18n.t("jul"),
+			i18n.t("aug"),
+			i18n.t("sep"),
+			i18n.t("oct"),
+			i18n.t("nov"),
+			i18n.t("dec"),
+		],
+    tooltip: {
+      visible: true,
+      template: "#= series.name #: #= value #",
+    },
+    // LoadingMe
+    showLoading: false,
+  }),
+  computed: {
+    chartArea() {
+      return {
+        background: "transparent",
+        height: this.height,
+      };
+    },
+  },
+  methods: {
+    async loadData() {
+      try {
+        this.showLoading = true;
+        let cashAndBankBalances = await insightHandler.getCashAndBankBalance();
+        let cashAndBankBalance = cashAndBankBalances.data;
+        /* Bind Total Cash */
+        this.totalCash =
+          cashAndBankBalance.on_hand + cashAndBankBalance.in_bank;
+
+        /* Make Cash Out Positive */
+        let cashOut = [];
+        for (let i = 0; i < cashAndBankBalance.cash_out.length; i++) {
+          cashOut.push((cashAndBankBalance.cash_out[i] * -1).toFixed(2));
+        }
+
+        /* Bind Series */
+        this.series = [
+          {
+            name: i18n.t("cash_out"),
+            data: cashOut,
+            color: "#4d4848",
+          },
+        ];
+
+        /* Refresh Chart */
+        let cashBankChart = this.$refs.cashBankChart.kendoWidget();
+        cashBankChart.refresh();
+
+        this.showLoading = false;
+      } catch {
+        this.showLoading = false;
+      }
+    },
+  },
+  mounted() {
+    this.loadData();
+  },
+};
+</script>
+
+<style scoped>
+.theme--light.v-data-table {
+  background-color: transparent !important;
+}
+
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+  height: 32px !important;
+  border-bottom: thin solid rgba(0, 0, 0, 0.12) !important;
+  border-right: thin solid rgba(0, 0, 0, 0.12) !important;
+}
+.v-data-table.simple1_table.theme--light,
+.v-data-table > .v-data-table__wrapper > table > tbody > tr:first-child > td {
+  border-top: thin solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.theme--light.v-data-table.simple1_table
+  > .v-data-table__wrapper
+  > table
+  > thead
+  > tr:last-child
+  > th:last-child {
+  border-right: none !important;
+}
+
+.theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+  background-color: transparent !important;
+}
+
+.border-bottom {
+  border-bottom: thin solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.font-small {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.font-26 {
+  font-size: 26px !important;
+}
+.v-data-table.simple_table.theme--light {
+  border-top: thin solid rgba(0, 0, 0, 0.12) !important;
+}
+.theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > thead
+  > tr:last-child
+  > th {
+  border-bottom: none !important;
+  border-right: thin solid rgba(0, 0, 0, 0.12) !important;
+}
+.theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:not(:last-child)
+  > td:last-child,
+.theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:not(:last-child)
+  > th:last-child,
+.theme--light.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr
+  > td:last-child {
+  border-right: none !important;
+}
+
+@media (max-width: 576px) {
+}
+</style>
