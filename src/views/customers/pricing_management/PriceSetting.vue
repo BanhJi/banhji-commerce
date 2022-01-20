@@ -1,111 +1,113 @@
 <template>
     <v-row>
-        <v-col sm="12" cols="12" class="pb-0">
-            <v-row>
-                <v-col sm="8" class="py-0">
-                    <p class="mb-0">{{ $t('price_setting_desc') }}</p>
-                </v-col>
-                <v-col sm="4" class="py-0">
-                </v-col>
-            </v-row>
-            <v-row class="mt-3">
-                <v-col sm="4" cols="12" class="py-0">
-                    <label class="label mb-0">{{ $t('price_level') }}</label>
-                    <v-select class="mt-1"
-                              :items="priceLevel"
-                              item-value="id"
-                              item-text="name"
-                              return-object
-                              clearable
-                              placeholder="Price Level"
-                              tage="Default Price Level"
-                              outlined
-                    />
-                </v-col>
+        <v-col sm="12" cols="12" class="grayBg px-6">
+            <v-card color="white" class="pa-3 no_border" elevation="0">
+                <v-row>
+                    <v-col sm="8" class="py-0">
+                        <p class="mb-0">{{ $t('price_setting_desc') }}</p>
+                    </v-col>
+                    <v-col sm="4" class="py-0">
+                    </v-col>
+                </v-row>
+                <v-row class="mt-3">
+                    <v-col sm="4" cols="12" class="py-0">
+                        <label class="label mb-0">{{ $t('price_level') }}</label>
+                        <v-select class="mt-1"
+                                :items="priceLevel"
+                                item-value="id"
+                                item-text="name"
+                                return-object
+                                clearable
+                                placeholder="Price Level"
+                                tage="Default Price Level"
+                                outlined
+                        />
+                    </v-col>
 
-                <v-col sm="3" cols="12" class="py-0">
-                    <label class="label mb-0">{{ $t('uom') }}</label>
-                    <v-select class="mt-1"
-                              :items="uom"
-                              item-value="id"
-                              item-text="name"
-                              return-object
-                              clearable
-                              placeholder="UOM"
-                              tage="UOM"
-                              outlined
-                    />
-                </v-col>
+                    <v-col sm="3" cols="12" class="py-0">
+                        <label class="label mb-0">{{ $t('uom') }}</label>
+                        <v-select class="mt-1"
+                                :items="uom"
+                                item-value="id"
+                                item-text="name"
+                                return-object
+                                clearable
+                                placeholder="UOM"
+                                tage="UOM"
+                                outlined
+                        />
+                    </v-col>
 
-                <v-col sm="3" cols="12" class="py-0">
-                    <label class="label mb-0">{{ $t('effective_date') }}</label>
-                    <app-datepicker :initialDate="effectiveDate" @emitDate="effectiveDate = $event"/>
-                </v-col>
+                    <v-col sm="3" cols="12" class="py-0">
+                        <label class="label mb-0">{{ $t('effective_date') }}</label>
+                        <app-datepicker :initialDate="effectiveDate" @emitDate="effectiveDate = $event"/>
+                    </v-col>
 
-                <v-col sm="1" cols="1" class="pt-1">
-                    <v-btn color="primary white--text">
-                        <i class="b-search" style="font-size: 18px; color:#fff !important;"/>
-                    </v-btn>
-                </v-col>
-            </v-row>
-            <v-row class="">
-                <v-col sm="12" cols="12" class="pb-0">
-                    <template>
-                        <kendo-datasource ref="itemListDS"
-                                          :group="group"
-                                          :data="itemList"/>
-                        <kendo-grid id="gridItemList" class="grid-function"
-                                    :data-source-ref="'itemListDS'"
-                                    :editable="false"
-                                    :navigatable="true"
-                                    :noRecords="true"
-                                    :scrollable-virtual="true">
-                            <kendo-grid-column
-                                :field="'no'"
-                                :title="'no'"
-                                :template="rowNumberTmpl"
-                                :width="50"
-                                :column-menu="false"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center'	}"
-                                :attributes="{style: 'text-align: center'}"/>
-                            <kendo-grid-column
-                                :field="'item'"
-                                :title="$t('item')"
-                                :width="120"
-                                :template="'<span>#=item#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                            <kendo-grid-column
-                                :field="'uom'"
-                                :title="$t('uom')"
-                                :width="120"
-                                :template="'<span>#=uom#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                            <kendo-grid-column
-                                :field="'lastPrice'"
-                                :title="$t('last_price')"
-                                :width="110"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                            <kendo-grid-column
-                                :field="'newPrice'"
-                                :title="$t('new_price')"
-                                :width="120"
-                                :template="'<span>#=newPrice||0#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                            <kendo-grid-column
-                                :field="'type'"
-                                :title="$t('type')"
-                                :width="100"
-                                :template="'<span>#=type#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                        </kendo-grid>
-                        <LoadingMe
-                            :isLoading="showLoading"
-                            :fullPage="false"
-                            :myLoading="true"/>
-                    </template>
-                </v-col>
-            </v-row>
-            <!-- Dialog -->
+                    <v-col sm="1" cols="1" class="pt-1">
+                        <v-btn color="primary white--text">
+                            <i class="b-search" style="font-size: 18px; color:#fff !important;"/>
+                        </v-btn>
+                    </v-col>
+                </v-row>
+                <v-row class="">
+                    <v-col sm="12" cols="12" class="pb-0">
+                        <template>
+                            <kendo-datasource ref="itemListDS"
+                                            :group="group"
+                                            :data="itemList"/>
+                            <kendo-grid id="gridItemList" class="grid-function"
+                                        :data-source-ref="'itemListDS'"
+                                        :editable="false"
+                                        :navigatable="true"
+                                        :noRecords="true"
+                                        :scrollable-virtual="true">
+                                <kendo-grid-column
+                                    :field="'no'"
+                                    :title="'no'"
+                                    :template="rowNumberTmpl"
+                                    :width="50"
+                                    :column-menu="false"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center'	}"
+                                    :attributes="{style: 'text-align: center'}"/>
+                                <kendo-grid-column
+                                    :field="'item'"
+                                    :title="$t('item')"
+                                    :width="120"
+                                    :template="'<span>#=item#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                <kendo-grid-column
+                                    :field="'uom'"
+                                    :title="$t('uom')"
+                                    :width="120"
+                                    :template="'<span>#=uom#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                <kendo-grid-column
+                                    :field="'lastPrice'"
+                                    :title="$t('last_price')"
+                                    :width="110"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                <kendo-grid-column
+                                    :field="'newPrice'"
+                                    :title="$t('new_price')"
+                                    :width="120"
+                                    :template="'<span>#=newPrice||0#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                <kendo-grid-column
+                                    :field="'type'"
+                                    :title="$t('type')"
+                                    :width="100"
+                                    :template="'<span>#=type#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                            </kendo-grid>
+                            <LoadingMe
+                                :isLoading="showLoading"
+                                :fullPage="false"
+                                :myLoading="true"/>
+                        </template>
+                    </v-col>
+                </v-row>
+                <!-- Dialog -->
+            </v-card>
         </v-col>
     </v-row>
 </template>

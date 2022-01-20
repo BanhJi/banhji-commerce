@@ -20,7 +20,8 @@ export const data =  Vue.observable({
     accounting_tab_main: 1,
     banking_tab_main: 1,
     funding_tab_main: 1,
-    compliance_main_tab: 1
+    compliance_main_tab: 1,
+    pricing_tab_main:0,
 
 
 })
@@ -54,4 +55,9 @@ export const setTabActiveBudget  = (main,sub) =>{
     data.budget_tab_main = main
     data.budget_tab_sub  = sub
  }
+export const setTabActivePricing  = (main,sub) =>{
+data.pricing_tab_main = main
+data.pricing_tab_sub  = sub
+}
+ 
 

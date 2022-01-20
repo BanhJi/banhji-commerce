@@ -1,290 +1,298 @@
 <template>
-    <v-row class="">
-        <v-col sm="7" cols="12" class="py-0">
-            <h2 class="mb-0 font_20">{{ $t("customer_directory") }}</h2>
-            <p>{{ $t("customer_directory_desc") }}</p>
-        </v-col>
-        <v-col sm="5" cols="12" class="py-1">
-            <v-menu class="white--text capitalize float-right">
-                <template v-slot:activator="{ on }">
-                    <v-btn
-                        color="primary"
-                        class="ml-2 rounded-4 float-right text-capitalize white--text"
-                        v-on="on"
-                    >
-                        {{ $t("add_new_customer") }}
-                        <v-icon size="" class="ma-1">expand_more</v-icon>
-                    </v-btn>
-                </template>
-                <v-list>
-                    <v-list-item link route to="individual_customer">
-                        <v-list-item-title>
-                            {{ $t("add_individual_customer") }}
-                        </v-list-item-title
-                        >
-                    </v-list-item>
-                    <v-list-item link route to="company_customer">
-                        <v-list-item-title> {{ $t("company_customer") }}</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
-            <!--            <v-btn outlined class="secondary&#45;&#45;text mx-3 capitalize float-right" @click="importShow">-->
-            <!--                {{ $t("import") }}-->
-            <!--            </v-btn>-->
-            <v-dialog v-model="dialogm2" max-width="500px">
-                <template v-slot:activator="{ on }">
-                    <v-btn outlined class="secondary--text mx-3 capitalize float-right" color="primary" v-on="on"
-                           @click="importShow">
-                        {{ $t('import') }}
-                    </v-btn>
-                </template>
-                <v-form ref="form" v-model="valid" lazy-validation>
-                    <v-card>
-                        <v-card-title>{{ $t('import_customer') }}</v-card-title>
-                        <v-icon class="btn_close" @click="dialogm2 = false">close</v-icon>
-                        <v-divider/>
-                        <v-card-text style="background-color: #EDF1F5; color: #333333;">
-                            <v-row>
-                                <v-col sm="12" cols="12" class="pb-0">
-                                    <label class="label">{{ $t('customer_type') }}</label>
-                                    <v-select
-                                        class="mt-1"
-                                        :placeholder="$t('select_type')"
-                                        outlined
-                                        v-model="impCusType"
-                                        :items="customerTypes"
-                                        @change="customerTypeChange"
-                                        item-value="value.id"
-                                        item-text="name"
-                                        return-object
-                                        required
-                                    />
-                                    <label class="label">{{ $t('group') }}</label>
-                                    <v-select
-                                        class="mt-1"
-                                        :placeholder="$t('select_group')"
-                                        outlined
-                                        v-model="impGroup"
-                                        :items="customerGroups"
-                                        item-value="value.id"
-                                        item-text="name"
-                                        return-object
-                                        required
-                                    />
-                                    <label class="mb-0">{{ $t("default_discount") }}</label>
-                                    <v-select
-                                        class="mt-1"
-                                        v-model="impDiscountItem"
-                                        :items="discountItems"
-                                        item-value="id"
-                                        item-text="name"
-                                        return-object
-                                        tage="Default Discount"
-                                        placeholder="0% discount"
-                                        outlined/>
-                                    <label class="mb-0">{{ $t("default_price_level") }}</label>
-                                    <v-select
-                                        class="mt-1"
-                                        v-model="impPriceLevel"
-                                        :items="priceLevels"
-                                        item-value="id"
-                                        item-text="name"
-                                        return-object
-                                        placeholder="Price Level"
-                                        tage="Default Price Level"
-                                        outlined/>
-                                    <v-row>
-                                        <v-col sm="6" cols="6" class="pb-0">
-                                            <upload-excel-component :on-success="handleSuccess"
-                                                                    :before-upload="beforeUpload"/>
+    <v-app class="zoom-in">
+        <v-container>
+            <v-col sm="12" cols="12">
+                <v-card color="white" class="pa-4 no_border" elevation="0">
+                    <v-row class="">
+                        <v-col sm="7" cols="12" class="py-0">
+                            <h2 class="mb-0 font_20">{{ $t("customer_directory") }}</h2>
+                            <p>{{ $t("customer_directory_desc") }}</p>
+                        </v-col>
+                        <v-col sm="5" cols="12" class="py-1">
+                            <v-menu class="white--text capitalize float-right">
+                                <template v-slot:activator="{ on }">
+                                    <v-btn
+                                        color="primary"
+                                        class="ml-2 rounded-4 float-right text-capitalize white--text"
+                                        v-on="on"
+                                    >
+                                        {{ $t("add_new_customer") }}
+                                        <v-icon size="" class="ma-1">expand_more</v-icon>
+                                    </v-btn>
+                                </template>
+                                <v-list>
+                                    <v-list-item link route to="individual_customer">
+                                        <v-list-item-title>
+                                            {{ $t("add_individual_customer") }}
+                                        </v-list-item-title
+                                        >
+                                    </v-list-item>
+                                    <v-list-item link route to="company_customer">
+                                        <v-list-item-title> {{ $t("company_customer") }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+                            <!--            <v-btn outlined class="secondary&#45;&#45;text mx-3 capitalize float-right" @click="importShow">-->
+                            <!--                {{ $t("import") }}-->
+                            <!--            </v-btn>-->
+                            <v-dialog v-model="dialogm2" max-width="500px">
+                                <template v-slot:activator="{ on }">
+                                    <v-btn outlined class="secondary--text mx-3 capitalize float-right" color="primary" v-on="on"
+                                        @click="importShow">
+                                        {{ $t('import') }}
+                                    </v-btn>
+                                </template>
+                                <v-form ref="form" v-model="valid" lazy-validation>
+                                    <v-card>
+                                        <v-card-title>{{ $t('import_customer') }}</v-card-title>
+                                        <v-icon class="btn_close" @click="dialogm2 = false">close</v-icon>
+                                        <v-divider/>
+                                        <v-card-text style="background-color: #EDF1F5; color: #333333;">
+                                            <v-row>
+                                                <v-col sm="12" cols="12" class="pb-0">
+                                                    <label class="label">{{ $t('customer_type') }}</label>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        :placeholder="$t('select_type')"
+                                                        outlined
+                                                        v-model="impCusType"
+                                                        :items="customerTypes"
+                                                        @change="customerTypeChange"
+                                                        item-value="value.id"
+                                                        item-text="name"
+                                                        return-object
+                                                        required
+                                                    />
+                                                    <label class="label">{{ $t('group') }}</label>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        :placeholder="$t('select_group')"
+                                                        outlined
+                                                        v-model="impGroup"
+                                                        :items="customerGroups"
+                                                        item-value="value.id"
+                                                        item-text="name"
+                                                        return-object
+                                                        required
+                                                    />
+                                                    <label class="mb-0">{{ $t("default_discount") }}</label>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        v-model="impDiscountItem"
+                                                        :items="discountItems"
+                                                        item-value="id"
+                                                        item-text="name"
+                                                        return-object
+                                                        tage="Default Discount"
+                                                        placeholder="0% discount"
+                                                        outlined/>
+                                                    <label class="mb-0">{{ $t("default_price_level") }}</label>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        v-model="impPriceLevel"
+                                                        :items="priceLevels"
+                                                        item-value="id"
+                                                        item-text="name"
+                                                        return-object
+                                                        placeholder="Price Level"
+                                                        tage="Default Price Level"
+                                                        outlined/>
+                                                    <v-row>
+                                                        <v-col sm="6" cols="6" class="pb-0">
+                                                            <upload-excel-component :on-success="handleSuccess"
+                                                                                    :before-upload="beforeUpload"/>
+                                                        </v-col>
+                                                        <v-col sm="6" cols="6" class="pb-0">
+                                                            <v-btn outlined class="secondary--text  capitalize float-right"
+                                                                href="/files/member.xlsx" download>
+                                                                <span class="">{{ $t('download_file') }}</span>
+                                                            </v-btn>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-text>
+                                        <v-divider/>
+                                        <v-col sm="12" cols="12" class="py-0">
+                                            <v-card-actions class="pa-4">
+                                                <v-row>
+                                                    <v-col sm="6" cols="6" class="py-0 pl-0">
+                                                        <v-btn color="black"
+                                                            outlined
+                                                            class=" text-capitalize black--text float-left"
+                                                            @click="dialogm2 = false">{{ $t('cancel') }}
+                                                        </v-btn>
+                                                    </v-col>
+                                                    <v-col sm="6" cols="6" class="py-0 pr-0">
+                                                        <v-btn color="secondary"
+                                                            class="px-3  white--text text-capitalize float-right"
+                                                            @click="saveImport">
+                                                            {{ $t('save_close') }}
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-actions>
                                         </v-col>
-                                        <v-col sm="6" cols="6" class="pb-0">
-                                            <v-btn outlined class="secondary--text  capitalize float-right"
-                                                   href="/files/member.xlsx" download>
-                                                <span class="">{{ $t('download_file') }}</span>
+                                    </v-card>
+                                </v-form>
+                            </v-dialog>
+                        </v-col>
+                        <v-col sm="12" cols="12" class="pt-0">
+                            <v-row class="">
+                                <v-col sm="12" cols="12" class="py-0">
+                                    <v-row class="">
+                                        <v-col sm="4" cols="12" class="py-0">
+                                            <v-text-field
+                                                class="mt-1"
+                                                @keypress.enter="onSearch(search)"
+                                                clearable
+                                                @click:clear="onSearch('')"
+                                                v-model="search"
+                                                :placeholder="$t('search_directory')"
+                                                outlined
+                                            />
+                                        </v-col>
+                                        <v-col sm="1" cols="12" class="py-1">
+                                            <v-btn
+                                                color="primary"
+                                                class="white--text capitalize marginTopPhone"
+                                                @click="onSearch(search)"
+                                            >
+                                                {{ $t("search") }}
                                             </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-col>
                             </v-row>
-                        </v-card-text>
-                        <v-divider/>
-                        <v-col sm="12" cols="12" class="py-0">
-                            <v-card-actions class="pa-4">
-                                <v-row>
-                                    <v-col sm="6" cols="6" class="py-0 pl-0">
-                                        <v-btn color="black"
-                                               outlined
-                                               class=" text-capitalize black--text float-left"
-                                               @click="dialogm2 = false">{{ $t('cancel') }}
-                                        </v-btn>
-                                    </v-col>
-                                    <v-col sm="6" cols="6" class="py-0 pr-0">
-                                        <v-btn color="secondary"
-                                               class="px-3  white--text text-capitalize float-right"
-                                               @click="saveImport">
-                                            {{ $t('save_close') }}
-                                        </v-btn>
-                                    </v-col>
-                                </v-row>
-                            </v-card-actions>
-                        </v-col>
-                    </v-card>
-                </v-form>
-            </v-dialog>
-        </v-col>
-        <v-col sm="12" cols="12" class="pt-0">
-            <v-row class="">
-                <v-col sm="12" cols="12" class="py-0">
-                    <v-row class="">
-                        <v-col sm="4" cols="12" class="py-0">
-                            <v-text-field
-                                class="mt-1"
-                                @keypress.enter="onSearch(search)"
-                                clearable
-                                @click:clear="onSearch('')"
-                                v-model="search"
-                                :placeholder="$t('search_directory')"
-                                outlined
-                            />
-                        </v-col>
-                        <v-col sm="1" cols="12" class="py-1">
-                            <v-btn
-                                color="primary"
-                                class="white--text capitalize marginTopPhone"
-                                @click="onSearch(search)"
-                            >
-                                {{ $t("search") }}
-                            </v-btn>
+
+                            <v-row class="">
+                                <v-col sm="12" cols="12" class="py-0">
+                                    <kendo-datasource
+                                        ref="dataSourceDirection"
+                                        :data="customersDirectory"
+                                        :group="group"
+                                    />
+                                    <kendo-grid
+                                        id="gridCDirectory"
+                                        class="grid-function"
+                                        :data-source-ref="'dataSourceDirection'"
+                                        :editable="false"
+                                        :groupable="true"
+                                        :noRecords="true"
+                                        :excel-file-name="'CustomerDirectory.xlsx'"
+                                        :excel-filterable="true"
+                                        :excel-all-pages="true"
+                                        :toolbar="['excel']"
+                                        :excel-export="excelExport"
+                                        :column-menu="true"
+                                        :resizable="true"
+                                        :scrollable-virtual="true">
+                                        <kendo-grid-column
+                                            :field="'number'"
+                                            :hidden="true"
+                                            :title="$t('number')"
+                                            :template="'<span>#= abbr #-#= number#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'name'"
+                                            :title="$t('name')"
+                                            :width="200"
+                                            :template="'<span>#= name#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'priceLevel'"
+                                            :title="$t('price_level')"
+                                            :width="150"
+                                            :template="'<span>#= priceLevel#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'creditLimit'"
+                                            :title="$t('credit_limit')"
+                                            :width="150"
+                                            :attributes="{style: 'text-align: right; '}"
+                                            :template="'<span>#=kendo.toString(creditLimit, decimalFormat)#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'customerType'"
+                                            :hidden="true"
+                                            :title="$t('type')"
+                                            :width="200"
+                                            :template="'<span>#= customerType#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'group'"
+                                            :title="$t('group')"
+                                            :hidden="true"
+                                            :width="120"
+                                            :template=" '<span>#= group #</span>' "
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+
+                                        <kendo-grid-column
+                                            :field="'saleDepositAcc'"
+                                            :hidden="true"
+                                            :title="$t('sale_deposit')"
+                                            :width="200"
+                                            :template="'<span>#= saleDepositAcc#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'receivableAcc'"
+                                            :hidden="true"
+                                            :width="200"
+                                            :title="$t('account_receivable')"
+                                            :template="'<span>#= receivableAcc#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'saleDiscountAcc'"
+                                            :hidden="true"
+                                            :width="200"
+                                            :title="$t('settlement_discount')"
+                                            :template="'<span>#= saleDiscountAcc#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'phoneNumber'"
+                                            :title="$t('phone')"
+                                            :width="120"
+                                            :template="'<span>#= phoneNumber#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="'email'"
+                                            :title="$t('email')"
+                                            :width="150"
+                                            :template="'<span>#= email#</span>'"
+                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                        />
+                                        <kendo-grid-column
+                                            :field="''"
+                                            :title="$t('action')"
+                                            :visible="true"
+                                            :width="90"
+                                            :command="[ { iconClass: 'k-icon k-i-edit', text: ' ', click: goEdit }, ]"
+                                            :headerAttributes="{ style: 'text-align: center; background-color: #EDF1F5',}"
+                                            :attributes="{ style: 'text-align: center' }"/>
+                                    </kendo-grid>
+                                    <LoadingMe
+                                        :isLoading="showLoading"
+                                        :fullPage="false"
+                                        :myLoading="true"
+                                        type="loading"
+                                    />
+                                </v-col>
+                            </v-row>
                         </v-col>
                     </v-row>
-                </v-col>
-            </v-row>
-
-            <v-row class="">
-                <v-col sm="12" cols="12" class="py-0">
-                    <kendo-datasource
-                        ref="dataSourceDirection"
-                        :data="customersDirectory"
-                        :group="group"
-                    />
-                    <kendo-grid
-                        id="gridCDirectory"
-                        class="grid-function"
-                        :data-source-ref="'dataSourceDirection'"
-                        :editable="false"
-                        :groupable="true"
-                        :noRecords="true"
-                        :excel-file-name="'CustomerDirectory.xlsx'"
-                        :excel-filterable="true"
-                        :excel-all-pages="true"
-                        :toolbar="['excel']"
-                        :excel-export="excelExport"
-                        :column-menu="true"
-                        :resizable="true"
-                        :scrollable-virtual="true">
-                        <kendo-grid-column
-                            :field="'number'"
-                            :hidden="true"
-                            :title="$t('number')"
-                            :template="'<span>#= abbr #-#= number#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'name'"
-                            :title="$t('name')"
-                            :width="200"
-                            :template="'<span>#= name#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'priceLevel'"
-                            :title="$t('price_level')"
-                            :width="150"
-                            :template="'<span>#= priceLevel#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'creditLimit'"
-                            :title="$t('credit_limit')"
-                            :width="150"
-                            :attributes="{style: 'text-align: right; '}"
-                            :template="'<span>#=kendo.toString(creditLimit, decimalFormat)#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'customerType'"
-                            :hidden="true"
-                            :title="$t('type')"
-                            :width="200"
-                            :template="'<span>#= customerType#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'group'"
-                            :title="$t('group')"
-                            :hidden="true"
-                            :width="120"
-                            :template=" '<span>#= group #</span>' "
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-
-                        <kendo-grid-column
-                            :field="'saleDepositAcc'"
-                            :hidden="true"
-                            :title="$t('sale_deposit')"
-                            :width="200"
-                            :template="'<span>#= saleDepositAcc#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'receivableAcc'"
-                            :hidden="true"
-                            :width="200"
-                            :title="$t('account_receivable')"
-                            :template="'<span>#= receivableAcc#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'saleDiscountAcc'"
-                            :hidden="true"
-                            :width="200"
-                            :title="$t('settlement_discount')"
-                            :template="'<span>#= saleDiscountAcc#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'phoneNumber'"
-                            :title="$t('phone')"
-                            :width="120"
-                            :template="'<span>#= phoneNumber#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="'email'"
-                            :title="$t('email')"
-                            :width="150"
-                            :template="'<span>#= email#</span>'"
-                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                        />
-                        <kendo-grid-column
-                            :field="''"
-                            :title="$t('action')"
-                            :visible="true"
-                            :width="90"
-                            :command="[ { iconClass: 'k-icon k-i-edit', text: ' ', click: goEdit }, ]"
-                            :headerAttributes="{ style: 'text-align: center; background-color: #EDF1F5',}"
-                            :attributes="{ style: 'text-align: center' }"/>
-                    </kendo-grid>
-                    <LoadingMe
-                        :isLoading="showLoading"
-                        :fullPage="false"
-                        :myLoading="true"
-                        type="loading"
-                    />
-                </v-col>
-            </v-row>
-        </v-col>
-    </v-row>
+                </v-card>
+            </v-col>
+        </v-container>
+    </v-app>
 </template>
 <script>
 import kendo from "@progress/kendo-ui";

@@ -43,288 +43,13 @@
                       </v-tab>
                
                     </v-col>
-                    <v-col v-if="type !== 'npo'" sm="2" cols="2" class="px-0">
-                      <v-menu
-                        nudge-bottom="4"
-                        nudge-left="40"
-                        bottom
-                        offset-y
-                        origin="bottom top"
-                        transition="scroll-y-reverse-transition"
-                      >
-                        <template v-slot:activator="{ on }">
-                          <span class="hidden-sm-and-up">
-                            <div class="dropdown_transactions ml-6">
-                              <v-icon v-on="on" left>mdi-plus</v-icon>
-                            </div>
-                          </span>
-                          <span class="hidden-sm-and-down">
-                            <v-btn
-                              icon
-                              v-on="on"
-                              class="dropdown_transactions"
-                              style="right: 0"
-                            >
-                              <v-icon size="17" class="ma-1">mdi-plus</v-icon>
-                              {{ $t("new") }}
-                              <v-icon size="" class="ma-1">expand_more</v-icon>
-                            </v-btn>
-                          </span>
-                        </template>
-
-                        <v-list width="930px" class="pa-3 dropdown_new">
-                          <v-row>
-                            <v-col
-                              sm="4"
-                              cols="12"
-                              style="border-right: thin solid #ddd"
-                            >
-                              <v-list-item link route to="lead" class="pl-0">
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("new_lead") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  pl-3
-                                  font_12
-                                  float-left
-                                "
-                              >
-                                {{ $t("new_lead_desc") }}
-                              </p>
-                              <v-list-item
-                                link
-                                route
-                                to="sale_quote"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("sale_quote") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  pl-3
-                                  font_12
-                                  float-left
-                                "
-                              >
-                                {{ $t("sale_quote_desc1") }}
-                              </p>
-                              <v-list-item
-                                link
-                                route
-                                to="sale_order"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("sale_order") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  pl-3
-                                  font_12
-                                  float-left
-                                "
-                              >
-                                {{ $t("sale_order_desc1") }}
-                              </p>
-                              <v-list-item
-                                link
-                                route
-                                to="sale_deposit"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("sale_deposit") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  pl-3
-                                  font_12
-                                  float-left
-                                "
-                              >
-                                {{ $t("sale_deposit_desc1") }}
-                              </p>
-                            </v-col>
-                            <v-col
-                              sm="4"
-                              cols="12"
-                              style="border-right: thin solid #ddd"
-                            >
-                              <v-list-item link route to="invoice" class="pl-0">
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("invoice") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  font_12
-                                  pl-3
-                                  float-left
-                                "
-                              >
-                                {{ $t("invoice_desc") }}
-                              </p>
-                              <!--                              <v-list-item-->
-                              <!--                                  link-->
-                              <!--                                  route-->
-                              <!--                                  to="delayed_invoice"-->
-                              <!--                                  class="pl-0"-->
-                              <!--                              >-->
-                              <!--                                <v-list-item-title>-->
-                              <!--                                  <h3 class="primary&#45;&#45;text text-bold pl-3">-->
-                              <!--                                    {{ $t("delayed_invoice") }}-->
-                              <!--                                  </h3>-->
-                              <!--                                </v-list-item-title>-->
-                              <!--                              </v-list-item>-->
-                              <!--                              <p-->
-                              <!--                                  class="mb-3 greyText&#45;&#45;text font_12 pl-3 float-left"-->
-                              <!--                              >-->
-                              <!--                                {{ $t("delayed_invoice_desc") }}-->
-                              <!--                              </p>-->
-
-                              <v-list-item
-                                link
-                                route
-                                to="cash_receipt"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("cash_receipt") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  font_12
-                                  pl-3
-                                  float-left
-                                "
-                              >
-                                {{ $t("cash_receipt_desc") }}
-                              </p>
-                              <v-list-item
-                                link
-                                route
-                                to="sale_return"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("credit_memo") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  font_12
-                                  pl-3
-                                  float-left
-                                "
-                              >
-                                {{ $t("sale_return_desc") }}
-                              </p>
-                            </v-col>
-                            <v-col sm="4" cols="12" class="pr-4">
-                              <!--                                                <v-list-item link route to="cash_refund" class="pl-0">-->
-                              <!--                                                    <v-list-item-title >-->
-                              <!--                                                        <h3 class="primary--text text-bold pl-3">{{ $t('cash_refund') }}</h3>-->
-                              <!--                                                    </v-list-item-title>-->
-                              <!--                                                </v-list-item>-->
-                              <!--                                                <p class="mb-3 greyText--text font_12 pl-3 float-left">{{$t('cash_refund_desc')}}</p>-->
-                              <v-list-item
-                                link
-                                route
-                                to="statement"
-                                class="pl-0"
-                              >
-                                <v-list-item-title>
-                                  <h3 class="primary--text text-bold pl-3">
-                                    {{ $t("statement") }}
-                                  </h3>
-                                </v-list-item-title>
-                              </v-list-item>
-                              <p
-                                class="
-                                  mb-3
-                                  greyText--text
-                                  font_12
-                                  pl-3
-                                  float-left
-                                "
-                              >
-                                {{ $t("statement_desc1") }}
-                              </p>
-
-                              <v-list-item link route to="individual_customer">
-                                <h3
-                                  style="
-                                    width: 70%;
-                                    line-height: 26px;
-                                    font-size: 22px;
-                                  "
-                                  class="text-bold"
-                                >
-                                  {{ $t("add_individual_customer") }}
-                                </h3>
-                              </v-list-item>
-                              <v-list-item
-                                link
-                                route
-                                to="company_customer"
-                                class="mt-6"
-                              >
-                                <h3
-                                  style="
-                                    width: 70%;
-                                    line-height: 26px;
-                                    font-size: 22px;
-                                  "
-                                  class="text-bold"
-                                >
-                                  {{ $t("add_company_customer") }}
-                                </h3>
-                              </v-list-item>
-                            </v-col>
-                          </v-row>
-                        </v-list>
-                      </v-menu>
-                    </v-col>
+                    
+                  
                   </v-row>
                   <v-tab-item>
                     <v-card flat>
                       <v-card-text class="">
-                        <PriceLevelList />
+                          <PriceLevelList />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -389,11 +114,11 @@ export default {
   },
   data: () => ({
     // active_tab: data.customer_tab.main
-    active_in_tabs: data.customer_tab_main,
+    active_in_tabs: data.pricing_tab_main,
   }),
   computed: {
     active_tab() {
-      return data.customer_tab_main;
+      return data.pricing_tab_main;
     },
     type() {
       return dataStore.productType;
@@ -405,7 +130,7 @@ export default {
       this.active_in_tabs = this.active_tab;
     },
     active_in_tabs() {
-      data.customer_tab_main = this.active_in_tabs;
+      data.pricing_tab_main = this.active_in_tabs;
     },
   },
   methods: {

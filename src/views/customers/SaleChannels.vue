@@ -43,7 +43,7 @@
                       </v-tab>
                
                     </v-col>
-                    <v-col v-if="type !== 'npo'" sm="2" cols="2" class="px-0">
+                    <v-col sm="2" cols="2" class="px-0">
                       <v-menu
                         nudge-bottom="4"
                         nudge-left="40"
@@ -339,7 +339,7 @@
 
                   <!-- from share funding -->
 
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
                         <Report />
@@ -347,14 +347,14 @@
                     </v-card>
                   </v-tab-item>
 
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
                         <FeePayouts />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
-                  <v-tab-item v-if="type != 'npo'">
+                  <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
                         <AppConnection />

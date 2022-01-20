@@ -26,7 +26,6 @@
                 />
                 <p class="sub_type">{{ planName }}</p>
               </div>
-              <!-- <span class="mt-5 ml-1 font_16 text-uppercase secondary--text text-bold ">Beta</span> -->
             </a>
             <a v-if="!isAccountLogo" href="/" class="">
               <h1 class="mb-0">
@@ -112,15 +111,6 @@
             class="link_buttom"
             v-bind:class="{ hide_item_samll: miniVariant }"
           >
-            <!-- <v-list-item-title>
-                                                              <router-link
-                                                                class="light-primary--text"
-                                                                @click.native="clickMenu(1)"
-                                                                :class="activeClass1"
-                                                                :to="lang + '/subscriptions'"
-                                                                >{{ $t("subscriptions") }}
-                                                              </router-link>
-                                                            </v-list-item-title> -->
             <v-list-item-title v-if="isAccessSetting" class="my-1">
               <router-link
                 class="light-primary--text"
@@ -130,21 +120,6 @@
                 >{{ $t("settings") }}
               </router-link>
             </v-list-item-title>
-            <!-- <v-list-item-title>
-                                                  <router-link
-                                                    class="pb-1"
-                                                    @click.native="clickMenu(3)"
-                                                    :to="lang + '/attachment'"
-                                                    :class="activeClass3"
-                                                  >
-                                                    {{ $t("attachments") }}
-                                                  </router-link>
-                                                </v-list-item-title>
-                                                <v-list-item-title>
-                                                  <a target="_blank" href="https://banhji.com/resources/">{{
-                                                    $t("support_learning_hub")
-                                                  }}</a>
-                                                </v-list-item-title> -->
             <img
               class="mx-6 mt-1"
               src="../assets/images/made_in_cambodia.png"
@@ -173,23 +148,6 @@
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
         <v-spacer />
       </div>
-      <!-- <span class="hidden-lg-and-up">
-                <a href="\" style="margin-top: 15px; float: left">
-                <img
-                    class="float-left"
-                    src="../assets/images/banhji-logo-r.png"
-                    height="30"
-                />
-                <p
-                    style="color: #828282; margin-left: 20px; margin-top: -13px;"
-                    class="mb-0"
-                >
-                    {{ planName }}
-                </p>
-                </a>
-
-            <v-spacer/>
-            </span> -->
 
       <h1 v-if="this.$route.meta.logo" class="hidden-sm-and-down">
         <img style="height: 50px" :src="'/images/' + this.$route.meta.logo" />
@@ -204,11 +162,6 @@
         {{ $t(this.$route.meta.mainMenu) }}
       </h1>
       <v-spacer />
-      <!-- <v-btn @click="toggleDarkTheme">
-                                  Dark
-                              </v-btn> -->
-
-      <!-- <v-icon size="40">fa fa-dot-circle-o</v-icon> -->
 
       <li class="my_dropdown" style="display: initial !important">
         <a href="#" class="pr-2 font_16 d-flex flex-column">
@@ -357,7 +310,6 @@ export default {
         name: "overview",
         menuTex: "overview",
         path: "/en",
-        moduleId: 1,
       },
       {
         id: 2,
@@ -366,7 +318,6 @@ export default {
         name: "sale_channels",
         menuTex: "sale_channels",
         path: "/sale_channels",
-        moduleId: 2,
       },
       {
         id: 3,
@@ -375,115 +326,91 @@ export default {
         name: "pricing",
         menuTex: "pricing",
         path: "/pricing",
-        moduleId: 3,
       },
       {
         id: 4,
         class: "",
         activeClass: "",
-        name: "payroll",
-        menuTex: "payroll",
-        path: "/payroll",
-        moduleId: 4,
+        name: "marketing & promotions",
+        menuTex: "marketing",
+        path: "/marketing_promotions",
       },
-      //   {
-      //     id: 4,
-      //     class: "",
-      //     activeClass: "",
-      //     name: "Product/Services",
-      //     menuTex: "products_services",
-      //     path: "/products_services",
-      //   },
+      
       {
         id: 5,
         class: "",
         activeClass: "",
-        name: "products",
-        menuTex: "products",
-        path: "/products",
-        moduleId: 5,
+        name: "loyalty_reward",
+        menuTex: "loyalty_reward",
+        path: "/loyalty_reward",
       },
       {
         id: 6,
         class: "",
         activeClass: "",
-        name: "Services/ Projects",
-        menuTex: "services",
-        path: "/services",
-        moduleId: 6,
+        name: "order_sale",
+        menuTex: "order_sale",
+        path: "/order_sale",
       },
 
       {
         id: 7,
         class: "",
         activeClass: "",
-        name: "bedgeting",
-        menuTex: "budgeting",
-        path: "/budgeting",
-        moduleId: 7,
+        name: "team_management",
+        menuTex: "team_management",
+        path: "/team_management",
       },
-      // {
-      //   id: 21,
-      //   class: "",
-      //   activeClass: "",
-      //   name: "Share & Funding",
-      //   menuTex: "share_funding",
-      //   path: "/share_funding",
-      // },
       {
         id: 8,
         class: "",
         activeClass: "",
-        name: "accounting",
-        menuTex: "accounting",
-        path: "/accounting",
-        moduleId: 8,
+        name: "products_services",
+        menuTex: "products_services",
+        path: "/products_services",
+      },
+      {
+        id: 9,
+        class: "",
+        activeClass: "",
+        name: "customers",
+        menuTex: "customers",
+        path: "/customer_directory",
       },
       { id: 30, class: "mx-3 my-1 v-divider side_devider" },
       {
-        id: 9,
-        class: "text-green",
-        activeClass: "",
-        name: "banking",
-        menuTex: "banking_menu",
-        path: "/banking",
-        moduleId: 9,
-      },
-      {
-        id: 13,
+        id: 10,
         class: "text-green",
         activeClass: "",
         name: "payments",
-        menuTex: "payments.",
+        menuTex: "payments",
         path: "/payments",
-        moduleId: 13,
       },
       {
         id: 11,
         class: "text-green",
         activeClass: "",
-        name: "finances",
-        menuTex: "finance.",
-        path: "/finances",
-        moduleId: 11,
+        name: "point_of_sales",
+        menuTex: "point_of_sales",
+        path: "/point_of_sales",
       },
-      // {
-      //   id: 11,
-      //   class: "text-green",
-      //   activeClass: "",
-      //   name: "Insurance",
-      //   menuTex: "insurance_",
-      //   path: "/insurance",
-      // },
       {
         id: 12,
         class: "text-green",
         activeClass: "",
-        name: "compliance",
-        menuTex: "compliance",
-        path: "/compliance",
-        moduleId: 12,
+        name: "e_commerce",
+        menuTex: "e_commerce",
+        path: "/e_commerce",
       },
+      // {
+      //   id: 13,
+      //   class: "text-green",
+      //   activeClass: "",
+      //   name: "setting",
+      //   menuTex: "setting",
+      //   path: "/setting",
+      //   moduleId: 13,
+      // },
     ],
     previous_active_id: 1,
     fullscreen: false,
@@ -771,185 +698,6 @@ export default {
       }
     } else {
       this.isAccessSetting = true;
-    }
-    if (dataStore.productType == "Cooperative") {
-      this.items = this.items.filter(
-        (i) => i.path !== "/compliance" && i.path !== "/insurance"
-      );
-    }
-    if (dataStore.productType === "npo") {
-      this.items = this.items.filter((i) => {
-        if (i.id != 5 && i.id != 6 && i.id != 11 && i.id != 13) {
-          switch (i.id) {
-            case 1:
-              i.menuTex = "overview";
-              break;
-            case 2:
-              i.menuTex = "receipts";
-              break;
-            case 3:
-              i.menuTex = "payments";
-              break;
-            case 4:
-              // i.menuTex = ""
-              break;
-            case 5:
-              i.menuTex = "";
-              break;
-            case 6:
-              i.menuTex = "";
-              break;
-            case 7:
-              i.menuTex = "budgeting";
-              break;
-            case 8:
-              i.menuTex = "accounting";
-              break;
-            case 9:
-              i.menuTex = "banking.";
-              break;
-            case 11:
-              i.menuTex = "funding";
-              break;
-          }
-          // if(i.id == 8){
-          //   i.class= ''
-          //   i.name = "Banking"
-          //   i.menuTex= "banking_menu"
-          //   i.path= "/banking"
-          // }
-          // if(i.id == 9){
-          //   i.class= ''
-          //   i.id= 16
-          //   i.name= "Accounting"
-          //   i.menuTex= "accounting"
-          //   i.path="/accounting"
-          // }
-          return i;
-        }
-      });
-      this.items.push({
-        id: 16,
-        class: "text-green",
-        activeClass: "",
-        name: "reports",
-        menuTex: "reports.",
-        path: "/reports",
-        moduleId: 16,
-      });
-    }
-    if (dataStore.productType === "Public Sectors") {
-      this.items = this.items.filter((i) => {
-        switch (i.id) {
-          case 11:
-            i.menuTex = "Funding";
-            break;
-        }
-        if (i.id == 11) {
-          i.class = "";
-          i.name = "funding";
-          (i.menuTex = "funding."),
-            (i.moduleId = 13),
-            (i.path = "/share_funding");
-        }
-        return i;
-      });
-      this.items.push({
-        id: 16,
-        class: "text-green",
-        activeClass: "",
-        name: "reports",
-        menuTex: "reports.",
-        path: "/reports",
-        moduleId: 16,
-      });
-    }
-    if (dataStore.productType === "MicroEdition") {
-      this.items = this.items.filter((i) => {
-        if (i.id != 5 && i.id != 6 && i.id != 7) {
-          switch (i.id) {
-            case 1:
-              i.menuTex = "overview";
-              break;
-            case 2:
-              i.menuTex = "revenues";
-              break;
-            case 3:
-              i.menuTex = "purchases";
-              break;
-            case 5:
-              i.menuTex = "";
-              break;
-            case 6:
-              i.menuTex = "";
-              break;
-            case 8:
-              i.menuTex = "accounting";
-              break;
-            case 9:
-              i.menuTex = "cash_banking";
-              break;
-          }
-          if (i.id == 2) {
-            i.class = "";
-            i.name = "revenues";
-            i.menuTex = "revenues";
-            i.path = "/revenues";
-          }
-          if (i.id == 3) {
-            i.class = "";
-            i.name = "purchases";
-            i.menuTex = "purchases";
-            i.path = "/purchases";
-          }
-          if (i.id == 4) {
-            i.class = "";
-            i.name = "expneses";
-            i.menuTex = "expenses";
-            i.path = "/expensing";
-          }
-          if (i.id == 8) {
-            i.class = "";
-            i.name = "reports";
-            i.menuTex = "reports";
-            i.path = "/reporting";
-          }
-          if (i.id == 9) {
-            i.name = "cash_banking";
-            i.menuTex = "cash_banking";
-            i.path = "/cash_banking";
-          }
-
-          if (i.id == 12) {
-            i.name = "finances";
-            i.menuTex = "finances";
-            i.path = "/finances";
-          }
-          if (i.id == 11) {
-            i.name = "payments";
-            i.menuTex = "payments";
-            i.path = "/payments";
-          }
-          // if(i.id == 9){
-          //   i.class= ''
-          //   i.id= 16
-          //   i.name= "Accounting"
-          //   i.menuTex= "accounting"
-          //   i.path="/accounting"
-          // }
-          return i;
-        }
-      });
-      // this.items.push(
-      // {
-      //     id: 12,
-      //     class: "text-green",
-      //     activeClass: "",
-      //     name: "reports",
-      //     menuTex: "reports",
-      //     path: "/reports",
-      //     moduleId: 16,
-      // },)
     }
   },
   async created() {

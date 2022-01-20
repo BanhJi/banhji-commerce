@@ -4081,6 +4081,15 @@
      "todo_every": "Todo every",
      "load_class": "Get Class list",
      "do_you_delete" : "Do you want to delete?",
-     "fee_payouts": "Fee & Payouts"
+     "fee_payouts": "Fee & Payouts",
+     "campaign_report": "Campaign report",
+     "campaigns": "Campaigns",
+     "loyalty_reward": "Loyalty & reward",
+     "order_sale": "Order & sale",
+     "team_management": "Team management",
+     "point_of_sales": "Point of sales",
+     "e_commerce": "E-commerce",
+     "marketing_promotions": "Marketing & promotions"
+
 
 }
