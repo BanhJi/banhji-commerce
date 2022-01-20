@@ -111,7 +111,7 @@
             class="link_buttom"
             v-bind:class="{ hide_item_samll: miniVariant }"
           >
-            <v-list-item-title v-if="isAccessSetting" class="my-1">
+            <v-list-item-title class="my-1">
               <router-link
                 class="light-primary--text"
                 @click.native="clickMenu(2)"
