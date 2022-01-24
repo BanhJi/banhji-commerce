@@ -9,8 +9,10 @@ export const data =  Vue.observable({
     keyword:'',
     customer_tab_main:1,
     customer_tab_sub:0,
-    vendor_tab_main:1,
-    vendor_tab_sub:0,
+    order_report_tab_main:0,
+    order_report_tab_sub:0,
+    sale_report_tab_main:0,
+    sale_report_tab_sub:0,
     product_tab_main:1,
     product_tab_sub:0,
     budget_tab_main:1,
@@ -56,8 +58,16 @@ export const setTabActiveBudget  = (main,sub) =>{
     data.budget_tab_sub  = sub
  }
 export const setTabActivePricing  = (main,sub) =>{
-data.pricing_tab_main = main
-data.pricing_tab_sub  = sub
+    data.pricing_tab_main = main
+    data.pricing_tab_sub  = sub
+}
+export const setTabOrderReport  = (main,sub) =>{
+    data.order_report_tab_main = main
+    data.order_report_tab_sub  = sub
+}
+export const setTabSaleReport  = (main,sub) =>{
+    data.sale_report_tab_main = main
+    data.sale_report_tab_sub  = sub
 }
  
 

@@ -14,11 +14,11 @@
                 {{ $t("dashboard") }}
               </span>
             </v-tab>
-            <v-tab>
+            <!-- <v-tab>
               <span class="text-uppercase">
                 {{ $t("ratios") }}
               </span>
-            </v-tab>
+            </v-tab> -->
             <v-tab-item> 
               <Home />
             </v-tab-item>

@@ -4089,7 +4089,22 @@
      "team_management": "Team management",
      "point_of_sales": "Point of sales",
      "e_commerce": "E-commerce",
-     "marketing_promotions": "Marketing & promotions"
+     "marketing_promotions": "Marketing & promotions",
+     "loyalty_card": "Loyalty card",
+     "gift_card": "Gift card",
+     "store_credit_card": "Store credit card",
+     "reward_programs": "Reward programs",
+     "order_by_customers_r": "Order by customers",
+     "order_by_product_services_r": "Order by product/ services",
+     "order_by_product_services_categories_r": "Order by product/ services categories",
+     "order_reports": "Order reports",
+     "sale_reports": "Sale reports",
+     "sale_by_customers_r": "Sale by customers",
+     "sale_by_product_services_r": "Sale by products/ services",
+     "sale_by_product_services_categories_r": "Sale by products/ services categories",
+     "sale_targets_r": "Sale Targets",
+     "sale_performance_r": "Sale Performance",
+     "import_employee": "Import employee"
 
 
 }

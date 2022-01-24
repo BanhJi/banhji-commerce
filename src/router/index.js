@@ -404,210 +404,6 @@ const routes = [{
                 title: 'Products',
             }
         },
-        {
-            path: 'shelving_order',
-            name: 'Shelving Order',
-            component: load('products/warehouses/operations/ShelvingOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'transfer_order',
-            name: 'Transfer Order',
-            component: load('products/warehouses/operations/TransferOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'packing_order',
-            name: 'Packing order',
-            component: load('products/warehouses/operations/PackingOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'receipt_order',
-            name: 'Receipt Order',
-            component: load('products/warehouses/operations/ReceiptOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'budgeting',
-            name: 'budgeting',
-            component: load('budgeting/Budgeting'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'cash_reconciliation',
-            name: 'Cash Reconciliation',
-            props: true,
-            component: load('banking/CashReconciliation'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking',
-            }
-        },
-        {
-            path: 'segment_budget',
-            name: 'Segment Budget',
-            props: true,
-            component: load('budgeting/budgets/SegmentBudget'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'business_unit_budget',
-            name: 'Business Unit Budget',
-            props: true,
-            component: load('budgeting/business_unit/Budget'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'project_budget',
-            name: 'Project Budget',
-            props: true,
-            component: load('budgeting/project_budget/ProjectBudget'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'class_budget',
-            name: 'Class Budget',
-            props: true,
-            component: load('budgeting/class_budget/ClassBudget'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'cash_reconciliation/view/:id',
-            name: 'Cash Reconciliation View',
-            props: true,
-            component: load('banking/views/CashReconciliationView'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'bankding',
-            }
-        },
-        {
-            path: 'bank_reconciliation',
-            name: 'Bank Reconciliation',
-            component: load('banking/BankReconciliation'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_reconciliation/view',
-            name: 'Bank Reconciliation View',
-            props: true,
-            component: load('banking/views/BankReconciliationView'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_reconciliation_bank_feeds/:id?',
-            name: 'Bank Reconciliation Bank Feeds',
-            component: load('banking/BankReconciliationBankFeeds'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_statement_reconciliation',
-            name: 'Bank Statement Reconciliation',
-            component: load('banking/banking/BankStatementReconciliation'),
-            props: true,
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_transaction_mapping',
-            name: 'Bank Transaction Mapping',
-            component: load('banking/settings/BankTransactionMapping'),
-            props: true,
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_field_mapping',
-            name: 'Bank Field Mapping',
-            component: load('banking/settings/BankFieldMapping'),
-            props: true,
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_account/:id?',
-            name: 'Bank Account',
-            component: load('banking/BankAccount'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'bank_account_view',
-            name: 'Bank Account View',
-            component: load('banking/views/BankAccountView'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
 
         {
             path: 'cash_transactions',
@@ -644,16 +440,6 @@ const routes = [{
             }
         },
 
-        {
-            path: 'loan_monitoring',
-            name: 'Loan Monitoring',
-            component: load('budgeting/LoanMonitoring'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
         {
             path: 'cash_movement',
             name: 'Cash Movement',
@@ -753,333 +539,7 @@ const routes = [{
                 title: i18n.t('receivables_revenue')
             }
         },
-        {
-            path: 'new_tax_return/:id?',
-            name: 'New Tax Return',
-            component: load('compliance/monthly_tax/new_tax_return/newTaxReturn'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Sale Record',
-            path: 'sale_record/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/review_return/sale_record/SaleRecord'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Add Sale',
-            path: 'add_sale/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/input/add_sale/AddSale'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Purchase Record',
-            path: 'purchase_record/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/review_return/purchase_record/PurchaseRecord'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Add Purchase',
-            path: 'add_purchase/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/input/add_purchase/AddPurchase'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Withholding Tax Record',
-            path: 'withholding_tax_record/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/review_return/withholding_tax_record/WithholdingTaxRecord'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Add Withholding Tax',
-            path: 'add_withholding_tax/:id?',
-            component: load('compliance/monthly_tax/new_tax_return/input/add_withholding_tax/AddWithholdingTax'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            name: 'Add Salary',
-            path: 'add_salary/:id?/:salary?',
-            component: load('compliance/monthly_tax/new_tax_return/input/add_salary/AddSalary'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        {
-            path: 'monthly_return/view/:id?',
-            name: 'View Tax Return',
-            component: load('compliance/monthly_tax/viewTaxReturn'),
-            props: true,
-            meta: {
-                moduleId: 12,
-                mainMenu: 'compliance',
-                miniSideBar: false,
-                title: 'Compliance',
-                type: 'compliance',
-            }
-        },
-        // Insurance
-        //  ===== =>
-        {
-            path: 'insurance',
-            name: 'Insurance',
-            component: load('insurance/Insurances'),
-            props: true,
-            meta: {
-                moduleId: 13,
-                mainMenu: 'welcome',
-                miniSideBar: false,
-                type: 'insurance',
-                title: 'Insurance',
-            }
-        },
-        {
-            path: 'insurance_detial',
-            name: 'InsuranceDetail',
-            component: load('insurance/InsuranceDetail'),
-            props: true,
-            meta: {
-                moduleId: 13,
-                mainMenu: 'welcome',
-                miniSideBar: false,
-                type: 'insurance',
-                title: 'Insurance',
-            }
-        },
-        {
-            path: 'insurance_purchase',
-            name: 'InsurancePurchase',
-            component: load('insurance/InsurancePurchase'),
-            props: true,
-            meta: {
-                moduleId: 13,
-                mainMenu: 'welcome',
-                miniSideBar: true,
-                type: 'insurance',
-                title: 'Insurance',
-            }
-        },
-        // Share Funding
-        {
-            path: 'share_funding',
-            name: 'share_funding',
-            component: load('share_funding/ShareFundingTab'),
-            props: true,
-            meta: {
-                moduleId: 14,
-                mainMenu: 'funding_project',
-                miniSideBar: false,
-                title: i18n.t('funding_project')
-            }
-        },
-        {
-            path: 'company_donor/:id?',
-            name: 'CompanyCustomerDonor',
-            component: () => import('../views/share_funding/donor/CompanyCustomerDonor.vue'),
-            props: true,
-            meta: {
-                moduleId: 14,
-                mainMenu: 'funding_project',
-                miniSideBar: false,
-                title: i18n.t('funding_project')
-            }
-        },
-        // Micro Edition module id 15
-        {
-            path: 'revenues',
-            name: 'revenues',
-            component: load('micro_edition/revenues/RevenuesTab'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'revenues',
-                miniSideBar: false,
-                title: i18n.t('revenues')
-            }
-        },
-        {
-            path: 'order/:id?',
-            name: 'order',
-            props: true,
-            component: load('micro_edition/revenues/Order'),
-            meta: {
-                moduleId: 15,
-                mainMenu: 'revenues',
-                miniSideBar: false,
-                title: i18n.t('revenues')
-            }
-        },
-        {
-            path: 'order_view/:id?',
-            name: 'orderView',
-            props: true,
-            component: load('micro_edition/revenues/OrderView'),
-            meta: {
-                moduleId: 15,
-                mainMenu: 'revenues',
-                miniSideBar: false,
-                title: i18n.t('revenues')
-            }
-        },
-        {
-            path: 'invoice_micro/:id?',
-            name: 'invoiceMicro',
-            props: true,
-            component: load('micro_edition/revenues/InvoiceMircro'),
-            meta: {
-                moduleId: 15,
-                mainMenu: 'revenues',
-                miniSideBar: false,
-                title: i18n.t('revenues')
-            }
-        },
-        {
-            path: 'purchases',
-            name: 'purchases',
-            component: load('micro_edition/purchases/PurchaseTab'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'purchases',
-                miniSideBar: false,
-                title: i18n.t('purchases')
-            }
-        },
-        {
-            path: 'micro_purchase',
-            name: 'MicroPurchase',
-            component: load('micro_edition/purchases/CreditPurchase'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'purchases',
-                miniSideBar: false,
-                title: i18n.t('purchases')
-            }
-        },
-        {
-            path: 'expensing',
-            name: 'expensing',
-            component: load('micro_edition/expnese/ExpenseTab'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'expensing',
-                miniSideBar: false,
-                title: i18n.t('expensing')
-            }
-        },
-        {
-            path: 'micro_expense',
-            name: 'MircroExpense',
-            component: load('micro_edition/expnese/ExpenseMicro'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'expensing',
-                miniSideBar: false,
-                title: i18n.t('expensing')
-            }
-        },
-        {
-            path: 'micro_expense_view/:id?',
-            name: 'mircroExpenseView',
-            component: load('micro_edition/expnese/ExpensesViewMicro'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'expensing',
-                miniSideBar: false,
-                title: i18n.t('expensing')
-            }
-        },
-        {
-            path: 'reporting',
-            name: 'reporting',
-            component: load('micro_edition/reports/ReportTab'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'reporting',
-                miniSideBar: false,
-                title: i18n.t('reporting')
-            }
-        },
-        {
-            path: 'cash_banking',
-            name: 'cashBanking',
-            component: load('micro_edition/cash_banking/CashBankingTab'),
-            props: true,
-            meta: {
-                moduleId: 15,
-                mainMenu: 'cash_banking',
-                miniSideBar: false,
-                title: i18n.t('cash_banking')
-            }
-        },
-        // only for npo and public sectors
-        {
-            path: 'reports',
-            name: 'reports',
-            component: load('report_npo_ps/ReportForNpoAndPublicSector'),
-            props: true,
-            meta: {
-                moduleId: 16,
-                mainMenu: 'reports',
-                title: i18n.t('reports')
-            }
-        },
+        
         // payment
         {
             path: 'payments',
@@ -1092,6 +552,72 @@ const routes = [{
                 title: i18n.t('payments')
             }
         },
+        
+
+        {
+            path: 'loyalty_reward',
+            name: 'loyalty_reward',
+            component: load('loyalty_reward/LoyaltyReward'),
+            props: true,
+            meta: {
+                mainMenu: 'loyalty_reward',
+                title: i18n.t('loyalty_reward')
+            }
+        },
+        
+        {
+            path: 'order_sale',
+            name: 'order_sale',
+            component: load('order_sale/OrderSaleTab'),
+            props: true,
+            meta: {
+                mainMenu: 'order_sale',
+                title: i18n.t('order_sale')
+            }
+        },
+        {
+            path: 'team_management',
+            name: 'team_management',
+            component: load('employee/EmployeeDirectory'),
+            props: true,
+            meta: {
+                mainMenu: 'team_management',
+                title: i18n.t('team_management')
+            }
+        },
+        {
+            path: 'employee/:id?',
+            name: 'Employee',
+            component: load('employee/Employee'),
+            props: true,
+            meta: {
+                mainMenu: 'employee_payroll',
+                miniSideBar: false,
+                title: 'Employee Payroll',
+            }
+        },
+        {
+            path: 'employment_history/:id?/:record_id?',
+            name: 'Employment History',
+            component: load('employee/EmploymentHistory'),
+            meta: {
+                moduleId: 4,
+                mainMenu: 'employee_payroll',
+                miniSideBar: false,
+                title: 'Employee Payroll',
+            }
+        },
+        {
+            path: 'products_services',
+            name: 'products_services',
+            component: load('products_services/ProductServiceTeb'),
+            props: true,
+            meta: {
+                mainMenu: 'products_services',
+                title: i18n.t('products_services')
+            }
+        },
+
 
     ]
 },

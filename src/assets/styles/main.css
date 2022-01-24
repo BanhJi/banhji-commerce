@@ -336,8 +336,7 @@ h1.ml-2 a {
 .block_menu a:nth-of-type(11) .v-list-item__content .v-list-item__title,
 .block_menu a:nth-of-type(12) .v-list-item__content .v-list-item__title,
 .block_menu a:nth-of-type(13) .v-list-item__content .v-list-item__title,
-.block_menu a:nth-of-type(10) .v-list-item__content .v-list-item__title,
-.block_menu a:nth-of-type(9) .v-list-item__content .v-list-item__title {
+.block_menu a:nth-of-type(10) .v-list-item__content .v-list-item__title{
   color: #ed1a3a !important;
   text-transform: capitalize !important;
   font-size: 19px !important;
