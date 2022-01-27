@@ -617,7 +617,27 @@ const routes = [{
                 title: i18n.t('products_services')
             }
         },
-
+        {
+            path: 'point_of_sales',
+            name: 'point_of_sales',
+            component: load('pos/PosTab'),
+            props: true,
+            meta: {
+                mainMenu: 'point_of_sales',
+                title: i18n.t('point_of_sales')
+            }
+        },
+        
+        {
+            path: 'e_commerce',
+            name: 'e_commerce',
+            component: load('e_commerce/CommerceTab'),
+            props: true,
+            meta: {
+                mainMenu: 'e_commerce',
+                title: i18n.t('e_commerce')
+            }
+        },
 
     ]
 },

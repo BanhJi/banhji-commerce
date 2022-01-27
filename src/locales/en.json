@@ -4104,7 +4104,24 @@
      "sale_by_product_services_categories_r": "Sale by products/ services categories",
      "sale_targets_r": "Sale Targets",
      "sale_performance_r": "Sale Performance",
-     "import_employee": "Import employee"
+     "import_employee": "Import employee",
+     "session_management": "Session management",
+     "sale_unit_management": "Sale unit management",
+     "user_roles": "User roles",
+     "pin_management": "Pin management",
+     "session_reconciliation": "Session reconciliation",
+     "sale_unit_design": "Sale unit design",
+     "mobile_order": "Mobile order",
+     "display_setting": "Display setting",
+     "screen_display": "Screen display",
+     "type_of_order": "Type of order",
+     "scaling": "Scaling",
+     "e_menu": "E-menu",
+     "walk_in": "Walk in",
+     "touch_driven_display": "Touch driven display",
+     "tracking": "Tracking",
+     "b_b": "B2B",
+     "web_site": "Web site"
 
 
 }

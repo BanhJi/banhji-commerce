@@ -24,6 +24,10 @@ export const data =  Vue.observable({
     funding_tab_main: 1,
     compliance_main_tab: 1,
     pricing_tab_main:0,
+    pos_tab_main:0,
+    pos_tab_sub:0,
+    session_tab_main:0,
+    session_tab_sub:0,
 
 
 })
@@ -69,5 +73,13 @@ export const setTabSaleReport  = (main,sub) =>{
     data.sale_report_tab_main = main
     data.sale_report_tab_sub  = sub
 }
- 
+export const setTabPos  = (main,sub) =>{
+    data.pos_tab_main = main
+    data.pos_tab_sub  = sub
+}
+export const setTabSession  = (main,sub) =>{
+    data.session_tab_main = main
+    data.session_tab_sub  = sub
+}
+
 
