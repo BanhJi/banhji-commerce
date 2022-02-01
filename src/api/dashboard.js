@@ -33,4 +33,8 @@ module.exports = {
     banking_graph_payment_option          : url + 'dashboard-bank-graph/institute/' + instituteId + '/asOf',
     sale_margin_analysis                  : url + 'sale-margin-analysis/institute/' + instituteId + '/list',
     sale_tax_detail                       : url + 'sale-tax/institute/' + instituteId + '/list',
+
+    dashboard_receivable_overview              : url + 'dashboard-receivable-overview/institute/' + instituteId + '/list',
+    dashboard_receivable_overview_cus          : url + 'dashboard-receivable-overview-cus/institute/' + instituteId + '/list',
+    dashboard_receivable_overview_sup          : url + 'dashboard-receivable-overview-sup/institute/' + instituteId + '/list',
 }

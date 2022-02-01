@@ -42,21 +42,21 @@
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0  pr-0">
-                <OrderByCustomers />
+                <ByCustomer />
               </v-card-text>
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0 pr-0">
-                <OrderByProductServices />
+                <ByProductsServices />
               </v-card-text>
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0 pr-0">
-                <OrderByProductServicesCate />
+                <CategoriesReport />
               </v-card-text>
             </v-card>
           </v-tab-item>
@@ -96,11 +96,9 @@ export default {
   },
   components: {
     // Overview: () => import("./Overview"),
-    OrderByCustomers: () =>
-      import("./reports/OrderByCustomers"),
-    OrderByProductServices: () =>
-      import("./reports/OrderByProductServices"),
-    OrderByProductServicesCate:()=> import('./reports/OrderByProductServicesCate'),
+    ByCustomer: () => import("./order_reports_analysis/ByCustomer"),
+    ByProductsServices: () => import("./order_reports_analysis/ByProductsServices"),
+    CategoriesReport:()=> import('./order_reports_analysis/CategoriesReport'),
   },
 };
 </script>

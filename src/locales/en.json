@@ -4121,7 +4121,10 @@
      "touch_driven_display": "Touch driven display",
      "tracking": "Tracking",
      "b_b": "B2B",
-     "web_site": "Web site"
+     "web_site": "Web site",
+    "sale_by_customers_desc": "List of detail sale transaction reports grouped by customers.",
+    "sale_by_product_service_desc": "List of detail sales transaction reports grouped by products and services"
+
 
 
 }

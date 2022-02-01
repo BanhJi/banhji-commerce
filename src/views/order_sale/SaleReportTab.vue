@@ -52,21 +52,21 @@
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0  pr-0">
-                <SaleByCustomers />
+                <ByCustomer />
               </v-card-text>
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0 pr-0">
-                <SaleByProductServices />
+                <ByProductsServices />
               </v-card-text>
             </v-card>
           </v-tab-item>
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0 pr-0">
-                <SaleByProductServicesCate />
+                <CategoriesReport />
               </v-card-text>
             </v-card>
           </v-tab-item>
@@ -119,11 +119,11 @@ export default {
     },
   },
   components: {
-    SaleByCustomers: () =>import("./reports/SaleByCustomers"),
-    SaleByProductServices: () =>import("./reports/SaleByProductServices"),
-    SaleByProductServicesCate:()=> import('./reports/SaleByProductServicesCate'),
-    SaleTargets:()=> import('./reports/SaleTargets'),
-    SalePerformance:()=> import('./reports/SalePerformance'),
+    ByCustomer: () =>import("./sale_reports_analysis/ByCustomer"),
+    ByProductsServices: () =>import("./sale_reports_analysis/ByProductsServices"),
+    CategoriesReport:()=> import('./sale_reports_analysis/CategoriesReport'),
+    SaleTargets:()=> import('./sale_reports_analysis/SaleTargets'),
+    SalePerformance:()=> import('./sale_reports_analysis/SalePerformance'),
   },
 };
 </script>

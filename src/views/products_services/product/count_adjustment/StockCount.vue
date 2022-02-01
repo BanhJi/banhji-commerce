@@ -1,7 +1,7 @@
 <template>
     <v-row>
-        <v-col sm="12" cols="12" class="grayBg px-6">
-            <v-card color="white" class="pa-3 no_border" elevation="0">
+        <v-col sm="12" cols="12" class="pt-0">
+            <v-card color="white" class="no_border" elevation="0">
                 <v-row>
                     <v-col sm="12" cols="12" class="pt-0">
                         <v-row class="">

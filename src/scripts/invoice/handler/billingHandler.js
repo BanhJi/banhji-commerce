@@ -23,14 +23,15 @@ module.exports.balance = async function (id) { // customer id
 }
 
 // List
-module.exports.list = async function (strFilter) {
+module.exports.list = async function (params) {
     try {
         let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.invoice_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.invoice_get)
-        }
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.invoice_get + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.invoice_get)
+        // }
+        response = await axios.post(apiUrl.billing.invoice_get , params)
         return response
     } catch (error) {
         window.console.error(error)
@@ -526,52 +527,6 @@ module.exports.inventoryAdjustmentList = async (strFilter) => {
             response = await axios.get(apiUrl.billing.inventory_adjustment_list + '/' + strFilter)
         } else {
             response = await axios.get(apiUrl.billing.inventory_adjustment_list)
-        }
-        return response
-    } catch (error) {
-        window.console.error(error)
-    }
-}
-// Overview Dashboard
-// list
-module.exports.dashboardReceivableOverview = async (strFilter) => {
-    try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview)
-        }
-        return response
-    } catch (error) {
-        window.console.error(error)
-    }
-}
-// Overview Dashboard Customer
-// list
-module.exports.dashboardReceivableOverviewCustomer = async (strFilter) => {
-    try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview_cus + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview_cus)
-        }
-        return response
-    } catch (error) {
-        window.console.error(error)
-    }
-}
-
-// Overview Dashboard Vendor
-// list
-module.exports.dashboardReceivableOverviewVendor = async (strFilter) => {
-    try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview_sup + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.dashboard_receivable_overview_sup)
         }
         return response
     } catch (error) {

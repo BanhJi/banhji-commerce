@@ -5,6 +5,7 @@ const { instituteId } = cookieJS.getCookie();
 const myUrl = require("@/url")
 const baseUrl = myUrl.url
 const url          = baseUrl + '/entity-setting/'
+const urlSe        = baseUrl + '/products/' //https://dev-apis.banhji.com/products/dimension/institute/:institute_id/delete
 // const url          = 'https://dev-apis.banhji.com/settings/'
 
 module.exports = {
@@ -49,4 +50,6 @@ module.exports = {
     // form contant
     accounting_form_content_post     : url + 'accounting-form-content/institute/' + instituteId + '/add',
     accounting_form_content_get      : url + 'accounting-form-content/institute/' + instituteId + '/get',
+
+    delete_dimension                 : urlSe +'dimension/institute/' + instituteId +'/delete'
 }
