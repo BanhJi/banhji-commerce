@@ -1,6 +1,6 @@
 <template>
   <v-row class="">
-    <v-col sm="4" cols="12" class="py-0 pr-2">
+    <v-col sm="4" cols="12" class="py-0 pt-4 pr-2">
       <v-card
         outlined
         dense
@@ -95,7 +95,7 @@
         </v-card>
       </v-card>
     </v-col>
-    <v-col sm="8" cols="12" class="py-0 pl-2">
+    <v-col sm="8" cols="12" class="py-0 pt-4 pl-2">
       <v-tabs>
         <v-tab>
           <span class="hidden-sm-and-up">
