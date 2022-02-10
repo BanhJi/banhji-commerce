@@ -2729,3 +2729,6 @@ html, body {
 .red_icon:before {
   color: #ED1A3A !important;
 }
+.btn-right .v-btn__content{
+  display: block !important;
+}

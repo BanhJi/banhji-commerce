@@ -4044,8 +4044,45 @@
      "b_b": "B2B",
      "web_site": "Web site",
     "sale_by_customers_desc": "របាយការណ៍ប្រតិបត្តិការលក់លំអិតតាមអតិថិជន",
-    "sale_by_product_service_desc": "របាយការណ៍ប្រតិបត្តិការលក់លំអិតតាម ផលិតផល ឬសេវាកម្ម"
+    "sale_by_product_service_desc": "របាយការណ៍ប្រតិបត្តិការលក់លំអិតតាម ផលិតផល ឬសេវាកម្ម",
+    "pos_setting": "កំណត់ POS",
+    "pos_for_retail": "POS for Retail",
+    "pos_for_resturant": "POS for Resturant",
+    "pos_for_service": "POS for Service",
+    "wellcome": "Welcome",
+    "customer_order": "Customer order",
+    "time_in": "Time in",
+    "time_out": "Time out",
+    "order_number": "Order number",
+    "cashier_name": "Cashier name ",
+    "number_people": "Number people",
+    "place": "Place",
+    "take_away": "Take away",
+    "allow_nfc_card": "Allow NFC card",
+    "session_by_pin": "Session by PIN",
+    "allow_split_item": "Allow split item",
+    "allow_kitchen_kit": "Allow kitchen kit",
+    "allow_order_list": "Allow order list",
+    "cancel_reason": "Cancel reason",
+    "session_type": "Session type",
+    "app_nature": "App nature",
+    "retail_title": "Retail title",
+    "f_b_title": "F&B title",
+    "start_session": "Start session",
+    "template": "Template",
+    "cart_setting": "Cart setting",
+    "gift_card_account":"Gift card account",
+    "card_promotion_account":"Card promotion account",
+    "card_customer_account":"Card customer account",
+    "default_customer": "Default Customer",
+    "session_setting": "Session Setting",
+    "invoice_sale_order": "Invoice sale order",
+    "receipt_template": "Receipt template",
+    "set_default": "Set default",
+    "make_cash_payment": "Make cash payment"
 
 
 
-}
+
+
+} 

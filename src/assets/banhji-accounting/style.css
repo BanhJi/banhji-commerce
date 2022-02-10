@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?dzak3k');
-  src:  url('fonts/banhji-accounting-icon.eot?dzak3k#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?dzak3k') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?dzak3k') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?dzak3k#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?macny');
+  src:  url('fonts/banhji-accounting-icon.eot?macny#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?macny') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?macny') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?macny#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -91,6 +91,10 @@
 }
 .b-commerce:before {
   content: "\e910";
+  color: #474747;
+}
+.b-cooperative:before {
+  content: "\e91d";
   color: #474747;
 }
 .b-segment:before {

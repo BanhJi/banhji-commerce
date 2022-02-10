@@ -38,6 +38,14 @@
                           {{ $t("currency") }}
                         </span>
                       </v-tab>
+                      <v-tab>
+                        <span class="hidden-sm-and-up">
+                          <v-icon left>mdi-pen</v-icon>
+                        </span>
+                        <span class="hidden-sm-and-down">
+                          {{ $t("pos_setting") }}
+                        </span>
+                      </v-tab>
                     </v-col>
                   </v-row>
 
@@ -63,6 +71,13 @@
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text class="">
+                        <PosTab />
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
                 </v-tabs>
               </v-col>
             </v-row>
@@ -80,6 +95,8 @@ export default {
     GeneralSettings: () => import("./GeneralSettings"),
     Form: () => import("./form/Form"),
     Currency: () => import("./currency/Currency"),
+    PosTab: () => import("./pos/PosTab"),
+
   },
   data: () => ({}),
   watch: {},

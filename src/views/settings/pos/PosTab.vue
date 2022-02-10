@@ -24,6 +24,14 @@
             <v-icon left>mdi-pen</v-icon>
           </span>
           <span class="hidden-sm-and-down text-capitalize text-left">
+            {{ $t("general_setting") }}
+          </span>
+        </v-tab>
+        <v-tab>
+          <span class="hidden-sm-and-up">
+            <v-icon left>mdi-pen</v-icon>
+          </span>
+          <span class="hidden-sm-and-down text-capitalize text-left">
             {{ $t("session_management") }}
           </span>
         </v-tab>
@@ -51,6 +59,13 @@
             {{ $t("booking") }}
           </span>
         </v-tab>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text class="py-0 pr-0">
+              <General />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
         <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
@@ -89,6 +104,7 @@
 export default {
   name: "",
   components: {
+    General: () => import("./general/General"),
     SessionTab: () => import("./session_management/SessionTab"),
     SaleUnitTab: () => import("./sale_unit_management/SaleUnitTab"),
     OrderingTab: () => import("./ordering/OrderingTab"),

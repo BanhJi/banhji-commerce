@@ -29,614 +29,623 @@ const routes = [{
     children: [
         {
             path: '/',
-            name: 'Overview',
-            component: load('overview/OverviewTab'),
-            meta: {
-                mainMenu: 'welcome',
-                title: 'Overview'
-            }
-        },
-        {
-            path: '/not_authorization',
-            name: 'not_authorization',
-            component: load('NotAuthentication'),
-            meta: {
-                mainMenu: 'NotAuthentication',
-                title: 'NotAuthentication'
-            }
-        },
-        {
-            path: 'sale_channels',
-            name: 'sale_channels',
-            component: () => import('../views/customers/SaleChannels'),
-            meta: {
-                mainMenu: 'sale_channels',
-                title: i18n.t('sale_channels')
-            }
-        },
-        
-        {
-            path: 'sale_order/:id?',
-            name: 'Sale Order',
-            props: true,
-            component: () => import('../views/customers/SaleOrder'),
-            meta: {
-                code: 1.3,
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: true,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'sale_order_view/:id?',
-            name: 'Sale Order View',
-            props: true,
-            component: () => import('../views/customers/SaleOrderView'),
-            meta: {
-                code: 1.2,
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: true,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'sale_deposit/:id?',
-            name: 'Sale Deposit',
-            component: () => import('../views/customers/SaleDeposit'),
-            props: true,
-            meta: {
-                code: 1.4,
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: true,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'sale_deposit_view/:id?',
-            name: 'Sale Deposit View',
-            component: () => import('../views/customers/SaleDepositView'),
-            props: true,
-            meta: {
-                code: 1.4,
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: true,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        
-        {
-            path: 'sale_return_view/:id?',
-            name: 'Sale Return View',
-            component: () => import('../views/customers/SaleReturnView'),
-            props: true,
-            meta: {
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: true,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'customer_directory',
-            name: 'customer_directory',
-            component: () => import('../views/customers/customer/CustomerDirectory'),
-            props: true,
-            meta: {
-                mainMenu: 'customer_directory',
-                miniSideBar: false,
-                title: i18n.t('customer_directory')
-            }
-        },
-        {
-            path: 'company_customer/:id?',
-            name: 'Company Customer',
-            component: () => import('../views/customers/CompanyCustomer'),
-            props: true,
-            meta: {
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        
-
-        {
-            path: 'individual_customer/:id?',
-            name: 'Individual Customer',
-            component: () => import('../views/customers/IndividualCustomer'),
-            props: true,
-            meta: {
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'app_connection/:id?',
-            name: 'appConnection',
-            component: load('customers/sales/sale_channels/app_connetion/AppConnected'),
-            props: true,
-            meta: {
-                code: 1.10,
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        
-        {
-            path: 'pricing',
-            name: 'pricing',
-            component: load('customers/PricingManagement'),
-            meta: {
-                mainMenu: 'pricing_management',
-                title: 'Pricing Management'
-            }
-        },
-        
-        {
-            path: 'services',
-            name: 'Services Projects',
-            component: load('services_projects/ServicesProjects'),
-            props: true,
-            meta: {
-                moduleId: 6,
-                mainMenu: 'services_projects_non',
-                title: 'Services & Project'
-            }
-        },
-        {
-            path: 'service/:id?',
-            name: 'Service',
-            props: true,
-            component: load('services_projects/items/services_items/Service'),
-            meta: {
-                moduleId: 6,
-                mainMenu: 'services_projects_non',
-                title: 'Services & Project'
-            }
-        },
-        {
-            path: 'inventory_adjustment/:id?',
-            name: 'Inventory Adjustment',
-            component: load('products/product/inventory_adjustment/InventoryAdjustment'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-                miniSideBar: true
-            }
-        },
-        {
-            path: 'stock_count/:id?',
-            name: 'Stock Count',
-            component: load('products/product/count_adjustment/StockCounts'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-                miniSideBar: true
-            }
-        },
-        {
-            path: 'inventory_adjustment_view/:id?',
-            name: 'Inventory Adjustment View',
-            component: load('products/product/inventory_adjustment/InventoryAdjustmentView'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'warranty',
-            name: 'Warranty',
-            component: load('products/product/warranty/Warranty'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'item-modifier/:id?',
-            name: 'Item Modifier',
-            component: load('products/product/ItemModifier'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'product/:id?',
-            name: 'Product',
-            component: load('products/Product'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                code: 5.1,
-                mainMenu: 'products',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'production_order',
-            name: 'Production Order',
-            component: load('products/production/production_orders/ProductionOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'production_order_view/:id',
-            name: 'View Production Order',
-            props: true,
-            component: load('products/production/production_orders/ProductionOrderView'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'production/:id?',
-            name: 'Production',
-            props: true,
-            component: load('products/production/production_orders/Production'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'bom/:id?',
-            name: 'Bills Of Material',
-            component: load('products/production/bill_of_material/BillOfMaterial'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'bom_view/:id?',
-            name: 'BomView',
-            component: load('products/production/bill_of_material/BillOfMaterialView'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'build_assembly',
-            name: 'Build Assembly',
-            component: load('products/product/assembled_products/BuildAssembly'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'internal_usage',
-            name: 'Internal Usage',
-            component: load('products/production/internal_usage/InternalUsage'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: true,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'catalog/:id?',
-            name: 'Catalog',
-            component: load('products/product/product_list_catalog/Catalog'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-        {
-            path: 'product_variant/:id?',
-            name: 'Product Variant',
-            component: load('products/product/product_variants/products/ProductVariant'),
-            props: true,
-            meta: {
-                moduleId: 5,
-                mainMenu: 'products',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'digital_product',
-            name: 'Digital Product',
-            component: load('services_projects/services_items/digital_product/DigitalProduct'),
-            meta: {
-                moduleId: 6,
-                mainMenu: 'services_projects_non',
-                title: 'Services & Project',
-            }
-        },
-        {
-            path: 'warehouses',
-            name: 'Warehouse Management',
-            component: load('products/warehouses/WarehouseManagement'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                title: 'Products',
-            }
-        },
-        {
-            path: 'delivery_order',
-            name: 'Delivery Order',
-            component: load('products/warehouses/operations/DeliveryOrder'),
-            meta: {
-                moduleId: 5,
-                mainMenu: 'warehouses',
-                miniSideBar: false,
-                title: 'Products',
-            }
-        },
-
-        {
-            path: 'cash_transactions',
-            name: 'Cash Transactions',
-            props: true,
-            component: load('banking/CashTransactions'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking',
-            }
-        },
-        {
-            path: 'cash_transactions/view/:id',
-            name: 'Cash Transactions View',
-            props: true,
-            component: load('banking/CashTransactionsView'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking',
-            }
-        },
-        {
-            path: 'fund_receipt/view/:id',
-            name: 'Fund Receipt View',
-            props: true,
-            component: load('budgeting/views/FundReceiptView'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                miniSideBar: true,
-                title: 'Budget & Forecasting',
-            }
-        },
-
-        {
-            path: 'cash_movement',
-            name: 'Cash Movement',
-            component: load('budgeting/CashMovement'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'cash_advance_its_settlements',
-            name: 'Cash Advance Its Settlements',
-            component: load('budgeting/CashAdvanceAndItsSettlement'),
-            meta: {
-                moduleId: 7,
-                mainMenu: 'budgeting_meta',
-                title: 'Budget & Forecasting',
-            }
-        },
-        {
-            path: 'financial_institution/:id?',
-            name: 'Financial Institution',
-            component: load('banking/FinancialInstitution'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'financial_institution_view',
-            name: 'Financial Institution View',
-            component: load('banking/views/FinancialInstitutionView'),
-            meta: {
-                moduleId: 9,
-                mainMenu: 'banking',
-                title: 'Banking & Payments',
-            }
-        },
-        {
-            path: 'marketing_promotions',
-            name: 'marketing_promotions',
-            component: load('customers/MarketingPromotions'),
-            meta: {
-                moduleId: 4,
-                mainMenu: 'marketing_promotions',
-                title: 'Marketing & Promotions',
-            }
-        },
-        
-       
-        {
-            path: 'settings',
-            name: 'Settings',
-            component: load('settings/Settings'),
-            meta: {
-                moduleId: 13,
-                mainMenu: 'settings',
-                title: 'Settings - BanhJi Accounting',
-            }
-        },
-        
-        {
-            path: 'payment_option/:id?',
-            name: 'Payment Option',
-            component: load('customers/PaymentOption'),
-            props: true,
-            meta: {
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        {
-            path: 'payment_option_vendor/:id?',
-            name: 'Payment Option Vendor',
-            component: load('suppliers/PaymentOption'),
-            props: true,
-            meta: {
-                moduleId: 3,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: 'Payables',
-            }
-        },
-        {
-            path: 'set_price/:id?',
-            name: 'Set Price',
-            component: load('customers/pricing_management/SetPrice'),
-            props: true,
-            meta: {
-                moduleId: 2,
-                mainMenu: 'receivables_revenue',
-                miniSideBar: false,
-                title: i18n.t('receivables_revenue')
-            }
-        },
-        
-        // payment
-        {
-            path: 'payments',
-            name: 'payments',
-            component: load('payment/Insight'),
-            props: true,
-            meta: {
-                moduleId: 17,
-                mainMenu: 'payments',
-                title: i18n.t('payments')
-            }
-        },
-        
-
-        {
-            path: 'loyalty_reward',
-            name: 'loyalty_reward',
-            component: load('loyalty_reward/LoyaltyReward'),
-            props: true,
-            meta: {
-                mainMenu: 'loyalty_reward',
-                title: i18n.t('loyalty_reward')
-            }
-        },
-        
-        {
-            path: 'order_sale',
-            name: 'order_sale',
-            component: load('order_sale/OrderSaleTab'),
-            props: true,
-            meta: {
-                mainMenu: 'order_sale',
-                title: i18n.t('order_sale')
-            }
-        },
-        {
-            path: 'team_management',
-            name: 'team_management',
-            component: load('employee/EmployeeDirectory'),
-            props: true,
-            meta: {
-                mainMenu: 'team_management',
-                title: i18n.t('team_management')
-            }
-        },
-        {
-            path: 'employee/:id?',
-            name: 'Employee',
-            component: load('employee/Employee'),
-            props: true,
-            meta: {
-                mainMenu: 'employee_payroll',
-                miniSideBar: false,
-                title: 'Employee Payroll',
-            }
-        },
-        {
-            path: 'employment_history/:id?/:record_id?',
-            name: 'Employment History',
-            component: load('employee/EmploymentHistory'),
-            meta: {
-                moduleId: 4,
-                mainMenu: 'employee_payroll',
-                miniSideBar: false,
-                title: 'Employee Payroll',
-            }
-        },
-        {
-            path: 'products_services',
-            name: 'products_services',
-            component: load('products_services/ProductServiceTeb'),
-            props: true,
-            meta: {
-                mainMenu: 'products_services',
-                title: i18n.t('products_services')
-            }
-        },
-        {
-            path: 'point_of_sales',
-            name: 'point_of_sales',
-            component: load('pos/PosTab'),
-            props: true,
-            meta: {
-                mainMenu: 'point_of_sales',
-                title: i18n.t('point_of_sales')
-            }
-        },
-        
-        {
-            path: 'e_commerce',
-            name: 'e_commerce',
-            component: load('e_commerce/CommerceTab'),
-            props: true,
-            meta: {
-                mainMenu: 'e_commerce',
-                title: i18n.t('e_commerce')
-            }
+                name: 'dashboard',
+                component: load('HomeIndex'),
+                children:
+                [
+                    {
+                        path: '',
+                        name: 'Overview',
+                        component: load('overview/OverviewTab'),
+                        meta: {
+                            mainMenu: 'welcome',
+                            title: 'Overview'
+                        }
+                    },
+                    {
+                        path: 'sale_channels',
+                        name: 'sale_channels',
+                        component: () => import('../views/customers/SaleChannels'),
+                        meta: {
+                            mainMenu: 'sale_channels',
+                            title: i18n.t('sale_channels')
+                        }
+                    },
+                    
+                    {
+                        path: 'sale_order/:id?',
+                        name: 'Sale Order',
+                        props: true,
+                        component: () => import('../views/customers/SaleOrder'),
+                        meta: {
+                            code: 1.3,
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: true,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'sale_order_view/:id?',
+                        name: 'Sale Order View',
+                        props: true,
+                        component: () => import('../views/customers/SaleOrderView'),
+                        meta: {
+                            code: 1.2,
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: true,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'sale_deposit/:id?',
+                        name: 'Sale Deposit',
+                        component: () => import('../views/customers/SaleDeposit'),
+                        props: true,
+                        meta: {
+                            code: 1.4,
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: true,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'sale_deposit_view/:id?',
+                        name: 'Sale Deposit View',
+                        component: () => import('../views/customers/SaleDepositView'),
+                        props: true,
+                        meta: {
+                            code: 1.4,
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: true,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    
+                    {
+                        path: 'sale_return_view/:id?',
+                        name: 'Sale Return View',
+                        component: () => import('../views/customers/SaleReturnView'),
+                        props: true,
+                        meta: {
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: true,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'customer_directory',
+                        name: 'customer_directory',
+                        component: () => import('../views/customers/customer/CustomerDirectory'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'customer_directory',
+                            miniSideBar: false,
+                            title: i18n.t('customer_directory')
+                        }
+                    },
+                    {
+                        path: 'company_customer/:id?',
+                        name: 'Company Customer',
+                        component: () => import('../views/customers/CompanyCustomer'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    
+            
+                    {
+                        path: 'individual_customer/:id?',
+                        name: 'Individual Customer',
+                        component: () => import('../views/customers/IndividualCustomer'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'app_connection/:id?',
+                        name: 'appConnection',
+                        component: load('customers/sales/sale_channels/app_connetion/AppConnected'),
+                        props: true,
+                        meta: {
+                            code: 1.10,
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    
+                    {
+                        path: 'pricing',
+                        name: 'pricing',
+                        component: load('customers/PricingManagement'),
+                        meta: {
+                            mainMenu: 'pricing_management',
+                            title: 'Pricing Management'
+                        }
+                    },
+                    
+                    {
+                        path: 'services',
+                        name: 'Services Projects',
+                        component: load('services_projects/ServicesProjects'),
+                        props: true,
+                        meta: {
+                            moduleId: 6,
+                            mainMenu: 'services_projects_non',
+                            title: 'Services & Project'
+                        }
+                    },
+                    {
+                        path: 'service/:id?',
+                        name: 'Service',
+                        props: true,
+                        component: load('services_projects/items/services_items/Service'),
+                        meta: {
+                            moduleId: 6,
+                            mainMenu: 'services_projects_non',
+                            title: 'Services & Project'
+                        }
+                    },
+                    {
+                        path: 'inventory_adjustment/:id?',
+                        name: 'Inventory Adjustment',
+                        component: load('products/product/inventory_adjustment/InventoryAdjustment'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                            miniSideBar: true
+                        }
+                    },
+                    {
+                        path: 'stock_count/:id?',
+                        name: 'Stock Count',
+                        component: load('products/product/count_adjustment/StockCounts'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                            miniSideBar: true
+                        }
+                    },
+                    {
+                        path: 'inventory_adjustment_view/:id?',
+                        name: 'Inventory Adjustment View',
+                        component: load('products/product/inventory_adjustment/InventoryAdjustmentView'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'warranty',
+                        name: 'Warranty',
+                        component: load('products/product/warranty/Warranty'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'item-modifier/:id?',
+                        name: 'Item Modifier',
+                        component: load('products/product/ItemModifier'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'product/:id?',
+                        name: 'Product',
+                        component: load('products/Product'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            code: 5.1,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'production_order',
+                        name: 'Production Order',
+                        component: load('products/production/production_orders/ProductionOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'production_order_view/:id',
+                        name: 'View Production Order',
+                        props: true,
+                        component: load('products/production/production_orders/ProductionOrderView'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'production/:id?',
+                        name: 'Production',
+                        props: true,
+                        component: load('products/production/production_orders/Production'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'bom/:id?',
+                        name: 'Bills Of Material',
+                        component: load('products/production/bill_of_material/BillOfMaterial'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'bom_view/:id?',
+                        name: 'BomView',
+                        component: load('products/production/bill_of_material/BillOfMaterialView'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'build_assembly',
+                        name: 'Build Assembly',
+                        component: load('products/product/assembled_products/BuildAssembly'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'internal_usage',
+                        name: 'Internal Usage',
+                        component: load('products/production/internal_usage/InternalUsage'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'catalog/:id?',
+                        name: 'Catalog',
+                        component: load('products/product/product_list_catalog/Catalog'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'product_variant/:id?',
+                        name: 'Product Variant',
+                        component: load('products/product/product_variants/products/ProductVariant'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'digital_product',
+                        name: 'Digital Product',
+                        component: load('services_projects/services_items/digital_product/DigitalProduct'),
+                        meta: {
+                            moduleId: 6,
+                            mainMenu: 'services_projects_non',
+                            title: 'Services & Project',
+                        }
+                    },
+                    {
+                        path: 'warehouses',
+                        name: 'Warehouse Management',
+                        component: load('products/warehouses/WarehouseManagement'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'delivery_order',
+                        name: 'Delivery Order',
+                        component: load('products/warehouses/operations/DeliveryOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+            
+                    {
+                        path: 'cash_transactions',
+                        name: 'Cash Transactions',
+                        props: true,
+                        component: load('banking/CashTransactions'),
+                        meta: {
+                            moduleId: 9,
+                            mainMenu: 'banking',
+                            title: 'Banking',
+                        }
+                    },
+                    {
+                        path: 'cash_transactions/view/:id',
+                        name: 'Cash Transactions View',
+                        props: true,
+                        component: load('banking/CashTransactionsView'),
+                        meta: {
+                            moduleId: 9,
+                            mainMenu: 'banking',
+                            title: 'Banking',
+                        }
+                    },
+                    {
+                        path: 'fund_receipt/view/:id',
+                        name: 'Fund Receipt View',
+                        props: true,
+                        component: load('budgeting/views/FundReceiptView'),
+                        meta: {
+                            moduleId: 7,
+                            mainMenu: 'budgeting_meta',
+                            miniSideBar: true,
+                            title: 'Budget & Forecasting',
+                        }
+                    },
+            
+                    {
+                        path: 'cash_movement',
+                        name: 'Cash Movement',
+                        component: load('budgeting/CashMovement'),
+                        meta: {
+                            moduleId: 7,
+                            mainMenu: 'budgeting_meta',
+                            title: 'Budget & Forecasting',
+                        }
+                    },
+                    {
+                        path: 'cash_advance_its_settlements',
+                        name: 'Cash Advance Its Settlements',
+                        component: load('budgeting/CashAdvanceAndItsSettlement'),
+                        meta: {
+                            moduleId: 7,
+                            mainMenu: 'budgeting_meta',
+                            title: 'Budget & Forecasting',
+                        }
+                    },
+                    {
+                        path: 'financial_institution/:id?',
+                        name: 'Financial Institution',
+                        component: load('banking/FinancialInstitution'),
+                        meta: {
+                            moduleId: 9,
+                            mainMenu: 'banking',
+                            title: 'Banking & Payments',
+                        }
+                    },
+                    {
+                        path: 'financial_institution_view',
+                        name: 'Financial Institution View',
+                        component: load('banking/views/FinancialInstitutionView'),
+                        meta: {
+                            moduleId: 9,
+                            mainMenu: 'banking',
+                            title: 'Banking & Payments',
+                        }
+                    },
+                    {
+                        path: 'marketing_promotions',
+                        name: 'marketing_promotions',
+                        component: load('customers/MarketingPromotions'),
+                        meta: {
+                            moduleId: 4,
+                            mainMenu: 'marketing_promotions',
+                            title: 'Marketing & Promotions',
+                        }
+                    },
+                    
+                   
+                    {
+                        path: 'settings',
+                        name: 'Settings',
+                        component: load('settings/Settings'),
+                        meta: {
+                            moduleId: 13,
+                            mainMenu: 'settings',
+                            title: 'Settings - BanhJi Accounting',
+                        }
+                    },
+                    
+                    {
+                        path: 'payment_option/:id?',
+                        name: 'Payment Option',
+                        component: load('customers/PaymentOption'),
+                        props: true,
+                        meta: {
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    {
+                        path: 'payment_option_vendor/:id?',
+                        name: 'Payment Option Vendor',
+                        component: load('suppliers/PaymentOption'),
+                        props: true,
+                        meta: {
+                            moduleId: 3,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: 'Payables',
+                        }
+                    },
+                    {
+                        path: 'set_price/:id?',
+                        name: 'Set Price',
+                        component: load('customers/pricing_management/SetPrice'),
+                        props: true,
+                        meta: {
+                            moduleId: 2,
+                            mainMenu: 'receivables_revenue',
+                            miniSideBar: false,
+                            title: i18n.t('receivables_revenue')
+                        }
+                    },
+                    
+                    // payment
+                    {
+                        path: 'payments',
+                        name: 'payments',
+                        component: load('payment/Insight'),
+                        props: true,
+                        meta: {
+                            moduleId: 17,
+                            mainMenu: 'payments',
+                            title: i18n.t('payments')
+                        }
+                    },
+                    
+            
+                    {
+                        path: 'loyalty_reward',
+                        name: 'loyalty_reward',
+                        component: load('loyalty_reward/LoyaltyReward'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'loyalty_reward',
+                            title: i18n.t('loyalty_reward')
+                        }
+                    },
+                    
+                    {
+                        path: 'order_sale',
+                        name: 'order_sale',
+                        component: load('order_sale/OrderSaleTab'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'order_sale',
+                            title: i18n.t('order_sale')
+                        }
+                    },
+                    {
+                        path: 'team_management',
+                        name: 'team_management',
+                        component: load('employee/EmployeeDirectory'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'team_management',
+                            title: i18n.t('team_management')
+                        }
+                    },
+                    {
+                        path: 'employee/:id?',
+                        name: 'Employee',
+                        component: load('employee/Employee'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'employee_payroll',
+                            miniSideBar: false,
+                            title: 'Employee Payroll',
+                        }
+                    },
+                    {
+                        path: 'employment_history/:id?/:record_id?',
+                        name: 'Employment History',
+                        component: load('employee/EmploymentHistory'),
+                        meta: {
+                            moduleId: 4,
+                            mainMenu: 'employee_payroll',
+                            miniSideBar: false,
+                            title: 'Employee Payroll',
+                        }
+                    },
+                    {
+                        path: 'products_services',
+                        name: 'products_services',
+                        component: load('products_services/ProductServiceTeb'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'products_services',
+                            title: i18n.t('products_services')
+                        }
+                    },
+                    {
+                        path: 'point_of_sales',
+                        name: 'point_of_sales',
+                        component: load('pos/Pos'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'point_of_sales',
+                            title: i18n.t('point_of_sales')
+                        }
+                    },
+                    
+                    {
+                        path: 'e_commerce',
+                        name: 'e_commerce',
+                        component: load('e_commerce/CommerceTab'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'e_commerce',
+                            title: i18n.t('e_commerce')
+                        }
+                    },
+                    {
+                        path: '_sale',
+                        name: '_sale',
+                        component: load('pos/sale/Sales'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'point_of_sales',
+                            title: i18n.t('point_of_sales')
+                        }
+                    },
+                ]
         },
 
     ]
