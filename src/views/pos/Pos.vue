@@ -2,59 +2,73 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col sm="12" md="12" cols="12" class="pr-2">
-          <v-card
-            outlined
-            dense
-            color="white"
-            class="pa-6 no_border"
-            min-height="600px"
-          >
+        <v-col sm="8" md="8" cols="12" class="pr-2">
+       
             <v-row>
-              <v-col sm="12" cols="12">
-                
-                <v-row>
-
-                  <v-col sm="8" cols="12">
-                    <h1 class="font_40 primary--text">
-                      {{ $t("wellcome") }}
-                    </h1>
-                    <p class="mt-2 niradei_light line_22 font_17">
-                      {{ $t("get_ready_paid_desc") }}
-                    </p>
-                  </v-col>
-                  <v-col sm="4" cols="12">
-                    <v-img class=""  width="100%" src="@/assets/images/pos-a.png"/>
-                  </v-col>
-                </v-row>
-              </v-col>
-            
-              <v-col sm="4" cols="12">
+              <v-col sm="12" class="pb-2">
                 <v-card
-                  class="pa-4 flex_column_bewteen"
-                  color="grayBg"
-                  min-height="263"
-                  elevation="0"
+                  outlined
+                  dense
+                  color="white"
+                  class="pa-4 no_border"
+                  min-height="364px"
+                >
+                  <v-row>
+                    <v-col md="4" sm="5" cols="12" class="py-1 pr-0">
+                        <h3
+                            class="font_30 line_28 my-2 ml-0 text-left thirdText--text"
+                        >
+                            {{ $t("welcome_to") }}
+                        </h3>
+                        <img
+                            style="height:40px;margin-top: 10px"
+                            src="@/assets/images/banhji-logo-r.png"
+                        />
+                        <h1 class="line_22  primary--text">
+                          {{ $t("point_of_sale") }}
+                        </h1>
+                        <p class=" line_18 font mb-1 mt-2">
+                            {{ $t("welcome_to_desc") }}
+                        </p>
+                    </v-col>
+                    <v-col md="8" sm="7" cols="12" class="py-1 pt-6 pr-0">
+                        <img
+                            style="width:98%;"
+                            src="@/assets/images/home_banner.png"
+                        />
+                    </v-col>
+                </v-row>
+                </v-card>
+              </v-col>
+
+              <v-col sm="4" cols="12" class="pt-2 pr-2">
+                <v-card
+                  outlined
+                  dense
+                  color="white"
+                  class="pa-5 no_border"
+                  min-height="240px"
                 >
                 <v-row>
-                  <v-col sm="5" cols="12">
-                      <i style="font-size: 100px" class="red_icon b-commerce mb-4" />
-                      <div class="mt-5">
-                        <v-btn
-                          @click="goPos('started')"
-                          color="primary"
-                          class="pa-3 text-bold text-capitalize"
-                          elevation="0"
-                        >
-                          {{ $t("get_started") }}
-                        </v-btn>
-                      </div>
+                  <v-col sm="4" cols="12">
+                      <i style="font-size: 50px" class="red_icon b-commerce mb-4" />
+                      
                   </v-col>
-                  <v-col sm="7" cols="12">
-                      <h1 class="line_30 primary--text">
+                  <v-col sm="8" cols="12"  class="pl-0">
+                      <h1 class="line_22 font_22 primary--text">
                         {{ $t("pos_for_retail") }}
                       </h1>
-                      <p class="mt-1 flex-1">{{ $t("accept_payments_desc") }}</p>
+                  </v-col>
+                  <v-col sm="12" class="">
+                      <v-btn
+                        width="100%"
+                        @click="goPos('started')"
+                        color="primary"
+                        class="pa-3 text-bold text-capitalize"
+                        elevation="0"
+                      >
+                        {{ $t("get_started") }}
+                      </v-btn>
                   </v-col>
                 </v-row>
                 <p class="grey--text  mt-2 mb-0">
@@ -63,32 +77,33 @@
                 </p>
                 </v-card>
               </v-col>
-              <v-col sm="4" cols="12">
+              <v-col sm="4" cols="12" class="pt-2 pr-2">
                 <v-card
-                  class="pa-4 flex_column_bewteen"
-                  color="grayBg"
-                  min-height="263"
-                  elevation="0"
+                  outlined
+                  dense
+                  color="white"
+                  class="pa-5 no_border"
+                  min-height="240px"
                 >
                 <v-row>
-                  <v-col sm="5" cols="12">
-                      <i style="font-size: 100px" class="red_icon b-commerce mb-4" />
-                      <div class="mt-5">
-                        <v-btn
-                          @click="goPos('started')"
-                          color="primary"
-                          class="pa-3 text-bold text-capitalize"
-                          elevation="0"
-                        >
-                          {{ $t("get_started") }}
-                        </v-btn>
-                      </div>
+                  <v-col sm="4" cols="12">
+                      <i style="font-size: 50px" class="red_icon b-commerce mb-4" />
                   </v-col>
-                  <v-col sm="7" cols="12">
-                      <h1 class="line_30 primary--text">
+                  <v-col sm="8" cols="12"  class="pl-0">
+                      <h1 class="line_22 font_22 primary--text">
                         {{ $t("pos_for_resturant") }}
                       </h1>
-                      <p class="mt-1 flex-1">{{ $t("accept_payments_desc") }}</p>
+                  </v-col>
+                  <v-col sm="12" class="">
+                      <v-btn
+                        width="100%"
+                        @click="goPos('started')"
+                        color="primary"
+                        class="pa-3 text-bold text-capitalize"
+                        elevation="0"
+                      >
+                        {{ $t("get_started") }}
+                      </v-btn>
                   </v-col>
                 </v-row>
                 <p class="grey--text  mt-2 mb-0">
@@ -97,32 +112,33 @@
                 </p>
                 </v-card>
               </v-col>
-              <v-col sm="4" cols="12">
+              <v-col sm="4" cols="12" class="pt-2 pr-2">
                 <v-card
-                  class="pa-4 flex_column_bewteen"
-                  color="grayBg"
-                  min-height="263"
-                  elevation="0"
+                  outlined
+                  dense
+                  color="white"
+                  class="pa-5 no_border"
+                  min-height="240px"
                 >
                 <v-row>
-                  <v-col sm="5" cols="12">
-                      <i style="font-size: 100px" class="red_icon b-commerce mb-4" />
-                      <div class="mt-5">
-                        <v-btn
-                          @click="goPos('started')"
-                          color="primary"
-                          class="pa-3 text-bold text-capitalize"
-                          elevation="0"
-                        >
-                          {{ $t("get_started") }}
-                        </v-btn>
-                      </div>
+                  <v-col sm="4" cols="12">
+                      <i style="font-size: 50px" class="red_icon b-commerce mb-4" />
                   </v-col>
-                  <v-col sm="7" cols="12">
-                      <h1 class="line_30 primary--text">
+                  <v-col sm="8" cols="12"  class="pl-0">
+                      <h1 class="line_22 font_22 primary--text">
                         {{ $t("pos_for_service") }}
                       </h1>
-                      <p class="mt-1 flex-1">{{ $t("accept_payments_desc") }}</p>
+                  </v-col>
+                  <v-col sm="12" class="">
+                      <v-btn
+                        width="100%"
+                        @click="goPos('started')"
+                        color="primary"
+                        class="pa-3 text-bold text-capitalize"
+                        elevation="0"
+                      >
+                        {{ $t("get_started") }}
+                      </v-btn>
                   </v-col>
                 </v-row>
                 <p class="grey--text  mt-2 mb-0">
@@ -131,19 +147,60 @@
                 </p>
                 </v-card>
               </v-col>
+            
             </v-row>
-          </v-card>
         </v-col>
-      </v-row>
+        <v-col sm="4" cols="12" class="pl-2">
+          <v-row>
+            <v-col sm="12" cols="12" class="pb-2">
+                <v-card
+                    outlined
+                    dense
+                    color="white"
+                    class="pa-4 no_border"
+                    min-height="180px"
+                >
+                <h1  class="line_22 font_22">Point of sale solutions to fit your business.</h1>
+                <p class="grey--text  mt-2 mb-0">Because every business is different, BanhJi has a variety of POS options to help you take yours where you want it to go. Whether you run a restaurant, sell retail goods, book appointments, or just need a versatile POS for whatever comes next, we have the point-of-sale software that will best support you and your unique business needs.</p>
+                </v-card>
+            </v-col>
+            <v-col sm="12" cols="12">
+                  <template>
+                    <v-carousel cycle  height="440">
+                      <v-carousel-item
+                        v-for="(item,i) in items"
+                        :key="i"
+                        :src="item.src"
+                        reverse-transition="fade-transition"
+                        transition="fade-transition"
+                      ></v-carousel-item>
+                    </v-carousel>
+                  </template>
+            </v-col> 
+          </v-row>   
+        </v-col>
+      </v-row> 
     </v-container>
   </v-app>
 </template>
 <script>
 // import { i18n } from "@/i18n";
+
 export default {
   data: () => ({
     isOverlay: false,
     showLoadingSaleAnalysis: false,
+    items: [
+      {
+         src: require('@/assets/images/slide1.jpg')
+      },
+      {
+         src: require('@/assets/images/slide1.jpg')
+      },
+      {
+        src: require('@/assets/images/slide1.jpg')
+      },
+    ],
   }),
   methods: {
     goPos(){
