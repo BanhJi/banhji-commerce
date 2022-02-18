@@ -1,11 +1,13 @@
-/* Cookie */
-const cookieJS = require("@/cookie.js");
-const { instituteId } = cookieJS.getCookie();
-
+const cookier = require("@/cookier.js").cookie
+cookier.init()
+const store = require("@/institute.js")
+const { instituteId } = store.default.state.cookies
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
 const url          = baseUrl + '/transaction-billing/'
-const url_setting  = baseUrl + '/entity-setting/'
 // window.console.log('base url' + baseUrl , 'url'+ url)
 module.exports = {
     invoice_post                               : url + 'invoice/institute/' + instituteId + '/add',
@@ -52,16 +54,14 @@ module.exports = {
     inventory_balance                          : url + 'inventory-balance/institute/' + instituteId + '/list',
     inventory_adjustment_post                  : url + 'inventory-adjustment/institute/' + instituteId + '/add',
     inventory_adjustment_list                  : url + 'inventory-adjustment/institute/' + instituteId + '/list',
-    // dashboard_receivable_overview              : url + 'dashboard-receivable-overview/institute/' + instituteId + '/list',
-    // dashboard_receivable_overview_cus          : url + 'dashboard-receivable-overview-cus/institute/' + instituteId + '/list',
-    // dashboard_receivable_overview_sup          : url + 'dashboard-receivable-overview-sup/institute/' + instituteId + '/list',
+    dashboard_receivable_overview              : url + 'dashboard-receivable-overview/institute/' + instituteId + '/list',
+    dashboard_receivable_overview_cus          : url + 'dashboard-receivable-overview-cus/institute/' + instituteId + '/list',
+    dashboard_receivable_overview_sup          : url + 'dashboard-receivable-overview-sup/institute/' + instituteId + '/list',
     wcp_payable_overview_get                   : url + 'wcp-payable-overview/institute/' + instituteId + '/list',
     balance_summary_get                        : url + 'balance/institute/' + instituteId + '/list',
     customer_txn                               : url + 'customer-txn/institute/' + instituteId + '/list',
-
     attachment_post                            : url + 'attachment/institute/' + instituteId + '/add',
     attachment_gets                            : url + 'attachment/institute/' + instituteId + '/list',
-    attachment_delete                          : url_setting + 'attachment/institute/' + instituteId + '/delete',
 
     deposit_balance_summary                    : url + 'deposit-balance-summary/institute/' + instituteId + '/list',
     vendor_txn                                 : url + 'vendor-txn/institute/' + instituteId + '/list',
@@ -71,6 +71,4 @@ module.exports = {
 
     payment_option_report                      : url + 'payment-option/institute/' + instituteId + '/list',
     payment_term_report                        : url + 'payment-term-report/institute/' + instituteId + '/list',
-
-    expense_view                                : url + 'expense/institute/' + instituteId + '/list',
 }

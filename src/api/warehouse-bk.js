@@ -5,17 +5,14 @@
  * Github Profile : https://github.com/Darith-Mokpost
  * Instagram Profile : https://www.instagram.com/chandarith_chea
  */
+
+const cookier = require("@/cookier.js").cookie
+cookier.init()
 const store = require("@/institute.js")
 const { instituteId } = store.default.state.cookies
 
-const myUrl = require("@/url")
-let baseUrl = myUrl.url
-if(process.env.VUE_APP_MODE == 'dev'){
-    baseUrl = 'https://dev-apis.banhji.com'
-}
-const warehouseUrl          = baseUrl + '/warehouses/'
 // const warehouseUrl      = 'https://58jols35ri.execute-api.ap-southeast-1.amazonaws.com/dev/v1/entity-warehouse/'
-// const warehouseUrl      = 'https://dev-apis.banhji.com/entity-warehouses/'
+const warehouseUrl      = 'https://dev-apis.banhji.com/entity-warehouse/'
 
 module.exports = {
     //Wh Setting
@@ -60,14 +57,14 @@ module.exports = {
     //bom
     bom_post                            : warehouseUrl + 'bom/institute/' + instituteId + '/add',
     bom_get                             : warehouseUrl + 'bom/institute/' + instituteId + '/list',
-    bom_getByProduct                    : warehouseUrl + 'bom/institute/' + instituteId + '/item/',
+    bom_getByProduct                    : warehouseUrl + 'bom/institute/' + instituteId + '/',
 
-    //start_production order
-    productionOrder_post                : warehouseUrl + 'product-order/institute/' + instituteId + '/add',
-    productionOrder_get                 : warehouseUrl + 'product-order/institute/' + instituteId + '/list',
-    productionOrder_getById             : warehouseUrl + 'product-order/institute/' + instituteId + '/',
+    //production order
+    productionOrder_post                : warehouseUrl + 'productOrder/institute/' + instituteId + '/add',
+    productionOrder_get                 : warehouseUrl + 'productOrder/institute/' + instituteId + '/list',
+    productionOrder_getById             : warehouseUrl + 'productOrder/institute/' + instituteId + '/',
 
-    //start_production
+    //production
     production_post                     : warehouseUrl + 'production/institute/' + instituteId + '/add',
     production_get                      : warehouseUrl + 'production/institute/' + instituteId + '/list',
     production_getById                  : warehouseUrl + 'production/institute/' + instituteId + '/',
@@ -93,11 +90,8 @@ module.exports = {
 
     //delivery order
     deliveryOrder_post                   : warehouseUrl + 'delivery-order/institute/' + instituteId + '/add',
-    deliveryAgency_post                  : warehouseUrl + 'delivery-agency/institute/' + instituteId + '/add',
     deliveryOrder_get                    : warehouseUrl + 'delivery-order/institute/' + instituteId + '/list',
-    deliveryAgendcy_get                  : warehouseUrl + 'delivery-agency/institute/' + instituteId + '/list',
     deliveryOrder_getById                : warehouseUrl + 'delivery-order/institute/' + instituteId + '/',
-    deliveryAgency_getById               : warehouseUrl + 'delivery-agency/institute/' + instituteId + '/',
 
     //item
     item_post                            : warehouseUrl + 'product-variant/institute/' + instituteId + '/add',
@@ -116,8 +110,4 @@ module.exports = {
     task_type_get                        : warehouseUrl + 'task-type/institute/' + instituteId + '/list',
     task_sub_type_get                    : warehouseUrl + 'task-sub-type/institute/' + instituteId + '/list',
     task_category_get                    : warehouseUrl + 'task-category/institute/' + instituteId + '/list',
-
-    balance_get                          : warehouseUrl + 'warehouse-balance/institute/' + instituteId + '/item/',
-    balance_getAll                       : warehouseUrl + 'warehouse-balance-all/institute/' + instituteId + '/list',
-    txn_get                              : warehouseUrl + 'warehouse-txn/institute/' + instituteId + '/list'
 }

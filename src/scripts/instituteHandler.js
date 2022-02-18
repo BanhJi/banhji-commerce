@@ -1,7 +1,11 @@
 const axios = require('axios');
 const instance = axios.create();
 const apiUrl = require('@/apiUrl.js');
-const baseUrl = process.env.VUE_APP_API;
+// const baseUrl = process.env.VUE_APP_API;
+let baseUrl = process.env.VUE_APP_API;
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
 /* Cookie */
 const cookieJS = require("@/cookie.js");
 const { instituteId, creator } = cookieJS.getCookie();

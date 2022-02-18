@@ -1,9 +1,13 @@
-/* Cookie */
-const cookieJS = require("@/cookie.js");
-const { instituteId } = cookieJS.getCookie();
+const cookier = require("@/cookier.js").cookie
+cookier.init()
+const store = require("@/institute.js")
+const { instituteId } = store.default.state.cookies
 
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
 const url          = baseUrl + '/entity-supplier/'
 
 // const url          = 'https://dev-apis.banhji.com/entity-supplier/'
@@ -27,8 +31,4 @@ module.exports = {
 
     supplier_directory                          : url + 'supplier/institute/' + instituteId + '/directory',
     importCreate                                : url + 'import/institute/' + instituteId + '/add',
-
-    customer_lastNumber                         : url + 'last-number/institute/' + instituteId + '/last',
-    has_txn                                     : url + 'has-txn/institute/' + instituteId + '/check',
-    supplier_put                                : url + 'supplier/institute/' + instituteId + '/update',
 }

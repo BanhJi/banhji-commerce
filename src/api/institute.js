@@ -6,7 +6,12 @@
  * Instagram Profile : https://www.instagram.com/chandarith_chea
  */
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+// window.console.log(process.env.VUE_APP_MODE, 'api mod')
+if(process.env.VUE_APP_MODE == 'dev'){
+  baseUrl = 'https://dev-apis.banhji.com'
+}
+window.console.log(process.env.VUE_APP_MODE, baseUrl, 'user api')
 const url          = baseUrl + '/users/'
 // const url = 'https://dev-apis.banhji.com/users/'
 const businessData = 'https://myconnect.s3-ap-southeast-1.amazonaws.com/dropdown.json'
@@ -16,10 +21,10 @@ module.exports = {
   company_get                 : url + 'institutes/',
   company_getOne              : url,
   company_add                 : url + 'institutes/',
-  role_get                    : url + 'user-role/institute/',
   save_image                  : url + 'saveimage',
   bt                          : businessData,
   sector_get                  : url + 'sector/sector',
   bo                          : url + 'bo/businessObject',
   taxRegime                   : taxRegime,
+  role_get                    : url + 'user-role/institute/',
 }

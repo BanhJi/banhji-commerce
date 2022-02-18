@@ -487,8 +487,17 @@ const routes = [{
                             title: 'Marketing & Promotions',
                         }
                     },
-                    
-                   
+                    {
+                        path: 'campaign/:id?',
+                        name: 'Campaign',
+                        component: () => import('../views/marketing/Campaign'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'marketing_promotions',
+                            miniSideBar: false,
+                            title: i18n.t('campaign')
+                        }
+                    },
                     {
                         path: 'settings',
                         name: 'Settings',

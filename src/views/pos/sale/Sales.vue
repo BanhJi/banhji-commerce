@@ -65,52 +65,101 @@
 </template>
 
 <script>
-
-    export default {
-        data: () => ({
-            isHide: false,
-            fullscreen: false,
-
-        }),
-        methods: {
-            clickMe(data) {
-                // alert(data.link)
-                this.$router.push(`${data.link}`);
-                //this.$event.target.classList.toggle(active)
-                //eslint-disable-next-line no-console
-                console.log(data.link)
-                //eslint-disable-next-line no-console
-                //console.log(data)
-            }, 
-            hideTabs(){
-				this.isHide = !this.isHide;
-			},
-            toggle() {
-            this.$fullscreen.toggle(document.getElementsByTagName("body")[0], {
-                    wrap: false,
-                    callback: this.fullscreenChange,
-                });
-            },
-            fullscreenChange(fullscreen) {
-                this.fullscreen = fullscreen;
-            },
-            
-           
+import { i18n } from "@/i18n";
+const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+export default {
+    data: () => ({
+        isHide: false,
+        fullscreen: false,
+        s: {
+            timeIn: false,
+            timeOut: false,
+            orderNumber: false,
+            cashierName: false,
+            modifier: false,
+            employee: false,
+            note: false,
+            numberPeople: false,
+            saleUnitItem: false,
+            favorite: false,
+            takeAway: false,
+            booking: false,
+            userPin: false,
+            sessionPin: false,
+            allowNFCCard: false,
+            allowSplitItem: false,
+            kitchenKitCategories: [],
+            allowKitchenKit: false,
+            orderListCategries: [],
+            allowOrderList: false,
+            cancelReasons: [],
+            allowCancelReason: false,
+            decimal: 0,
+            appNature: 'Retail',
+            screenDisplay: 'Surface',
+            receiptTemplate: '80mm'
+        }
+    }),
+    methods: {
+        clickMe(data) {
+            // alert(data.link)
+            this.$router.push(`${data.link}`);
+            //this.$event.target.classList.toggle(active)
+            //eslint-disable-next-line no-console
+            console.log(data.link)
+            //eslint-disable-next-line no-console
+            //console.log(data)
+        }, 
+        hideTabs(){
+            this.isHide = !this.isHide;
         },
-        components: {
-            SaleTransaction: () => import('./SaleTransaction'),
-            ItemsList: () => import('./ItemsList'),
-            // ParkSaleReport: () => import('./ParkSaleReport'),
-            Calculator: () => import('./Calculator'),
-
-
-
+        toggle() {
+        this.$fullscreen.toggle(document.getElementsByTagName("body")[0], {
+                wrap: false,
+                callback: this.fullscreenChange,
+            });
         },
-        created: async function () {
-           
+        fullscreenChange(fullscreen) {
+            this.fullscreen = fullscreen;
         },
-      
-    };
+        loadSetting(){
+            commerceHandler.settingGet().then((res) => {
+                window.console.log(res, 'setting')
+                if(res.status == 200){
+                    this.gotoSetting()
+                }else{
+                    this.gotoSetting()
+                }
+            })
+        },
+        gotoSetting(){
+            this.$swal({
+                position: 'center',
+                icon: 'warning',
+                title: i18n.t('please_configure_setting'),
+                showConfirmButton: true,
+                confirmButtonColor: '#4d4848',
+                cancelButtonColor: '#ED1A3A',
+                confirmButtonText: i18n.t('back_to_setting')
+            }).then((result) => {
+                if (result.value) {
+                    window.history.go(-1)
+                    return false
+                }
+            })
+        },
+    },
+    components: {
+        SaleTransaction: () => import('./SaleTransaction'),
+        ItemsList: () => import('./ItemsList'),
+        // ParkSaleReport: () => import('./ParkSaleReport'),
+        Calculator: () => import('./Calculator'),
+    },
+    created: async function () {
+        await this.loadSetting()
+    },
+    
+};
 </script>
 <style scoped>
     .btn-right .v-btn__content i{

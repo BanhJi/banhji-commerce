@@ -1,13 +1,9 @@
+const cookier = require("@/cookier.js").cookie
+cookier.init()
 const store = require("@/institute.js")
 const { instituteId } = store.default.state.cookies
-const myUrl = require("@/url")
-let baseUrl = myUrl.url
-if(process.env.VUE_APP_MODE == 'dev'){
-    baseUrl = 'https://dev-apis.banhji.com'
-}
-const url          = baseUrl + '/entity-customer/'
 
-// const url          = 'https://dev-apis.banhji.com/entity-customers/'
+const url          = 'https://dev-apis.banhji.com/entity-customers/'
 const wcapSettingUrl    = 'https://7m0h9en2s3.execute-api.ap-southeast-1.amazonaws.com/dev/v1/wcapsettings/'
 
 module.exports = {
@@ -16,7 +12,6 @@ module.exports = {
     customer_getOne                             : url + 'customer/institute/' + instituteId + '/list/',
     customer_search                             : url + 'customer/institute/' + instituteId + '/search',
     customer_center                             : url + 'customer/institute/' + instituteId ,
-    customer_directory                          : url + 'customer/institute/' + instituteId + '/directory',
     customer_put                                : url + 'customer/institute/' + instituteId + '/update/',
     //customer type setting
     customer_type_post                          : url + 'custype/institute/' + instituteId + '/add',

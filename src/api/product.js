@@ -1,9 +1,10 @@
-/* Cookie */
-const cookieJS = require("@/cookie.js");
-const { instituteId } = cookieJS.getCookie();
-
+const store = require("@/institute.js")
+const { instituteId } = store.default.state.cookies
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
 const url          = baseUrl + '/products/'
 // const url          = 'https://dev-apis.banhji.com/entity-product/'
 
@@ -57,6 +58,4 @@ module.exports = {
 
     catalog_post                        : url + 'product-catalog/institute/' + instituteId + '/add',
     catalog_get                         : url + 'product-catalog/institute/' + instituteId + '/list',
-
-    product_category_segment_report     : url + 'category-segment-report/institute/' + instituteId + '/report',
 }

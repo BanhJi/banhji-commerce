@@ -16,32 +16,26 @@
                     >
                       <v-tab :key="0">
                         <span>
-                          {{ $t("insights") }}
-                        </span>
-                      </v-tab>
-
-                      <v-tab :key="1">
-                        <span>
                           {{ $t("campaigns") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="2"> 
+                      <v-tab :key="1"> 
                         <span>
                           {{ $t("campaign_report") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="3">
+                      <v-tab :key="2">
                         <span>
                           {{ $t("discount_items") }}
                         </span>
                       </v-tab>
 
-                      <v-tab :key="4">
+                      <v-tab :key="3">
                         <span>
                           {{ $t("discount_report") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="5">
+                      <v-tab :key="4">
                         <span>
                           {{ $t("settings") }}
                         </span>
@@ -49,13 +43,6 @@
                
                     </v-col>
                   </v-row>
-                  <v-tab-item>
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Insight />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
 
                   <v-tab-item >
                     <v-card flat>
@@ -111,13 +98,11 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    Insight: () => import("./sales/sale_discounts//Insight"),
     Campaigns: () => import("./sales/sale_discounts/Campaigns"),
     CampaignReport: () => import("./sales/sale_discounts/CampaignReport"),
     DiscountItem: () => import("./sales/sale_discounts/DiscountItem"),
     Report: () => import("./sales/sale_discounts/Report"),
     Setting: () => import("./sales/sale_discounts/Setting"),
-    
   },
   data: () => ({
     // active_tab: data.customer_tab.main

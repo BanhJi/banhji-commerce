@@ -46,8 +46,10 @@ const price_promotion   = require("./api/price-promotion")
 const item              = require("./api/item")
 const dashboard         = require("./api/dashboard")
 const financing         = require("./api/financing")
+const commerce          = require("./api/commerce")
 
 module.exports = {
+    commerce                            : commerce,
     // INSTITUTE
     institute_get                       : banhjiUrl + 'institutes/' + instituteId,
     institutes_get                      : banhjiUrl + 'users/' + creator + '/institutes',
