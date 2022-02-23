@@ -4085,7 +4085,7 @@
      "campaign_report": "Campaign report",
      "campaigns": "Campaigns",
      "loyalty_reward": "Loyalty & reward",
-     "order_sale": "Order & sale",
+     "order_sale": "Orders & sales",
      "team_management": "Team management",
      "point_of_sales": "Point of sales",
      "e_commerce": "E-commerce",
@@ -4159,7 +4159,19 @@
     "receipt_template": "Receipt template",
     "set_default": "Set default",
     "make_cash_payment": "Make cash payment",
-    "welcome_to_desc": "With BanhJi, you can manage your business finance, do your payroll & tax, accept payments, and banking"
+    "welcome_to_desc": "With BanhJi, you can manage your business finance, do your payroll & tax, accept payments, and banking",
+    "subscribed_edition": "Subscribe Edition",
+    "your_entity_banhji_id" : "Your endtity BanhjiID",
+	"overview_desc" : "This BanhJi Company ID is useful to connect/ interact with other companies and financial institutions",
+    "analytics_budgeting" : "Analytics & Budgeting",
+    "your_entity_name" : "Your Entity Name",
+    "stocks_inventory" : "Stock & Inventory",
+    "commerce": "Commerce.",
+    "overview_commerce_desc" : "Manage multi-channels, and offer dynamic loyalty & promotions",
+    "overview_billing_desc" : "Manage metered and non-metered billing, and digital payments",
+    "overview_payment_desc" : "Digital payment, reconciliations, & records",
+    "overview_financing_desc" : "Loan application, management & monitoring"
+
 
 
 

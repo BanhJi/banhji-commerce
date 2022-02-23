@@ -1477,7 +1477,7 @@
   "advanced_edition": "Advanced Edition",
   "all_categories": "All Categories",
   "point_of_sale": "Point of sale",
-  "billing": "Billing",
+  "billing": "ចំណូល",
   "price_loyalty": "Pricing & Loyalty ",
   "prepare_taxes": "Prepare Taxes &",
   "financial_reports_submission": "Financial Reports Submission",
@@ -1613,7 +1613,7 @@
   "special_msmes_loan": "Special MSMEs loan product for BanhJi's Customers",
   "view_detail_product_offering": "View Detail Product Offering",
   "no_of_variant": "No. of Variant",
-  "financing": "Financing",
+  "financing": "ហិរញ្ញប្បទាន",
   "debt_financing": "Debt Financing",
   "sale_channel_desc": "ច្រកលក់ផ្តល់នូវព័ត៌មានដ៏សំខាន់មួយអំពីការគ្រប់គ្រងច្រកលក់និងទីផ្សារ។ វាតំណាងឱ្យទីតាំងផ្សេងៗគ្នានៃប្រភពដែលអ្នកលក់ផលិតផលរបស់អ្នក។ វាក៏ផ្តល់នូវលក្ខណៈពិសេសនៃច្រកលក់ក្នុងបណ្តាញ(online)និងក្រៅបណ្តាញ(ofline)។ ការធ្វើសមាហរណកម្មនាពេលអនាគតជាមួយពាណិជ្ជកម្មអេឡិចត្រូនិកជាមួយប្រព័ន្ធនឹងត្រូវបានសម្រេច។",
   "new_channel": "ច្រកលក់ថ្មី",
@@ -2382,7 +2382,7 @@
   "to_warehouse": "To Warehouse",
   "from_warehouse": "From Warehouse",
   "services_projects": "សេវាកម្ម / គម្រោង",
-  "services_projects_non": "Services & Projects",
+  "services_projects_non": "សេវាកម្ម និងគម្រោង",
   "service_categories": "Service Categories",
   "service_sub_group": "Service Sub-Group",
   "services_insight": "Services Insight",
@@ -3963,7 +3963,7 @@
      "overview_p_5" : "Services, Items & Projects",
      "overview_p_6" : "Budget by segment, business unit, project, & by class",
      "overview_p_7" : "Accounting, Financial Report, & Dimensions",
-     "banking_cash" : "Banking & Cash",
+     "banking_cash" : "សាច់ប្រាក់ និងធនាគារ",
      "digital_payment" : "Digital Payment",
      "expenses_tax_report_desc":"List of expenses transactions grouped by their applicable taxes.",
      "expenses_tax":"Report for Taxes on Expenses",
@@ -3978,7 +3978,7 @@
      "deposit_detail_desc": "This report provides the detail balance of each vendor deposit with its realted transctions.",
      "debit_not_desc":"List of offset purchase transactions group by vendor name",
      "purchase_order_report_desc":"List of purchas order transactions group by vendor name",
-     "tax_report_compliance" : "Tax & Report Compliance",
+     "tax_report_compliance" : "អនុលោមភាពពន្ធ និងរបាយការណ៍",
      "late_fee_report" : "Late fee report",
      "late_fee_report_dec" : "List of invoice and cash receipt transactions grouped by late fee.",
      "payment_option_report_desc":"List of cash receipt transactions grouped by payment option.",
@@ -4006,7 +4006,7 @@
      "campaign_report": "Campaign report",
      "campaigns": "Campaigns",
      "loyalty_reward": "Loyalty & reward",
-     "order_sale": "Order & sale",
+     "order_sale": "Orders & sales",
      "team_management": "Team management",
      "point_of_sales": "Point of sales",
      "e_commerce": "E-commerce",
@@ -4080,7 +4080,21 @@
     "receipt_template": "Receipt template",
     "set_default": "Set default",
     "make_cash_payment": "Make cash payment",
-    "welcome_to_desc": "ជាមួយបញ្ជី, អ្នកអាចគ្រប់គ្រងហិរញ្ញវត្ថុរបស់អាជីវកម្មអ្នក, រួមមាន ប្រាក់ខែ ពន្ធដា និងប្រតិបត្តិការធនាគារ"
+    "welcome_to_desc": "ជាមួយបញ្ជី, អ្នកអាចគ្រប់គ្រងហិរញ្ញវត្ថុរបស់អាជីវកម្មអ្នក, រួមមាន ប្រាក់ខែ ពន្ធដា និងប្រតិបត្តិការធនាគារ",
+    "subscribed_edition": "ផលិតផលដែលបានទិញ",
+    "your_entity_banhji_id" : "លេខសម្គាល់ក្រុមហ៊ុន",
+    "overview_desc" : "លេខសម្គាល់ក្រុមហ៊ុននេះមានប្រយោជន៍ក្នុងការភ្ជាប់ទំនាក់ទំនងជាមួយក្រុមហ៊ុននិងស្ថាប័នហិរញ្ញវត្ថុដទៃទៀត",
+    "analytics_budgeting" : "ផែនការថវិការ និងការវិភាគ",
+    "your_entity_name" : "ឈ្មោះសហគ្រាសរបស់អ្នក",
+    "stocks_inventory" : "ផលិតផល និងសន្និធិ",
+    "commerce": "ពាណិជ្ជកម្ម.",
+    "overview_commerce_desc" : "គ្រប់គ្រងច្រកលក់ ទីផ្សា ទំនាក់ទំនងអតិថិជន និងប្រព័ន្ធល់",
+    "overview_billing_desc" : "គ្រប់គ្រងការចេញវិក្កយបត្រ និងការទូទាត់បែបឌីជីថល",
+    "overview_payment_desc" : "ភ្ជាប់សេវាទូទាត់បែបឌីជីថល ធ្នើការផ្ទៀងផ្ទាត់ និងកត់ត្រា",
+    "overview_financing_desc" : "ស្នើសុំ គ្រប់គ្រង តាមដាននិងកត់ត្រាឥណទាន"
+
+
+
 
 
 

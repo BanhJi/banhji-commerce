@@ -348,7 +348,7 @@ export default {
         class: "",
         activeClass: "",
         name: "team_management",
-        menuTex: "employee",
+        menuTex: "employees",
         path: "/team_management",
         icon: "",
       },
