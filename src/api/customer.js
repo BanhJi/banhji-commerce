@@ -1,5 +1,5 @@
-const store = require("@/institute.js")
-const { instituteId } = store.default.state.cookies
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie();
 const myUrl = require("@/url")
 let baseUrl = myUrl.url
 if(process.env.VUE_APP_MODE == 'dev'){
@@ -42,4 +42,6 @@ module.exports = {
     lead_post                               : url + 'lead/institute/' + instituteId + '/add',
     lead_get                                : url + 'lead/institute/' + instituteId + '/list',
     lead_getOne                             : url + 'lead/institute/' + instituteId + '/list/',
+    customer_searchv1                           : url + 'customer-v1/institute/' + instituteId + '/search',
+    customer_linev1                             : url + 'customer-v1/institute/' + instituteId + '/customer-detail',
 }

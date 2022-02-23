@@ -46,3 +46,19 @@ module.exports.campaignGet = async function (id) {
         window.console.error(error)
     }
 }
+module.exports.itemSearchURL = function (strFilter = '') {
+    try {
+        // return apiUrl.product.product_variant_list
+        return apiUrl.commerce.itemSearch + strFilter
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.customerSearchURL = function (strFilter = '') {
+    try {
+        const response = apiUrl.customer.customer_searchv1 + strFilter
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}

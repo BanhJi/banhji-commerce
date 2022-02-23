@@ -12,4 +12,6 @@ module.exports = {
     campaignCreate                              : url + 'campaign/' + instituteId + '/create',
     campaignGet                                 : url + 'campaign/' + instituteId + '/get',
     campaignGets                                : url + 'campaign/' + instituteId + '/list',
+    itemSearch                                  : url + 'item/' + instituteId + '/search/',
+    customerSearch                              : url + 'customer/' + instituteId + '/search/',
 }
