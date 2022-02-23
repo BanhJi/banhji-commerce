@@ -100,7 +100,10 @@
                 @click.native="clickMe(item)"
               >
                 <v-list-item-content>
-                  <v-list-item-title>{{ $t(item.menuTex) }}</v-list-item-title>
+                  <v-list-item-title>
+                    <span v-html="getIcon(item.icon)"></span>
+                    {{ $t(item.menuTex) }}</v-list-item-title
+                  >
                 </v-list-item-content>
               </v-list-item>
             </template>
@@ -310,6 +313,7 @@ export default {
         name: "overview",
         menuTex: "overview",
         path: "/en",
+        icon: "",
       },
       {
         id: 2,
@@ -318,6 +322,7 @@ export default {
         name: "sale_channels",
         menuTex: "sale_channels",
         path: "/sale_channels",
+        icon: "",
       },
       {
         id: 3,
@@ -326,23 +331,7 @@ export default {
         name: "pricing",
         menuTex: "pricing",
         path: "/pricing",
-      },
-      {
-        id: 4,
-        class: "",
-        activeClass: "",
-        name: "marketing & promotions",
-        menuTex: "marketing",
-        path: "/marketing_promotions",
-      },
-      
-      {
-        id: 5,
-        class: "",
-        activeClass: "",
-        name: "loyalty_reward",
-        menuTex: "loyalty_reward",
-        path: "/loyalty_reward",
+        icon: "",
       },
       {
         id: 6,
@@ -351,6 +340,7 @@ export default {
         name: "order_sale",
         menuTex: "order_sale",
         path: "/order_sale",
+        icon: "",
       },
 
       {
@@ -358,16 +348,18 @@ export default {
         class: "",
         activeClass: "",
         name: "team_management",
-        menuTex: "team_management",
+        menuTex: "employee",
         path: "/team_management",
+        icon: "",
       },
       {
         id: 8,
         class: "",
         activeClass: "",
         name: "products_services",
-        menuTex: "products_services",
+        menuTex: "products",
         path: "/products_services",
+        icon: "",
       },
       {
         id: 9,
@@ -376,31 +368,54 @@ export default {
         name: "customers",
         menuTex: "customers",
         path: "/customer_directory",
+        icon: "",
       },
-      { id: 30, class: "mx-3 my-1 v-divider side_devider" },
+      { id: 31, class: "mx-3 my-1 v-divider side_devider", icon: "" },
+      {
+        id: 4,
+        class: "sidebar_uppercase sidebar_regular",
+        activeClass: "",
+        name: "marketing & promotions",
+        menuTex: "promotions",
+        path: "/marketing_promotions",
+        icon: "",
+      },
+      {
+        id: 5,
+        class: "sidebar_uppercase sidebar_regular",
+        activeClass: "",
+        name: "loyalty_reward",
+        menuTex: "loyalty",
+        path: "/loyalty_reward",
+        icon: "",
+      },
+      { id: 30, class: "mx-3 my-1 v-divider side_devider", icon: "" },
       {
         id: 10,
-        class: "text-green",
+        class: "text-green sidebar_regular",
         activeClass: "",
         name: "payments",
         menuTex: "payments",
         path: "/payments",
+        icon: "b-payment",
       },
       {
         id: 11,
-        class: "text-green",
+        class: "text-green sidebar_regular",
         activeClass: "",
         name: "point_of_sales",
         menuTex: "point_of_sales",
         path: "/point_of_sales",
+        icon: "b-commerce",
       },
       {
         id: 12,
-        class: "text-green",
+        class: "text-green sidebar_regular",
         activeClass: "",
         name: "e_commerce",
         menuTex: "e_commerce",
         path: "/e_commerce",
+        icon: "b-billing",
       },
     ],
     previous_active_id: 1,
@@ -416,6 +431,11 @@ export default {
   },
 
   methods: {
+    getIcon(icon) {
+      if (icon) {
+        return `<i style="font-size: 20px;margin-right:2px;" class="${icon} red_icon" />`;
+      }
+    },
     goConnect() {
       if (process.env.VUE_APP_MODE == "dev") {
         window.location.href = "http://localhost:8080/";
