@@ -391,15 +391,6 @@ export default {
       },
       { id: 30, class: "mx-3 my-1 v-divider side_devider", icon: "" },
       {
-        id: 10,
-        class: "text-green sidebar_regular",
-        activeClass: "",
-        name: "payments",
-        menuTex: "payments",
-        path: "/payments",
-        icon: "b-payment",
-      },
-      {
         id: 11,
         class: "text-green sidebar_regular",
         activeClass: "",
@@ -417,6 +408,17 @@ export default {
         path: "/e_commerce",
         icon: "b-billing",
       },
+      {
+        id: 10,
+        class: "text-green sidebar_regular",
+        activeClass: "",
+        name: "payments",
+        menuTex: "payments",
+        path: "/payments",
+        icon: "b-payment",
+      },
+      
+      
     ],
     previous_active_id: 1,
     fullscreen: false,
