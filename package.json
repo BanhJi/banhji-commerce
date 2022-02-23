@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
-  },
+  }, 
   "dependencies": {
     "@progress/kendo-barcodes-vue-wrapper": "^2020.3.1217",
     "@progress/kendo-charts-vue-wrapper": "^2020.2.827",
