@@ -4170,7 +4170,20 @@
     "overview_commerce_desc" : "Manage multi-channels, and offer dynamic loyalty & promotions",
     "overview_billing_desc" : "Manage metered and non-metered billing, and digital payments",
     "overview_payment_desc" : "Digital payment, reconciliations, & records",
-    "overview_financing_desc" : "Loan application, management & monitoring"
+    "overview_financing_desc" : "Loan application, management & monitoring",
+    "step_one": "Step one",
+    "step_two": "Step two",
+    "step_tree": "Step tree",
+    "reward_base": "Reward base",
+    "reward_type": "Reward type",
+    "base_on": "Base on",
+    "product_base": "Product base",
+    "specific": "Specific",
+    "overwrite_other_campaign": "Overwrite other campaign",
+    "customer_base": "Customer base",
+    "rule_base": "Rule base",
+    "amount_base": "Amount base"
+
 
 
 

@@ -4091,7 +4091,20 @@
     "overview_commerce_desc" : "គ្រប់គ្រងច្រកលក់ ទីផ្សា ទំនាក់ទំនងអតិថិជន និងប្រព័ន្ធល់",
     "overview_billing_desc" : "គ្រប់គ្រងការចេញវិក្កយបត្រ និងការទូទាត់បែបឌីជីថល",
     "overview_payment_desc" : "ភ្ជាប់សេវាទូទាត់បែបឌីជីថល ធ្នើការផ្ទៀងផ្ទាត់ និងកត់ត្រា",
-    "overview_financing_desc" : "ស្នើសុំ គ្រប់គ្រង តាមដាននិងកត់ត្រាឥណទាន"
+    "overview_financing_desc" : "ស្នើសុំ គ្រប់គ្រង តាមដាននិងកត់ត្រាឥណទាន",
+    "step_one": "Step one",
+    "step_two": "Step two",
+    "step_tree": "Step tree",
+    "reward_base": "Reward base",
+    "reward_type": "Reward type",
+    "base_on": "Base on",
+    "product_base": "Product base",
+    "specific": "Specific",
+    "overwrite_other_campaign": "Overwrite other campaign",
+    "customer_base": "Customer base",
+    "rule_base": "Rule base",
+    "amount_base": "Amount base"
+
 
 
 
