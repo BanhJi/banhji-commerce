@@ -31,7 +31,7 @@ module.exports.list = async function (params) {
         // } else {
         //     response = await axios.get(apiUrl.billing.invoice_get)
         // }
-        response = await axios.post(apiUrl.billing.invoice_get , params)
+        response = await axios.post(apiUrl.billing.invoice_get, params)
         return response
     } catch (error) {
         window.console.error(error)
@@ -138,15 +138,15 @@ module.exports.wcpPayableCreditLimitList = async function (strFilter) {
 }
 
 // txn Cash Receipt List
-module.exports.txn = async function (strFilter) {
+module.exports.txn = async function (params = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.cash_receipt_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.cash_receipt_get)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.cash_receipt_get + '/' + strFilter)
+        // } else {
+        //     response = 
+        // }
+        return await axios.post(apiUrl.billing.cash_receipt_get, params)
     } catch (error) {
         window.console.error(error)
     }
@@ -320,8 +320,7 @@ module.exports.creditMemoList = async (strFilter) => {
 // Deposit transaction List
 module.exports.depositList = async (strFilter) => {
     try {
-        const response = await axios.get(apiUrl.billing.deposit_list + strFilter)
-        return response
+        return await axios.post(apiUrl.billing.deposit_list, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -379,8 +378,7 @@ module.exports.purchaseDepositBalanceList = async function (strFilter) {
 // Purchase Deposit transaction List
 module.exports.purchaseDepositList = async (strFilter) => {
     try {
-        const response = await axios.get(apiUrl.billing.purchase_deposit_get + strFilter)
-        return response
+        return await axios.post(apiUrl.billing.purchase_deposit_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -397,15 +395,9 @@ module.exports.createPurchase = async (data) => {
     }
 }
 // List Purchase
-module.exports.listPurchase = async function (strFilter) {
+module.exports.listPurchase = async function (strFilter = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.purchase_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.purchase_get)
-        }
-        return response
+        return await axios.post(apiUrl.billing.purchase_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -455,10 +447,9 @@ module.exports.createDebitMemo = async (data) => {
 // Credit Memo
 // List All By date
 // list?id= ' ' get one
-module.exports.debitMemoList = async (strFilter) => {
+module.exports.debitMemoList = async (strFilter = '') => {
     try {
-        const response = await axios.get(apiUrl.billing.debit_memo_get + strFilter)
-        return response
+        return await axios.post(apiUrl.billing.debit_memo_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -616,8 +607,8 @@ module.exports.attachmentList = async function (strFilter) {
 }
 module.exports.attachmentDelete = async function (val) {
     try {
-        const response = await axios.delete(apiUrl.billing.attachment_delete,{
-            params:{
+        const response = await axios.delete(apiUrl.billing.attachment_delete, {
+            params: {
                 id: val.id,
                 key: val.key
             }

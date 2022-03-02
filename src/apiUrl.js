@@ -8,16 +8,23 @@ const creator = cookie !== undefined ? cookie.creator : '';
 
 /* Base Url */
 const baseUrl = process.env.VUE_APP_API;
+const bankingBaseUrl = process.env.VUE_APP_BANKING_BASE_URL;
 
-const accountingUrl         = `${baseUrl}/accounting-v2/${instituteId}`;
+const myUrl = require("@/url")
+let baseUrla = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrla = 'https://dev-apis.banhji.com'
+}
+
+const accountingUrl         = `${baseUrla}/accounting-v2/${instituteId}`;
 const accountingReportUrl   = `${baseUrl}/accountingreport-v2/${instituteId}`;
 const reconcielRuleUrl      = `${baseUrl}/bill.srv/institutes/${instituteId}`;
 const workingCapitalUrl     = `${baseUrl}/workingcapital-v2/${instituteId}`;
-const bankingUrl            = `${baseUrl}/banking-v2/${instituteId}`;
+const bankingUrl            = `${bankingBaseUrl}/${instituteId}`;
 const financingUrl          = `${baseUrl}/financing-v2/${instituteId}`;
 const bankfeedUrl       = baseUrl + '/bankfeed';
 const banhjiUrl         = baseUrl + '/entity/v1/';
-const partnerServiceUrl = baseUrl + '/partner-service/v1';
+const partnerServiceUrl = baseUrla + '/partner-service/v1';
 const prefixUrl         = `https://wcn7vpmgh3.execute-api.ap-southeast-1.amazonaws.com/dev/v1/settings/institute/${instituteId}`
 // const xchangeUrl        = 'https://unkcbmfm41.execute-api.ap-southeast-1.amazonaws.com/dev/v1/'
 // const currencyUrl       = 'https://unkcbmfm41.execute-api.ap-southeast-1.amazonaws.com/dev/v1/currency/institute/' + instituteId
@@ -46,10 +53,9 @@ const price_promotion   = require("./api/price-promotion")
 const item              = require("./api/item")
 const dashboard         = require("./api/dashboard")
 const financing         = require("./api/financing")
-const commerce          = require("./api/commerce")
+const mptc              = require("./api/mptc")
 
 module.exports = {
-    commerce                            : commerce,
     // INSTITUTE
     institute_get                       : banhjiUrl + 'institutes/' + instituteId,
     institutes_get                      : banhjiUrl + 'users/' + creator + '/institutes',
@@ -194,4 +200,7 @@ module.exports = {
 
     //Dashboard
     dashboard                           : dashboard,
+
+    // MPTC 
+    mptc                                : mptc
 }

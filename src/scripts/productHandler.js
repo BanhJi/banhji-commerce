@@ -63,3 +63,12 @@ module.exports.categorySegmentReport = async function (strFilter = '') {
         window.console.error(error)
     }
 }
+
+// Product Center v2
+module.exports.center = async (data) => {
+    try {
+        return await axios.post(apiUrl.product.product_center, data)
+    } catch (error) {
+        window.console.error(error)
+    }
+}

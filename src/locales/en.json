@@ -4182,12 +4182,23 @@
     "overwrite_other_campaign": "Overwrite other campaign",
     "customer_base": "Customer base",
     "rule_base": "Rule base",
-    "amount_base": "Amount base"
-
-
-
-
-
-
+    "amount_base": "Amount base",
+    "coming_soon" : "Coming Soon",
+    "n_01" : "01",
+    "n_02" : "02",
+    "n_03" : "03",
+    "n_04" : "04",
+    "n_05" : "05",
+    "n_06" : "06",
+    "invoice_payment_link" : "Invoice payment links",
+    "invoice_payment_link_desc" : "You share invoices with payment link, your customer pays with their preferred options.",
+    "payment_options_insight_desc" : "Multiple payments, such as payment code, dynamic QR, and the new national KHQR, to allow your customer making payment from their preferred choice.",
+    "automatic_record" : "Automatic Record",
+    "automatic_record_desc" : "When customers pay through Banhji Payments, we will record and match it for you.",
+    "our_financail_inst_partner" : "Our financial institutions partners",
+    "our_financail_inst_partner_desc" : "We have partnered with the leading financial institutions to bring easy and quick payment to you",
+    "customer_pice_levels_desc": "Price level is used to provide flexibility in using price for sale transactions.",
+    "total_products_variant" : "Total variants",
+    "add_campaign": "Add campaign"
 
 }

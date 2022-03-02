@@ -1,13 +1,13 @@
-const cookier = require("@/cookier.js").cookie
-cookier.init()
-const store = require("@/institute.js")
-const { instituteId } = store.default.state.cookies
+/* Cookie */
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie();
 
 const myUrl = require("@/url")
 let baseUrl = myUrl.url
 if(process.env.VUE_APP_MODE == 'dev'){
     baseUrl = 'https://dev-apis.banhji.com'
 }
+
 const url          = baseUrl + '/entity-item/'
 // const url          = 'https://dev-apis.banhji.com/entity-items/'
 
@@ -37,7 +37,20 @@ module.exports = {
     //item modifier
     itemModifier_post                   : url + 'item-modifier/institute/' + instituteId + '/add',
     itemModifier_list                   : url + 'item-modifier/institute/' + instituteId + '/list',
-    itemModifier_search                 : url + 'item-modifier/institute/' + instituteId + '/',
+    itemModifier_search                 : url + 'item-modifier/institute/' + instituteId + '/search',
     item_search                         : url + 'item/institute/' + instituteId + '/filter/',
-    item_variant_search                 : url + 'item/institute/' + instituteId + '/item/'
+    item_variant_search                 : url + 'item/institute/' + instituteId + '/item/',
+
+    discount_item_report                : url + 'discount-item-txn/institute/' + instituteId + '/list',
+    sale_channel_report                 : url + 'sale-channel-txn/institute/' + instituteId + '/list',
+    sale_unit_report                    : url + 'saleunit-item-txn/institute/' + instituteId + '/list',
+    other_charge_report                 : url + 'other-charge-txn/institute/' + instituteId + '/list',
+    price_level_report                  : url + 'price-level-txn/institute/' + instituteId + '/list',
+
+    item_by_txn                         : url + 'item-txn/institute/' + instituteId + '/list',
+    item_by_category                    : url + 'item/institute/' + instituteId + '/itemByCategory',
+    stock_count_adjustment              : url + 'stock-count-adjustment/institute/' + instituteId + '/adjustment',
+    item_by_license                     : url + 'item-by-license/institute/' + instituteId + '/list',
+
+    variant_one                         : url + 'variant/institute/' + instituteId + '/item',
 }

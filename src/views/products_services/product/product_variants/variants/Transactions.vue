@@ -2,7 +2,7 @@
     <v-row>
         <v-col sm="12" cols="12" class="py-0">
             <v-row class="">
-                <v-col sm="4" cols="12" class="py-0">
+                <!-- <v-col sm="4" cols="12" class="py-0">
                     <v-select class="mt-1"
                               :items="dateSorters"
                               v-model="mDateSorter"
@@ -11,14 +11,14 @@
                               outlined
                               placeholder="ALL"
                     />
-                </v-col>
-                <v-col sm="3" cols="12" class="py-0">
+                </v-col> -->
+                <v-col sm="5" cols="12" class="py-0">
                     <app-datepicker :initialDate="startDate" @emitDate="startDate = $event"/>
                 </v-col>
-                <v-col sm="3" cols="12" class="py-0">
+                <v-col sm="5" cols="12" class="py-0">
                     <app-datepicker :initialDate="endDate" @emitDate="endDate = $event"/>
                 </v-col>
-                <v-col sm="1" cols="1" class="pt-1">
+                <v-col sm="2    " cols="1" class="pt-1">
                     <v-btn
                         class="btn_search" @click="searchTransaction"
                         style="background-color: rgb(237, 241, 245)"
@@ -152,13 +152,13 @@ export default {
         "app-datepicker": DatePickerComponent,
     },
     watch: {
-        item() {
-            if (this.item !== undefined) {
-                this.showLoading = true
-                this.searchTransaction()
-                this.showLoading = false
-            }
-        },
+        // item() {
+        //     if (this.item !== undefined) {
+        //         this.showLoading = true
+        //         this.searchTransaction()
+        //         this.showLoading = false
+        //     }
+        // },
     },
     computed: {
         id() {

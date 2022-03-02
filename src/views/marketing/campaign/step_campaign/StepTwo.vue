@@ -18,7 +18,7 @@
                                                 <tr>
                                                     <td class="text-uppercase">{{ $t('overwrite_other_campaign') }}</td>
                                                     <td class="text-center">:</td>
-                                                    <td class="text-left text-bold"><v-switch
+                                                    <td class="text-left text-bold" width="370"><v-switch
                                                         v-model="c.isOverwrite"
                                                         color="primary"
                                                         :label="c.isOverwrite ? $t('yes') : $t('no')"
@@ -113,7 +113,7 @@
                                                 <tr>
                                                     <td v-if="c.isPartner" class="text-uppercase">{{ $t('sale_channel') }}</td>
                                                     <td v-if="c.isPartner" class="text-center">:</td>
-                                                    <td v-if="c.isPartner" class="text-left text-bold">
+                                                    <td v-if="c.isPartner" class="text-left text-bold pt-2">
                                                         <v-select
                                                             class="mt-1"
                                                             v-model="c.partner"
@@ -139,7 +139,7 @@
                                     </v-col>
 
                                    <v-row class="grayBg pa-6 mx-3">  
-                                        <v-col sm="4" cols="12" class="">
+                                        <v-col sm="6" cols="12" class="">
                                             <label style="" class="label">{{ $t('price_level') }}</label>
                                             <v-select class="mt-1 custom-border"
                                                 v-model="c.priceLevel"
@@ -150,7 +150,7 @@
                                                 @change="onPriceLevelChanged"
                                                 outlined/>
                                         </v-col>
-                                        <v-col sm="4" cols="12" class="">
+                                        <v-col sm="6" cols="12" class="">
                                             <label style="" class="label">{{ $t('rule_base') }}</label>
                                             <v-select
                                                 class="mt-1"
@@ -163,229 +163,230 @@
                                                 outlined=""
                                             />
                                         </v-col>
-                                        
-                                        <v-col sm="4" class="" v-if="c.ruleBase == `customer`">
-                                            <label style="" class="label">{{ $t('customer_base') }}</label>
-                                            <v-select
-                                                class="mt-1"
-                                                v-model="c.ruleCustomerBaseType"
-                                                :items="ruleCustomerBaseTypes"
-                                                @change="rCusBaseChange"
-                                                item-value="id"
-                                                item-text="name"
-                                                placeholder="Select"
-                                                outlined=""
-                                            />
-                                            
-                                        </v-col>
-                                        <v-col sm="4" v-else>
-                                            <label class="label">{{ $t('base_on') }}</label>
-                                            <v-select
-                                                class="mt-1"
-                                                v-model="c.ruleProductBaseOn"
-                                                :items="productBaseOns"
-                                                @change="rproductBaseOnChange"
-                                                item-value="id"
-                                                item-text="name"
-                                                placeholder="Select"
-                                                outlined=""
-                                            /> 
-                                        </v-col>
                                     </v-row>
-                                    <!-- customer_base -->
-                                    <v-col sm="12" cols="12" v-if="c.ruleCustomerBaseType == `customerType`">
-                                        <v-combobox
-                                            v-model="c.ruleCustomerTypes"
-                                            :items="customerTypes"
-                                            :label="$t('customer_type')"
-                                            item-value="value.id"
+                                    <v-col sm="12" cols="12" class="" v-if="c.ruleBase == `customer`">
+                                        <label style="" class="label">{{ $t('customer_base') }}</label>
+                                        <v-select
+                                            class="mt-1"
+                                            v-model="c.ruleCustomerBaseType"
+                                            :items="ruleCustomerBaseTypes"
+                                            @change="rCusBaseChange"
+                                            item-value="id"
                                             item-text="name"
-                                            multiple
-                                            chips
-                                        >
-                                            <template v-slot:selection="data">
-                                                <v-chip
-                                                    :key="data.item.id"
+                                            placeholder="Select"
+                                            outlined=""
+                                        />
+                                        <!-- customer_base -->
+                                        <v-col class="px-0"  v-if="c.ruleCustomerBaseType == `customerType`">
+                                            <v-combobox
+                                                v-model="c.ruleCustomerTypes"
+                                                :items="customerTypes"
+                                                :label="$t('customer_type')"
+                                                item-value="value.id"
+                                                item-text="name"
+                                                multiple
+                                                chips
+                                            >
+                                                <template v-slot:selection="data">
+                                                    <v-chip
+                                                        :key="data.item.id"
+                                                    >
+                                                        <v-avatar
+                                                            class="accent white--text"
+                                                            left
+                                                            v-text="data.item.name.slice(0, 1).toUpperCase()"
+                                                        ></v-avatar>
+                                                        {{ data.item.name }}
+                                                    </v-chip>
+                                                </template>
+                                            </v-combobox>
+                                        </v-col>
+                                        <v-col class="px-0" v-else-if="c.ruleCustomerBaseType == `specific`">
+                                            <template>
+                                                <kendo-datasource
+                                                    ref="ruleCustomers"
+                                                    :data="ruleCustomers"/>
+                                                <kendo-grid
+                                                    id="ruleCustomers" class="grid-function"
+                                                    :data-source-ref="'ruleCustomers'"
+                                                    :sortable="true"
+                                                    :filterable="false"
+                                                    :column-menu="false"
+                                                    :editable="true"
+                                                    :scrollable-virtual="true"
                                                 >
-                                                    <v-avatar
-                                                        class="accent white--text"
-                                                        left
-                                                        v-text="data.item.name.slice(0, 1).toUpperCase()"
-                                                    ></v-avatar>
-                                                    {{ data.item.name }}
-                                                </v-chip>
+                                                    <kendo-grid-column
+                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeCustomerRow, className: 'btn-plus isEditable'}"
+                                                        :title="''"
+                                                        :width="63"
+                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                    <kendo-grid-column
+                                                        :field="'customer'"
+                                                        :title="$t('customer')"
+                                                        :width="150"
+                                                        :template="customerTpl"
+                                                        :editor="cusDropDownEditor"
+                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                    />
+                                                </kendo-grid>
                                             </template>
-                                        </v-combobox>
-                                    </v-col>
-                                    <v-col sm="12" cols="12" v-else-if="c.ruleCustomerBaseType == `specific`">
-                                        <template>
-                                            <kendo-datasource
-                                                ref="ruleCustomers"
-                                                :data="ruleCustomers"/>
-                                            <kendo-grid
-                                                id="ruleCustomers" class="grid-function"
-                                                :data-source-ref="'ruleCustomers'"
-                                                :sortable="true"
-                                                :filterable="false"
-                                                :column-menu="false"
-                                                :editable="true"
-                                                :scrollable-virtual="true"
-                                            >
-                                                <kendo-grid-column
-                                                    :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeCustomerRow, className: 'btn-plus isEditable'}"
-                                                    :title="''"
-                                                    :width="63"
-                                                    :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                <kendo-grid-column
-                                                    :field="'customer'"
-                                                    :title="$t('customer')"
-                                                    :width="150"
-                                                    :template="customerTpl"
-                                                    :editor="cusDropDownEditor"
-                                                    :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                />
-                                            </kendo-grid>
-                                        </template>
-                                        <v-col sm="12" cols="12" class="pb-0">
-                                            <v-row>
-                                                <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                    <v-btn
-                                                        class="float-left btn_plus white--text mr-2"
-                                                        color="primary" @click="addCustomerRow">
-                                                        <v-icon size="" class="ma-1">mdi mdi-plus
-                                                        </v-icon>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
+                                            <v-col sm="12" cols="12" class="pb-0">
+                                                <v-row>
+                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                        <v-btn
+                                                            class="float-left btn_plus white--text mr-2"
+                                                            color="primary" @click="addCustomerRow">
+                                                            <v-icon size="" class="ma-1">mdi mdi-plus
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
                                         </v-col>
+                                        
                                     </v-col>
-                                    <!-- base_on -->
-                                    <v-col sm="12" cols="12" v-if="c.ruleProductBaseOn == `category`">
-                                        <template>
-                                            <kendo-datasource
-                                                ref="ruleCate"
-                                                :data="ruleCate"/>
-                                            <kendo-grid
-                                                id="ruleCate" class="grid-function"
-                                                :data-source-ref="'ruleCate'"
-                                                :sortable="true"
-                                                :filterable="false"
-                                                :column-menu="false"
-                                                :editable="true"
-                                                :scrollable-virtual="true"
-                                            >
-                                                <kendo-grid-column
-                                                    :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveCate, className: 'btn-plus isEditable'}"
-                                                    :title="''"
-                                                    :width="63"
-                                                    :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                <kendo-grid-column
-                                                    :field="'category'"
-                                                    :title="$t('category')"
-                                                    :width="150"
-                                                    :template="categoryTemplate"
-                                                    :editor="cateDropDownEditor"
-                                                    :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                />
-                                            </kendo-grid>
-                                        </template>
-                                        <v-col sm="12" cols="12" class="pb-0">
-                                            <v-row>
-                                                <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                    <v-btn
-                                                        class="float-left btn_plus white--text mr-2"
-                                                        color="primary" @click="addRuleCateRow">
-                                                        <v-icon size="" class="ma-1">mdi mdi-plus
-                                                        </v-icon>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
+                                    <v-col sm="12" cols="12" v-else>
+                                        <label class="label">{{ $t('base_on') }}</label>
+                                        <v-select
+                                            class="mt-1"
+                                            v-model="c.ruleProductBaseOn"
+                                            :items="productBaseOns"
+                                            @change="rproductBaseOnChange"
+                                            item-value="id"
+                                            item-text="name"
+                                            placeholder="Select"
+                                            outlined=""
+                                        />
+                                        <!-- base_on -->
+                                        <v-col class="px-0"  v-if="c.ruleProductBaseOn == `category`">
+                                            <template>
+                                                <kendo-datasource
+                                                    ref="ruleCate"
+                                                    :data="ruleCate"/>
+                                                <kendo-grid
+                                                    id="ruleCate" class="grid-function"
+                                                    :data-source-ref="'ruleCate'"
+                                                    :sortable="true"
+                                                    :filterable="false"
+                                                    :column-menu="false"
+                                                    :editable="true"
+                                                    :scrollable-virtual="true"
+                                                >
+                                                    <kendo-grid-column
+                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveCate, className: 'btn-plus isEditable'}"
+                                                        :title="''"
+                                                        :width="63"
+                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                    <kendo-grid-column
+                                                        :field="'category'"
+                                                        :title="$t('category')"
+                                                        :width="150"
+                                                        :template="categoryTemplate"
+                                                        :editor="cateDropDownEditor"
+                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                    />
+                                                </kendo-grid>
+                                            </template>
+                                            <v-col sm="12" cols="12" class="pb-0">
+                                                <v-row>
+                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                        <v-btn
+                                                            class="float-left btn_plus white--text mr-2"
+                                                            color="primary" @click="addRuleCateRow">
+                                                            <v-icon size="" class="ma-1">mdi mdi-plus
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
                                         </v-col>
+                                        <v-col class="px-0"  v-else-if="c.ruleProductBaseOn == `group`">
+                                            <template>
+                                                <kendo-datasource
+                                                    ref="ruleGroup"
+                                                    :data="ruleGroup"/>
+                                                <kendo-grid
+                                                    id="ruleGroup" class="grid-function"
+                                                    :data-source-ref="'ruleGroup'"
+                                                    :sortable="true"
+                                                    :filterable="false"
+                                                    :column-menu="false"
+                                                    :editable="true"
+                                                    :scrollable-virtual="true"
+                                                >
+                                                    <kendo-grid-column
+                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveGroup, className: 'btn-plus isEditable'}"
+                                                        :title="''"
+                                                        :width="63"
+                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                    <kendo-grid-column
+                                                        :field="'group'"
+                                                        :title="$t('group')"
+                                                        :width="150"
+                                                        :template="groupTemplate"
+                                                        :editor="groupDropDownEditor"
+                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                    />
+                                                </kendo-grid>
+                                            </template>
+                                            <v-col sm="12" cols="12" class="pb-0">
+                                                <v-row>
+                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                        <v-btn
+                                                            class="float-left btn_plus white--text mr-2"
+                                                            color="primary" @click="addRuleGroupRow">
+                                                            <v-icon size="" class="ma-1">mdi mdi-plus
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
+                                        </v-col>
+                                        <v-col class="px-0"  v-else-if="c.ruleProductBaseOn == `specific`">
+                                            <template>
+                                                <kendo-datasource
+                                                    ref="ruleProduct"
+                                                    :data="ruleProduct"/>
+                                                <kendo-grid
+                                                    id="ruleProduct" class="grid-function"
+                                                    :data-source-ref="'ruleProduct'"
+                                                    :sortable="true"
+                                                    :filterable="false"
+                                                    :column-menu="false"
+                                                    :editable="true"
+                                                    :scrollable-virtual="true"
+                                                >
+                                                    <kendo-grid-column
+                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemovePro, className: 'btn-plus isEditable'}"
+                                                        :title="''"
+                                                        :width="63"
+                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                    <kendo-grid-column
+                                                        :field="'item'"
+                                                        :title="$t('item')"
+                                                        :template="itemTemplate"
+                                                        :editor="ItemDropDownEditor"
+                                                        :attributes="{class:'tb_name_td isEditable'}"
+                                                        :width="200"
+                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"/>
+                                                </kendo-grid>
+                                            </template>
+                                            <v-col sm="12" cols="12" class="pb-0">
+                                                <v-row>
+                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                        <v-btn
+                                                            class="float-left btn_plus white--text mr-2"
+                                                            color="primary" @click="addRuleProRow">
+                                                            <v-icon size="" class="ma-1">mdi mdi-plus
+                                                            </v-icon>
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-col>
+                                        </v-col>  
                                     </v-col>
-                                    <v-col sm="12" cols="12" v-else-if="c.ruleProductBaseOn == `group`">
-                                        <template>
-                                            <kendo-datasource
-                                                ref="ruleGroup"
-                                                :data="ruleGroup"/>
-                                            <kendo-grid
-                                                id="ruleGroup" class="grid-function"
-                                                :data-source-ref="'ruleGroup'"
-                                                :sortable="true"
-                                                :filterable="false"
-                                                :column-menu="false"
-                                                :editable="true"
-                                                :scrollable-virtual="true"
-                                            >
-                                                <kendo-grid-column
-                                                    :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveGroup, className: 'btn-plus isEditable'}"
-                                                    :title="''"
-                                                    :width="63"
-                                                    :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                <kendo-grid-column
-                                                    :field="'group'"
-                                                    :title="$t('group')"
-                                                    :width="150"
-                                                    :template="groupTemplate"
-                                                    :editor="groupDropDownEditor"
-                                                    :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                />
-                                            </kendo-grid>
-                                        </template>
-                                        <v-col sm="12" cols="12" class="pb-0">
-                                            <v-row>
-                                                <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                    <v-btn
-                                                        class="float-left btn_plus white--text mr-2"
-                                                        color="primary" @click="addRuleGroupRow">
-                                                        <v-icon size="" class="ma-1">mdi mdi-plus
-                                                        </v-icon>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-col>
-                                    <v-col sm="12" cols="12" v-else-if="c.ruleProductBaseOn == `specific`">
-                                        <template>
-                                            <kendo-datasource
-                                                ref="ruleProduct"
-                                                :data="ruleProduct"/>
-                                            <kendo-grid
-                                                id="ruleProduct" class="grid-function"
-                                                :data-source-ref="'ruleProduct'"
-                                                :sortable="true"
-                                                :filterable="false"
-                                                :column-menu="false"
-                                                :editable="true"
-                                                :scrollable-virtual="true"
-                                            >
-                                                <kendo-grid-column
-                                                    :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemovePro, className: 'btn-plus isEditable'}"
-                                                    :title="''"
-                                                    :width="63"
-                                                    :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                <kendo-grid-column
-                                                    :field="'item'"
-                                                    :title="$t('item')"
-                                                    :template="itemTemplate"
-                                                    :editor="ItemDropDownEditor"
-                                                    :attributes="{class:'tb_name_td isEditable'}"
-                                                    :width="200"
-                                                    :headerAttributes="{style: 'background-color: #EDF1F5'}"/>
-                                            </kendo-grid>
-                                        </template>
-                                        <v-col sm="12" cols="12" class="pb-0">
-                                            <v-row>
-                                                <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                    <v-btn
-                                                        class="float-left btn_plus white--text mr-2"
-                                                        color="primary" @click="addRuleProRow">
-                                                        <v-icon size="" class="ma-1">mdi mdi-plus
-                                                        </v-icon>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>
-                                        </v-col>
-                                    </v-col> 
+                                    
+                                    
                                     
                                     
                                     <v-col sm="12" cols="12" class=" pt-0 text-right">

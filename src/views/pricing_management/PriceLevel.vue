@@ -1,17 +1,11 @@
 <template>
   <v-row>
-    <v-col sm="12" cols="12" class="grayBg px-6">
-      <v-card color="white" class="pa-3 no_border" elevation="0">
+    <v-col sm="12" cols="12" class="pt-0">
+      <v-card color="white" class="pl-4 no_border" elevation="0">
         <v-row>
           <v-col sm="10" class="py-0">
-              <h2 class="mb-1 font_20">{{ $t("price_level_list") }}</h2>
-            <p class="mb-0">{{ $t('price_level_list_desc') }}</p>
-          </v-col>
-          <v-col sm="2" class="py-0">
-            <v-btn color="primary" class=" white--text float-right text-capitalize"
-                   @click="onNewClick">
-              {{ $t('new_price_level') }}
-            </v-btn>
+            <h2 class="mb-1 font_20">{{ $t("price_setting") }}</h2>
+            <p class="mb-0">{{ $t('price_book_setting_desc') }}</p>
           </v-col>
         </v-row>
         <v-dialog v-model="dialogM3" max-width="600px">
@@ -41,9 +35,8 @@
                               :items="priceLevelType"
                               item-text="name"
                               item-value="id"
-                              :rules="[v => !!v || $t('is_required')]"
+                              :rules="[v => !!v['id'] || $t('is_required')]"
                               return-object
-                              clearable
                               outlined/>
                   </v-col>
                   <v-col sm="6" cols="12" class="py-0">
@@ -62,11 +55,10 @@
                               tage="Currency"
                               v-model="priceLevel.currency"
                               :items="currencies"
-                              :rules="[v => !!v || $t('is_required')]"
                               item-value="id"
+                              :rules="[v => !!v['id'] || $t('is_required')]"
                               :item-text="item =>`${item.code} - ${item.name}`"
-                              return-object
-                              clearable/>
+                              return-object/>
                   </v-col>
                   <!--                  <v-col sm="12" cols="12" class="py-0 d-flex">-->
                   <!--                    <p class="mr-8">This price level is for:</p>-->
@@ -142,23 +134,31 @@
                     :template="'<span>#=type.name || ``#</span>'"
                     :attributes="{style: 'text-align: left'}"
                     :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                <kendo-grid-column
+                <!-- <kendo-grid-column
                     :field="'nature'"
                     :title="$t('nature')"
                     :width="100"
                     :editable="()=>{ return false}"
                     :template="'<span>#=nature.charAt(0).toUpperCase() + nature.slice(1) || ``#</span>'"
                     :attributes="{style: 'text-align: left'}"
+                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"/> -->
+                <kendo-grid-column
+                    :field="''"
+                    :title="$t('')"
+                    :width="110"
+                    :editable="()=>{ return false}"
+                    :attributes="{style: 'text-align: center'}"
+                    :command="[{iconClass: 'k-icon k-i-edit', text: $t('variant_price') , click: onVariantSetPrice }]"
                     :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
                 <kendo-grid-column
                     :field="''"
                     :title="$t('')"
-                    :width="60"
+                    :width="110"
                     :editable="()=>{ return false}"
-                    :attributes="{style: 'text-align: center'}"
-                    :command="[{iconClass: 'k-icon k-i-edit', text: ' ', click: onEditClick }]"
+                    :attributes="{style: 'text-align: center;'}"
+                    :command="[{iconClass: 'k-icon k-i-edit', text: $t('service_price'), click: onServiceSetPrice }]"
                     :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                    </kendo-grid>
+              </kendo-grid>
             </template>
           </v-col>
         </v-row>

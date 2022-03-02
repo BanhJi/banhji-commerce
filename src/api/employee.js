@@ -1,10 +1,12 @@
-const cookier = require("@/cookier.js").cookie
-cookier.init()
-const store = require("@/institute.js")
-const { instituteId } = store.default.state.cookies
+/* Cookie */
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie();
 
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
 const url          = baseUrl + '/entity-payroll-employees/'
 // const url          = 'https://dev-apis.banhji.com/entity-payroll-employee/'
 
@@ -24,4 +26,12 @@ module.exports = {
     employee_info                               : url + 'employee-info/institute/' + instituteId + '/get',
     employee_dashboard                          : url + 'employee-dashboard/institute/' + instituteId + '/get',
     employee_balance                            : url + 'employee-balance/institute/' + instituteId + '/get',
+    employee_leave                              : url + 'employee-leave/institute/' + instituteId + '/get',
+    leave_summary                               : url + 'leave-summary/institute/' + instituteId + '/get',
+    employee_benefit                            : url + 'fringe-benefit/institute/' + instituteId + '/add',
+    employee_benefit_get                        : url + 'fringe-benefit/institute/' + instituteId + '/get',
+    employee_update                             : url + 'employee/institute/' + instituteId + '/update/',
+    last_number_get                             : url + 'employee-lastnumber/institute/' + instituteId + '/get',
+    analy_specifice_get                         : url + 'analy-specifice/institute/' + instituteId + '/get',
+    analy_project_get                           : url + 'analy-project/institute/' + instituteId + '/get'
 }

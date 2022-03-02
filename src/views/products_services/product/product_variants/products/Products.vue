@@ -1,7 +1,23 @@
 <template>
     <v-row>
-        <v-col sm="12" cols="12" class="grayBg px-6">
-            <v-card outlined dense class="pa-3 no_border">
+        <v-col sm="12" cols="12" class="">
+            <v-card outlined dense class="no_border">
+                <v-row class="mt-0  ml-2">
+                    <v-col sm="3" class="pt-0 d-flex">
+                        <i style="font-size:80px" class="b-product" />
+                        <div class="ml-2">
+                            <h2 class="font_60 line_46">20</h2>
+                            <h3>{{$t('low_stock')}}</h3>
+                        </div>
+                    </v-col>
+                    <v-col sm="3" class="pt-0 d-flex" >
+                        <i style="font-size:80px" class="b-product red_icon" />
+                        <div class="ml-2">
+                            <h2 class="font_60 line_46">20</h2>
+                            <h3>{{$t('out_of_stock')}}</h3>
+                        </div>
+                    </v-col>
+                </v-row>
                 <v-row>
                     <v-col sm="4" cols="12" class="py-0">
                         <v-text-field outlined
@@ -24,6 +40,15 @@
                                   :placeholder="$t('category')"
                                   clearable
                                   outlined/>
+                    </v-col>
+                    <v-col sm="4"  cols="12" class="py-0">
+                        <v-btn
+                            color="primary"
+                            class=" white--text float-right"
+                            to="product"
+                        >
+                            {{ $t("new_product") }}
+                        </v-btn>
                     </v-col>
                 </v-row>
                 <!-- loading -->
@@ -175,9 +200,9 @@ export default {
                     }
                 }
             } else {
-                return ''
+                return '<i style="font-size:50px" class="b-product" />';
             }
-            return ''
+            return '<i style="font-size:50px" class="b-product" />';
         },
         category(dataItem) {
             if (dataItem.hasOwnProperty('product')) {

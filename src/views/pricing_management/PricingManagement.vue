@@ -57,7 +57,7 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <PriceSetting />
+                        <PriceLevel />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -104,11 +104,11 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    PriceLevelList: () => import("./pricing_management/PriceLevelList"),
-    PriceSetting: () => import("./pricing_management/PriceSetting"),
-    PriceBook: () => import("./pricing_management/PriceBook"),
-    PricingAnalasis: () => import("./pricing_management/PricingAnalasis"),
-    Report: () => import("./pricing_management/Report"),
+    PriceLevelList: () => import("./PriceLevelList"),
+    PriceLevel: () => import("./PriceLevel"),
+    PriceBook: () => import("./PriceBook"),
+    PricingAnalasis: () => import("./PricingAnalasis"),
+    Report: () => import("./Report"),
 
     
   },

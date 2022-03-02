@@ -151,9 +151,14 @@ module.exports.getTimesheetSingle = async function (id) {
         window.console.error(error)
     }
 }
-module.exports.getEmployeeTransactions = async function (employeeUuid) {
+module.exports.getEmployeeTransactions = async function (val) {
     try {
-        const response = await axios.get(apiUrl.employee.transactions+  '/' +  employeeUuid)
+        const response = await axios.get(apiUrl.employee.transactions+  '/' + val.employeeUuid,{
+            params: {
+                start: val.start,
+                end: val.end
+            }
+        })
         return response.data
     } catch (error) {
         window.console.error(error)
@@ -259,6 +264,32 @@ module.exports.getLastNumber = async function (val) {
             params:{
                 abbr: val.abbr,
                 id:   val.id || ""
+            }
+        })
+        return response.data
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.getAnalySpecifice = async function (val) {
+    try {
+        const response = await axios.get(apiUrl.employee.analy_specifice_get,{
+            params:{
+                startMonth: val.startMonth || '',
+                endMonth:   val.endMonth || ''
+            }
+        })
+        return response.data
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.getAnalyProject = async function (val) {
+    try {
+        const response = await axios.get(apiUrl.employee.analy_project_get,{
+            params:{
+                startMonth: val.startMonth || '',
+                endMonth:   val.endMonth || ''
             }
         })
         return response.data

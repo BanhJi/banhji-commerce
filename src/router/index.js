@@ -169,7 +169,7 @@ const routes = [{
                     {
                         path: 'pricing',
                         name: 'pricing',
-                        component: load('customers/PricingManagement'),
+                        component: load('pricing_management/PricingManagement'),
                         meta: {
                             mainMenu: 'pricing_management',
                             title: 'Pricing Management'
