@@ -53,7 +53,7 @@
                     <v-card
                       color="white"
                       outlined
-                      :to="this.$i18n.locale + '/customers'"
+                      :to="lang + '/customer_directory'"
                       dense
                       class="pa-6 mx-2 raduis_10 pop no_border pop"
                       min-height="181"
@@ -88,7 +88,7 @@
                       color="white"
                       outlined
                       dense
-                      :to="this.$i18n.locale + '/payroll'"
+                      :to="this.$i18n.locale +'/payroll'"
                       class="pa-6 mx-2 raduis_10 pop no_border"
                       min-height="181"
                     >
@@ -223,14 +223,14 @@
                   color="primary"
                   outlined
                   dense
-                  :to="this.$i18n.locale + '/commerce'"
+                  :to="this.$i18n.locale + '/point_of_sales'"
                   class="pa-6 pb-4 raduis_10 pop no_border"
                   min-height="181"
                 >
                   <i style="font-size: 56px" class="b-commerce white_icon" />
                   <div>
                     <h1 class="mt-0 font_size_overview font_18 white--text" :class="{'line_25':this.$i18n.locale=='kh'}">
-                      {{ $t("commerce") }}
+                      {{ $t("point_of_sales") }}
                     </h1>
                     <p class="mb-0 white--text p_style niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
                       {{ $t("overview_commerce_desc") }}

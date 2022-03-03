@@ -5,7 +5,7 @@
                 <v-col sm="12" cols="12" class="py-0">
                     <h2 class="primary--text font_20 mb-0">{{$t('step_tree')}}</h2>
                 </v-col>
-                <v-col sm="12" cols="12" class="py-0">
+                <v-col sm="12" cols="12" class="pb-0">
                     <v-card outlined dense class="no_border" color="white">
                         <v-row>
                             <v-col sm="12" cols="12" class="py-0">

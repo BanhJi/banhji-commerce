@@ -183,6 +183,45 @@
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            :color="
+              currencyList.effectiveDate === currentDate ? 'third' : 'primary'
+            "
+            v-on="on"
+            @click="getXrate"
+            style="
+              letter-spacing: 0px;
+              font-size: 14px !important;
+              height: 26px !important;
+            "
+            v-bind="attrs"
+            class="mx-2 mt-1 font_16 white--text"
+          >
+            {{ $t("x_rate") }}
+          </v-btn>
+        </template>
+        <div class="d-flex flex-column">
+          <p class="mb-1">{{currencyList.name == undefined ? $t('click_to_get_curreny_today') : $t('today_rate')}}</p>
+          <span class="font_10 line_12">
+            {{ $t("effective_date") }}
+          </span>
+          <span>{{ currencyList.effectiveDate || "" }}</span>
+          <span class="font_10 line_12">
+            {{ $t("currency") }}
+          </span>
+          <span>{{ currencyList.name != undefined ? currencyList.name + ' - ' + currencyList.symbol : '' }}</span>
+          <span class="font_10 line_12">
+            {{ $t("rate") }}
+          </span>
+          <span>{{ currencyList.rate != undefined ? parseFloat(currencyList.rate).toFixed(6) : '' }}</span>
+          <span class="font_10 line_12">
+            {{ $t("source") }}
+          </span>
+          <span>{{ currencyList.source || "" }}</span>
+        </div>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
             icon
             v-on="on"
             v-bind="attrs"
@@ -219,12 +258,6 @@
         </template>
         <span>{{ isOnline ? $t("online") : $t("offline") }}</span>
       </v-tooltip>
-
-      <v-btn icon link route :to="lang + '/search'">
-        <!-- <v-icon >search</v-icon> -->
-        <i class="b-search b" style="font-size: 18px" />
-      </v-btn>
-
       <div class="hidden-sm-and-down header_icon">
         <v-menu
           nudge-bottom="12"
@@ -274,7 +307,7 @@
 
 <script>
 import router from "@/router";
-import { dataStore } from "@/observable/store";
+// import { dataStore } from "@/observable/store";
 
 // const instituteHandler = require("@/scripts/instituteHandler");
 // const otherHandler = require("@/scripts/otherHandler");
@@ -282,12 +315,22 @@ import { dataStore } from "@/observable/store";
 import { Trans } from "@/plugins/Translation";
 import { i18n } from "../i18n";
 import VOffline from "@/components/VOffline";
+const settingsHandler = require("@/scripts/settingsHandler");
+const currencyHandler = require("@/scripts/currency/handler/currencyHandler");
+import kendo from "@progress/kendo-ui";
+
 // import { data } from "@/observable/store"
 import { mapState } from "vuex";
 
 /* Cookie */
 const cookieJS = require("@/cookie.js");
 const cookie = cookieJS.getCookie();
+const currencyType = {
+  FUNCTIONAL_CURRENCY: "fun-c",
+  TRANSACTION_CURRENCY: "txn-c",
+  REPORTING_CURRENCY: "rpt-c",
+  TAX_EXCHANGE_CURRENCY: "tax-c",
+};
 
 export default {
   data: () => ({
@@ -305,6 +348,9 @@ export default {
     activeClass1: "",
     activeClass2: "",
     activeClass3: "",
+    currencyList: {
+      effectiveDate: "",
+    },
     items: [
       {
         id: 1,
@@ -427,12 +473,67 @@ export default {
     isLoaded: false,
     planName: "",
     isAccessSetting: false,
+    currentDate: kendo.toString(new Date(), "yyyy-MM-dd"),
   }),
   props: {
     source: String,
   },
 
   methods: {
+    async getXrate() {
+      if (this.currencyList.effectiveDate !== this.currentDate) {
+        new Promise((resolve) => {
+          setTimeout(() => {
+            resolve("resolved");
+            const data = {};
+            this.btnDisabled = true;
+            settingsHandler
+              .nbcXRate(data)
+              .then((response) => {
+                if (response.data.statusCode === 201) {
+                  this.btnDisabled = false;
+                  window.console.log("get rate", response.data);
+                  this.$snotify.success("Successfully");
+                  this.loadCurrencyData(currencyType.TRANSACTION_CURRENCY);
+                } else {
+                  this.btnDisabled = false;
+                }
+              })
+              .catch((e) => {
+                this.btnDisabled = false;
+                this.$snotify.error("Something went wrong");
+                this.errors.push(e);
+              });
+          }, 10);
+        });
+      }
+    },
+    async loadCurrencyData(type) {
+      let get_totday = kendo.toString(new Date(), "yyyy-MM-dd");
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resolved");
+          this.showLoading = true;
+          currencyHandler.list(type).then((response) => {
+            if (response.data.data.length > 0) {
+              let filter_rate = response.data.data.filter((i) => {
+                if (
+                  i.source === "www.nbc.org.kh" &&
+                  i.effectiveDate === get_totday
+                ) {
+                  return i;
+                }
+              });
+              this.currencyList = filter_rate[0] || {};
+              localStorage.setItem(
+                "@CURRENCY_RATE",
+                JSON.stringify(this.currencyList)
+              );
+            }
+          });
+        }, 10);
+      });
+    },
     getIcon(icon) {
       if (icon) {
         return `<i style="font-size: 20px;margin-right:2px;" class="${icon} red_icon" />`;
@@ -658,6 +759,263 @@ export default {
     toggleDarkTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     },
+    // checkEditon() {
+    //   if (this.mInstitute.plan == 1) {
+    //     this.planName = "Standard";
+    //   } else if (this.mInstitute.plan == 2) {
+    //     this.planName = "Premium";
+    //   } else if (this.mInstitute.plan == 3) {
+    //     this.planName = "Advanced";
+    //   } else if (this.mInstitute.plan == 4) {
+    //     this.planName = "Cooperative";
+    //   } else if (this.mInstitute.plan == 6) {
+    //     this.planName = "Nonprofit";
+    //   } else if (this.mInstitute.plan == 7) {
+    //     this.planName = "Public Sector";
+    //   } else if (this.mInstitute.plan == 8) {
+    //     this.planName = "Micro Edition";
+    //   }
+
+    //   if (dataStore.roles.length > 0) {
+    //     dataStore.roles.forEach((i) => {
+    //       for (let it = 0; it < this.items.length; it++) {
+    //         if (this.items[it].moduleId === i.moduleId && i.access === 0) {
+    //           this.items.splice(it, 1);
+    //         }
+    //       }
+    //       const setting = dataStore.roles.filter(
+    //         (p) => p.moduleId === 13 && p.access !== 0
+    //       );
+    //       setting.length > 0
+    //         ? (this.isAccessSetting = true)
+    //         : (this.isAccessSetting = false);
+    //     });
+    //   } else {
+    //     this.isAccessSetting = true;
+    //   }
+    //   if (dataStore.productType === "Cooperative") {
+    //     this.items = this.items.filter((i) => {
+    //       if (
+    //         i.path !== "/compliance" &&
+    //         i.path !== "/insurance" &&
+    //         i.path !== "/customers" &&
+    //         i.path !== "/vendors" &&
+    //         i.path !== "/payroll" &&
+    //         i.path !== "/products" &&
+    //         i.path !== "/services" &&
+    //         i.path !== "/billing" &&
+    //         i.id !== 30 &&
+    //         i.path !== "/commerce"
+    //       ) {
+    //         switch (i.id) {
+    //           case 9:
+    //             i.class = "";
+    //             break;
+    //           case 2:
+    //             i.class = "";
+    //             break;
+    //           case 3:
+    //             i.class = "";
+    //             break;
+    //         }
+    //         if (i.path === "/banking") {
+    //           i.id = 4;
+    //           i.class = "";
+    //           i.menuTex = "banking";
+    //         }
+    //         if (i.path === "/finances") {
+    //           i.id = 5;
+    //           i.class = "text-green sidebar_regular";
+    //           i.activeClass = "";
+    //           i.name = "settings";
+    //           i.menuTex = "settings";
+    //           i.path = "/settings";
+    //         }
+    //         return i;
+    //       }
+    //     });
+    //     this.isAccessSetting = false;
+    //   }
+    //   if (dataStore.productType === "npo") {
+    //       this.items = this.items.filter((i) => {
+    //       switch (i.id) {
+    //           case 2:
+    //             i.menuTex = "receipts";
+    //             break;
+    //           case 3:
+    //             i.menuTex = "payments";
+    //             break;
+    //       }
+    //       if (i.id != 11 && i.id != 13 && i.id != 14 && i.id != 15 && i.id != 5 ) {
+    //         if (i.id == 20) {
+    //           i.class = "sidebar_uppercase sidebar_regular";
+    //           i.activeClass = "";
+    //           i.name = "funding";
+    //           i.menuTex = "funding";
+    //           i.path = "/share_funding";
+    //           i.icon = "";
+    //         }
+    //         return i;
+    //       }
+    //     });
+    //   }
+    //   if (dataStore.productType === "Public Sectors") {
+    //     this.items = this.items.filter((i) => {
+    //       switch (i.id) {
+    //         case 11:
+    //           break;
+    //       }
+    //       if (i.id != 11) {
+    //         if (i.id == 20) {
+    //           i.class = "sidebar_uppercase sidebar_regular";
+    //           i.activeClass = "";
+    //           i.name = "funding";
+    //           i.menuTex = "funding";
+    //           i.path = "/share_funding";
+    //           i.icon = "";
+    //         }
+    //         return i;
+    //       }
+    //     });
+    //   }
+    //   if (dataStore.productType === "Standard") {
+    //     this.items = this.items.filter((i) => {
+    //       if (
+    //         i.path !== "/payroll" &&
+    //         i.path !== "/budgeting" &&
+    //         i.path !== "/analytics" &&
+    //         i.id !== 30 &&
+    //         i.path !== "/compliance"
+    //       ) {
+    //         return i;
+    //       }
+    //     });
+    //   }
+    //   if (dataStore.productType === "MicroEdition") {
+    //     this.items = this.items.filter((i) => {
+    //       if (i.id != 5 && i.id != 6 && i.id != 7) {
+    //         switch (i.id) {
+    //           case 1:
+    //             i.menuTex = "overview";
+    //             break;
+    //           case 2:
+    //             i.menuTex = "revenues";
+    //             break;
+    //           case 3:
+    //             i.menuTex = "purchases";
+    //             break;
+    //           case 5:
+    //             i.menuTex = "";
+    //             break;
+    //           case 6:
+    //             i.menuTex = "";
+    //             break;
+    //           case 8:
+    //             i.menuTex = "accounting";
+    //             break;
+    //           case 9:
+    //             i.menuTex = "cash_banking";
+    //             break;
+    //         }
+    //         if (i.id == 2) {
+    //           i.class = "";
+    //           i.name = "revenues";
+    //           i.menuTex = "revenues";
+    //           i.path = "/revenues";
+    //         }
+    //         if (i.id == 3) {
+    //           i.class = "";
+    //           i.name = "purchases";
+    //           i.menuTex = "purchases";
+    //           i.path = "/purchases";
+    //         }
+    //         if (i.id == 4) {
+    //           i.class = "";
+    //           i.name = "expneses";
+    //           i.menuTex = "expenses";
+    //           i.path = "/expensing";
+    //         }
+    //         if (i.id == 8) {
+    //           i.class = "";
+    //           i.name = "reports";
+    //           i.menuTex = "reports";
+    //           i.path = "/reporting";
+    //         }
+    //         if (i.id == 9) {
+    //           i.name = "cash_banking";
+    //           i.menuTex = "cash_banking";
+    //           i.path = "/cash_banking";
+    //         }
+
+    //         if (i.id == 11) {
+    //           i.name = "finances";
+    //           i.menuTex = "finances";
+    //           i.path = "/finances";
+    //         }
+    //         if (i.id == 11) {
+    //           i.name = "payments";
+    //           i.menuTex = "payments";
+    //           i.path = "/payments";
+    //         }
+    //         // if(i.id == 9){
+    //         //   i.class= ''
+    //         //   i.id= 16
+    //         //   i.name= "Accounting"
+    //         //   i.menuTex= "accounting"
+    //         //   i.path="/accounting"
+    //         // }
+    //         return i;
+    //       }
+    //     });
+    //     // this.items.push(
+    //     // {
+    //     //     id: 12,
+    //     //     class: "text-green",
+    //     //     activeClass: "",
+    //     //     name: "reports",
+    //     //     menuTex: "reports",
+    //     //     path: "/reports",
+    //     //     moduleId: 16,
+    //     // },)
+    //   }
+    //   if (dataStore.productType === "mptc") {
+    //     this.items = this.items.filter((i) => {
+    //       switch (i.id) {
+    //         case 2:
+    //           i.menuTex = "revenue";
+    //           break;
+    //         case 3:
+    //           i.menuTex = "expense";
+    //           break;
+    //       }
+    //       if (
+    //         i.id != 4 &&
+    //         i.id != 15 &&
+    //         i.id != 14 &&
+    //         i.id != 11 &&
+    //         i.id != 13 &&
+    //         i.id != 5 &&
+    //         i.id != 40
+    //       ) {
+    //         if (i.id == 6) {
+    //           i.name = "licensing";
+    //           i.menuTex = "licensing";
+    //           i.path = "/licensing";
+    //         }
+    //         if (i.id == 20) {
+    //           i.class = "sidebar_uppercase sidebar_regular";
+    //           i.activeClass = "";
+    //           i.name = "funding";
+    //           i.menuTex = "funding";
+    //           i.path = "/share_funding";
+    //           i.icon = "";
+    //         }
+
+    //         return i;
+    //       }
+    //     });
+    //   }
+    // },
   },
   components: {
     VOffline,
@@ -678,41 +1036,18 @@ export default {
     },
   },
   mounted: async function () {
-    this.setActiveSideNav();
-    if (this.mInstitute.plan == 1) {
-      this.planName = "Standard";
-    } else if (this.mInstitute.plan == 2) {
-      this.planName = "Premium";
-    } else if (this.mInstitute.plan == 3) {
-      this.planName = "Advanced";
-    } else if (this.mInstitute.plan == 4) {
-      this.planName = "Cooperative";
-    } else if (this.mInstitute.plan == 6) {
-      this.planName = "Nonprofit";
-    } else if (this.mInstitute.plan == 7) {
-      this.planName = "Public Sector";
-    } else if (this.mInstitute.plan == 8) {
-      this.planName = "Micro Edition";
+    let getLocalRate_ = await localStorage.getItem("@CURRENCY_RATE");
+    if (getLocalRate_) {
+      let getLocalRate = JSON.parse(getLocalRate_);
+      if (getLocalRate.effectiveDate === this.currentDate) {
+        this.currencyList = getLocalRate;
+      }
     }
 
-    if (dataStore.roles.length > 0) {
-      dataStore.roles.forEach((i) => {
-        for (let it = 0; it < this.items.length; it++) {
-          if (this.items[it].moduleId === i.moduleId && i.access === 0) {
-            this.items.splice(it, 1);
-          }
-        }
-      });
-      const setting = this.items.filter(
-        (o) => o.moduleId === 13 && o.access !== 0
-      );
-      if (setting.length > 0) {
-        this.isAccessSetting = true;
-      }
-    } else {
-      this.isAccessSetting = true;
-    }
+    this.setActiveSideNav();
+    // this.checkEditon();
   },
+
   async created() {
     window.addEventListener("keydown", async function (event) {
       if (

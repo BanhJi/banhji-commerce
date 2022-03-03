@@ -27,10 +27,13 @@
                                                     <v-row>
                                                         <v-col sm="12" class="align-center justify-center d-flex ">
                                                             <div>
-                                                                <v-card @click="ClickSteps(1)" width="44" height="44" outlined dense :color="activeColor1" class="pointer no_border align-center justify-center d-flex rounded-circle ">
-                                                                    <h3 class="mt-2 white--text" style="font-size: 24px">1</h3>
-                                                                </v-card>
-                                                                <p class="text-uppercase mt-2">{{$t('name')}}</p>
+                                                                <v-col sm="12" class="">
+                                                                    <v-card @click="ClickSteps(1)" width="44" height="44" outlined dense :color="activeColor1" class="pointer  no_border align-center justify-center d-flex rounded-circle ">
+                                                                        <h3 class="mt-2 white--text" style="font-size: 24px">1</h3>
+                                                                    </v-card>
+                                                                </v-col>
+                                                                <p class="text-uppercase text-center">{{$t('info')}}</p>
+                                                                
                                                             </div>
                                                         </v-col>
                                                         <v-col sm="12" class="align-center justify-center d-flex ">
@@ -40,7 +43,7 @@
                                                                         <h3 class="mt-2 white--text" style="font-size: 24px">2</h3>
                                                                     </v-card>
                                                                 </v-col>
-                                                                <p class="text-uppercase text-center">{{$t('setting')}}</p>
+                                                                <p class="text-uppercase text-center">{{$t('rule')}}</p>
                                                                 
                                                             </div>
                                                         </v-col>

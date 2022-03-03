@@ -4199,6 +4199,8 @@
     "our_financail_inst_partner_desc" : "We have partnered with the leading financial institutions to bring easy and quick payment to you",
     "customer_pice_levels_desc": "Price level is used to provide flexibility in using price for sale transactions.",
     "total_products_variant" : "Total variants",
-    "add_campaign": "Add campaign"
+    "add_campaign": "Add campaign",
+    "x_rate": "X.RATE",
+    "today_rate" : "Today Rate"
 
 }

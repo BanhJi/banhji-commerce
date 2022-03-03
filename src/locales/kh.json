@@ -426,7 +426,7 @@
   "pls_sl_currency_record": "Please select currency that is being recorded",
   "for_report_period": "For this Reporting Period",
   "reporting_period": "Reporting Period",
-  "close": "Close",
+  "close": "បិទ",
   "enable_new_currency": "Enable new currency",
   "native_symbol": "Native Symbol",
   "last_rate": "Last Rate",
@@ -500,7 +500,7 @@
   "status": "ស្ថានភាព",
   "new_note": "New Note",
   "deposit": "ប្រាក់កក់",
-  "open": "Open",
+  "open": "បើក",
   "over_due": "ហួសកំណត់",
   "supplier_transaction_functions": "មុខងារប្រតិបត្តិការអ្នកផ្គត់ផ្គង់",
   "topic": "ប្រធានបទ",
@@ -1237,7 +1237,7 @@
   "bank_account_desc": "Bank Accounts that will be used for payroll payments",
   "bank_account_number": "លេខគណនី",
   "tax_settings_desc": "Tax related settings for payroll calculations",
-  "effective_date": "Effective Date",
+  "effective_date": "កាលបរិច្ឆទប្រសិទ្ធិភាព",
   "payroll_component_desc": "These components are used for payroll calculation",
   "component_type": "Component Type",
   "payment_period": "Payment Period",
@@ -4120,6 +4120,9 @@
     "our_financail_inst_partner_desc" : "We have partnered with the leading financial institutions to bring easy and quick payment to you",
     "customer_pice_levels_desc": "កម្រិតតម្លៃត្រូវបានប្រើដើម្បីផ្តល់ភាពបត់បែនក្នុងការប្រើប្រាស់តម្លៃសម្រាប់ប្រតិបត្តិលក់",
     "total_products_variant" : "ចំនួនផលិតផលលក់សរុប",
-    "add_campaign": "Add campaign"
+    "add_campaign": "Add campaign",
+    "x_rate": "អត្រា",
+    "today_rate" : "អត្រាថ្ងៃនេះ"
+    
 
 } 

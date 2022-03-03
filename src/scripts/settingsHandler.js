@@ -15,12 +15,12 @@ module.exports.byClassURL = function () {
 // Get One
 module.exports.getClazz = async function (val) {
     try {
-        const response = await axios.get(apiUrl.setting.class_get,{
-            params:{
-                type:           val.type,
-                clazzId:        val.clazzId || '',
-                classTypeId:    val.classTypeId || '',
-                classGroupId:   val.classGroupId || ''
+        const response = await axios.get(apiUrl.setting.class_get, {
+            params: {
+                type: val.type,
+                clazzId: val.clazzId || '',
+                classTypeId: val.classTypeId || '',
+                classGroupId: val.classGroupId || ''
             }
         })
 
@@ -41,12 +41,12 @@ module.exports.create = async (data) => {
 }
 
 // Get One
-module.exports.getSeg = async function (id='') {
+module.exports.getSeg = async function (id = '') {
     try {
-        if( id != ''){
-            const response = await axios.get(apiUrl.setting.segment_get+"?id="+id)
+        if (id != '') {
+            const response = await axios.get(apiUrl.setting.segment_get + "?id=" + id)
             return response
-        }else{
+        } else {
             const response = await axios.get(apiUrl.setting.segment_get)
             return response
         }
@@ -67,7 +67,7 @@ module.exports.createSeg = async (data) => {
 }
 module.exports.getSegType = async function () {
     try {
-    
+
         const response = await axios.get(apiUrl.setting.segment_type_get)
         return response
 
@@ -157,6 +157,22 @@ module.exports.formSettingCreate = async (data) => {
     try {
         const response = await axios.post(apiUrl.setting.form_post, data)
         return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+
+module.exports.deleteDimension = async function (data) {
+    try {
+        const response = await axios.post(apiUrl.setting.delete_dimension, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.nbcXRate = async function (data) {
+    try {
+        return await axios.post(apiUrl.setting.nbc_xrate, data)
     } catch (error) {
         window.console.error(error)
     }

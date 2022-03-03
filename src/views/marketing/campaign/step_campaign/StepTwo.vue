@@ -11,7 +11,7 @@
                             <v-col sm="12" cols="12" class="py-0">
 
                                 <v-row>
-                                    <v-col sm="12" cols="12" class="pb-0">
+                                    <v-col sm="12" cols="12" class="py-0">
                                         <v-simple-table>
                                             <template v-slot:default>
                                                 <tbody>
@@ -21,7 +21,7 @@
                                                     <td class="text-left text-bold" width="370"><v-switch
                                                         v-model="c.isOverwrite"
                                                         color="primary"
-                                                        :label="c.isOverwrite ? $t('yes') : $t('no')"
+                                                        :label="c.isOverwrite ? $t('open') : $t('close')"
                                                     />
                                                     </td>
                                                 </tr>
@@ -31,7 +31,7 @@
                                                     <td class="text-left text-bold"><v-switch
                                                         v-model="c.isTiming"
                                                         color="primary"
-                                                        :label="c.isTiming ? $t('yes') : $t('no')"
+                                                        :label="c.isTiming ? $t('open') : $t('close')"
                                                     />
                                                     </td>
                                                 </tr>
@@ -106,7 +106,7 @@
                                                     <td class="text-left text-bold"><v-switch
                                                             v-model="c.isPartner"
                                                             color="primary"
-                                                            :label="c.isPartner ? $t('yes') : $t('no')"
+                                                            :label="c.isPartner ? $t('open') : $t('close')"
                                                         />
                                                     </td>
                                                 </tr>

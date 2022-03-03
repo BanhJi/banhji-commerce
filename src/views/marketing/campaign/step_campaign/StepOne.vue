@@ -10,7 +10,7 @@
                         <v-row>
                             <v-col sm="12" cols="12" class="py-0">
                                 <v-row>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label ">{{ $t('name') }}</label>
                                         <v-text-field
                                             class="mt-1"
@@ -20,7 +20,7 @@
                                             required
                                         />
                                     </v-col>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label ">{{ $t('code') }}</label>
                                         <v-text-field
                                             class="mt-1"
@@ -30,7 +30,7 @@
                                             required
                                         />
                                     </v-col>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label ">{{ $t('type') }}</label>
                                         <v-select
                                             class="mt-1"
@@ -42,7 +42,7 @@
                                             outlined=""
                                         />
                                     </v-col>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label">{{ $t('discount_item') }}</label>
                                         <v-select
                                             class="mt-1"
@@ -56,19 +56,19 @@
                                             outlined=""
                                         />
                                     </v-col>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label">{{ $t('effective_date') }}</label>
                                         <app-datepicker
                                             :initialDate="c.effectiveDate"
                                             @emitDate="c.effectiveDate = $event"/>
                                     </v-col>
-                                    <v-col sm="4" cols="12" class="">
+                                    <v-col sm="4" cols="12" class="pb-0">
                                         <label class="label ">{{ $t('end_date') }}</label>
                                         <app-datepicker
                                             :initialDate="c.endDate"
                                             @emitDate="c.endDate = $event"/>
                                     </v-col>
-                                    <v-col sm="12" cols="12" class="">
+                                    <v-col sm="12" cols="12" class="pb-0">
                                         <label class="label mb-0">{{ $t('description') }}</label>
                                         <v-textarea
                                             v-model="c.description"

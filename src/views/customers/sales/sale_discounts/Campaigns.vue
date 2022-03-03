@@ -1,6 +1,6 @@
 <template>
     <v-row>
-        <v-col class="pt-0 pr-4 pb-0" sm="4" cols="12">
+        <v-col class="pt-4 pr-4 pb-0" sm="4" cols="12">
             <v-card
                 outlined
                 dense
@@ -92,7 +92,7 @@
                 </kendo-grid>
             </v-card>
         </v-col>
-        <v-col class="pt-0 pb-0" sm="8" cols="12">
+        <v-col class="pt-4 pb-0" sm="8" cols="12">
             <v-row>
                 <v-col sm="12" cols="12" class="tab_txn_att pt-0 pl-0">
                     <v-tabs>
