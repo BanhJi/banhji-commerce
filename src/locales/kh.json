@@ -4122,7 +4122,14 @@
     "total_products_variant" : "ចំនួនផលិតផលលក់សរុប",
     "add_campaign": "Add campaign",
     "x_rate": "អត្រា",
-    "today_rate" : "អត្រាថ្ងៃនេះ"
+    "today_rate" : "អត្រាថ្ងៃនេះ",
+    "point_of_sale_desc2" : "Industry specific point of sale for your business needs",
+    "multi_channels_orders" : "Multi-channels & orders Management",
+    "multi_channels_orders_desc" :"Track & fulfill order across multi Channel Integration; and track fees and payouts from connected platforms",
+    "loyalty_reward_promotion" : "Loyalty, reward & Promotions",
+    "loyalty_reward_promotion_desc" : "Advanced Marketing & Promotions across sale channels with dynamic loyalty & reward programs",
+    "pricing_manangement" : "Pricing Management",
+    "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions"
     
 
 } 

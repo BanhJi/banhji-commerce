@@ -36,7 +36,7 @@ const routes = [{
                     {
                         path: '',
                         name: 'Overview',
-                        component: load('overview/OverviewTab'),
+                        component: load('overview/Home'),
                         meta: {
                             mainMenu: 'welcome',
                             title: 'Overview'

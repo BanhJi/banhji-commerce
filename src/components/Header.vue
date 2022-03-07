@@ -219,7 +219,7 @@
           <span>{{ currencyList.source || "" }}</span>
         </div>
       </v-tooltip>
-      <v-tooltip bottom>
+      <!-- <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
@@ -236,7 +236,7 @@
           </span>
           <span>{{ baseCurrency.name }}</span>
         </div>
-      </v-tooltip>
+      </v-tooltip> -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon>
@@ -259,7 +259,7 @@
         <span>{{ isOnline ? $t("online") : $t("offline") }}</span>
       </v-tooltip>
       <div class="hidden-sm-and-down header_icon">
-        <v-menu
+        <!-- <v-menu
           nudge-bottom="12"
           bottom
           offset-y
@@ -283,7 +283,7 @@
               </v-list-item-title>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu> -->
 
         <v-btn icon @click="toggle">
           <i
