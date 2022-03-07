@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?macny');
-  src:  url('fonts/banhji-accounting-icon.eot?macny#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?macny') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?macny') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?macny#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?k6jhrn');
+  src:  url('fonts/banhji-accounting-icon.eot?k6jhrn#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?k6jhrn') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?k6jhrn') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?k6jhrn#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,123 +25,171 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.b-recivable:before {
+.b-add:before {
   content: "\e900";
   color: #474747;
 }
-.b-payable:before {
+.b-full:before {
   content: "\e901";
   color: #474747;
 }
-.b-payroll:before {
+.b-chat:before {
   content: "\e902";
   color: #474747;
 }
-.b-accounting:before {
+.b-logout:before {
   content: "\e903";
   color: #474747;
 }
-.b-service:before {
+.b-search:before {
   content: "\e904";
   color: #474747;
 }
-.b-payment:before {
+.b-mini:before {
   content: "\e905";
   color: #474747;
 }
-.b-product:before {
+.b-close:before {
   content: "\e906";
   color: #474747;
 }
-.b-financing:before {
+.b-transation:before {
   content: "\e907";
   color: #474747;
 }
-.b-funding:before {
+.b-modul:before {
   content: "\e908";
   color: #474747;
 }
-.b-insurance:before {
+.b-report:before {
   content: "\e909";
   color: #474747;
 }
-.b-banking:before {
+.b-billing:before {
   content: "\e90a";
   color: #474747;
 }
-.b-billing:before {
+.b-budget:before {
   content: "\e90b";
   color: #474747;
 }
-.b-budget:before {
+.b-commerce:before {
   content: "\e90c";
   color: #474747;
 }
-.b-overview:before {
+.b-compliance:before {
   content: "\e90d";
   color: #474747;
 }
-.b-cash:before {
+.b-cooperative:before {
   content: "\e90e";
   color: #474747;
 }
-.b-compliance:before {
+.b-dimensions:before {
   content: "\e90f";
   color: #474747;
 }
-.b-commerce:before {
+.b-e_commerce:before {
   content: "\e910";
   color: #474747;
 }
-.b-cooperative:before {
-  content: "\e91d";
-  color: #474747;
-}
-.b-segment:before {
+.b-financing:before {
   content: "\e911";
   color: #474747;
 }
-.b-report:before {
+.b-fund_acc:before {
   content: "\e912";
   color: #474747;
 }
-.b-management:before {
+.b-funding:before {
   content: "\e913";
   color: #474747;
 }
-.b-add:before {
+.b-management:before {
   content: "\e914";
   color: #474747;
 }
-.b-chat:before {
+.b-insurance:before {
   content: "\e915";
   color: #474747;
 }
-.b-close:before {
+.b-general_ledger:before {
   content: "\e916";
   color: #474747;
 }
-.b-full:before {
+.b-loyalty:before {
   content: "\e917";
   color: #474747;
 }
-.b-logout:before {
+.b-multiple:before {
   content: "\e918";
   color: #474747;
 }
-.b-mini:before {
+.b-overview:before {
   content: "\e919";
   color: #474747;
 }
-.b-modul:before {
+.b-accounting:before {
   content: "\e91a";
   color: #474747;
 }
-.b-search:before {
+.b-recivable:before {
   content: "\e91b";
   color: #474747;
 }
-.b-transation:before {
+.b-payable:before {
   content: "\e91c";
+  color: #474747;
+}
+.b-payroll:before {
+  content: "\e91d";
+  color: #474747;
+}
+.b-product:before {
+  content: "\e91e";
+  color: #474747;
+}
+.b-service:before {
+  content: "\e91f";
+  color: #474747;
+}
+.b-cash:before {
+  content: "\e920";
+  color: #474747;
+}
+.b-banking:before {
+  content: "\e921";
+  color: #474747;
+}
+.b-payment:before {
+  content: "\e922";
+  color: #474747;
+}
+.b-pos:before {
+  content: "\e923";
+  color: #474747;
+}
+.b-pricing:before {
+  content: "\e924";
+  color: #474747;
+}
+.b-reward:before {
+  content: "\e925";
+  color: #474747;
+}
+.b-sale_channel:before {
+  content: "\e926";
+  color: #474747;
+}
+.b-segment:before {
+  content: "\e927";
+  color: #474747;
+}
+.b-specific:before {
+  content: "\e928";
+  color: #474747;
+}
+.b-structures:before {
+  content: "\e929";
   color: #474747;
 }
