@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?k6jhrn');
-  src:  url('fonts/banhji-accounting-icon.eot?k6jhrn#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?k6jhrn') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?k6jhrn') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?k6jhrn#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?s34h57');
+  src:  url('fonts/banhji-accounting-icon.eot?s34h57#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?s34h57') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?s34h57') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?s34h57#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -37,139 +37,139 @@
   content: "\e902";
   color: #474747;
 }
-.b-logout:before {
+.b-close:before {
   content: "\e903";
   color: #474747;
 }
-.b-search:before {
+.b-logout:before {
   content: "\e904";
   color: #474747;
 }
-.b-mini:before {
+.b-search:before {
   content: "\e905";
   color: #474747;
 }
-.b-close:before {
+.b-mini:before {
   content: "\e906";
   color: #474747;
 }
-.b-transation:before {
+.b-management:before {
   content: "\e907";
   color: #474747;
 }
-.b-modul:before {
+.b-segment:before {
   content: "\e908";
   color: #474747;
 }
-.b-report:before {
+.b-recivable:before {
   content: "\e909";
   color: #474747;
 }
-.b-billing:before {
+.b-payable:before {
   content: "\e90a";
   color: #474747;
 }
-.b-budget:before {
+.b-payroll:before {
   content: "\e90b";
   color: #474747;
 }
-.b-commerce:before {
+.b-accounting:before {
   content: "\e90c";
   color: #474747;
 }
-.b-compliance:before {
+.b-cash:before {
   content: "\e90d";
   color: #474747;
 }
-.b-cooperative:before {
+.b-banking:before {
   content: "\e90e";
   color: #474747;
 }
-.b-dimensions:before {
+.b-billing:before {
   content: "\e90f";
   color: #474747;
 }
-.b-e_commerce:before {
+.b-budget:before {
   content: "\e910";
   color: #474747;
 }
-.b-financing:before {
+.b-commerce:before {
   content: "\e911";
   color: #474747;
 }
-.b-fund_acc:before {
+.b-compliance:before {
   content: "\e912";
   color: #474747;
 }
-.b-funding:before {
+.b-cooperative:before {
   content: "\e913";
   color: #474747;
 }
-.b-management:before {
+.b-dimensions:before {
   content: "\e914";
   color: #474747;
 }
-.b-insurance:before {
+.b-e_commerce:before {
   content: "\e915";
   color: #474747;
 }
-.b-general_ledger:before {
+.b-financing:before {
   content: "\e916";
   color: #474747;
 }
-.b-loyalty:before {
+.b-fund_acc:before {
   content: "\e917";
   color: #474747;
 }
-.b-multiple:before {
+.b-funding:before {
   content: "\e918";
   color: #474747;
 }
-.b-overview:before {
+.b-general_ledger:before {
   content: "\e919";
   color: #474747;
 }
-.b-accounting:before {
+.b-insurance:before {
   content: "\e91a";
   color: #474747;
 }
-.b-recivable:before {
+.b-loyalty:before {
   content: "\e91b";
   color: #474747;
 }
-.b-payable:before {
+.b-modul:before {
   content: "\e91c";
   color: #474747;
 }
-.b-payroll:before {
+.b-multiple:before {
   content: "\e91d";
   color: #474747;
 }
-.b-product:before {
+.b-overview:before {
   content: "\e91e";
   color: #474747;
 }
-.b-service:before {
+.b-payment:before {
   content: "\e91f";
   color: #474747;
 }
-.b-cash:before {
+.b-pos:before {
   content: "\e920";
   color: #474747;
 }
-.b-banking:before {
+.b-pricing:before {
   content: "\e921";
   color: #474747;
 }
-.b-payment:before {
+.b-product:before {
   content: "\e922";
   color: #474747;
 }
-.b-pos:before {
+.b-ratio:before {
   content: "\e923";
   color: #474747;
 }
-.b-pricing:before {
+.b-report:before {
   content: "\e924";
   color: #474747;
 }
@@ -181,7 +181,7 @@
   content: "\e926";
   color: #474747;
 }
-.b-segment:before {
+.b-service:before {
   content: "\e927";
   color: #474747;
 }
@@ -189,7 +189,15 @@
   content: "\e928";
   color: #474747;
 }
-.b-structures:before {
+.b-statistics:before {
   content: "\e929";
+  color: #474747;
+}
+.b-structures:before {
+  content: "\e92a";
+  color: #474747;
+}
+.b-transation:before {
+  content: "\e92b";
   color: #474747;
 }
