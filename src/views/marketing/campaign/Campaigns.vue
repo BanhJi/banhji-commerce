@@ -318,7 +318,7 @@
                                                                                                     <td v-if="c.isPartner" class="text-center">:</td>
                                                                                                     <td v-if="c.isPartner" class="text-left text-bold pt-2">
                                                                                                         <v-select
-                                                                                                            class="mt-1"
+                                                                                                            class="mt-4"
                                                                                                             v-model="c.partner"
                                                                                                             :items="saleChannels"
                                                                                                             item-value="id"
@@ -329,11 +329,14 @@
                                                                                                             style="width: 49%;float: left;"
                                                                                                         />
                                                                                                         <v-text-field
-                                                                                                            class="mt-1 ml-1"
-                                                                                                            style="width: 49%;float: right;"
+                                                                                                        
+                                                                                                            :label="$t('share_amount')"
+                                                                                                            class="mt-4 ml-1"
+                                                                                                            style="width: 40%;float: left;"
                                                                                                             v-model="c.partnerShareAmount"
                                                                                                             outlined
                                                                                                         />
+                                                                                                        <p class="float-right mt-6 font_20">%</p>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 </tbody>
