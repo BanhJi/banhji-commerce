@@ -574,7 +574,7 @@ const routes = [{
                     {
                         path: 'loyalty_reward',
                         name: 'loyalty_reward',
-                        component: load('loyalty_reward/LoyaltyReward'),
+                        component: load('loyalty_reward/LoyaltyRewardTab'),
                         props: true,
                         meta: {
                             mainMenu: 'loyalty_reward',

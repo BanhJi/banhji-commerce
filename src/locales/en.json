@@ -4210,6 +4210,7 @@
     "pricing_manangement" : "Pricing Management",
     "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions",
     "customer_pice_levels" : "Customer Price Levels",
-    "share_amount": "Share amount"
+    "share_amount": "Share amount",
+    "add_reward": "Add reward"
 
 }
