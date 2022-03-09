@@ -1614,7 +1614,7 @@
     "sale_automation": "Sale Automation",
     "sale_base_uom": "Sale Base UOM",
     "sale_channel": "Sale Channel",
-    "sale_channel_desc": "Sale Channel provide an important insight of channel management and ma. It represents the different platforms where you sell your products. It also provides online and offline characteristic of the channels. Future integration with ecommerce and delivery platform will be done.",
+    "sale_channel_desc": "Sale Channel provide an important insight of channel management and marketing. It represents the different platforms where you sell your products. It also provides online and offline characteristic of the channels. Future integration with ecommerce and delivery platform will be done.",
     "sale_deposit": "Sale Deposit",
     "sale_deposit_desc": "Sale deposit is used to record customer deposit for one or more sale order.",
     "sale_desc": "This will be used in the sale related transactions",
@@ -4208,8 +4208,6 @@
     "loyalty_reward_promotion" : "Loyalty, reward & Promotions",
     "loyalty_reward_promotion_desc" : "Advanced Marketing & Promotions across sale channels with dynamic loyalty & reward programs",
     "pricing_manangement" : "Pricing Management",
-    "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions",
-    "reward": "Reward",
-    "customer_pice_levels" : "Customer Price Levels"
+    "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions"
 
 }

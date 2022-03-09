@@ -612,397 +612,326 @@
                                                         <v-col cols="12" class="pb-0"  @finish="finish($event)"   ref="">
                                                             <v-row>
                                                                 <v-col sm="12" cols="12" class="py-0">
-                                                                    <h2 class="primary--text font_20 mb-0">{{$t('step_two')}}</h2>
+                                                                    <h2 class="primary--text font_20 mb-0">{{$t('step_tree')}}</h2>
                                                                 </v-col>
-                                                                <v-col sm="12" cols="12" class="py-0">
+                                                                <v-col sm="12" cols="12" class="pb-0">
                                                                     <v-card outlined dense class="no_border" color="white">
                                                                         <v-row>
                                                                             <v-col sm="12" cols="12" class="py-0">
-
-                                                                                <v-row>
-                                                                                    <v-col sm="12" cols="12" class="py-0">
-                                                                                        <v-simple-table>
-                                                                                            <template v-slot:default>
-                                                                                                <tbody>
-                                                                                                <tr>
-                                                                                                    <td class="text-uppercase">{{ $t('overwrite_other_campaign') }}</td>
-                                                                                                    <td class="text-center">:</td>
-                                                                                                    <td class="text-left text-bold" width="370"><v-switch
-                                                                                                        v-model="c.isOverwrite"
-                                                                                                        color="primary"
-                                                                                                        :label="c.isOverwrite ? $t('open') : $t('close')"
-                                                                                                    />
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="text-uppercase">{{ $t('timing') }}</td>
-                                                                                                    <td class="text-center">:</td>
-                                                                                                    <td class="text-left text-bold"><v-switch
-                                                                                                        v-model="c.isTiming"
-                                                                                                        color="primary"
-                                                                                                        :label="c.isTiming ? $t('open') : $t('close')"
-                                                                                                    />
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td v-if="c.isTiming" class="text-uppercase">
-                                                                                                        <v-menu
-                                                                                                            ref="menu"
-                                                                                                            v-model="timeF"
-                                                                                                            :close-on-content-click="false"
-                                                                                                            :nudge-right="40"
-                                                                                                            :return-value.sync="timeFr"
-                                                                                                            transition="scale-transition"
-                                                                                                            offset-y
-                                                                                                            max-width="290px"
-                                                                                                            min-width="290px"
-                                                                                                            >
-                                                                                                            <template v-slot:activator="{ on, attrs }">
-                                                                                                                <v-text-field
-                                                                                                                v-model="timeFr"
-                                                                                                                :label="$t('from')"
-                                                                                                                prepend-icon="mdi-clock-time-four-outline"
-                                                                                                                readonly
-                                                                                                                v-bind="attrs"
-                                                                                                                v-on="on"
-                                                                                                                ></v-text-field>
-                                                                                                            </template>
-                                                                                                            <v-time-picker
-                                                                                                                v-if="timeF"
-                                                                                                                v-model="c.timeFrom"
-                                                                                                                :max="c.timeTo"
-                                                                                                                full-width
-                                                                                                                @click:minute="$refs.menu.save(c.timeFrom)"
-                                                                                                            ></v-time-picker>
-                                                                                                        </v-menu>
-                                                                                                    </td>
-                                                                                                    <td v-if="c.isTiming" class="text-center">:</td>
-                                                                                                    <td v-if="c.isTiming" class="text-left text-bold">
-                                                                                                        <v-menu
-                                                                                                            ref="menuT"
-                                                                                                            v-model="timeT"
-                                                                                                            :close-on-content-click="false"
-                                                                                                            :nudge-right="40"
-                                                                                                            :return-value.sync="timeTo"
-                                                                                                            transition="scale-transition"
-                                                                                                            offset-y
-                                                                                                            max-width="290px"
-                                                                                                            min-width="290px"
-                                                                                                            >
-                                                                                                            <template v-slot:activator="{ on, attrs }">
-                                                                                                                <v-text-field
-                                                                                                                v-model="timeTo"
-                                                                                                                :label="$t('to')"
-                                                                                                                prepend-icon="mdi-clock-time-four-outline"
-                                                                                                                readonly
-                                                                                                                v-bind="attrs"
-                                                                                                                v-on="on"
-                                                                                                                ></v-text-field>
-                                                                                                            </template>
-                                                                                                            <v-time-picker
-                                                                                                                v-if="timeT"
-                                                                                                                v-model="c.timeTo"
-                                                                                                                :min="c.timeFrom"
-                                                                                                                full-width
-                                                                                                                @click:minute="$refs.menuT.save(c.timeTo)"
-                                                                                                            ></v-time-picker>
-                                                                                                        </v-menu>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="text-uppercase">{{ $t('partner') }}</td>
-                                                                                                    <td class="text-center">:</td>
-                                                                                                    <td class="text-left text-bold"><v-switch
-                                                                                                            v-model="c.isPartner"
-                                                                                                            color="primary"
-                                                                                                            :label="c.isPartner ? $t('open') : $t('close')"
-                                                                                                        />
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td v-if="c.isPartner" class="text-uppercase">{{ $t('sale_channel') }}</td>
-                                                                                                    <td v-if="c.isPartner" class="text-center">:</td>
-                                                                                                    <td v-if="c.isPartner" class="text-left text-bold pt-2">
-                                                                                                        <v-select
-                                                                                                            class="mt-1"
-                                                                                                            v-model="c.partner"
-                                                                                                            :items="saleChannels"
-                                                                                                            item-value="id"
-                                                                                                            item-text="name"
-                                                                                                            return-object
-                                                                                                            placeholder="Select"
-                                                                                                            outlined=""
-                                                                                                            style="width: 49%;float: left;"
-                                                                                                        />
-                                                                                                        <v-text-field
-                                                                                                            class="mt-1 ml-1"
-                                                                                                            style="width: 49%;float: right;"
-                                                                                                            v-model="c.partnerShareAmount"
-                                                                                                            outlined
-                                                                                                        />
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                </tbody>
-                                                                                            </template>
-                                                                                        </v-simple-table>
-                                                                                    </v-col>
-
-                                                                                <v-row class="grayBg pa-6 mx-3">  
-                                                                                        <v-col sm="6" cols="12" class="">
-                                                                                            <label style="" class="label">{{ $t('price_level') }}</label>
-                                                                                            <v-select class="mt-1 custom-border"
-                                                                                                v-model="c.priceLevel"
-                                                                                                :items="priceLevels"
-                                                                                                item-value="id"
-                                                                                                item-text="name"
-                                                                                                return-object
-                                                                                                @change="onPriceLevelChanged"
-                                                                                                outlined/>
-                                                                                        </v-col>
-                                                                                        <v-col sm="6" cols="12" class="">
-                                                                                            <label style="" class="label">{{ $t('rule_base') }}</label>
-                                                                                            <v-select
-                                                                                                class="mt-1"
-                                                                                                v-model="c.ruleBase"
-                                                                                                :items="ruleBases"
-                                                                                                @change="ruleBaseChange"
-                                                                                                item-value="id"
-                                                                                                item-text="name"
-                                                                                                placeholder="Select"
-                                                                                                outlined=""
-                                                                                            />
-                                                                                        </v-col>
-                                                                                    </v-row>
-                                                                                    <v-col sm="12" cols="12" class="" v-if="c.ruleBase == `customer`">
-                                                                                        <label style="" class="label">{{ $t('customer_base') }}</label>
-                                                                                        <v-select
-                                                                                            class="mt-1"
-                                                                                            v-model="c.ruleCustomerBaseType"
-                                                                                            :items="ruleCustomerBaseTypes"
-                                                                                            @change="rCusBaseChange"
-                                                                                            item-value="id"
-                                                                                            item-text="name"
-                                                                                            placeholder="Select"
-                                                                                            outlined=""
-                                                                                        />
-                                                                                        <!-- customer_base -->
-                                                                                        <v-col class="px-0"  v-if="c.ruleCustomerBaseType == `customerType`">
-                                                                                            <v-combobox
-                                                                                                v-model="c.ruleCustomerTypes"
-                                                                                                :items="customerTypes"
-                                                                                                :label="$t('customer_type')"
-                                                                                                item-value="value.id"
-                                                                                                item-text="name"
-                                                                                                multiple
-                                                                                                chips
-                                                                                            >
-                                                                                                <template v-slot:selection="data">
-                                                                                                    <v-chip
-                                                                                                        :key="data.item.id"
-                                                                                                    >
-                                                                                                        <v-avatar
-                                                                                                            class="accent white--text"
-                                                                                                            left
-                                                                                                            v-text="data.item.name.slice(0, 1).toUpperCase()"
-                                                                                                        ></v-avatar>
-                                                                                                        {{ data.item.name }}
-                                                                                                    </v-chip>
-                                                                                                </template>
-                                                                                            </v-combobox>
-                                                                                        </v-col>
-                                                                                        <v-col class="px-0" v-else-if="c.ruleCustomerBaseType == `specific`">
-                                                                                            <template>
-                                                                                                <kendo-datasource
-                                                                                                    ref="ruleCustomers"
-                                                                                                    :data="ruleCustomers"/>
-                                                                                                <kendo-grid
-                                                                                                    id="ruleCustomers" class="grid-function"
-                                                                                                    :data-source-ref="'ruleCustomers'"
-                                                                                                    :sortable="true"
-                                                                                                    :filterable="false"
-                                                                                                    :column-menu="false"
-                                                                                                    :editable="true"
-                                                                                                    :scrollable-virtual="true"
-                                                                                                >
-                                                                                                    <kendo-grid-column
-                                                                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeCustomerRow, className: 'btn-plus isEditable'}"
-                                                                                                        :title="''"
-                                                                                                        :width="63"
-                                                                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                                                                    <kendo-grid-column
-                                                                                                        :field="'customer'"
-                                                                                                        :title="$t('customer')"
-                                                                                                        :width="150"
-                                                                                                        :template="customerTpl"
-                                                                                                        :editor="cusDropDownEditor"
-                                                                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                                                                    />
-                                                                                                </kendo-grid>
-                                                                                            </template>
-                                                                                            <v-col sm="12" cols="12" class="pb-0">
-                                                                                                <v-row>
-                                                                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                                                                        <v-btn
-                                                                                                            class="float-left btn_plus white--text mr-2"
-                                                                                                            color="primary" @click="addCustomerRow">
-                                                                                                            <v-icon size="" class="ma-1">mdi mdi-plus
-                                                                                                            </v-icon>
-                                                                                                        </v-btn>
-                                                                                                    </v-col>
-                                                                                                </v-row>
-                                                                                            </v-col>
-                                                                                        </v-col>
-                                                                                        
-                                                                                    </v-col>
-                                                                                    <v-col sm="12" cols="12" v-else>
-                                                                                        <label class="label">{{ $t('base_on') }}</label>
-                                                                                        <v-select
-                                                                                            class="mt-1"
-                                                                                            v-model="c.ruleProductBaseOn"
-                                                                                            :items="productBaseOns"
-                                                                                            @change="rproductBaseOnChange"
-                                                                                            item-value="id"
-                                                                                            item-text="name"
-                                                                                            placeholder="Select"
-                                                                                            outlined=""
-                                                                                        />
-                                                                                        <!-- base_on -->
-                                                                                        <v-col class="px-0"  v-if="c.ruleProductBaseOn == `category`">
-                                                                                            <template>
-                                                                                                <kendo-datasource
-                                                                                                    ref="ruleCate"
-                                                                                                    :data="ruleCate"/>
-                                                                                                <kendo-grid
-                                                                                                    id="ruleCate" class="grid-function"
-                                                                                                    :data-source-ref="'ruleCate'"
-                                                                                                    :sortable="true"
-                                                                                                    :filterable="false"
-                                                                                                    :column-menu="false"
-                                                                                                    :editable="true"
-                                                                                                    :scrollable-virtual="true"
-                                                                                                >
-                                                                                                    <kendo-grid-column
-                                                                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveCate, className: 'btn-plus isEditable'}"
-                                                                                                        :title="''"
-                                                                                                        :width="63"
-                                                                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                                                                    <kendo-grid-column
-                                                                                                        :field="'category'"
-                                                                                                        :title="$t('category')"
-                                                                                                        :width="150"
-                                                                                                        :template="categoryTemplate"
-                                                                                                        :editor="cateDropDownEditor"
-                                                                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                                                                    />
-                                                                                                </kendo-grid>
-                                                                                            </template>
-                                                                                            <v-col sm="12" cols="12" class="pb-0">
-                                                                                                <v-row>
-                                                                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                                                                        <v-btn
-                                                                                                            class="float-left btn_plus white--text mr-2"
-                                                                                                            color="primary" @click="addRuleCateRow">
-                                                                                                            <v-icon size="" class="ma-1">mdi mdi-plus
-                                                                                                            </v-icon>
-                                                                                                        </v-btn>
-                                                                                                    </v-col>
-                                                                                                </v-row>
-                                                                                            </v-col>
-                                                                                        </v-col>
-                                                                                        <v-col class="px-0"  v-else-if="c.ruleProductBaseOn == `group`">
-                                                                                            <template>
-                                                                                                <kendo-datasource
-                                                                                                    ref="ruleGroup"
-                                                                                                    :data="ruleGroup"/>
-                                                                                                <kendo-grid
-                                                                                                    id="ruleGroup" class="grid-function"
-                                                                                                    :data-source-ref="'ruleGroup'"
-                                                                                                    :sortable="true"
-                                                                                                    :filterable="false"
-                                                                                                    :column-menu="false"
-                                                                                                    :editable="true"
-                                                                                                    :scrollable-virtual="true"
-                                                                                                >
-                                                                                                    <kendo-grid-column
-                                                                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemoveGroup, className: 'btn-plus isEditable'}"
-                                                                                                        :title="''"
-                                                                                                        :width="63"
-                                                                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                                                                    <kendo-grid-column
-                                                                                                        :field="'group'"
-                                                                                                        :title="$t('group')"
-                                                                                                        :width="150"
-                                                                                                        :template="groupTemplate"
-                                                                                                        :editor="groupDropDownEditor"
-                                                                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"
-                                                                                                    />
-                                                                                                </kendo-grid>
-                                                                                            </template>
-                                                                                            <v-col sm="12" cols="12" class="pb-0">
-                                                                                                <v-row>
-                                                                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                                                                        <v-btn
-                                                                                                            class="float-left btn_plus white--text mr-2"
-                                                                                                            color="primary" @click="addRuleGroupRow">
-                                                                                                            <v-icon size="" class="ma-1">mdi mdi-plus
-                                                                                                            </v-icon>
-                                                                                                        </v-btn>
-                                                                                                    </v-col>
-                                                                                                </v-row>
-                                                                                            </v-col>
-                                                                                        </v-col>
-                                                                                        <v-col class="px-0"  v-else-if="c.ruleProductBaseOn == `specific`">
-                                                                                            <template>
-                                                                                                <kendo-datasource
-                                                                                                    ref="ruleProduct"
-                                                                                                    :data="ruleProduct"/>
-                                                                                                <kendo-grid
-                                                                                                    id="ruleProduct" class="grid-function"
-                                                                                                    :data-source-ref="'ruleProduct'"
-                                                                                                    :sortable="true"
-                                                                                                    :filterable="false"
-                                                                                                    :column-menu="false"
-                                                                                                    :editable="true"
-                                                                                                    :scrollable-virtual="true"
-                                                                                                >
-                                                                                                    <kendo-grid-column
-                                                                                                        :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: ruleRemovePro, className: 'btn-plus isEditable'}"
-                                                                                                        :title="''"
-                                                                                                        :width="63"
-                                                                                                        :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
-                                                                                                    <kendo-grid-column
-                                                                                                        :field="'item'"
-                                                                                                        :title="$t('item')"
-                                                                                                        :template="itemTemplate"
-                                                                                                        :editor="ItemDropDownEditor"
-                                                                                                        :attributes="{class:'tb_name_td isEditable'}"
-                                                                                                        :width="200"
-                                                                                                        :headerAttributes="{style: 'background-color: #EDF1F5'}"/>
-                                                                                                </kendo-grid>
-                                                                                            </template>
-                                                                                            <v-col sm="12" cols="12" class="pb-0">
-                                                                                                <v-row>
-                                                                                                    <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
-                                                                                                        <v-btn
-                                                                                                            class="float-left btn_plus white--text mr-2"
-                                                                                                            color="primary" @click="addRuleProRow">
-                                                                                                            <v-icon size="" class="ma-1">mdi mdi-plus
-                                                                                                            </v-icon>
-                                                                                                        </v-btn>
-                                                                                                    </v-col>
-                                                                                                </v-row>
-                                                                                            </v-col>
-                                                                                        </v-col>  
-                                                                                    </v-col>
-                                                                                  
-                                                                                    <v-col sm="12" cols="12" class=" pt-0 text-right">
-                                                                                        <v-divider/>
-                                                                                        <v-btn color="primary" class="mt-2 px-3  white--text text-capitalize"
-                                                                                                @click="nextStpes()">{{ $t('next') }}
-                                                                                        </v-btn>
-                                                                                    </v-col>
-                                                                                </v-row>
+                                                                                <label class="label">{{ $t('reward_base') }}</label>
+                                                                                <v-select
+                                                                                    class="mt-1"
+                                                                                    v-model="c.rewardBase"
+                                                                                    :items="rewardBases"
+                                                                                    @change="rewardBaseChange"
+                                                                                    item-value="id"
+                                                                                    item-text="name"
+                                                                                    placeholder="Select"
+                                                                                    outlined=""
+                                                                                />
                                                                             </v-col>
+
+                                                                            <v-col sm="12" cols="12" class="py-0" v-if="c.rewardBase == `amountBase`">
+                                                                                <label class="label">{{ $t('reward_type') }}</label>
+                                                                                <v-select
+                                                                                    class="mt-1"
+                                                                                    v-model="c.rewardType"
+                                                                                    :items="rewardTypes"
+                                                                                    @change="rewardTypeChange"
+                                                                                    item-value="id"
+                                                                                    item-text="name"
+                                                                                    placeholder="Select"
+                                                                                    outlined=""
+                                                                                />
+                                                                                <v-col class="px-0" v-if="c.rewardType == `fixed`">
+                                                                                    <v-text-field
+                                                                                        class="mt-1"
+                                                                                        style="width: 60%;float: left;"
+                                                                                        v-model="c.rewardAmount"
+                                                                                        outlined
+                                                                                    />
+                                                                                    <v-select
+                                                                                        class="mt-1"
+                                                                                        v-model="c.rewardAmountType"
+                                                                                        :items="rewardAmountTypes"
+                                                                                        item-value="id"
+                                                                                        item-text="name"
+                                                                                        placeholder="Select"
+                                                                                        style="width: 38%; float: right;"
+                                                                                        outlined=""
+                                                                                    />
+                                                                                </v-col>
+                                                                                <v-col class="px-0" v-else>
+                                                                                    <template>
+                                                                                        <kendo-datasource
+                                                                                            ref="varianList"
+                                                                                            :data="rewardVarian"/>
+                                                                                        <kendo-grid
+                                                                                            id="varianList" class="grid-function"
+                                                                                            :data-source-ref="'varianList'"
+                                                                                            :sortable="true"
+                                                                                            :filterable="false"
+                                                                                            :column-menu="false"
+                                                                                            :editable="true"
+                                                                                            :scrollable-virtual="true"
+                                                                                        >
+                                                                                            <kendo-grid-column
+                                                                                                :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeVarianRow, className: 'btn-plus isEditable'}"
+                                                                                                :title="''"
+                                                                                                :width="63"
+                                                                                                :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                                                            <kendo-grid-column
+                                                                                                :field="'conditionAmount'"
+                                                                                                :title="$t('condition_amount')"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'conditionType'"
+                                                                                                :title="$t('condition_type')"
+                                                                                                :template="conditionTypeTpl"
+                                                                                                :editor="conditionTypeEditor"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'rewardAmount'"
+                                                                                                :title="$t('amount')"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'rewardType'"
+                                                                                                :title="$t('type')"
+                                                                                                :width="50"
+                                                                                                :template="rewardTypeTpl"
+                                                                                                :editor="rewardTypeEditor"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                        </kendo-grid>
+                                                                                    </template>
+                                                                                    <v-col sm="12" cols="12" class="pb-0">
+                                                                                        <v-row>
+                                                                                            <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                                                                <v-btn
+                                                                                                    class="float-left btn_plus white--text mr-2"
+                                                                                                    color="primary" @click="addVarianRow">
+                                                                                                    <v-icon size="" class="ma-1">mdi mdi-plus
+                                                                                                    </v-icon>
+                                                                                                </v-btn>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-col>
+                                                                                </v-col>
+                                                                            </v-col>
+
+                                                                            <v-col sm="12" cols="12" class="py-0"  v-else>
+                                                                                <label class="label">{{ $t('base_on') }}</label>
+                                                                                <v-select
+                                                                                    class="mt-1"
+                                                                                    v-model="c.productBaseOn"
+                                                                                    :items="productBaseOns"
+                                                                                    @change="productBaseOnChange"
+                                                                                    item-value="id"
+                                                                                    item-text="name"
+                                                                                    placeholder="Select"
+                                                                                    outlined=""
+                                                                                />
+                                                                                <v-col class="px-0" v-if="c.productBaseOn == `category`">
+                                                                                    <template>
+                                                                                        <kendo-datasource
+                                                                                            ref="selectProCateList"
+                                                                                            :data="productCategorySelected"/>
+                                                                                        <kendo-grid
+                                                                                            id="selectProCateList" class="grid-function"
+                                                                                            :data-source-ref="'selectProCateList'"
+                                                                                            :sortable="true"
+                                                                                            :filterable="false"
+                                                                                            :column-menu="false"
+                                                                                            :editable="true"
+                                                                                            :scrollable-virtual="true"
+                                                                                        >
+                                                                                            <kendo-grid-column
+                                                                                                :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeCateRow, className: 'btn-plus isEditable'}"
+                                                                                                :title="''"
+                                                                                                :width="63"
+                                                                                                :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                                                            <kendo-grid-column
+                                                                                                :field="'category'"
+                                                                                                :title="$t('category')"
+                                                                                                :width="150"
+                                                                                                :template="categoryTemplate"
+                                                                                                :editor="cateDropDownEditor"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'amount'"
+                                                                                                :title="$t('amount')"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'type'"
+                                                                                                :title="$t('type')"
+                                                                                                :width="50"
+                                                                                                :template="`%`"
+                                                                                                :editable="()=>{ return false}"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                        </kendo-grid>
+                                                                                    </template>
+                                                                                    <v-col sm="12" cols="12" class="pb-0">
+                                                                                        <v-row>
+                                                                                            <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                                                                <v-btn
+                                                                                                    class="float-left btn_plus white--text mr-2"
+                                                                                                    color="primary" @click="addSelectCateRow">
+                                                                                                    <v-icon size="" class="ma-1">mdi mdi-plus
+                                                                                                    </v-icon>
+                                                                                                </v-btn>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-col>
+                                                                                </v-col>
+                                                                                <v-col class="px-0"  v-else-if="c.productBaseOn == `group`">
+                                                                                    <template>
+                                                                                        <kendo-datasource
+                                                                                            ref="selectProGroupList"
+                                                                                            :data="productGroupSelected"/>
+                                                                                        <kendo-grid
+                                                                                            id="selectProGroupList" class="grid-function"
+                                                                                            :data-source-ref="'selectProGroupList'"
+                                                                                            :sortable="true"
+                                                                                            :filterable="false"
+                                                                                            :column-menu="false"
+                                                                                            :editable="true"
+                                                                                            :scrollable-virtual="true"
+                                                                                        >
+                                                                                            <kendo-grid-column
+                                                                                                :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeGroupRow, className: 'btn-plus isEditable'}"
+                                                                                                :title="''"
+                                                                                                :width="63"
+                                                                                                :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                                                            <kendo-grid-column
+                                                                                                :field="'group'"
+                                                                                                :title="$t('group')"
+                                                                                                :width="150"
+                                                                                                :template="groupTemplate"
+                                                                                                :editor="groupDropDownEditor"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'amount'"
+                                                                                                :title="$t('amount')"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'type'"
+                                                                                                :title="$t('type')"
+                                                                                                :width="50"
+                                                                                                :template="`%`"
+                                                                                                :editable="()=>{ return false}"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                        </kendo-grid>
+                                                                                    </template>
+                                                                                    <v-col sm="12" cols="12" class="pb-0">
+                                                                                        <v-row>
+                                                                                            <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                                                                <v-btn
+                                                                                                    class="float-left btn_plus white--text mr-2"
+                                                                                                    color="primary" @click="addSelectGroupRow">
+                                                                                                    <v-icon size="" class="ma-1">mdi mdi-plus
+                                                                                                    </v-icon>
+                                                                                                </v-btn>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-col>
+                                                                                </v-col>
+                                                                                <v-col class="px-0" v-else-if="c.productBaseOn == `specific`">
+                                                                                    <template>
+                                                                                        <kendo-datasource
+                                                                                            ref="selectProList"
+                                                                                            :data="producSelected"/>
+                                                                                        <kendo-grid
+                                                                                            id="selectProList" class="grid-function"
+                                                                                            :data-source-ref="'selectProList'"
+                                                                                            :sortable="true"
+                                                                                            :filterable="false"
+                                                                                            :column-menu="false"
+                                                                                            :editable="true"
+                                                                                            :scrollable-virtual="true"
+                                                                                        >
+                                                                                            <kendo-grid-column
+                                                                                                :command="{iconClass: 'k-icon k-i-trash', text: ' ', click: removeRow, className: 'btn-plus isEditable'}"
+                                                                                                :title="''"
+                                                                                                :width="63"
+                                                                                                :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
+                                                                                            <kendo-grid-column
+                                                                                                :field="'item'"
+                                                                                                :title="$t('item')"
+                                                                                                :template="itemTemplate"
+                                                                                                :editor="ItemDropDownEditor"
+                                                                                                :attributes="{class:'tb_name_td isEditable'}"
+                                                                                                :width="200"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"/>
+                                                                                            <kendo-grid-column
+                                                                                                :field="'amount'"
+                                                                                                :title="$t('amount')"
+                                                                                                :width="100"
+                                                                                                :format="'{0:n}'"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                            <kendo-grid-column
+                                                                                                :field="'type'"
+                                                                                                :title="$t('type')"
+                                                                                                :width="50"
+                                                                                                :template="rewardTypeTpl"
+                                                                                                :editor="rewardTypeEditor"
+                                                                                                :headerAttributes="{style: 'background-color: #EDF1F5'}"
+                                                                                            />
+                                                                                        </kendo-grid>
+                                                                                    </template>
+                                                                                    <v-col sm="12" cols="12" class="pb-0">
+                                                                                        <v-row>
+                                                                                            <v-col sm="7" cols="12" class="pb-1 pt-0 pl-0">
+                                                                                                <v-btn
+                                                                                                    class="float-left btn_plus white--text mr-2"
+                                                                                                    color="primary" @click="addSelectProRow">
+                                                                                                    <v-icon size="" class="ma-1">mdi mdi-plus
+                                                                                                    </v-icon>
+                                                                                                </v-btn>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-col>
+                                                                                </v-col>
+                                                                            </v-col>
+                                                                                
+                                                                            
+                                                                            <v-card outlined dense class="no_border function_footer">
+                                                                                <v-btn color="grayBg"
+                                                                                        outlined
+                                                                                        class=" text-capitalize  black--text float-left"
+                                                                                        @click="cancel">{{ $t('cancel') }}
+                                                                                </v-btn>
+                                                                                <v-btn color="primary"
+                                                                                        class="float-right white--text text-capitalize"
+                                                                                        :disabled="btnDisabled"
+                                                                                        @click="saveClose">
+                                                                                    {{ $t('save_close') }}
+                                                                                </v-btn>
+                                                                                <v-btn color="secondary"
+                                                                                        style="margin-right: 10px !important"
+                                                                                        class="white--text float-right text-capitalize"
+                                                                                        @click="saveNew" :hidden="hiddenButton">{{ $t("save_new") }}
+                                                                                </v-btn>
+                                                                            </v-card>
                                                                             
                                                                         </v-row>
                                                                     </v-card>
