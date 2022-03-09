@@ -202,5 +202,8 @@ module.exports = {
     dashboard                           : dashboard,
 
     // MPTC 
-    mptc                                : mptc
+    mptc                                : mptc,
+
+    // commerce 
+    commerce                            : require("./api/commerce")
 }

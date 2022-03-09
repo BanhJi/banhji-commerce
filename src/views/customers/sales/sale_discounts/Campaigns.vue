@@ -10,40 +10,30 @@
                 <div class="d-flex">
                     <v-text-field
                         v-model="search"
-                        @change="onCustomerTypeChanged(search)"
+                        @change="searchByName(search)"
                         outlined
-                        @click:clear="onCustomerTypeChanged(search)"
-                        :placeholder="$t('search')"
-                        append-icon="search"
+                        v-if="isSearchName"
+                        :placeholder="$t('search_by_name')"
                         clearable
                     />
-                    <v-btn icon @click="loadData">
-                        <v-icon>refresh</v-icon>
+                    <v-text-field
+                        v-model="search"
+                        @change="searchByNumber(search)"
+                        outlined
+                        v-else
+                        :placeholder="$t('search_by_number')"
+                        clearable
+                    />
+                    <v-btn icon @click="startSearch">
+                        <v-icon>search</v-icon>
                     </v-btn>
+                    <v-switch
+                        v-model="isSearchName"
+                        class="mt-1 ml-1 mr-0"
+                        color="primary"
+                        :label="''"
+                    />
                 </div>
-                <v-select
-                    :items="customerTypes"
-                    @change="onCustomerTypeChanged('')"
-                    item-value="id"
-                    item-text="name"
-                    v-model="mCustomerType"
-                    return-object
-                    :placeholder="$t('type')"
-                    clearable
-                    outlined
-                />
-                <v-select
-                    v-if="appType != 'npo'"
-                    :items="customerGroups"
-                    @change="onCustomerTypeChanged('')"
-                    item-value="id"
-                    item-text="name"
-                    return-object
-                    v-model="mCustomerGroup"
-                    :placeholder="$t('customer_group')"
-                    clearable
-                    outlined
-                />
             </v-card>
             <v-card
                 outlined
@@ -59,7 +49,7 @@
                 />
                 <kendo-datasource
                     ref="customerDS"
-                    :data="customers"
+                    :data="campaigs"
                     :schema="schemaDefinition"
                 />
 
@@ -72,7 +62,7 @@
                     :persistSelection="true"
                     :noRecords="true"
                     :scrollable="true"
-                    :height="appType != 'npo' ? 412 : 466"
+                    :height="412"
                     :pageable-numeric="false"
                     :pageable-previous-next="false"
                     :pageable-messages-display="'Showing {2} data items'"
@@ -124,7 +114,7 @@
                                     <v-row class="grayBg" style="width: 104%;">
                                         <v-col sm="12" cols="12" class="">
                                             <v-card outlined color="white" class="pa-3">
-                                                <Info :customer="customer"/>
+                                                <Info :campaign="campaign"/>
                                             </v-card>
                                         </v-col>
                                     </v-row>
@@ -287,7 +277,6 @@
 </template>
 
 <script>
-import {dataStore} from "@/observable/store";
 import DatePickerComponent from "@/components/custom_templates/DatePickerComponent";
 import CustomerModel from "@/scripts/model/Customer";
 import kendo from "@progress/kendo-ui";
@@ -295,9 +284,7 @@ import LinkTemplate from "@/components/kendo_templates/LinkTemplate";
 
 const customerModel = new CustomerModel({});
 // const $ = require("jquery")
-const customerTypeHandler = require("@/scripts/customerTypeHandler");
-const customerGroupHandler = require("@/scripts/customerGroupHandler");
-const customerHandler = require("@/scripts/customerHandler");
+const commerceHandler = require("@/scripts/commerce/handler/commerceHandler");
 const billingHandler = require("@/scripts/invoice/handler/billingHandler");
 export default {
     name: "Campaigns",
@@ -308,6 +295,9 @@ export default {
         Info: () => import("./Info"),
     },
     data: () => ({
+        campaign: {},
+        campaigs: [],
+        isSearchName: true,
         showLoading: false,
         showLoadingTxn: false,
         showLoadingAtch: false,
@@ -352,6 +342,11 @@ export default {
         fileName: "",
     }),
     methods: {
+        startSearch(){},
+        searchByName(){
+
+        },
+        //old
         transactionDate(dataItem) {
             const txnDate = dataItem.transactionDate;
             const dateFormat = dataItem.dateFormat;
@@ -608,154 +603,31 @@ export default {
                 index = ds.indexOf(dataItem);
             return index + 1;
         },
-        onCustomerTypeChanged(search) {
-            this.showLoading = true;
-            this.loadCustomerCenter(search);
-        },
-        async loadCustomerGroup() {
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("resolved");
-                    customerGroupHandler.get().then((res) => {
-                        this.showLoading = false;
-                        this.customerGroups = res;
-                        if (this.customerGroups.length > 0) {
-                            this.mCustomerGroup = this.customerGroups[0];
-                            this.loadCustomerCenter(this.search);
-                        }
-                    });
-                }, 10);
-            });
-        },
-        async customerInfo() {
-            this.$emit("onUpdate", this.customer);
-        },
         async onChanged() {
             let grid = kendo.jQuery("#gridCustomer").data("kendoGrid");
             let selectedItem = grid.dataItem(grid.select());
-            this.customer = selectedItem;
-            this.$emit("onUpdate", selectedItem);
-            window.console.log("--", this.customer.id);
-            if (this.customer.hasOwnProperty("id")) {
-                if (this.customer.id !== "" || this.customer.id !== undefined) {
-                    await this.searchTransaction();
-                    await this.loadAttachment();
-                }
-            }
+            this.campaign = selectedItem;
+            // this.$emit("onUpdate", selectedItem);
+            // window.console.log("--", this.customer.id);
+            // if (this.customer.hasOwnProperty("id")) {
+            //     if (this.customer.id !== "" || this.customer.id !== undefined) {
+            //         await this.searchTransaction();
+            //         await this.loadAttachment();
+            //     }
+            // }
         },
-        async loadCustomerType() {
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("resolved");
-                    customerTypeHandler.get().then((res) => {
-                        // this.customerTypes = res;
-                        if (this.appType == 'npo') {
-                            if (res.length != 0) {
-                                this.customerTypes = res.filter(o => {
-                                    const nature = o.nature || {}
-                                    const name = nature.name || ''
-                                    if (name.includes('Individual-') === false) {
-                                        return o
-                                    }
-                                });
-                            }
-                        } else {
-                            this.customerTypes = res
-                        }
-                        if (this.customerTypes.length > 0) {
-                            this.mCustomerType = this.customerTypes[0];
-                            const group = this.mCustomerGroup || {};
-                            if (group.id !== "") {
-                                this.loadCustomerCenter(this.search);
-                            }
-                        }
-                    });
-                }, 10);
-            });
-        },
-        async loadCustomerCenter(search) {
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("resolved");
-                    this.customers = [];
-                    let groupId = '';
-                    let customerTypeId = '';
-                    if (this.mCustomerGroup) {
-                        groupId = this.mCustomerGroup.id || ''
-                    }
-                    if (this.mCustomerType) {
-                        customerTypeId = this.mCustomerType.id || ''
-                    }
-                    let strFilter = "?is_donor=false";
-                    if (this.appType === 'npo') {
-                        strFilter = "?is_donor=true";
-                    }
-                    const strSearch = search || "";
-                    window.console.log('strFilter', strFilter, strSearch)
-                    const strFilterV1 = '?donor=0&ctid=' + customerTypeId + '&grp=' + groupId + '&search=' + strSearch
-                    customerHandler
-                        // .center(customerTypeId, groupId, strSearch, strFilter)
-                        .centerv1(strFilterV1)
-                        .then((res) => {
-                            this.showLoading = true;
-                            if (res.data.statusCode === 200) {
-                                this.showLoading = false;
-                                this.customers = res.data.data;
-                            } else {
-                                this.showLoading = false;
-                            }
-                        });
-                }, 10);
-            });
-        },
-
-        callback() {
-            if (
-                this.$route.params !== null &&
-                this.$route.params.hasOwnProperty("data")
-            ) {
-                const customer = this.$route.params.data;
-                const index = this.customers.findIndex((item) => {
-                    return customer.id === item.id;
-                });
-                if (index < 0) {
-                    this.customers.push(customer);
-                } else {
-                    this.customers.splice(index, 1, customer);
-                }
-            }
-            window.console.log("im changed", this.$route.params);
-        },
-        async loadAttachment() {
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("resolved");
-                    // if (this.$route.params.hasOwnProperty('id')) {
-                    this.showLoadingAtch = true;
-                    const strFilter = "?id=" + this.customer.id;
-                    billingHandler.attachmentList(strFilter).then((res) => {
-                        if (res.data.statusCode === 200) {
-                            this.showLoadingAtch = false;
-                            this.attachmentList = res.data.data;
-                        }
-                    });
-                    // }
-                }, 10);
-            });
-        },
-        async loadData() {
-            await this.loadCustomerType();
-            await this.loadCustomerGroup();
+        async loadCampiagn() {
+            this.showLoading = true
+            this.campiagns = []
+            commerceHandler.campaignGets().then((res) => {
+                window.console.log(res, 'campaig response')
+            })
         },
     },
     async mounted() {
-        await this.loadCustomerType();
-        await this.loadCustomerGroup();
+        await this.loadCampiagn();
     },
     computed: {
-        appType() {
-            return dataStore.productType;
-        },
     },
     watch: {
         $route: "callback",

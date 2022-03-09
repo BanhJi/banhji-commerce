@@ -34,7 +34,7 @@ module.exports.campaignGets = async function () {
 
         return response
     } catch (error) {
-        window.console.error(error)
+        window.console.log(error)
     }
 }
 module.exports.campaignGet = async function (id) {
