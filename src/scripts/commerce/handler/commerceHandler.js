@@ -46,6 +46,24 @@ module.exports.campaignGet = async function (id) {
         window.console.error(error)
     }
 }
+module.exports.deleteCampaign = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.campaignDelete, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.campCouponGets = async function (id) {
+    try {
+        const response = await axios.get(apiUrl.commerce.campCouponGets + '/' + id)
+
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
 module.exports.itemSearchURL = function (strFilter = '') {
     try {
         // return apiUrl.product.product_variant_list

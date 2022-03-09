@@ -49,7 +49,7 @@
                 />
                 <kendo-datasource
                     ref="customerDS"
-                    :data="campaigs"
+                    :data="campaings"
                     :schema="schemaDefinition"
                 />
 
@@ -77,7 +77,7 @@
                     <kendo-grid-column
                         :field="'name'"
                         :title="'&nbsp;'"
-                        :template="'<span>#= customerType.abbr#-#=number# - #=name#</span>'"
+                        :template="'<span>#=code# - #=name#</span>'"
                     />
                 </kendo-grid>
             </v-card>
@@ -102,19 +102,106 @@
                             {{ $t("transactions") }}
                           </span>
                         </v-tab>
+                        <v-tab v-show="campaign.type == `coupon`">
+                          <span class="hidden-sm-and-up">
+                            <v-icon left>mdi-pen</v-icon>
+                          </span>
+                            <span class="hidden-sm-and-down  text-upercase">
+                            {{ $t("coupon_list") }}
+                          </span>
+                        </v-tab>
                         <v-btn
                             to="campaign"
                             color="primary"
                             class="text-capitalize white--text absRight"
                         >{{ $t("add_campaign") }}
                         </v-btn>
+                        <!-- Info -->
                         <v-tab-item>
                             <v-row>
                                 <v-col sm="12" cols="12" class="pt-0 px-6">
                                     <v-row class="grayBg" style="width: 104%;">
                                         <v-col sm="12" cols="12" class="">
                                             <v-card outlined color="white" class="pa-3">
-                                                <Info :campaign="campaign"/>
+                                                <!-- <Info :campaign="campaign"/> -->
+                                                <v-row>
+                                                    <v-col sm="12" cols="12">
+                                                        <v-simple-table>
+                                                            <template v-slot:default>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('name') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.name }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('code') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.code }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('type') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.type }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('discount_item') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.discountItem ? campaign.discountItem.name : '' }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('effective_date') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.effectiveDate }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('end_date') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.endDate }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('description') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.description }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_sale_value') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.totalSaleValue }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_sale_valumn') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.totalSaleValumn }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_customer') }}</td>
+                                                                        <td class="text-left text-bold">{{ campaign.totalUniqueCustomer }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </template>
+                                                        </v-simple-table>
+                                                    </v-col>
+                                                    <LoadingMe
+                                                        :isLoading="showLoading"
+                                                        :fullPage="true"
+                                                        :myLoading="true"
+                                                    />
+                                                    <v-col sm="12" cols="12" class="py-0">
+                                                        <v-row>
+                                                            <v-col sm="12" cols="12" class="py-0" v-show="hasCampaign">
+                                                                <v-col sm="12" cols="6" class="py-0">
+                                                                    <router-link
+                                                                        :to="{path: routerTo, query: { type: 'edit'} }">
+                                                                        <v-btn width="100" color="primary"
+                                                                            class=" white--text float-right text-capitalize">
+                                                                            {{ $t('edit_info') }}
+                                                                        </v-btn>
+                                                                    </router-link>
+                                                                </v-col>
+                                                                <v-col sm="12" cols="6" class="py-0" v-show="allowDelete" >
+                                                                    <v-btn width="100" color="primary"
+                                                                        @click="deleteCampaign"
+                                                                        class=" white--text float-right text-capitalize mx-1">
+                                                                        {{ $t('delete') }}
+                                                                    </v-btn>
+                                                                </v-col>
+                                                            </v-col>
+
+                                                        </v-row>
+                                                    </v-col>
+                                                </v-row>
                                             </v-card>
                                         </v-col>
                                     </v-row>
@@ -269,6 +356,77 @@
                                 </v-col>
                             </v-row>
                         </v-tab-item>
+                        <!-- Coupon -->
+                        <v-tab-item>
+                            <v-row>
+                                <v-col sm="12" cols="12" class="pt-0 px-6">
+                                    <v-row class="grayBg" style="width: 104%;">
+                                        <v-col sm="12" cols="12" class="">
+                                            <v-card outlined color="white" class="pa-3">
+                                                <v-row class="">
+                                                    <v-col sm="3" cols="12" class="py-0">
+                                                        <v-text-field
+                                                            class="mt-1"
+                                                            v-model="couponName"
+                                                            :placeholder="$t('search_coupon_number')"
+                                                            outlined
+                                                        />
+                                                    </v-col>
+                                                    <v-col sm="1" cols="1" class="py-0 mt-1">
+                                                        <v-btn
+                                                            color="primary white--text"
+                                                            @click="searchCoupon"
+                                                        >
+                                                            <i
+                                                                class="b-search"
+                                                                style="font-size: 18px; color:#fff !important;"
+                                                            />
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row class="">
+                                                    <v-col sm="12" cols="12" class="py-0">
+                                                        <LoadingMe
+                                                            :isLoading="showLoadingCoupon"
+                                                            :fullPage="false"
+                                                            type="loading"
+                                                            :myLoading="true"
+                                                        >
+                                                        </LoadingMe>
+                                                        <kendo-datasource
+                                                            ref="couponDS"
+                                                            :data="couponList"
+                                                            :server-paging="false"
+                                                        />
+                                                        <kendo-grid
+                                                            id="couponDS"
+                                                            class="grid-function"
+                                                            :data-source-ref="'couponDS'"
+                                                            :editable="false"
+                                                            :groupale="true"
+                                                            :column-menu="true"
+                                                            :noRecords="true"
+                                                            :scrollable-virtual="true"
+                                                        >
+                                                            <kendo-grid-column
+                                                                :field="'pk'"
+                                                                :title="$t('number')"
+                                                                :width="200"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'status'"
+                                                                :title="$t('status')"
+                                                                :width="200"
+                                                            />
+                                                        </kendo-grid>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
                     </v-tabs>
                 </v-col>
             </v-row>
@@ -286,17 +444,33 @@ const customerModel = new CustomerModel({});
 // const $ = require("jquery")
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler");
 const billingHandler = require("@/scripts/invoice/handler/billingHandler");
+const cookieJS = require("@/cookie.js");
+const cookie = cookieJS.getCookie();
+import {i18n} from '@/i18n';
+import CampaignModel from "@/scripts/commerce/model/Campaign"
 export default {
     name: "Campaigns",
     props: ["id"],
     components: {
         LoadingMe: () => import(`@/components/Loading`),
         "app-datepicker": DatePickerComponent,
-        Info: () => import("./Info"),
     },
     data: () => ({
+        //infor
+        hasCampaign: false,
+        activeCamp: {},
+        loggedUser: {
+            id: cookie.creator,
+            name: cookie.email
+        },
+        allowDelete: false,
+        //coupon
+        showLoadingCoupon: false,
+        couponName: '',
+        couponList: [],
+        //
         campaign: {},
-        campaigs: [],
+        campaings: [],
         isSearchName: true,
         showLoading: false,
         showLoadingTxn: false,
@@ -342,9 +516,24 @@ export default {
         fileName: "",
     }),
     methods: {
+        //coupon
+        searchCoupon(){
+
+        },
+        //
+        loadCoupon(campaigId){
+            window.console.log(campaigId)
+            this.showLoadingCoupon = true
+            commerceHandler.campCouponGets(campaigId).then((res) => {
+                this.showLoadingCoupon = false
+                window.console.log(res, 'coupon')
+                if(res.data.data.length > 0){
+                    this.couponList = res.data.data
+                }
+            })
+        },
         startSearch(){},
         searchByName(){
-
         },
         //old
         transactionDate(dataItem) {
@@ -606,21 +795,105 @@ export default {
         async onChanged() {
             let grid = kendo.jQuery("#gridCustomer").data("kendoGrid");
             let selectedItem = grid.dataItem(grid.select());
-            this.campaign = selectedItem;
+            this.campaign = selectedItem
+            this.hasCampaign = true
+            if(this.campaign.lockDelete == 'no') this.allowDelete = true
+            else this.allowDelete = false
+            this.couponList = []
+            if(this.campaign.type == 'coupon'){
+                this.loadCoupon(this.campaign.pk)
+            }
         },
         async loadCampiagn() {
             this.showLoading = true
-            this.campiagns = []
+            this.campaings = []
             commerceHandler.campaignGets().then((res) => {
                 this.showLoading = false
-                window.console.log(res, 'campaig response')
+                if(res.data.data.length > 0){
+                    this.campaings = res.data.data
+                }
             })
         },
+        //info
+        addCampaign(data){
+            data.id = data.pk
+            this.activeCamp = new CampaignModel(data)
+            if(data.pk) this.hasCampaign = true
+            else this.hasCampaign = false
+        },
+        deleteCampaign(){
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                input: 'text',
+                inputPlaceholder: 'Input some reason',
+                showCancelButton: true,
+                confirmButtonColor: '#4d4848',
+                cancelButtonColor: '#ED1A3A',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value.length > 1) {
+                    this.reason = result.value
+                    this.campaign.id = this.campaign.pk
+                    this.activeCamp = new CampaignModel(this.campaign)
+                    const id = this.activeCamp.id
+                    window.console.log(this.activeCamp, 'actvier')
+                    this.delCampaign(id, this.reason)
+                }
+            })
+        },
+        removeEmptyValues(obj) {
+            for (let propName in obj) {
+                if (!obj[propName] || obj[propName].length === 0) {
+                delete obj[propName];
+                } else if (typeof obj[propName] === "object") {
+                this.removeEmptyValues(obj[propName]);
+                }
+            }
+            return obj;
+        },
+        delCampaign(id, reason) {
+            let cam = this.activeCamp
+            const data = {
+                pk: id,
+                campaign: cam,
+                user: this.loggedUser,
+                reason: reason
+            }
+            window.console.log(data)
+            this.showLoading = true
+            commerceHandler.deleteCampaign(data).then((res) => {
+                this.showLoading = false
+                if (res.data.statusCode === 201) {
+                    this.showLoading = false
+                    this.$swal({
+                        position: 'products',
+                        icon: 'success',
+                        title: i18n.t('your_work_has_been_saved'),
+                        showConfirmButton: true,
+                        confirmButtonColor: '#4d4848',
+                        cancelButtonColor: '#ED1A3A',
+                        confirmButtonText: i18n.t('ok')
+                    })
+                }
+                this.activeCamp = {}
+                this.campaign = {}
+                this.hasCampaign = false
+                this.loadCampiagn();
+            });
+        }
     },
     async mounted() {
         await this.loadCampiagn();
     },
     computed: {
+        routerTo() {
+            if (this.campaign) {
+                return 'campaign' + `/${this.campaign ? this.campaign.pk : ''}`
+            }
+            return ''
+        }
     },
     watch: {
         $route: "callback",

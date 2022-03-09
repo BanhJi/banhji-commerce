@@ -1370,7 +1370,6 @@
                         this.activeColor3= "third"
                         this.activeColor4= "primary"
                         this.isFinal = true
-                        this.save_next = "confirm_close"
                   }
             },
             close(){
@@ -1917,7 +1916,12 @@
                 commerceHandler.campaignGet(this.$route.params.id).then((res) => {
                     this.showLoading = false
                     if(res.status == 200){
+                        res.data.data[0].id = res.data.data[0].pk
                         this.c = res.data.data[0]
+                        this.reachTopStep = 3
+                        this.steps = 1
+                        this.stepsCondition(1)
+                        window.console.log(this.c)
                     }else{
                         this.gotoCenter()
                     }
