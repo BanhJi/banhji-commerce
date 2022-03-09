@@ -607,19 +607,12 @@ export default {
             let grid = kendo.jQuery("#gridCustomer").data("kendoGrid");
             let selectedItem = grid.dataItem(grid.select());
             this.campaign = selectedItem;
-            // this.$emit("onUpdate", selectedItem);
-            // window.console.log("--", this.customer.id);
-            // if (this.customer.hasOwnProperty("id")) {
-            //     if (this.customer.id !== "" || this.customer.id !== undefined) {
-            //         await this.searchTransaction();
-            //         await this.loadAttachment();
-            //     }
-            // }
         },
         async loadCampiagn() {
             this.showLoading = true
             this.campiagns = []
             commerceHandler.campaignGets().then((res) => {
+                this.showLoading = false
                 window.console.log(res, 'campaig response')
             })
         },

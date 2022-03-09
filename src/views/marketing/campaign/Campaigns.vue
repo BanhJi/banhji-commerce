@@ -61,6 +61,7 @@
                                                     </v-row> 
                                                 </v-col>
                                                 <v-col sm="10" cols="12" class="pa-6" >
+                                                    <!-- step 1 info-->
                                                     <div v-show="steps==1">
                                                         <v-col cols="12" class="pb-0" @stepOne="nextStpes($event, 1)" ref="">
                                                             <v-row>
@@ -199,9 +200,8 @@
                                                                 </v-col>
                                                             </v-row>
                                                         </v-col>
-
                                                     </div>
-                                                    <!-- Steps 2 Adjustemnt -->
+                                                    <!-- step 2 rule -->
                                                     <div  v-show="steps==2">
                                                         <v-col cols="12" class="pb-0" @stepTwo="nextStpes($event,2)"  ref="">
                                                             <v-row>
@@ -607,7 +607,7 @@
                                                             </v-row>
                                                         </v-col>`
                                                     </div>
-                                                    <!-- Steps four -->
+                                                    <!-- step 3 reward -->
                                                     <div  v-show="steps==3">
                                                         <v-col cols="12" class="pb-0"  @finish="finish($event)"   ref="">
                                                             <v-row>
@@ -1086,8 +1086,6 @@
 
         }),
         methods:{
-            
-
             finish(){
                 this.steps = 1;
                 this.reachTopStep = 0;
@@ -1101,6 +1099,231 @@
                 }
                 if(this.steps ==4) {
                     return
+                }
+                if(this.steps == 1){
+                    // check info rule
+                    if(this.c.name.trim() == ''){
+                        this.$swal({
+                            title: i18n.t('msg_title_warning'),
+                            text: i18n.t('name_is_requred'),
+                            icon: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#4d4848",
+                            cancelButtonColor: "#ED1A3A",
+                            confirmButtonText: i18n.t('ok'),
+                        })
+                        return
+                    }
+                    if(this.c.code.trim() == ''){
+                        this.$swal({
+                            title: i18n.t('msg_title_warning'),
+                            text: i18n.t('code_is_requred'),
+                            icon: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#4d4848",
+                            cancelButtonColor: "#ED1A3A",
+                            confirmButtonText: i18n.t('ok'),
+                        })
+                        return
+                    }
+                    // check coupon number
+                    if(this.c.type == 'coupon'){
+                        let ds = this.$refs.coupons.kendoWidget()
+                        let d = []
+                        ds.data().forEach(e => {
+                            if(e.number != ''){
+                                d.push({
+                                    number: e.number
+                                })
+                            }
+                        })
+                        this.c.couponNumber = d
+                        if(d.length <= 0){
+                            this.$swal({
+                                title: i18n.t('msg_title_warning'),
+                                text: i18n.t('check_coupon_number'),
+                                icon: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#4d4848",
+                                cancelButtonColor: "#ED1A3A",
+                                confirmButtonText: i18n.t('ok'),
+                            })
+                            return
+                        }
+                    }
+                    //check expire date
+                    let td = kendo.toString(new Date(), 'yyyy-MM-dd')
+                    let ed = kendo.toString(new Date(this.c.endDate), 'yyyy-MM-dd')
+                    if(Date.parse(new Date(ed)) <= Date.parse(new Date(td))){
+                        this.$swal({
+                            title: i18n.t('msg_title_warning'),
+                            text: i18n.t('it_almost_end_date'),
+                            icon: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#4d4848",
+                            cancelButtonColor: "#ED1A3A",
+                            confirmButtonText: i18n.t('ok'),
+                        })
+                    }
+                }else if(this.steps == 2){
+                    //check time
+                    if(this.c.isTiming){
+                        if(this.c.timeFrom == '' || this.c.timeTo == ''){
+                            this.$swal({
+                                title: i18n.t('msg_title_warning'),
+                                text: i18n.t('check_time'),
+                                icon: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#4d4848",
+                                cancelButtonColor: "#ED1A3A",
+                                confirmButtonText: i18n.t('ok'),
+                            })
+                            return
+                        }
+                    }
+                    // check partner
+                    if(this.c.isPartner){
+                        if(Object.keys(this.c.partner).length <= 0){
+                            this.$swal({
+                                title: i18n.t('msg_title_warning'),
+                                text: i18n.t('check_partner'),
+                                icon: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#4d4848",
+                                cancelButtonColor: "#ED1A3A",
+                                confirmButtonText: i18n.t('ok'),
+                            })
+                            return
+                        }
+                    }
+                    // check rule
+                    if(this.c.ruleBase == 'customer'){
+                        if(this.c.ruleCustomerBaseType == 'customerType'){
+                            if(this.c.ruleCustomerTypes.length <= 0){
+                                this.$swal({
+                                    title: i18n.t('msg_title_warning'),
+                                    text: i18n.t('check_customer_type'),
+                                    icon: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#4d4848",
+                                    cancelButtonColor: "#ED1A3A",
+                                    confirmButtonText: i18n.t('ok'),
+                                })
+                                return
+                            }
+                        }else if(this.c.ruleCustomerBaseType == 'specific'){
+                            let ds = this.$refs.ruleCustomers.kendoWidget()
+                            let d = []
+                            ds.data().forEach(e => {
+                                if(e.customer.hasOwnProperty('id')){
+                                    d.push({
+                                        customer: {
+                                            alternativeName: e.alternativeName,
+                                            baseCurrency: e.baseCurrency,
+                                            connectId: e.connectId,
+                                            consumerId: e.consumerId,
+                                            crn: e.crn,
+                                            customerType: e.customerType,
+                                            decimalFormat: e.decimalFormat,
+                                            gender: e.gender,
+                                            id: e.id,
+                                            isDonor: e.isDonor,
+                                            name: e.name,
+                                            number: e.number,
+                                            numberName: e.numberName,
+                                            registeredDate: e.registeredDate,
+                                            taxId: e.taxId,
+                                            type: e.type
+                                        }
+                                    })
+                                }
+                            })
+                            this.c.ruleCustomers = d
+                            if(d.length <= 0){
+                                this.$swal({
+                                    title: i18n.t('msg_title_warning'),
+                                    text: i18n.t('check_customer'),
+                                    icon: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#4d4848",
+                                    cancelButtonColor: "#ED1A3A",
+                                    confirmButtonText: i18n.t('ok'),
+                                })
+                                return
+                            }
+                        }
+                    }else if(this.c.ruleBase == 'product'){
+                        if(this.c.ruleProductBaseOn == 'category'){
+                            let ds = this.$refs.ruleCate.kendoWidget()
+                            let d = []
+                            ds.data().forEach(e => {
+                                if(e.category.hasOwnProperty('id')){
+                                    d.push({
+                                        category_id: e.category.id
+                                    })
+                                }
+                            })
+                            this.c.ruleProductCategory = d
+                            if(d.length <= 0){
+                                this.$swal({
+                                    title: i18n.t('msg_title_warning'),
+                                    text: i18n.t('check_rule_category'),
+                                    icon: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#4d4848",
+                                    cancelButtonColor: "#ED1A3A",
+                                    confirmButtonText: i18n.t('ok'),
+                                })
+                                return
+                            }
+                        }else if(this.c.ruleProductBaseOn == 'group'){
+                            let ds = this.$refs.ruleGroup.kendoWidget()
+                            let d = []
+                            ds.data().forEach(e => {
+                                if(e.group.hasOwnProperty('id')){
+                                    d.push({
+                                        group_id: e.group.id
+                                    })
+                                }
+                            })
+                            this.c.ruleProductGroup = d
+                            if(d.length <= 0){
+                                this.$swal({
+                                    title: i18n.t('msg_title_warning'),
+                                    text: i18n.t('check_rule_group'),
+                                    icon: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#4d4848",
+                                    cancelButtonColor: "#ED1A3A",
+                                    confirmButtonText: i18n.t('ok'),
+                                })
+                                return
+                            }
+                        }else if(this.c.ruleProductBaseOn == 'specific'){
+                            let ds = this.$refs.ruleProduct.kendoWidget()
+                            let d = []
+                            ds.data().forEach(e => {
+                                if(e.item.hasOwnProperty('id')){
+                                    d.push({
+                                        item_id: e.item.id
+                                    })
+                                }
+                            })
+                            this.c.ruleProduct = d
+                            if(d.length <= 0){
+                                this.$swal({
+                                    title: i18n.t('msg_title_warning'),
+                                    text: i18n.t('check_rule_item'),
+                                    icon: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#4d4848",
+                                    cancelButtonColor: "#ED1A3A",
+                                    confirmButtonText: i18n.t('ok'),
+                                })
+                                return
+                            }
+                        }
+                    }
                 }
                 this.steps += 1;
                 this.reachTopStep = this.steps
@@ -1150,7 +1373,6 @@
                         this.save_next = "confirm_close"
                   }
             },
-
             close(){
                 this.$swal({
                     title: i18n.t('msg_title_warning'),
@@ -1167,8 +1389,6 @@
                     }
                 });
             },
-
-
              //coupon
             couponGenerate(){
                 let self = this
@@ -1732,203 +1952,6 @@
                     this.$refs.form.validate()
                     return
                 }
-                // check coupon number
-                if(this.c.type == 'coupon'){
-                    let ds = this.$refs.coupons.kendoWidget()
-                    let d = []
-                    ds.data().forEach(e => {
-                        if(e.number != ''){
-                            d.push({
-                                number: e.number
-                            })
-                        }
-                    })
-                    this.c.couponNumber = d
-                    if(d.length <= 0){
-                        this.$swal({
-                            title: i18n.t('msg_title_warning'),
-                            text: i18n.t('check_coupon_number'),
-                            icon: "warning",
-                            showCancelButton: false,
-                            confirmButtonColor: "#4d4848",
-                            cancelButtonColor: "#ED1A3A",
-                            confirmButtonText: i18n.t('ok'),
-                        })
-                        return
-                    }
-                }
-                //check expire date
-                let td = kendo.toString(new Date(), 'yyyy-MM-dd')
-                let ed = kendo.toString(new Date(this.c.endDate), 'yyyy-MM-dd')
-                if(Date.parse(new Date(ed)) <= Date.parse(new Date(td))){
-                    this.$swal({
-                        title: i18n.t('msg_title_warning'),
-                        text: i18n.t('it_almost_end_date'),
-                        icon: "warning",
-                        showCancelButton: false,
-                        confirmButtonColor: "#4d4848",
-                        cancelButtonColor: "#ED1A3A",
-                        confirmButtonText: i18n.t('ok'),
-                    })
-                }
-                //check time
-                if(this.c.isTiming){
-                    if(this.c.timeFrom == '' || this.c.timeTo == ''){
-                        this.$swal({
-                            title: i18n.t('msg_title_warning'),
-                            text: i18n.t('check_time'),
-                            icon: "warning",
-                            showCancelButton: false,
-                            confirmButtonColor: "#4d4848",
-                            cancelButtonColor: "#ED1A3A",
-                            confirmButtonText: i18n.t('ok'),
-                        })
-                        return
-                    }
-                }
-                // check partner
-                if(this.c.isPartner){
-                    if(Object.keys(this.c.partner).length <= 0){
-                        this.$swal({
-                            title: i18n.t('msg_title_warning'),
-                            text: i18n.t('check_partner'),
-                            icon: "warning",
-                            showCancelButton: false,
-                            confirmButtonColor: "#4d4848",
-                            cancelButtonColor: "#ED1A3A",
-                            confirmButtonText: i18n.t('ok'),
-                        })
-                        return
-                    }
-                }
-                // check rule
-                if(this.c.ruleBase == 'customer'){
-                    if(this.c.ruleCustomerBaseType == 'customerType'){
-                        if(this.c.ruleCustomerTypes.length <= 0){
-                            this.$swal({
-                                title: i18n.t('msg_title_warning'),
-                                text: i18n.t('check_customer_type'),
-                                icon: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#4d4848",
-                                cancelButtonColor: "#ED1A3A",
-                                confirmButtonText: i18n.t('ok'),
-                            })
-                            return
-                        }
-                    }else if(this.c.ruleCustomerBaseType == 'specific'){
-                        let ds = this.$refs.ruleCustomers.kendoWidget()
-                        let d = []
-                        ds.data().forEach(e => {
-                            if(e.customer.hasOwnProperty('id')){
-                                d.push({
-                                    customer: {
-                                        alternativeName: e.alternativeName,
-                                        baseCurrency: e.baseCurrency,
-                                        connectId: e.connectId,
-                                        consumerId: e.consumerId,
-                                        crn: e.crn,
-                                        customerType: e.customerType,
-                                        decimalFormat: e.decimalFormat,
-                                        gender: e.gender,
-                                        id: e.id,
-                                        isDonor: e.isDonor,
-                                        name: e.name,
-                                        number: e.number,
-                                        numberName: e.numberName,
-                                        registeredDate: e.registeredDate,
-                                        taxId: e.taxId,
-                                        type: e.type
-                                    }
-                                })
-                            }
-                        })
-                        this.c.ruleCustomers = d
-                        if(d.length <= 0){
-                            this.$swal({
-                                title: i18n.t('msg_title_warning'),
-                                text: i18n.t('check_customer'),
-                                icon: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#4d4848",
-                                cancelButtonColor: "#ED1A3A",
-                                confirmButtonText: i18n.t('ok'),
-                            })
-                            return
-                        }
-                    }
-                }else if(this.c.ruleBase == 'product'){
-                    if(this.c.ruleProductBaseOn == 'category'){
-                        let ds = this.$refs.ruleCate.kendoWidget()
-                        let d = []
-                        ds.data().forEach(e => {
-                            if(e.category.hasOwnProperty('id')){
-                                d.push({
-                                    category_id: e.category.id
-                                })
-                            }
-                        })
-                        this.c.ruleProductCategory = d
-                        if(d.length <= 0){
-                            this.$swal({
-                                title: i18n.t('msg_title_warning'),
-                                text: i18n.t('check_rule_category'),
-                                icon: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#4d4848",
-                                cancelButtonColor: "#ED1A3A",
-                                confirmButtonText: i18n.t('ok'),
-                            })
-                            return
-                        }
-                    }else if(this.c.ruleProductBaseOn == 'group'){
-                        let ds = this.$refs.ruleGroup.kendoWidget()
-                        let d = []
-                        ds.data().forEach(e => {
-                            if(e.group.hasOwnProperty('id')){
-                                d.push({
-                                    group_id: e.group.id
-                                })
-                            }
-                        })
-                        this.c.ruleProductGroup = d
-                        if(d.length <= 0){
-                            this.$swal({
-                                title: i18n.t('msg_title_warning'),
-                                text: i18n.t('check_rule_group'),
-                                icon: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#4d4848",
-                                cancelButtonColor: "#ED1A3A",
-                                confirmButtonText: i18n.t('ok'),
-                            })
-                            return
-                        }
-                    }else if(this.c.ruleProductBaseOn == 'specific'){
-                        let ds = this.$refs.ruleProduct.kendoWidget()
-                        let d = []
-                        ds.data().forEach(e => {
-                            if(e.item.hasOwnProperty('id')){
-                                d.push({
-                                    item_id: e.item.id
-                                })
-                            }
-                        })
-                        this.c.ruleProduct = d
-                        if(d.length <= 0){
-                            this.$swal({
-                                title: i18n.t('msg_title_warning'),
-                                text: i18n.t('check_rule_item'),
-                                icon: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: "#4d4848",
-                                cancelButtonColor: "#ED1A3A",
-                                confirmButtonText: i18n.t('ok'),
-                            })
-                            return
-                        }
-                    }
-                }
                 // check reward
                 if(this.c.rewardBase == 'amountBase'){
                     if(this.c.rewardType == 'fixed'){
@@ -2144,6 +2167,9 @@
                     this.c.priceLevel = this.priceLevels[0]
                     this.c.discountItem = this.discountItems[0]
                 }
+                this.steps = 1
+                this.reachTopStep = this.steps
+                this.stepsCondition(this.steps)
             },
             hide_smallsitebar() {
                 this.isHideBar = !this.isHideBar;

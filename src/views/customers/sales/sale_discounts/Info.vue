@@ -51,7 +51,7 @@
                     <v-col sm="12" cols="6" class="py-0" v-if="!enableDelete">
                         <v-btn width="100" color="primary"
                                :disabled="enableDelete"
-                               @click="deleteCustomer"
+                               @click="deleteCampaign"
                                class=" white--text float-right text-capitalize mx-1">
                             {{ $t('delete') }}
                         </v-btn>
@@ -104,33 +104,45 @@ export default {
         },
         effectiveDate() {
             if (this.campaign) {
-                if (this.campaign.hasOwnProperty('discountItem')) {
-                    return this.campaign.discountItem.name
+                if (this.campaign.hasOwnProperty('effectiveDate')) {
+                    return this.campaign.effectiveDate
                 }
             }
             return ''
         },
         endDate() {
             if (this.campaign) {
-                if (this.campaign.hasOwnProperty('discountItem')) {
-                    return this.campaign.discountItem.name
+                if (this.campaign.hasOwnProperty('endDate')) {
+                    return this.campaign.endDate
                 }
             }
             return ''
         },
         description() {
             if (this.campaign) {
-                if (this.campaign.hasOwnProperty('discountItem')) {
-                    return this.campaign.discountItem.name
+                if (this.campaign.hasOwnProperty('description')) {
+                    return this.campaign.description
                 }
             }
             return ''
         },
+        routerTo() {
+            if (this.campaign) {
+                return 'campaign' + `/${this.campaign ? this.campaign.id : ''}`
+            }
+            return ''
+        }
     },
     data: () => ({
+        enableDelete: false,
+        btnEnabled: false,
     }),
     watch: {},
     methods: {
+        deleteCampaign(){
+
+        },
+
     }
 }
 </script>
