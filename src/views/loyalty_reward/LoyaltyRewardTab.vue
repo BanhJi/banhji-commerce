@@ -16,7 +16,7 @@
                     >
                       <v-tab :key="0">
                         <span>
-                          {{ $t("insights") }}
+                          {{ $t("reward_programs") }}
                         </span>
                       </v-tab>
 
@@ -43,11 +43,6 @@
                       </v-tab>
                       <v-tab :key="5">
                         <span>
-                          {{ $t("reward_programs") }}
-                        </span>
-                      </v-tab>
-                      <v-tab :key="6">
-                        <span>
                           {{ $t("setting") }}
                         </span>
                       </v-tab>
@@ -57,7 +52,7 @@
                   <v-tab-item>
                     <v-card flat>
                       <v-card-text class="">
-                        <Insight />
+                        <RewardPrograms/>
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -94,14 +89,7 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <RewardPrograms/>
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Setting />
+                        <Setting/>
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -123,12 +111,11 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    Insight: () => import("./Insight"),
     LoyaltyCard: () => import("./LoyaltyCard"),
     GiftCard: () => import("./GiftCard"),
     StoreCreditCard: () => import("./StoreCreditCard"),
     Partners: () => import("./Partners"),
-    RewardPrograms: () => import("./RewardPrograms"),
+    RewardPrograms: () => import("./reward_programs/RewardPrograms"),
     Setting: () => import("./Setting"),
     
   },

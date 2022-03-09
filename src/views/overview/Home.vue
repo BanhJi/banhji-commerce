@@ -1,13 +1,13 @@
 <template>
   <v-app class="zoom-in">
       <v-container>
-        <v-row class="mt-4">
+        <v-row class="mt-0">
           <v-col sm="12" cols="12" class="pa-0">
             <v-card elevation="0" color="grayBg">
               <div class="d_centerd_b">
                 <div>
                   <v-row>
-                    <v-col class="py-0 pl-md-2" sm="4" cols="12">
+                    <v-col sm="4" class="px-2 pl-6 pr-0">
                       <v-card
                         color="white"
                         outlined
@@ -34,101 +34,152 @@
                         </v-card>
                         <p class=" mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">{{$t('overview_desc')}}</p>
                       </v-card>
-                    </v-col>
-                    <v-col class="py-0 pl-md-2" sm="4" cols="12">
                       <v-card
-                        color="white"
+                        color="primary"
                         outlined
                         dense
-                        class="pa-6 raduis_10  no_border "
-                        :min-height="this.$i18n.locale=='kh' ? 382 : 378"
+                        :to="lang + '/point_of_sales'"
+                        class="pa-6 mt-4  raduis_10 pop no_border d-flex"
+                        min-height="181"
                       >
-                        
-                        <img class="image_product" src="@/assets/images/pos.png" />
-                        
-                        <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("point_of_sale") }}
-                        </h1>
-                        <p class="text-center  mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
-                          {{ $t("point_of_sale_desc2") }}
-                        </p>
+                        <i style="font-size: 127px" class="white_icon b-pos" />
+                        <div class="ml-6">
+                          <h1 class="font_size_overview  white--text" :class="{'line_25':this.$i18n.locale=='kh'}">
+                            {{ $t("point_of_sale") }}
+                          </h1>
+                          <p class="mt-2 niradei_light  niradei_light_1 mb-0 white--text">
+                            {{ $t("point_of_sale_desc2") }}
+                          </p>
+                        </div>
                       </v-card>
                     </v-col>
-                    <v-col class="py-0 pl-md-2" sm="4" cols="12">
-                      <v-card
-                        color="white"
-                        outlined
-                        dense
-                        class="pa-6 raduis_10  no_border "
-                        :min-height="this.$i18n.locale=='kh' ? 382 : 378"
-                      >
-                        
-                        <img class="image_product" src="@/assets/images/sale_channel.png" />
-                        
-                        <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("multi_channels_orders") }}
-                        </h1>
-                        <p class="text-center  mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
-                          {{ $t("multi_channels_orders_desc") }}
-                        </p>
-                      </v-card>
-                    </v-col>
-                    <v-col class="mt-2 pl-md-2" sm="4" cols="12">
-                      <v-card
-                        color="white"
-                        outlined
-                        dense
-                        class="pa-6 raduis_10  no_border "
-                        :min-height="this.$i18n.locale=='kh' ? 382 : 378"
-                      >
-                        
-                        <img class="image_product" src="@/assets/images/loyalty.png" />
-                        
-                        <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("loyalty_reward_promotion") }}
-                        </h1>
-                        <p class="text-center mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
-                          {{ $t("loyalty_reward_promotion_desc") }}
-                        </p>
-                      </v-card>
-                    </v-col>
-                    <v-col class="mt-2 pl-md-2" sm="4" cols="12">
-                      <v-card
-                        color="white"
-                        outlined
-                        dense
-                        class="pa-6 raduis_10  no_border "
-                        :min-height="this.$i18n.locale=='kh' ? 382 : 378"
-                      >
-                        
-                        <img class="image_product" src="@/assets/images/pricing.png" />
-                        
-                        <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("pricing_manangement") }}
-                        </h1>
-                        <p class="text-center mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
-                          {{ $t("pricing_manangement_desc") }}
-                        </p>
-                      </v-card>
-                    </v-col>
-                    <v-col class="mt-2 pl-md-2" sm="4" cols="12">
-                      <v-card
-                        color="white"
-                        outlined
-                        dense
-                        class="pa-6 raduis_10  no_border "
-                        :min-height="this.$i18n.locale=='kh' ? 382 : 378"
-                      >
-                        
-                        <img class="image_product" src="@/assets/images/loyalty.png" />
-                        
-                        <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("loyalty_reward_promotion") }}
-                        </h1>
-                        <p class="text-center mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
-                          {{ $t("loyalty_reward_promotion_desc") }}
-                        </p>
-                      </v-card>
+                    <v-col sm="8" class="pl-2">
+                      <v-row class="mx-0">
+                        <v-col sm="6" class="pa-0" cols="12">
+                          <v-card
+                            color="white"
+                            outlined
+                            :to="lang + '/sale_channels'"
+                            dense
+                            class="pa-6 mx-2 raduis_10 pop no_border pop d-flex"
+                            min-height="181"
+                          >
+                            <i style="font-size: 127px" class="red_icon b-sale_channel" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview third--text" :class="{'line_25':this.$i18n.locale=='kh'} ">
+                                {{ $t("sale_channels") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0">
+                                {{ $t("multi_channels_orders_desc") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col>
+                        <v-col sm="6" class="pa-0" cols="12">
+                          <v-card
+                            color="white"
+                            outlined
+                            :to="lang + '/pricing'"
+                            dense
+                            class="pa-6 mx-2 raduis_10 pop no_border pop d-flex"
+                            min-height="181"
+                          >
+                            <i style="font-size: 127px" class="red_icon b-pricing" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview third--text" :class="{'line_25':this.$i18n.locale=='kh'} ">
+                                {{ $t("pricing_manangement") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0">
+                                {{ $t("pricing_manangement_desc") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col> 
+                      </v-row>
+                      <v-row class="mx-0 mt-4">
+                        <v-col sm="6" class="pa-0" cols="12">
+                          <v-card
+                            color="white"
+                            outlined
+                            :to="lang + '/marketing_promotions'"
+                            dense
+                            class="pa-6 mx-2 raduis_10 pop no_border pop d-flex"
+                            min-height="181"
+                          >
+                            <i style="font-size: 127px" class="red_icon b-loyalty" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview third--text" :class="{'line_25':this.$i18n.locale=='kh'} ">
+                                {{ $t("marketing_promotions") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0">
+                                {{ $t("loyalty_reward_promotion_desc") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col>
+                        <v-col sm="6" class="pa-0" cols="12">
+                          <v-card
+                            color="white"
+                            outlined
+                            :to="lang + '/loyalty_reward'"
+                            dense
+                            class="pa-6 mx-2 raduis_10 pop no_border pop d-flex"
+                            min-height="181"
+                          >
+                            <i style="font-size: 127px" class="red_icon b-reward" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview third--text" :class="{'line_25':this.$i18n.locale=='kh'} ">
+                                {{ $t("loyalty_reward") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0">
+                                {{ $t("loyalty_reward_promotion_desc") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                      <v-row class="mx-0 mt-4">
+                        <v-col class="pa-0" sm="6" cols="12">
+                          <v-card
+                            color="primary"
+                            outlined
+                            dense
+                            :to="lang + '/e_commerce'"
+                            class="pa-6 ml-2 mr-2 raduis_10 pop no_border d-flex"
+                            min-height="181"
+                          >
+                            <i style="font-size: 127px" class="white_icon b-e_commerce" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview  white--text" :class="{'line_25':this.$i18n.locale=='kh'}">
+                                {{ $t("e_commerce") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0 white--text">
+                                {{ $t("point_of_sale_desc2") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col>
+                        <v-col sm="6" class="pa-0" cols="12">
+                          <v-card
+                            color="primary"
+                            outlined
+                            dense
+                            :to="lang + '/payments'"
+                            class="pa-6 mx-2 raduis_10 pop no_border d-flex"
+                            :min-height="this.$i18n.locale=='kh' ? 183 : 181"
+                          >
+                            <i style="font-size: 127px" class="white_icon b-payment" />
+                            <div class="ml-6">
+                              <h1 class="font_size_overview  white--text" :class="{'line_25':this.$i18n.locale=='kh'}">
+                                {{ $t("payments") }}
+                              </h1>
+                              <p class="mt-2 niradei_light  niradei_light_1 mb-0 white--text">
+                                {{ $t("payment_desc") }}
+                              </p>
+                            </div>
+                          </v-card>
+                        </v-col>
+                      </v-row>
                     </v-col>
                   </v-row>
                 </div>
@@ -233,11 +284,6 @@ export default {
 };
 </script>
 <style scoped>
-.image_product {
-  height: 135px;
-  margin: 20px auto;
-  display: block;
-}
 .k-chart {
   height: 173px !important;
 }
@@ -319,10 +365,9 @@ export default {
   align-items: center;
 }
 .font_size_overview {
-  font-family: "Niradei-Medium" !important;
-  font-size: 18px !important;
+  font-family: "Niradei-Heavy" !important;
+  font-size: 22px !important;
   line-height: 20px;
-  margin-top: 10px;
 }
 .p_style{
   line-height: 13px;
@@ -341,6 +386,10 @@ export default {
 }
 .niradei_light {
   font-size: 12px !important;
+}
+.niradei_light_1 {
+  font-size: 14px !important;
+  line-height: normal;
 }
 .raduis_10{
   border-radius: 10px !important;

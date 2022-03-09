@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?s34h57');
-  src:  url('fonts/banhji-accounting-icon.eot?s34h57#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?s34h57') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?s34h57') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?s34h57#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?l3bq9u');
+  src:  url('fonts/banhji-accounting-icon.eot?l3bq9u#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?l3bq9u') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?l3bq9u') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?l3bq9u#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -153,10 +153,6 @@
   content: "\e91f";
   color: #474747;
 }
-.b-pos:before {
-  content: "\e920";
-  color: #474747;
-}
 .b-pricing:before {
   content: "\e921";
   color: #474747;
@@ -171,10 +167,6 @@
 }
 .b-report:before {
   content: "\e924";
-  color: #474747;
-}
-.b-reward:before {
-  content: "\e925";
   color: #474747;
 }
 .b-sale_channel:before {
@@ -199,5 +191,13 @@
 }
 .b-transation:before {
   content: "\e92b";
+  color: #474747;
+}
+.b-reward:before {
+  content: "\e920";
+  color: #474747;
+}
+.b-pos:before {
+  content: "\e925";
   color: #474747;
 }
