@@ -443,7 +443,7 @@ export default {
         name: "point_of_sales",
         menuTex: "point_of_sales",
         path: "/point_of_sales",
-        icon: "b-commerce",
+        icon: "b-pos",
       },
       {
         id: 12,
@@ -452,7 +452,7 @@ export default {
         name: "e_commerce",
         menuTex: "e_commerce",
         path: "/e_commerce",
-        icon: "b-billing",
+        icon: "b-e_commerce",
       },
       {
         id: 10,

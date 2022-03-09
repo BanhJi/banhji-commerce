@@ -4129,7 +4129,10 @@
     "loyalty_reward_promotion" : "Loyalty, reward & Promotions",
     "loyalty_reward_promotion_desc" : "Advanced Marketing & Promotions across sale channels with dynamic loyalty & reward programs",
     "pricing_manangement" : "Pricing Management",
-    "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions"
+    "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions",
+    "reward": "Reward",
+    "customer_pice_levels" : "កំរិតតម្លៃអតិថិជន"
+
     
 
 } 

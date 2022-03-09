@@ -44,7 +44,7 @@
                         :min-height="this.$i18n.locale=='kh' ? 382 : 378"
                       >
                         
-                        <img class="image_product" src="@/assets/images/pos.png" />
+                        <i style="font-size: 100px" class="d-flex justify-center b-pos red_icon" />
                         
                         <h1 class="line_24 text-center font_20 my-4">
                           {{ $t("point_of_sale") }}
@@ -63,7 +63,7 @@
                         :min-height="this.$i18n.locale=='kh' ? 382 : 378"
                       >
                         
-                        <img class="image_product" src="@/assets/images/sale_channel.png" />
+                        <i style="font-size: 100px" class="d-flex justify-center b-sale_channel red_icon" />
                         
                         <h1 class="line_24 text-center font_20 my-4">
                           {{ $t("multi_channels_orders") }}
@@ -82,10 +82,10 @@
                         :min-height="this.$i18n.locale=='kh' ? 382 : 378"
                       >
                         
-                        <img class="image_product" src="@/assets/images/loyalty.png" />
+                        <i style="font-size: 100px" class="d-flex justify-center b-compliance red_icon" />
                         
                         <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("loyalty_reward_promotion") }}
+                          {{ $t("marketing_promotions") }}
                         </h1>
                         <p class="text-center mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
                           {{ $t("loyalty_reward_promotion_desc") }}
@@ -101,7 +101,7 @@
                         :min-height="this.$i18n.locale=='kh' ? 382 : 378"
                       >
                         
-                        <img class="image_product" src="@/assets/images/pricing.png" />
+                       <i style="font-size: 100px" class="d-flex justify-center b-pricing red_icon" />
                         
                         <h1 class="line_24 text-center font_20 my-4">
                           {{ $t("pricing_manangement") }}
@@ -120,10 +120,10 @@
                         :min-height="this.$i18n.locale=='kh' ? 382 : 378"
                       >
                         
-                        <img class="image_product" src="@/assets/images/loyalty.png" />
+                        <i style="font-size: 100px" class="d-flex justify-center b-loyalty red_icon" />
                         
                         <h1 class="line_24 text-center font_20 my-4">
-                          {{ $t("loyalty_reward_promotion") }}
+                          {{ $t("loyalty_reward") }}
                         </h1>
                         <p class="text-center mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">
                           {{ $t("loyalty_reward_promotion_desc") }}
@@ -340,7 +340,7 @@ export default {
   margin: auto;
 }
 .niradei_light {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 .raduis_10{
   border-radius: 10px !important;
