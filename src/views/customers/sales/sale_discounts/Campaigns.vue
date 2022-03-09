@@ -418,6 +418,16 @@
                                                                 :title="$t('status')"
                                                                 :width="200"
                                                             />
+                                                            <kendo-grid-column
+                                                                :field="'txnNumber'"
+                                                                :title="$t('txn_number')"
+                                                                :width="200"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'applyDate'"
+                                                                :title="$t('apply_date')"
+                                                                :width="200"
+                                                            />
                                                         </kendo-grid>
                                                     </v-col>
                                                 </v-row>
@@ -866,7 +876,6 @@ export default {
             commerceHandler.deleteCampaign(data).then((res) => {
                 this.showLoading = false
                 if (res.data.statusCode === 201) {
-                    this.showLoading = false
                     this.$swal({
                         position: 'products',
                         icon: 'success',

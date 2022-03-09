@@ -1924,7 +1924,7 @@
                         this.reachTopStep = 3
                         this.steps = 1
                         this.stepsCondition(1)
-                        window.console.log(this.c)
+                        if(this.c.type == 'coupon') this.coupons = this.c.couponNumber
                     }else{
                         this.gotoCenter()
                     }
@@ -2161,7 +2161,9 @@
                     confirmButtonText: i18n.t('discard'),
                 }).then((result) => {
                     if (result.value) {
-                        this.$router.push(`${i18n.locale}` + '/marketing_promotions');
+                        this.$router.push({
+                            path: 'marketing_promotions',
+                        })
                     }
                 });
             },
