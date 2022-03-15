@@ -35,13 +35,7 @@
                           {{ $t("store_credit_card") }}
                         </span>
                       </v-tab>
-
                       <v-tab :key="4">
-                        <span>
-                          {{ $t("partners") }}
-                        </span>
-                      </v-tab>
-                      <v-tab :key="5">
                         <span>
                           {{ $t("setting") }}
                         </span>
@@ -60,14 +54,14 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <LoyaltyCard />
+                        <LoyaltyCenter />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <GiftCard />
+                        <GiftCardCenter />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -75,14 +69,7 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <StoreCreditCard />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Partners />
+                        <StoreCardCenter />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -111,10 +98,9 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    LoyaltyCard: () => import("./LoyaltyCard"),
-    GiftCard: () => import("./GiftCard"),
-    StoreCreditCard: () => import("./StoreCreditCard"),
-    Partners: () => import("./Partners"),
+    LoyaltyCenter: () => import("./loyalty_card/LoyaltyCenter"),
+    GiftCardCenter: () => import("./gift_card/GiftCardCenter"),
+    StoreCardCenter: () => import("./store_card/StoreCardCenter"),
     RewardPrograms: () => import("./reward_programs/RewardPrograms"),
     Setting: () => import("./Setting"),
     

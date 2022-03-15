@@ -14,11 +14,6 @@
                       class="py-0 pr-0"
                       style="display: inherit"
                     >
-                      <v-tab :key="0">
-                        <span>
-                          {{ $t("insights") }}
-                        </span>
-                      </v-tab>
 
                       <v-tab>
                         <span>
@@ -32,7 +27,7 @@
                       </v-tab>
                       <v-tab>
                         <span>
-                          {{ $t("fee_payouts") }}
+                          {{ $t("partners") }}
                         </span>
                       </v-tab>
 
@@ -44,13 +39,6 @@
                
                     </v-col>
                   </v-row>
-                  <v-tab-item>
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Insight />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
 
                   <v-tab-item >
                     <v-card flat>
@@ -73,7 +61,7 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <FeePayouts />
+                        <PartnersCenter />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -102,9 +90,8 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    Insight: () => import("./Insight"),
     Channel: () => import("./sales/sale_channels/Channel"),
-    FeePayouts: () => import("./sales/sale_channels/FeePayouts"),
+    PartnersCenter: () => import("./sales/sale_channels/partners_center/PartnersCenter"),
     Report: () => import("./sales/sale_channels/Report"),
     AppConnection: () => import("./sales/sale_channels/app_connetion/AppConnection"),
     

@@ -111,10 +111,10 @@
                           </span>
                         </v-tab>
                         <v-btn
-                            to="reward"
+                            to="loyalty_card"
                             color="primary"
                             class="text-capitalize white--text absRight"
-                        >{{ $t("add_reward") }}
+                        >{{ $t("add_card") }}
                         </v-btn>
                         <!-- Info -->
                         <v-tab-item>

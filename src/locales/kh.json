@@ -4133,7 +4133,20 @@
     "customer_pice_levels" : "កំរិតតម្លៃអតិថិជន",
     "share_amount": "Share amount",
     "add_reward": "Add reward",
-    "payment_desc":  "We have partnered with the leading financial institutions to help you get paid quick and easy."
+    "payment_desc":  "We have partnered with the leading financial institutions to help you get paid quick and easy.",
+    "channels_partners": "Channels & partners",
+    "add_partners": "Add partners",
+    "search_by_name": "Search by name",
+    "add_card": "Add card",
+    "total_sale_value": "Total sale value",
+    "total_sale_valumn": "Total sale valumn",
+    "total_customer": "Total customer",
+    "card_number": "Card number"
+
+
+
+
+
 
 
 

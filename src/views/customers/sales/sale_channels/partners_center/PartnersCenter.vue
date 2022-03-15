@@ -96,6 +96,14 @@
                         </v-tab>
                         <v-tab>
                           <span class="hidden-sm-and-up">
+                            <v-icon left>mdi-information-variant</v-icon>
+                          </span>
+                            <span class="hidden-sm-and-down  text-upercase">
+                            {{ $t("fee_payouts") }}
+                          </span>
+                        </v-tab>
+                        <v-tab>
+                          <span class="hidden-sm-and-up">
                             <v-icon left>mdi-pen</v-icon>
                           </span>
                             <span class="hidden-sm-and-down  text-upercase">
@@ -111,10 +119,10 @@
                           </span>
                         </v-tab>
                         <v-btn
-                            to="reward"
+                            to="partners"
                             color="primary"
                             class="text-capitalize white--text absRight"
-                        >{{ $t("add_reward") }}
+                        >{{ $t("add_partners") }}
                         </v-btn>
                         <!-- Info -->
                         <v-tab-item>
@@ -201,6 +209,22 @@
 
                                                         </v-row>
                                                     </v-col>
+                                                </v-row>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
+                        <!-- Fee & payout -->
+                        <v-tab-item>
+                            <v-row>
+                                <v-col sm="12" cols="12" class="pt-0 px-6">
+                                    <v-row class="grayBg" style="width: 104%;">
+                                        <v-col sm="12" cols="12" class="">
+                                            <v-card outlined color="white" class="pa-3">
+                                                <v-row class="">
+                                                    <h1>Comming soon</h1>
                                                 </v-row>
                                             </v-card>
                                         </v-col>

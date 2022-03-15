@@ -581,6 +581,61 @@ const routes = [{
                             title: i18n.t('loyalty_reward')
                         }
                     },
+                    {
+                        path: 'loyalty_card/:id?',
+                        name: 'loyalty_card',
+                        component: load('loyalty_reward/loyalty_card/Card'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'loyalty_reward',
+                            miniSideBar: false,
+                            title: i18n.t('loyalty_card')
+                        }
+                    },
+                    {
+                        path: 'gift_card/:id?',
+                        name: 'gift_card',
+                        component: load('loyalty_reward/gift_card/Card'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'loyalty_reward',
+                            miniSideBar: false,
+                            title: i18n.t('gift_card')
+                        }
+                    },
+                    {
+                        path: 'store_card/:id?',
+                        name: 'store_card',
+                        component: load('loyalty_reward/store_card/Card'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'loyalty_reward',
+                            miniSideBar: false,
+                            title: i18n.t('store_card')
+                        }
+                    },
+                    {
+                        path: 'reward/:id?',
+                        name: 'reward',
+                        component: load('loyalty_reward/reward_programs/Reward'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'loyalty_reward',
+                            miniSideBar: false,
+                            title: i18n.t('reward')
+                        }
+                    },
+                    {
+                        path: 'partners/:id?',
+                        name: 'partners',
+                        component: load('customers/sales/sale_channels/partners_center/Partners'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'partners',
+                            miniSideBar: false,
+                            title: i18n.t('partners')
+                        }
+                    },
                     
                     {
                         path: 'order_sale',
