@@ -45,7 +45,6 @@
                                                         <label class="label mb-0">{{$t('name')}}</label>
                                                         <v-text-field
                                                             class="mt-1"
-                                                            type="number"
                                                             outlined
                                                         />
                                                     </v-col>
@@ -63,6 +62,7 @@
                                                         <label class="mb-0">{{ $t('phone_number') }}</label>
                                                         <v-text-field
                                                             class="mt-1"
+                                                            type="number"
                                                             tage="Phone Number"
                                                             outlined
                                                         />
@@ -71,7 +71,6 @@
                                                         <label class="label mb-0">{{$t('email')}}</label>
                                                         <v-text-field
                                                             class="mt-1"
-                                                            type="number"
                                                             outlined
                                                         />
                                                     </v-col>
