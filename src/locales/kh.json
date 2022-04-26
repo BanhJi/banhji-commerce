@@ -4141,7 +4141,10 @@
     "total_sale_value": "Total sale value",
     "total_sale_valumn": "Total sale valumn",
     "total_customer": "Total customer",
-    "card_number": "Card number"
+    "card_number": "Card number",
+    "is_requite": "Is requite",
+    "custom_field": "Custom field"
+
 
 
 

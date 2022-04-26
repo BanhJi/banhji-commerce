@@ -76,7 +76,7 @@
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <Setting/>
+                        <SettingTab/>
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -102,7 +102,7 @@ export default {
     GiftCardCenter: () => import("./gift_card/GiftCardCenter"),
     StoreCardCenter: () => import("./store_card/StoreCardCenter"),
     RewardPrograms: () => import("./reward_programs/RewardPrograms"),
-    Setting: () => import("./Setting"),
+    SettingTab: () => import("./SettingTab"),
     
   },
   data: () => ({
