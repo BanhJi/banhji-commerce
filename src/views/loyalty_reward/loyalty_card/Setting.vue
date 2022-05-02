@@ -54,7 +54,7 @@
                                                 />
                                             </v-col>
                                              <v-col sm="12" cols="12" class="py-0">
-                                                <label class="label">{{ $t("is_requite") }}</label>
+                                                <label class="label">{{ $t("is_required") }}</label>
                                                 <v-checkbox
                                                     v-model="checkbox"
                                                 ></v-checkbox>
@@ -139,8 +139,8 @@
                                     :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                                 />
                                 <kendo-grid-column
-                                    :field="'is_requite'"
-                                    :title="$t('is_requite')"
+                                    :field="'is_required'"
+                                    :title="$t('is_required')"
                                     :width="200"
                                     :template="'<span>#=nature#</span>'"
                                     :headerAttributes="{ style: 'background-color: #EDF1F5' }"
