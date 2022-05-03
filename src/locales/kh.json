@@ -3733,7 +3733,7 @@
   "over_time_weekend" : "Overtime weekend",
   "over_time_night" : "Overtime night",
   "over_time_holiday" : "Overtime holiday",
-  "end_date" : "End Date",
+  "end_date" : "កាលបរិច្ឆេទបញ្ចប់",
   "employee_group" : "Employee group",
   "group_employee" : "Employee group",
   "nature_employee" : "Employee nature",
@@ -4050,14 +4050,14 @@
      "touch_driven_display": "Touch driven display",
      "tracking": "ការ​តាមដាន",
      "b_b": "B2B",
-     "web_site": "Web site",
+     "web_site": "គេហទំព័រ",
     "sale_by_customers_desc": "របាយការណ៍ប្រតិបត្តិការលក់លំអិតតាមអតិថិជន",
     "sale_by_product_service_desc": "របាយការណ៍ប្រតិបត្តិការលក់លំអិតតាម ផលិតផល ឬសេវាកម្ម",
     "pos_setting": "កំណត់ POS",
-    "pos_for_retail": "POS for Retail",
-    "pos_for_resturant": "POS for Resturant",
-    "pos_for_service": "POS for Service",
-    "wellcome": "Welcome",
+    "pos_for_retail": "POS សម្រាប់លក់រាយ",
+    "pos_for_resturant": "POS សម្រាប់ភោជនីយដ្ឋាន",
+    "pos_for_service": "POS សម្រាប់សេវាកម្ម",
+    "wellcome": "សូមស្វាគមន៍",
     "customer_order": "Customer order",
     "time_in": "Time in",
     "time_out": "Time out",
@@ -4140,35 +4140,24 @@
     "pricing_manangement_desc" : "Advanced Pricing across multiple channels, customer, products, and dimensions",
     "customer_pice_levels" : "កំរិតតម្លៃអតិថិជន",
     "share_amount": "Share amount",
-    "add_reward": "Add reward",
+    "add_reward": "បន្ថែមរង្វាន់",
     "payment_desc":  "We have partnered with the leading financial institutions to help you get paid quick and easy.",
     "channels_partners": "ច្រកលក់ & ដៃគួសហការណ៍",
     "add_partners": "ដៃគូថ្មី",
     "search_by_name": "Search by name",
     "add_card": "Add card",
-    "total_sale_value": "Total sale value",
-    "total_sale_valumn": "Total sale valumn",
-    "total_customer": "Total customer",
-    "card_number": "Card number",
+    "total_sale_value": "តម្លៃលក់សរុប",
+    "total_sale_valumn": "បរិមាណលក់សរុប",
+    "total_customer": "អតិថិជនសរុប",
+    "card_number": "លេខកាត",
     "is_requite": "Is requite",
     "custom_field": "Custom field",
     "connections": "ការភ្ជាប់",
     "pricing": "គ្រប់គ្រងតម្លៃ",
     "low_stock": "ជិតអស់ស្តុក",
     "out_of_stock": "អស់ពីស្តុក",
-    "promotions": "ការផ្សព្វផ្សាយ"
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    "promotions": "ការផ្សព្វផ្សាយ",
+    "social": "បណ្តាញសង្គម",
+    "market": "ទីផ្សារ"
 
 } 

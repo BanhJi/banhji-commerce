@@ -4121,7 +4121,7 @@
      "touch_driven_display": "Touch driven display",
      "tracking": "Tracking",
      "b_b": "B2B",
-     "web_site": "Web site",
+     "web_site": "Website",
     "sale_by_customers_desc": "List of detail sale transaction reports grouped by customers.",
     "sale_by_product_service_desc": "List of detail sales transaction reports grouped by products and services",
     "pos_setting": "POS setting",
@@ -4218,7 +4218,7 @@
     "search_by_name": "Search by name",
     "add_card": "Add card",
     "total_sale_value": "Total sale value",
-    "total_sale_valumn": "Total sale valumn",
+    "total_sale_valumn": "Total sale valume",
     "total_customer": "Total customer",
     "card_number": "Card number",
     "is_requite": "Is requite",
@@ -4227,7 +4227,9 @@
     "pricing": "Pricing",
     "low_stock": "Low Stock",
     "out_of_stock": "Out of Stock",
-    "promotions": "Promotions"
+    "promotions": "Promotions",
+    "social": "Social",
+    "market": "Market"
 
 
 }
