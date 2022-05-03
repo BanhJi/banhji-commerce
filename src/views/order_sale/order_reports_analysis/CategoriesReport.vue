@@ -4,7 +4,7 @@
             <v-card color="white" class="no_border" elevation="0">
                 <v-row>
                     <v-col sm="12" cols="12" class="pt-0">
-                        <h2 class="mb-0 font_20">{{ $t('categories_report') }}</h2>
+                        <h2 class="mb-0 font_20">{{ $t('order_by_product_services_categories_r') }}</h2>
                         <p class="mb-0">{{ $t('categories_report_desc') }}</p>
                     </v-col>
                     <!--

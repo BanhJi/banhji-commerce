@@ -2,7 +2,7 @@
   <v-row>
     <v-col sm="12" cols="12" class="pt-0">
       <v-card color="white" class="no_border" elevation="0">
-        <h2 class="mb-0 font_20">{{ $t("sale_by_customers") }}</h2>
+        <h2 class="mb-0 font_20">{{ $t("order_by_customers_r") }}</h2>
         <p class="mb-2">{{ $t("sale_by_customers_desc") }}</p>
         <LoadingMe
           :isLoading="showLoading"

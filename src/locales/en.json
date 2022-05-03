@@ -4222,7 +4222,12 @@
     "total_customer": "Total customer",
     "card_number": "Card number",
     "is_requite": "Is requite",
-    "custom_field": "Custom field"
+    "custom_field": "Custom field",
+    "connections": "Connections",
+    "pricing": "Pricing",
+    "low_stock": "Low Stock",
+    "out_of_stock": "Out of Stock",
+    "promotions": "Promotions"
 
 
 }

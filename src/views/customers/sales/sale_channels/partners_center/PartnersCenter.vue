@@ -925,6 +925,9 @@ export default {
 };
 </script>
 <style scoped>
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+    height: 32px !important;
+}
 @media (max-width: 576px) {
     .v-tab {
         min-width: auto !important;
