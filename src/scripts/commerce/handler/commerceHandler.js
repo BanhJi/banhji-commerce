@@ -55,6 +55,42 @@ module.exports.deleteCampaign = async (data) => {
         window.console.error(error)
     }
 }
+module.exports.rewardCreate = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.rewardCreate, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.rewardGets = async function () {
+    try {
+        const response = await axios.get(apiUrl.commerce.rewardGets)
+
+        return response
+    } catch (error) {
+        window.console.log(error)
+    }
+}
+module.exports.rewardGet = async function (id) {
+    try {
+        const response = await axios.get(apiUrl.commerce.rewardGet + '/' + id)
+
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.deleteReward = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.rewardDelete, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
 module.exports.campCouponGets = async function (id) {
     try {
         const response = await axios.get(apiUrl.commerce.campCouponGets + '/' + id)

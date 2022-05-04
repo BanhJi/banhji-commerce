@@ -16,4 +16,8 @@ module.exports = {
     campCouponGets                              : url + 'campaign/coupon/' + instituteId + '/get',
     itemSearch                                  : url + 'item/' + instituteId + '/search/',
     customerSearch                              : url + 'customer/' + instituteId + '/search/',
+    rewardCreate                                : url + 'reward/' + instituteId + '/create',
+    rewardGet                                   : url + 'reward/' + instituteId + '/get',
+    rewardGets                                  : url + 'reward/' + instituteId + '/list',
+    rewardDelete                                : url + 'reward/' + instituteId + '/del',
 }
