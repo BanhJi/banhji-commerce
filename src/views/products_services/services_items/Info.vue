@@ -32,30 +32,30 @@
                 </v-col>
             </v-row>
         </v-col>
-        <v-col sm="12" cols="12" class="pb-0">
-            <v-simple-table>
-                <template v-slot:default>
-                    <tbody>
-                    <tr>
-                        <td class="text-uppercase third white--text ">{{ $t('revenue') }}</td>
-                        <td class="text-bold third white--text text-right">$10,000</td>
-                    </tr>
-                    <tr>
-                        <td class="text-uppercase third white--text">{{ $t('monthly_revenue') }}</td>
-                        <td class="text-bold third white--text text-right"/>
-                    </tr>
-                    <tr>
-                        <td class="secondary white--text text-uppercase">{{ $t('cost') }}</td>
-                        <td class="secondary white--text text-right text-bold">$10,000</td>
-                    </tr>
-                    <tr>
-                        <td  class="secondary white--text text-uppercase">{{ $t('last_used') }}</td>
-                        <td  class="secondary white--text text-right text-bold">7/10/2020</td>
-                    </tr>
-                    </tbody>
-                </template>
-            </v-simple-table>
-        </v-col>
+<!--        <v-col sm="12" cols="12" class="pb-0">-->
+<!--            &lt;!&ndash;            <v-simple-table>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <template v-slot:default>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <tbody>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="text-uppercase third white&#45;&#45;text ">{{ $t('revenue') }}</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="text-bold third white&#45;&#45;text text-right">$10,000</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="text-uppercase third white&#45;&#45;text">{{ $t('monthly_revenue') }}</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="text-bold third white&#45;&#45;text text-right"/>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="secondary white&#45;&#45;text text-uppercase">{{ $t('cost') }}</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td class="secondary white&#45;&#45;text text-right text-bold">$10,000</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td  class="secondary white&#45;&#45;text text-uppercase">{{ $t('last_used') }}</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <td  class="secondary white&#45;&#45;text text-right text-bold">7/10/2020</td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </tbody>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </template>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </v-simple-table>&ndash;&gt;-->
+<!--        </v-col>-->
         <v-col sm="12" cols="12">
             <v-row>
                 <v-col sm="12" cols="12" class="py-0">

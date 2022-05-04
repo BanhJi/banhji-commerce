@@ -11,6 +11,10 @@
                                     <v-row class="">
                                         <v-col sm="12" cols="12" class="pt-0">
                                             <v-row class="">
+                                            <v-col sm="10" cols="12">
+                                                <h2 class="mb-0 font_20">{{ $t("employee_directory") }}</h2>
+                                                <p class="mb-4">{{$t('employee_directory_desc')}}</p>
+                                            </v-col>
                                                 <v-col sm="4" cols="12" class="py-0">
                                                     <v-text-field class="mt-1"
                                                         clearable

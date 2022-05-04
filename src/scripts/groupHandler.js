@@ -33,3 +33,19 @@ module.exports.update = async (id, data) => {
         window.console.error(error)
     }
 }
+// List v2
+module.exports.getv2 = async function (param) {
+    try {
+        return await axios.post(apiUrl.product.group_getv2, param)
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+// List v2
+module.exports.getAllv2 = async function (param) {
+    try {
+        return await axios.post(apiUrl.product.group_getallv2, param)
+    } catch (error) {
+        window.console.error(error)
+    }
+}

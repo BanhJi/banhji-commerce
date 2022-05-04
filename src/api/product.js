@@ -16,9 +16,13 @@ module.exports = {
     item_type_get                       : url + 'item-type/institute/' + instituteId + '/list',
     category_post                       : url + 'category/institute/' + instituteId + '/add',
     category_get                        : url + 'category/institute/' + instituteId + '/list',
+    category_getv2                      : url + 'category-v2/institute/' + instituteId + '/list',
+    category_getAllv2                   : url + 'category-allv2/institute/' + instituteId + '/list',
 
     group_post                          : url + 'group/institute/' + instituteId + '/add',
     group_get                           : url + 'group/institute/' + instituteId + '/list',
+    group_getv2                         : url + 'group-v2/institute/' + instituteId + '/list',
+    group_getallv2                      : url + 'group-allv2/institute/' + instituteId + '/list',
     group_put                           : url + 'group/institute/' + instituteId + '/update/',
 
     uomcategory_post                    : url + 'uomcategory/institute/' + instituteId + '/add',
@@ -46,6 +50,8 @@ module.exports = {
     currency                            : url + '/type/fnc',
     sub_group_post                      : url + 'subgroup/institute/' + instituteId + '/add',
     sub_group_get                       : url + 'subgroup/institute/' + instituteId + '/list',
+    subgroup_getv2                     : url + 'subgroup-v2/institute/' + instituteId + '/list',
+    subgroup_getallv2                  : url + 'subgroup-allv2/institute/' + instituteId + '/list',
     sub_group_put                       : url + 'subgroup/institute/' + instituteId + '/update/',
 
     // Product
@@ -63,5 +69,6 @@ module.exports = {
     catalog_get                         : url + 'product-catalog/institute/' + instituteId + '/list',
 
     product_category_segment_report     : url + 'category-segment-report/institute/' + instituteId + '/report',
-    product_center                      : url + 'product/institute/' + instituteId + '/center'
+    product_center                      : url + 'product/institute/' + instituteId + '/center',
+    import_product                      : url + 'import-product/institute/' + instituteId + '/add'
 }

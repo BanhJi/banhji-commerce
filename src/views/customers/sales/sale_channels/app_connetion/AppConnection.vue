@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col sm="12" cols="12" class="grayBg px-6">
+    <v-col sm="12" cols="12" class="pt-0">
       <v-card color="white" class="pa-3 no_border" elevation="0">
         <v-row>
           <v-col sm="6" cols="12" class="pt-0">
@@ -36,7 +36,7 @@
                         {{ item.segment.name }}
                       </td>
                       <td>
-                        CAMIS
+                        
                       </td>
                       <td class="pa-1" style="width: 12%">
                         <v-btn class="btn_edit_setting"  @click="editAction(item)">

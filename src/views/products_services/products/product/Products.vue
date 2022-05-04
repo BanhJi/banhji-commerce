@@ -129,7 +129,7 @@ export default {
     StockReport: () => import("./StockReport"),
     // KvTab: () => import('./kvtab/KvTab'),
     // Warranties: () => import("./warranty/Warranties"),
-    StockCount: () => import("./count_adjustment/StockCount"),
+    StockCount: () => import("../count_adjustment/StockCount"),
     // AssembledProducts,
     // PriceMargin: () => import("./price_margin/PriceMargin"),
     // TransactionReport : ()=> import("./TransactionReport"),

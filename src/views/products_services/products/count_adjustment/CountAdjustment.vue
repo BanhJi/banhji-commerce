@@ -1,14 +1,31 @@
 <template>
   <v-row>
     <v-col sm="12" cols="12" class="pt-0">
-      <v-tabs>
+           <v-tabs
+        vertical
+        class="tab_setting"
+        slider-color="grayBg"
+        slider-size="7"
+        :class="{
+          tab_product_service_hide: isHide,
+          tab_product_service_show: !isHide,
+        }"
+      >
+        <span class="hideAbs">
+          <v-icon size="16" class="arr_icon" @click="hideTabs" v-if="!isHide">
+            mdi-chevron-left-circle
+          </v-icon>
+          <v-icon size="16" class="arr_icon1" @click="hideTabs" v-if="isHide">
+            mdi-chevron-right-circle
+          </v-icon>
+        </span>
         <v-tab>
-          <span class="text-uppercase text-left">
+          <span class="text-capitalize text-left">
             {{ $t("stock_count") }}
           </span>
         </v-tab>
         <v-tab>
-          <span class="text-uppercase">
+          <span class="text-capitalize">
             {{ $t("stock_adjustment") }}
           </span>
         </v-tab>
@@ -44,7 +61,7 @@ export default {
     },
   },
   components: {
-      InventoryAdjustments: ()=> import("../inventory_adjustment/InventoryAdjustments"),
+      InventoryAdjustments: ()=> import("../product/inventory_adjustment/InventoryAdjustments"),
       StockCount: ()=> import("./StockCount")
   },
 };

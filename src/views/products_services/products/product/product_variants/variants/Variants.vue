@@ -358,12 +358,15 @@ export default {
       new Promise((resolve) => {
         setTimeout(() => {
           resolve("resolved");
-          categoryHandler.get().then((res) => {
+          const param = {
+            pattern: 'cat#Product'
+          }
+          categoryHandler.getAllv2(param).then((res) => {
             this.showLoading = false;
-            this.categories = res;
-            this.categories = this.categories.filter(
-              (m) => m.type.name === "Product"
-            );
+            this.categories = res.data.data
+            // this.categories = this.categories.filter(
+            //   (m) => m.type.name === "Product"
+            // );
             if (this.categories.length > 0) {
               this.mCategory = this.categories[0];
               this.onCategoryChanged();
@@ -376,8 +379,11 @@ export default {
       new Promise((resolve) => {
         setTimeout(() => {
           resolve("resolved");
-          groupHandler.get().then((res) => {
-            this.groups = res.filter((k) => k.category.type.name === "Product");
+           const param = {
+            pattern: 'grp#Product'
+          }
+          groupHandler.getAllv2(param).then((res) => {
+            this.groups = res.data.data //.filter((k) => k.category.type.name === "Product");
           });
         }, 10);
       });
@@ -386,9 +392,12 @@ export default {
       new Promise((resolve) => {
         setTimeout(() => {
           resolve("resolved");
-          subGroupHandler.get().then((res) => {
+          const param = {
+            pattern: 'sgr#Product'
+          }
+          subGroupHandler.getAllv2(param).then((res) => {
             this.showLoading = false;
-            this.subGroups = res;
+            this.subGroups = res.data.data
           });
         }, 10);
       });
@@ -546,6 +555,7 @@ export default {
     await this.loadSubGroup();
     this.loadPage(this);
     this.itemRetuned(this);
+    this.disabledNextPage(true);
   },
 };
 </script>

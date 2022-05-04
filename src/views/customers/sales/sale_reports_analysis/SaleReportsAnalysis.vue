@@ -2,6 +2,20 @@
   <v-row>
     <v-col sm="12" cols="12" class="pt-0">
       <div style="background-color: #fff; padding: 0 0 5px;">
+          <h3 style="line-height: 30px;" class="font_20">
+            {{ $t("invoicing_sale_order") }}
+          </h3>
+        <chart
+            ref="chart"
+            :legend-position="'bottom'"
+            :legend-visible="false"
+            :tooltip="tooltip"
+            :series="seriesLine"
+            :chartArea="chartArea"
+            :category-axis-categories="categories_line"
+            :value-axis="valueAxis_line"
+            :theme="'sass'"
+        />
         <v-tabs class="tabs_2">
           <v-tab>
             <span class="hidden-sm-and-up">
@@ -32,7 +46,7 @@
               <v-icon left>mdi-pen</v-icon>
             </span>
             <span class="hidden-sm-and-down text-uppercase">
-              {{ $t("recurring_invoice") }}
+              {{ $t("recurring") }}
             </span>
           </v-tab>
 
@@ -71,10 +85,60 @@
 </template>
 
 <script>
+import { Chart } from "@progress/kendo-charts-vue-wrapper";
+import { i18n } from "@/i18n";
+ import {dataStore} from "@/observable/store";
 export default {
   name: "Sales",
   data: () => ({
     isHide: false,
+       showLoadingGraph: false,
+    tooltip: {
+      visible: true,
+      template: "#= series.name #: #= kendo.toString(value, `n2`) #",
+    },
+    // line chart
+    seriesLine: [
+      {
+        type: "line",
+        name: i18n.t("sale"),
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        color: "#4d4848",
+      },
+      {
+        type: "line",
+        name: i18n.t("sale_order"),
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        color: "#c80000",
+      },
+    ],
+    categories_line: [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+    ],
+    chartArea: {
+      background: "transparent",
+      height: 280,
+    },
+    valueAxis_line: [
+      {
+        max: 10,
+        // visible: false,
+        labels: {
+          format: "{0}",
+        },
+      },
+    ],
   }),
   props: {},
   methods: {
@@ -88,7 +152,13 @@ export default {
     SaleTax: () => import("./BySaleTax"),
     ByProductsServices: () => import("./ByProductsServices"),
     RecurringInvoices: () => import("./RecurringInvoices"),
+    chart: Chart,
   },
+  computed:{
+    appType(){
+      return dataStore.productType
+  }
+  }
 };
 </script>
 <style scoped>

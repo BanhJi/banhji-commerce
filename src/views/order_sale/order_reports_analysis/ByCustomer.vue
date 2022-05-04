@@ -1,10 +1,10 @@
 <template>
   <v-row>
-    <v-col sm="12" cols="12" class="pt-0">
-      <v-card color="white" class="no_border" elevation="0">
+   <v-col sm="12" cols="12" class="grayBg">
+      <v-card color="white" class="pa-3 no_border" elevation="0">
         <h2 class="mb-0 font_20">{{ $t("order_by_customers_r") }}</h2>
         <p class="mb-2">{{ $t("sale_by_customers_desc") }}</p>
-        <LoadingMe
+       <LoadingMe
           :isLoading="showLoading"
           :fullPage="false"
           type="loading"
@@ -39,7 +39,7 @@
           </v-col>
 
           <v-col sm="1" cols="1" class="pt-1">
-            <v-btn
+            <!-- <v-btn
               color="primary white--text"
               :loading="loadingSearch"
               @click="onSearch('')"
@@ -48,7 +48,7 @@
                 class="b-search"
                 style="font-size: 18px; color: #fff !important"
               />
-            </v-btn>
+            </v-btn> -->
           </v-col>
         </v-row>
         <v-row class="mt-0">
@@ -291,6 +291,7 @@
                   :sortable="false"
                   :filterable="{ multi: true }"
                   :template="status"
+                  :attributes="{ class: 'tb_name_td' , style: 'text-align: center'}"
                   :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                 />
                 <!--                <kendo-grid-column-->
@@ -492,7 +493,7 @@ export default {
         url: url,
         data: data,
       };
-      window.console.log("related", refFrom, !!refFrom.length > 0);
+      // window.console.log("related", refFrom, !!refFrom.length > 0);
       return {
         template: LinkTemplate,
         templateArgs: args,
@@ -823,13 +824,15 @@ export default {
         aggregates: this.aggregateDefinition,
       },
     ];
+    this.loadPage(this);
+    this.itemRetuned(this);
+    this.disabledNextPage(true);
     // await this.searchTransaction("");
     $(document).on("click", ".k-pager-nav", function () {
       window.console.log("this", $(this).data("page"));
     });
   },
-  computed: {
-  },
+  computed: {},
   watch: {
     // $route: "callback",
   },

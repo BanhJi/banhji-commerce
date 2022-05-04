@@ -1,6 +1,6 @@
 <template>
   <v-row class="">
-    <v-col sm="4" cols="12" class="py-0 pt-4 pr-2">
+    <v-col sm="4" cols="12" class="py-0 pr-2">
       <v-card
         outlined
         dense
@@ -87,7 +87,7 @@
           >
             <kendo-grid-column
               :field="'name'"
-              :attributes="{ class: 'tb_name_td' }"
+              :template="'<span>#=sku# - #=name#</span>'"
               :title="'Name'"
               :group-header-template="'#=value#'"
             />
@@ -95,7 +95,7 @@
         </v-card>
       </v-card>
     </v-col>
-    <v-col sm="8" cols="12" class="py-0 pt-4 pl-2">
+    <v-col sm="8" cols="12" class="py-0 pl-2">
       <v-tabs>
         <v-tab>
           <span class="hidden-sm-and-up">
@@ -137,6 +137,13 @@
             {{ $t("image") }}
           </span>
         </v-tab>
+
+            <v-btn
+              to="service"
+              color="primary"
+              class="text-capitalize white--text absRight"
+              >{{ $t("add_service") }}
+            </v-btn>
         <v-tab-item>
           <v-col sm="12" cols="12" class="pt-0 pr-0 pl-0">
             <v-row class="grayBg">
@@ -322,7 +329,7 @@ export default {
 
             // window.console.log(res)
           });
-        }, 300);
+        }, 10);
       });
     },
     async loadGroup() {
@@ -331,11 +338,14 @@ export default {
           resolve("resolved");
           this.isLoaded = true;
           this.showLoading = true;
-          groupHandler.get().then((res) => {
-            this.groups = res.filter((m) => m.category.type.name === "Service");
+          const param = {
+            pattern: 'grp#Service'
+          }
+          groupHandler.getAllv2(param).then((res) => {
+            this.groups = res.data.data // filter((m) => m.category.type.name === "Service");
             window.console.log(res, "group");
           });
-        }, 300);
+        }, 10);
       });
     },
     async loadCategory() {
@@ -344,19 +354,22 @@ export default {
           resolve("resolved");
           this.isLoaded = true;
           this.showLoading = true;
-          categoryHandler.get().then((res) => {
+          const param = {
+            pattern: 'cat#Service'
+          }
+          categoryHandler.getAllv2(param).then((res) => {
             this.showLoading = false;
             this.isLoaded = false;
-            this.categories = res;
-            this.categories = this.categories.filter(
-              (m) => m.hasOwnProperty("type") && m.type.name === "Service"
-            );
+            this.categories = res.data.data;
+            // this.categories = this.categories.filter(
+            //   (m) => m.hasOwnProperty("type") && m.type.name === "Service"
+            // );
             if (this.categories.length > 0) {
               this.mCategory = this.categories[0];
               this.onCategoryChanged();
             }
           });
-        }, 300);
+        }, 10);
       });
     },
     callback(service) {

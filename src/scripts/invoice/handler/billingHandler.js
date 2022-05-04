@@ -12,15 +12,15 @@ module.exports.byCustomer = async function (id) { // customer id
     }
 }
 
-// Customer last balance
-module.exports.balance = async function (id) { // customer id
-    try {
-        const response = await axios.get(apiUrl.billing.customer_invoice_get + '/customer/' + id)
-        return response
-    } catch (error) {
-        window.console.error(error)
-    }
-}
+// // Customer last balance
+// module.exports.balance = async function (id) { // customer id
+//     try {
+//         const response = await axios.get(apiUrl.billing.customer_invoice_get + '/customer/' + id)
+//         return response
+//     } catch (error) {
+//         window.console.error(error)
+//     }
+// }
 
 // List
 module.exports.list = async function (params) {
@@ -37,16 +37,16 @@ module.exports.list = async function (params) {
         window.console.error(error)
     }
 }
-// List
-module.exports.wcpReceivableList = async function (strFilter) {
+// List get receivab;e balance detail 
+module.exports.wcpReceivableList = async function (strFilter = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.wcp_receivable_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.wcp_receivable_get)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.wcp_receivable_get + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.wcp_receivable_get)
+        // }
+        return await axios.post(apiUrl.billing.wcp_receivable_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -68,13 +68,13 @@ module.exports.wcpPayableList = async function (strFilter) {
 // List receivable Aging
 module.exports.wcpReceivableAgingList = async function (strFilter) {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.wcp_receivable_aging_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.wcp_receivable_aging_get)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.wcp_receivable_aging_get + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.wcp_receivable_aging_get)
+        // }
+        return await axios.post(apiUrl.billing.wcp_receivable_aging_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -154,13 +154,13 @@ module.exports.txn = async function (params = '') {
 // txn Cash Payment List
 module.exports.txnCashPayment = async function (strFilter) {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.cash_payment_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.cash_payment_get)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.cash_payment_get + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.cash_payment_get)
+        // }
+        return await axios.post(apiUrl.billing.cash_payment_get, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -456,15 +456,15 @@ module.exports.debitMemoList = async (strFilter = '') => {
 }
 
 // Inventory List By functions
-module.exports.inventoryListByFunction = async function (strFilter) {
+module.exports.inventoryListByFunction = async function (strFilter = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.inventory_list_by_function + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.inventory_list_by_function)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.inventory_list_by_function + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.inventory_list_by_function)
+        // }
+        return await axios.post(apiUrl.billing.inventory_list_by_function, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -486,15 +486,15 @@ module.exports.inventoryItemPurchaseCost = async function (strFilter) {
 }
 
 // Inventory balance asf
-module.exports.inventoryBalance = async function (strFilter) {
+module.exports.inventoryBalance = async function (strFilter = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.inventory_balance + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.inventory_balance)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.inventory_balance + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.inventory_balance)
+        // }
+        return await axios.post(apiUrl.billing.inventory_balance, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -511,15 +511,15 @@ module.exports.inventoryAdjustment = async (data) => {
 }
 // Inventory adjustment
 // list
-module.exports.inventoryAdjustmentList = async (strFilter) => {
+module.exports.inventoryAdjustmentList = async (strFilter = '') => {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.inventory_adjustment_list + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.inventory_adjustment_list)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.inventory_adjustment_list + '/' + strFilter)
+        // } else {
+        //     response = 
+        // }
+        return await axios.post(apiUrl.billing.inventory_adjustment_list, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -538,23 +538,6 @@ module.exports.wcpPableOverviewList = async function (strFilter) {
         window.console.error(error)
     }
 }
-// balance
-
-// wcp payable overview Amount to Pay
-module.exports.balanceSummary = async function (strFilter) {
-    try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.balance_summary_get + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.balance_summary_get)
-        }
-        return response
-    } catch (error) {
-        window.console.error(error)
-    }
-}
-
 // Customer Transactions
 module.exports.customerTxn = async function (strFilter) {
     try {
@@ -620,17 +603,17 @@ module.exports.attachmentDelete = async function (val) {
     }
 }
 
-//Todo: vendor deposit balance summary
+//Todo: vendor/customer balance summary
 // Deposit balance asOf
-module.exports.vendorDepositBalanceSummary = async function (strFilter) {
+module.exports.balanceSummary = async function (strFilter = '') {
     try {
-        let response = []
-        if (strFilter !== undefined) {
-            response = await axios.get(apiUrl.billing.deposit_balance_summary + '/' + strFilter)
-        } else {
-            response = await axios.get(apiUrl.billing.deposit_balance_summary)
-        }
-        return response
+        // let response = []
+        // if (strFilter !== undefined) {
+        //     response = await axios.get(apiUrl.billing.deposit_balance_summary + '/' + strFilter)
+        // } else {
+        //     response = await axios.get(apiUrl.billing.deposit_balance_summary)
+        // }
+        return await axios.post(apiUrl.billing.balance_summary, strFilter)
     } catch (error) {
         window.console.error(error)
     }

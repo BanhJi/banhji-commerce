@@ -1,13 +1,30 @@
 <template>
   <v-row>
-    <v-col sm="12" cols="12" class="pt-0">
+    <v-col sm="12" cols="12" class="">
       <div style="background-color: #fff; padding: 0 0 5px;">
-        <v-tabs class="tabs_2">
+        <v-tabs
+          vertical
+          class="tab_setting auto_item_tabs"
+          slider-color="grayBg"
+          slider-size="7"
+          :class="{
+            tab_product_service_hide: isHide,
+            tab_product_service_show: !isHide,
+          }"
+        >
+          <span class="hideAbs">
+            <v-icon size="16" class="arr_icon" @click="hideTabs" v-if="!isHide">
+              mdi-chevron-left-circle
+            </v-icon>
+            <v-icon size="16" class="arr_icon1" @click="hideTabs" v-if="isHide">
+              mdi-chevron-right-circle
+            </v-icon>
+          </span>
           <v-tab>
             <span class="hidden-sm-and-up">
               <v-icon left>mdi-pen</v-icon>
             </span>
-            <span class="hidden-sm-and-down text-uppercase text-left">
+            <span class="hidden-sm-and-down text-capitalize text-left">
               {{ $t("discount_items") }}
             </span>
           </v-tab>
@@ -15,7 +32,7 @@
             <span class="hidden-sm-and-up">
               <v-icon left>mdi-pen</v-icon>
             </span>
-            <span class="hidden-sm-and-down text-uppercase">
+            <span class="hidden-sm-and-down text-capitalize">
               {{ $t("report") }}
             </span>
           </v-tab>
@@ -60,19 +77,9 @@ export default {
 };
 </script>
 <style scoped>
-.arr_icon {
-  color: #2ca01c;
-}
-
-.arr_icon1 {
-  color: #4c9aff;
-  color: #2ca01c;
-}
-
 .v-tab {
-  min-width: 30px;
-  font-size: 16px;
-  text-transform: capitalize;
+  justify-content: left;
+  font-size: 17px;
 }
 
 .v-tab--active {
@@ -82,21 +89,29 @@ export default {
 .tab_setting .v-tab--active {
   font-weight: 700;
   color: #000;
+}
+
+.v-tab--active {
   background-color: #ffffff !important;
   border-bottom: 4px solid #92d050;
   border-left: none;
 }
 
-.tabs_2 .v-tab--active {
-  background-color: #f8f8f9 !important;
-  border-bottom: 4px solid #92d050;
-  border-left: none;
+.tab_product_service_show.theme--light .v-slide-group__content {
+  width: 140px !important;
 }
-
-/* .v-tab--active {
-} */
 
 p {
   color: rgba(0, 0, 0, 0.87);
+}
+
+@media (max-width: 576px) {
+  .tab_setting.theme--light.v-tabs.tab_setting > .v-tabs-bar {
+    width: 55px !important;
+  }
+
+  .hideAbs {
+    display: none !important;
+  }
 }
 </style>

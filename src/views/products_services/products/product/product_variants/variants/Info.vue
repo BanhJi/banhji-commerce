@@ -252,7 +252,7 @@ export default {
             billingHandler.inventoryItemPurchaseCost(strFilter).then((res) => {
               if (res.data.statusCode === 200) {
                 this.showLoading = false;
-                const response = res.data.data;
+                const response = res.data.data[0];
                 this.itemCost = 0;
                 if (response) {
                   window.console.log(response, "--");
@@ -275,11 +275,16 @@ export default {
           resolve("resolved");
           this.showLoading = false;
           const startDate = new Date().toISOString().substr(0, 10);
-          let strFilter = "?asOf=" + startDate + "&id=" + this.id;
+          // let strFilter = "?asOf=" + startDate + "&id=" + this.id;
           if (this.id !== undefined || this.id !== null) {
-            strFilter =
-              "?asOf=" + startDate + "&id=" + this.id + "&item=" + true;
-            billingHandler.inventoryBalance(strFilter).then((res) => {
+            // strFilter =
+            //   "?asOf=" + startDate + "&id=" + this.id + "&item=" + true;
+            const params = {
+              asOf: startDate,
+              key: {},
+              id: this.id
+            };
+            billingHandler.inventoryBalance(params).then((res) => {
               if (res.data.statusCode === 200) {
                 this.showLoading = false;
                 const response = res.data.data;

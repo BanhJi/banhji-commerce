@@ -5,7 +5,7 @@
 				<!-- Upper Row -->
 				<v-row>
 					<v-col sm="12" cols="12" class="pt-1   pb-0">
-						<app-searchdate
+						<date-search
 							:initStartDate="startDate"
 							@emitStartDate="startDate = $event"
 							:initEndDate="endDate"
@@ -427,7 +427,7 @@ export default {
 	name: "GeneralLedger",
 	components: {
 		LoadingMe: () => import("@/components/Loading"),
-		"app-searchdate": () => import("@/components/custom_templates/SearchDate"),
+		"date-search": () => import("@/components/custom_templates/DateSearch"),
 		downloadexcel: downloadexcel,
 	},
 	data: () => ({

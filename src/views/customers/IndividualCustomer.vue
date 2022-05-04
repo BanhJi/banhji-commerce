@@ -38,7 +38,7 @@
                                                             :disabled="disabledMe"
                                                             tage="Customer Type"
                                                             v-on:change="customerTypeChange"
-                                                            :rules="[(v) => !!v['id'] || $t('is required!')]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             v-model="customer.customerType"
                                                             return-object
                                                             outlined/>
@@ -326,7 +326,7 @@
                                                             return-object
                                                             tage="Default Discount"
                                                             placeholder="0% discount"
-                                                            :rules="[(v) => !!v['id'] || $t('is_required')]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             outlined/>
                                                         <label class="mb-0">{{ $t("default_price_level") }}</label>
                                                         <v-select
@@ -335,7 +335,7 @@
                                                             :items="priceLevel"
                                                             item-value="id"
                                                             item-text="name"
-                                                            :rules="[(v) => !!v || $t('is_required'),]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             return-object
                                                             placeholder="Price Level"
                                                             tage="Default Price Level"
@@ -348,7 +348,7 @@
                                                             item-value="id"
                                                             item-text="name"
                                                             :disabled="true"
-                                                            :rules="[(v) => !!v || $t('is_required'),]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             return-object
                                                             placeholder="Payment_term"
                                                             tage="Payment_term"
@@ -360,11 +360,10 @@
                                                             class="mt-1"
                                                             :items="cashPayment"
                                                             tage="Cash Payment"
-                                                            :rules="[(v) => !!v || 'Cash payment is required',]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             :item-text="(item) => `${item.code} - ${item.name}`"
                                                             v-model="customer.cashPayment"
                                                             return-object
-                                                            clearable
                                                             outlined/>
                                                         <label class="mb-0">{{ $t("bill_payment") }}</label>
                                                         <v-select
@@ -410,10 +409,18 @@
                                                         <v-select
                                                             class="mt-1"
                                                             v-model="mAccReceivable"
+                                                            :loading="accReceivable.length === 0"
                                                             :items="accReceivable"
-                                                            :rule="[(v) => !!v || $t('is_required')]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             item-value="id"
-                                                            :item-text="(item) => `${item.number} - ${item.name}`"
+                                                            :item-text="
+                                                                (item) =>
+                                                                `${item.number} - ${
+                                                                    this.$store.state.accounting.accountLanguage ===
+                                                                    'English'
+                                                                    ? item.name
+                                                                    : item.local_name
+                                                                }`"
                                                             return-object
                                                             placeholder="Account Receivable"
                                                             tage="Account Receivable"
@@ -423,10 +430,18 @@
                                                         <v-select
                                                             class="mt-1"
                                                             v-model="mAccDiscount"
+                                                            :loading="accDiscount.length === 0"
                                                             :items="accDiscount"
-                                                            :rule="[(v) => !!v || $t('is_required')]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             item-value="id"
-                                                            :item-text="(item) => `${item.number} - ${item.name}` "
+                                                            :item-text="
+                                                                (item) =>
+                                                                `${item.number} - ${
+                                                                    this.$store.state.accounting.accountLanguage ===
+                                                                    'English'
+                                                                    ? item.name
+                                                                    : item.local_name
+                                                                }`"
                                                             return-object
                                                             tage="Settlement Discount"
                                                             placeholder="Receipt Settlement Discount"
@@ -438,10 +453,18 @@
                                                         <v-select
                                                             class="mt-1"
                                                             v-model="mAccDeposit"
+                                                            :loading="accDeposit.length === 0"
                                                             :items="accDeposit"
-                                                            :rule="[(v) => !!v || $t('is_required')]"
+                                                            :rules="[ v =>  v ? (!!v['id'] || $t('is_required')): '']"
                                                             item-value="id"
-                                                            :item-text="(item) => `${item.number} - ${item.name}`"
+                                                            :item-text="
+                                                                (item) =>
+                                                                `${item.number} - ${
+                                                                    this.$store.state.accounting.accountLanguage ===
+                                                                    'English'
+                                                                    ? item.name
+                                                                    : item.local_name
+                                                                }`"
                                                             return-object
                                                             tage="Sale Deposit"
                                                             :disabled="disabledMe"
@@ -876,11 +899,12 @@ export default {
         },
         async initData() {
             // window.console.log('me', this.customer)
-            if (this.$route.params.id !== undefined) {
-                await this.loadSingleCustomer();
-            } else {
-                // this.clear()
-            }
+            // if (this.$route.params.id !== undefined) {
+            //     await this.loadSingleCustomer();
+            // } else {
+            //     // this.clear()
+            //     this.loadPaymentTerm()
+            // }
         },
         clear() {
             const cusType = this.customer.customerType || {}
@@ -971,8 +995,9 @@ export default {
                 // window.console.log("in validation");
                 // if(Object.keys(this.mPaymentTerm).length === 0){
                 //   this.model_tabs = 2;
+                 window.scrollTo({behavior: 'smooth',top: 20});
                 this.$snotify.error(
-                    "Field is required, please check field each of tabs!"
+                    i18n.t('please_fill_all_required_in_each_tabs')
                 );
                 // }
                 return;
@@ -1239,20 +1264,23 @@ export default {
                                 }
                                 this.customer = resultData[0];
                                 window.console.log('this.customer', this.customer)
-                                this.mCustomerGroup = this.customer.paymentBilling.hasOwnProperty("customerGroup") ? this.customer.paymentBilling.customerGroup : {};
-                                this.mPaymentTerm = this.customer.paymentBilling.hasOwnProperty("paymentTerm") ? this.customer.paymentBilling.paymentTerm : {};
-                                this.mPaymentMethod = this.customer.paymentBilling.hasOwnProperty("paymentOption") ? this.customer.paymentBilling.paymentOption : {};
-                                this.mWareHouse = this.customer.paymentBilling.hasOwnProperty("warehouse") ? this.customer.paymentBilling.warehouse : {};
-                                this.mDiscountItem = this.customer.paymentBilling.hasOwnProperty("discountItem") ? this.customer.paymentBilling.discountItem : {};
+                                const paymentBilling = this.customer.paymentBilling || {}
+                                const accountTax = this.customer.accountTax || {}
+                                this.mCustomerGroup = paymentBilling.customerGroup || {};
+                                // this.mPaymentTerm = paymentBilling.paymentTerm || {};
+                                this.mPaymentMethod = paymentBilling.paymentOption || {};
+                                this.mWareHouse = paymentBilling.warehouse || {};
+                                this.mDiscountItem = paymentBilling.discountItem || {};
                                 // this.mPriceLevel = this.customer.paymentBilling.hasOwnProperty("priceLevel") ? this.customer.paymentBilling.priceLevel : {};
-                                this.mAccReceivable = this.customer.accountTax.hasOwnProperty("receivableAcc") ? this.customer.accountTax.receivableAcc : {};
-                                this.mAccDiscount = this.customer.accountTax.hasOwnProperty("saleDiscountAcc") ? this.customer.accountTax.saleDiscountAcc : {};
-                                this.mAccDeposit = this.customer.accountTax.hasOwnProperty("saleDepositAcc") ? this.customer.accountTax.saleDepositAcc : {};
-                                this.mVat = this.customer.accountTax.hasOwnProperty("saleTax") ? this.customer.accountTax.saleTax : {};
+                                this.mAccReceivable = accountTax.receivableAcc || {};
+                                this.mAccDiscount = accountTax.saleDiscountAcc || {};
+                                this.mAccDeposit = accountTax.saleDepositAcc || {};
+                                this.mVat = accountTax.saleTax || {};
                                 this.mPriceLevel = this.customer.priceLevel || {}
-                                let contact_address = this.customer.contactAddress
-                                if (contact_address.address.length > 0) {
-                                    this.addressList = this.customer.contactAddress.address
+                                const contact_address = this.customer.contactAddress || {}
+                                const address = contact_address.address || []
+                                if (address.length > 0) {
+                                    this.addressList = address
                                 }
                                 // this.mDefaultTaxOnShipping = this.customer.accountTax.hasOwnProperty('defaultTaxOnShipping') ? this.customer.accountTax.defaultTaxOnShipping : {}
                                 const hasImg = this.customer.hasOwnProperty("image");
@@ -1267,7 +1295,13 @@ export default {
                                     }
                                 }
                                 this.hasTxn(this.customer.id)
+                                const cusType = this.customer.customerType || {}
+                                const customerType = this.customerTypes.filter(k => k.id === cusType.id)[0]
+                                this.customer.customerType = customerType
+                                // window.console.log('customer.customerType', cusType, this.customerTypes)
                             }
+                        } else {
+                            this.showLoading = false;
                         }
                     });
                 }, 10);
@@ -1392,7 +1426,13 @@ export default {
         //         this.loadSingleCustomer();
         //     }
         // },
-        '$route': 'loadSingleCustomer'
+        // '$route': 'loadSingleCustomer'
+        checkId(){
+            if(this.$route.params.id !== undefined){
+                this.loadSingleCustomer();
+                // this.loadPaymentTerm()
+            }
+        }
     },
     mounted: async function () {
         await this.loadInstituteInfo();
@@ -1414,6 +1454,9 @@ export default {
         // await this.loadSubOfCustomer()
     },
     computed: {
+        checkId(){
+            return this.$route.params.id;
+        },
         virtual: function () {
             return {
                 pageSize: pageSize,

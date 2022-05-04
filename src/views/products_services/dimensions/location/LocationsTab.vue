@@ -29,24 +29,24 @@
         <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
-                <Location/>
+                <!-- <Location/> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
         <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
-                <LocationType/>
+                <!-- <LocationType/> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
-        <!-- <v-tab-item>
+        <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
                 <Transactions/>
             </v-card-text>
           </v-card>
-        </v-tab-item> -->
+        </v-tab-item>
       </v-tabs>
     </v-col>
   </v-row>
@@ -65,9 +65,9 @@ export default {
     },
   },
   components: {
-    Location: ()=> import("./Location"),
-    LocationType: ()=>import("./LocationType"),
-    // Transactions: ()=> import("./Transactions")
+    // Location: ()=> import("./Location"),
+
+    Transactions: ()=> import("./Transactions")
   },
 };
 </script>

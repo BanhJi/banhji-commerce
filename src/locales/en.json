@@ -4229,7 +4229,11 @@
     "out_of_stock": "Out of Stock",
     "promotions": "Promotions",
     "social": "Social",
-    "market": "Market"
+    "market": "Market",
+    "employee_directory_desc": "List of detail employee by department. Only employees with active employment are displayed here",
+    "inventory_to_be_reordered_desc": "List of products to be reordered based on their reorder points",
+    "stock_count_desc": "List of stock adjustment transactions with summary of key adjusted amount and quantity",
+    "customer_discount_item": "Customer discount item"
 
 
 }

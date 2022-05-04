@@ -1,7 +1,7 @@
 <template>
   <v-row>
-     <v-col sm="12" cols="12" class="pt-0">
-      <v-card color="white" class="no_border" elevation="0">
+    <v-col sm="12" cols="12" class="grayBg">
+      <v-card color="white" class="pa-3 no_border" elevation="0">
         <!-- loading -->
         <h2 class="mb-0 font_20">{{ $t("sale_by_product_service") }}</h2>
         <p class="mb-2">{{ $t("sale_by_product_service_desc") }}</p>
@@ -41,7 +41,7 @@
           </v-col>
 
           <v-col sm="1" cols="1" class="pt-1">
-            <v-btn
+            <!-- <v-btn
               color="primary white--text"
               :loading="loadingSearch"
               @click="onSearch('')"
@@ -50,7 +50,7 @@
                 class="b-search"
                 style="font-size: 18px; color: #fff !important"
               />
-            </v-btn>
+            </v-btn> -->
           </v-col>
         </v-row>
         <v-row class="mt-0">
@@ -755,6 +755,9 @@ export default {
         aggregates: this.aggregateDefinition,
       },
     ];
+    this.loadPage(this)
+    this.itemRetuned(this);
+    this.disabledNextPage(true);
     // await this.searchTransaction("");
   },
   computed: {},

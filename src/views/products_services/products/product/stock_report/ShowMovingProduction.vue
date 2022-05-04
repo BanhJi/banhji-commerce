@@ -21,7 +21,7 @@
                     color="primary white--text text-capitalize"
                     @click="loadReceivable"
                   >
-                    {{ $t("view") }}
+                  <i class="b-search" style="font-size: 18px; color:#fff !important;"/>
                   </v-btn>
                 </v-col>
               </v-row>

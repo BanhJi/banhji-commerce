@@ -61,7 +61,7 @@
                             />
                             <kendo-grid-column
                               :field="'variant'"
-                              :title="$t('variant')"
+                              :title="$t('variant_attributes')"
                               :width="150"
                               :editable="
                                 () => {
@@ -83,7 +83,7 @@
                               :editor="attributeDropDownEditor"
                               :headerAttributes="{
                                 style:
-                                  'text-align: right; background-color: #EDF1F5',
+                                  'text-align: center; background-color: #EDF1F5',
                               }"
                             />
                           </kendo-grid>
@@ -662,6 +662,8 @@ export default {
       new Promise((resolve) => {
         resolve("resolved");
         setTimeout(() => {
+          this.imgFile = ''
+          this.$refs.fileupload.value = null;
           this.showLoading = true;
           const strFilter = "?id=" + this.$route.params.id;
           // .getOne(this.$route.query.p, this.$route.params.id)
@@ -675,11 +677,10 @@ export default {
             this.variantSku = this.productVariant.sku || "";
             this.attributeList = [];
             const variant = this.productVariant.attribute || [];
-            this.src =
-              "https://s3-ap-southeast-1.amazonaws.com/images.banhji/" +
-              this.productVariant.thumb;
+            this.src ="https://s3-ap-southeast-1.amazonaws.com/images.banhji/" + this.productVariant.thumb;
             if (this.$route.query.type === "new") {
               this.src = "";
+              this.imgFile = ''
             }
             this.showLoading = false;
             window.console.log("variant", variant);

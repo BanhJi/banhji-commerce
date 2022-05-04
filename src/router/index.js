@@ -165,6 +165,18 @@ const routes = [{
                             title: i18n.t('receivables_revenue')
                         }
                     },
+                    {
+                        path: 'set_price/:id?',
+                        name: 'Set Price',
+                        component: load('pricing_management/SetPrice'),
+                        props: true,
+                        meta: {
+                            moduleId: 18,
+                            mainMenu: 'commerce',
+                            miniSideBar: false,
+                            title: i18n.t('commerce')
+                        }
+                    },
                     
                     {
                         path: 'pricing',
@@ -191,7 +203,7 @@ const routes = [{
                         path: 'service/:id?',
                         name: 'Service',
                         props: true,
-                        component: load('services_projects/items/services_items/Service'),
+                        component: load('products_services/services_items/Service'),
                         meta: {
                             moduleId: 6,
                             mainMenu: 'services_projects_non',
@@ -213,7 +225,7 @@ const routes = [{
                     {
                         path: 'stock_count/:id?',
                         name: 'Stock Count',
-                        component: load('products/product/count_adjustment/StockCounts'),
+                        component: load('products_services/products/count_adjustment/StockCounts'),
                         props: true,
                         meta: {
                             moduleId: 5,
@@ -248,7 +260,7 @@ const routes = [{
                     {
                         path: 'item-modifier/:id?',
                         name: 'Item Modifier',
-                        component: load('products/product/ItemModifier'),
+                        component: load('products_services/products/product/ItemModifier'),
                         props: true,
                         meta: {
                             moduleId: 5,
@@ -362,7 +374,7 @@ const routes = [{
                     {
                         path: 'product_variant/:id?',
                         name: 'Product Variant',
-                        component: load('products/product/product_variants/products/ProductVariant'),
+                        component: load('products_services/products/product/product_variants/products/ProductVariant'),
                         props: true,
                         meta: {
                             moduleId: 5,

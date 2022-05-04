@@ -2,14 +2,14 @@
   <v-row>
     <v-col sm="12" class="py-0" cols="12">
       <v-tabs>
-        <v-tab>
+        <!-- <v-tab>
           <span class="hidden-sm-and-up">
             <v-icon left>mdi-pen</v-icon>
           </span>
           <span class="hidden-sm-and-down text-uppercase text-left">
             {{ $t("list") }}
           </span>
-        </v-tab>
+        </v-tab> -->
         <v-tab>
           <span class="hidden-sm-and-up">
             <v-icon left>mdi-pen</v-icon>
@@ -26,27 +26,27 @@
             {{ $t("transaction") }}
           </span>
         </v-tab> -->
-        <v-tab-item>
+        <!-- <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
                 <Segement/>
             </v-card-text>
           </v-card>
-        </v-tab-item>
+        </v-tab-item> -->
                 <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
-                <SegmentType/>
+                <!-- <SegmentType/> -->
             </v-card-text>
           </v-card>
         </v-tab-item>
-        <!-- <v-tab-item>
+        <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
                 <Transactions/>
             </v-card-text>
           </v-card>
-        </v-tab-item> -->
+        </v-tab-item>
       </v-tabs>
     </v-col>
   </v-row>
@@ -65,9 +65,9 @@ export default {
     },
   },
   components: {
-    Segement : ()=> import("./Segment"),
-    SegmentType: ()=>import("./SegmentType"),
-    // Transactions : ()=> import("./Transactions")
+    // Segement : ()=> import("./Segment"),
+    // SegmentType: ()=>import("./SegmentType"),
+    Transactions : ()=> import("./Transactions")
   },
 };
 </script>

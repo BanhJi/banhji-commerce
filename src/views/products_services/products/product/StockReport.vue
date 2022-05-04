@@ -7,32 +7,47 @@
                         <span class="hidden-sm-and-up">
                             <v-icon left>mdi-pen</v-icon>
                         </span>
-                        <span class="hidden-sm-and-down text-capitalize text-left">
-                            {{ $t('production_order') }}
+                        <span class="hidden-sm-and-down text-uppercase text-left">
+                            {{ $t('summary') }}
                         </span>
                     </v-tab>
                     <v-tab>
                         <span class="hidden-sm-and-up">
                             <v-icon left>mdi-pen</v-icon>
                         </span>
-                        <span class="hidden-sm-and-down text-capitalize">
-                            {{ $t('production') }}
+                        <span class="hidden-sm-and-down text-uppercase">
+                            {{ $t('reorder') }}
                         </span>
                     </v-tab>
-                    <v-tab-item class="px-6 py-3" style="background: #F8F8F9 !important;">
+                    <!-- <v-tab>
+                        <span class="hidden-sm-and-up">
+                            <v-icon left>mdi-pen</v-icon>
+                        </span>
+                        <span class="hidden-sm-and-down text-uppercase">
+                            {{ $t('slow_moving') }}
+                        </span>
+                    </v-tab> -->
+                    <v-tab-item>
                         <v-row>
                             <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
-                               <ProductionOrder/>
+                               <Balance/>
                             </v-col>
                         </v-row>
                     </v-tab-item>
-                    <v-tab-item class="px-6 py-3" style="background: #F8F8F9 !important;">
+                    <v-tab-item>
                         <v-row>
                             <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
-                               <Production/>
+                                <Reorder/>
                             </v-col>
                         </v-row>
                     </v-tab-item>
+                    <!-- <v-tab-item>
+                        <v-row>
+                            <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
+                                <ShowMovingProduction/>
+                            </v-col>
+                        </v-row>
+                    </v-tab-item> -->
                 </v-tabs>
             </div>
         </v-col>
@@ -47,22 +62,15 @@
         }),
         props: {},
         methods: {
-            clickMe(data) {
-                // alert(data.link)
-                this.$router.push(`${data.link}`);
-                //this.$event.target.classList.toggle(active)
-                //eslint-disable-next-line no-console
-                console.log(data.link)
-                //eslint-disable-next-line no-console
-                //console.log(data)
-            }, 
+
             hideTabs(){
 				this.isHide = !this.isHide;
 			},
         },
         components: {
-            ProductionOrder: () => import('./ProductionOrder'),
-            Production: () => import('./Production'),
+            Balance: () => import('./stock_report/Balance'),
+            Reorder: () => import('./stock_report/Reorder'),
+            // ShowMovingProduction: ()=> import("./stock_report/ShowMovingProduction")
         },
     };
 </script>
@@ -75,8 +83,9 @@
         color: #2CA01C;
     }
     .v-tab {
-        justify-content: left;
+        min-width: 30px;
         font-size: 16px;
+        text-transform: capitalize;
     }
 
     .v-tab--active {

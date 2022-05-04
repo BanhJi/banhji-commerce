@@ -4033,7 +4033,7 @@
      "sale_by_product_services_categories_r": "លក់តាមប្រភេទ ផលិតផល ឬ សេវាកម្ម",
      "sale_targets_r": "គោលដៅលក់",
      "sale_performance_r": "វាយតម្លៃ​លើ ការលក់",
-     "import_employee": "Import employee",
+     "import_employee": "បញ្ចូលទិន្នន័យបុគ្គលិក",
      "session_management": "Session management",
      "sale_unit_management": "Sale unit management",
      "user_roles": "User roles",
@@ -4158,6 +4158,10 @@
     "out_of_stock": "អស់ពីស្តុក",
     "promotions": "ការផ្សព្វផ្សាយ",
     "social": "បណ្តាញសង្គម",
-    "market": "ទីផ្សារ"
+    "market": "ទីផ្សារ",
+    "employee_directory_desc": "បញ្ជីឈ្មោះបុគ្គលិកតាមមុខងារ និងផ្នែក",
+    "inventory_to_be_reordered_desc": "របាយការណ៍សង្ខេបសមតុល្យផលិតផល ដែលត្រូវបញ្ជាទិញបន្ថែម ដោយផ្អែកតាមកម្រិតបញ្ជាទិញ",
+    "customer_discount_item": "តារាងបញ្ចុះតម្លៃការលក់"
+
 
 } 

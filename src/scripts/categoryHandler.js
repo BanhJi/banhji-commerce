@@ -36,3 +36,19 @@ module.exports.create = async (data) => {
         window.console.error(error)
     }
 }
+// get v2 by page
+module.exports.getv2 = async function (param) {
+    try {
+        return await axios.post(apiUrl.product.category_getv2, param)
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+// get v2 all
+module.exports.getAllv2 = async function (param) {
+    try {
+        return await axios.post(apiUrl.product.category_getAllv2, param)
+    } catch (error) {
+        window.console.error(error)
+    }
+}

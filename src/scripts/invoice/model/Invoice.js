@@ -114,6 +114,11 @@ export default class Invoice {
             this.saleTaxDetail                  = data.saleTaxDetail || []
             this.cashBasicIncomeAcc             = data.cashBasicIncomeAcc || []
             this.OtherChargeAmount              = data.OtherChargeAmount || 0
+
+            this.isJournal                      = data.isJournal || 1 // [ 0 = no record journal, 1 = record journal]
+            this.journalStatus                  = data.journalStatus || 0 // [ 0 = no journal , 1 = journal success , 2 = journal error ]
+            this.batchNumber                    = data.batchNumber || '' // reference number from billing app
+            this.filterBy                       = data.filterBy || 'Name'
 }
 
     constuct(data) {

@@ -67,6 +67,15 @@ module.exports.getOne = async function (product_id, id) {
         window.console.error(error)
     }
 }
+module.exports.variantOne = async function (strFilter = '') {
+    try {
+        const response = await axios.get(apiUrl.item.variant_one + strFilter)
+
+        return response.data.data[0]
+    } catch (error) {
+        window.console.error(error)
+    }
+}
 // Images upload
 module.exports.upload = async function (data) {
     try {

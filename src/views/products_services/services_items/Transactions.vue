@@ -5,7 +5,7 @@
                 <!--                <h2 class="mb-0">{{ $t('services_sale_transactions') }}</h2>-->
                 <v-row>
                     <v-col sm="9" cols="12" class="py-0">
-                        <app-searchdate :initStartDate="startDate" @emitStartDate="startDate = $event"
+                        <date-search :initStartDate="startDate" @emitStartDate="startDate = $event"
                                         :initEndDate="endDate" @emitEndDate="endDate = $event"/>
                     </v-col>
 
@@ -128,7 +128,6 @@
     </v-row>
 </template>
 <script>
-import SearchDateComponent from "@/components/custom_templates/SearchDate";
 import LinkTemplate from "@/components/kendo_templates/LinkTemplate";
 
 const itemHandler = require("@/scripts/productVariantHandler")
@@ -148,7 +147,7 @@ export default {
     },
     components: {
         LoadingMe: () => import(`@/components/Loading`),
-        'app-searchdate': SearchDateComponent,
+        "date-search": () => import("@/components/custom_templates/DateSearch"),
     },
     data: () => ({
         showLoading: false,
@@ -223,7 +222,7 @@ export default {
         await this.searchTransaction()
     },
     watch: {
-        'id': 'searchTransaction'
+        // 'id': 'searchTransaction'
     },
 };
 </script>

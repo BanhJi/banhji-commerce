@@ -25,11 +25,6 @@
                           {{ $t("service") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="2">
-                        <span>
-                          {{ $t("tracking") }}
-                        </span>
-                      </v-tab>
                       
                
                     </v-col>
@@ -46,13 +41,6 @@
                     <v-card flat>
                       <v-card-text class="">
                         <ServicesItems />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <DimensionsTabs />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -75,9 +63,8 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Reports",
   components: {
-    Products: () => import("./product/Products"),
+    Products: () => import("./products/product/Products"),
     ServicesItems: () => import("./services_items/ServicesItems"),
-    DimensionsTabs: () => import("./dimensions/DimensionsTabs"),
 
 
     

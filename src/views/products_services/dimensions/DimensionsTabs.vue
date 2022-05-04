@@ -30,11 +30,11 @@
             {{ $t("location") }}
           </span>
                 </v-tab>
-                <v-tab>
-          <!-- <span class="text-capitalize text-left">
+                <!-- <v-tab>
+          <span class="text-capitalize text-left">
             {{ $t("class_") }}
-          </span> -->
-                </v-tab>
+          </span>
+                </v-tab> -->
                 <v-tab-item>
                     <v-card flat>
                         <v-card-text class="py-0">
@@ -49,13 +49,6 @@
                         </v-card-text>
                     </v-card>
                 </v-tab-item>
-                <!-- <v-tab-item>
-                    <v-card flat>
-                        <v-card-text class="py-0">
-                            <ClassTab/>
-                        </v-card-text>
-                    </v-card>
-                </v-tab-item> -->
 
             </v-tabs>
         </v-col>

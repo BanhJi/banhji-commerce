@@ -60,7 +60,7 @@ module.exports = {
     customer_term_get                           : url + 'payment-term/institute/' + instituteId + '/list',
     //report
     payment_term_report                         : url + 'payment-term-report/institute/' + instituteId + '/list',
-    importCreate                                : url + 'import/institute/' + instituteId + '/add',
+    importCreate                                : url + 'import-customer/institute/' + instituteId + '/add',
     importVendorCreate                          : url + 'importvendor/institute/' + instituteId + '/add',
     importEmpCreate                             : url + 'importemp/institute/' + instituteId + '/add',
     importServiceCreate                         : url + 'importservice/institute/' + instituteId + '/add',

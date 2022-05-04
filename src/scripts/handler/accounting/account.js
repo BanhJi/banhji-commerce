@@ -1,7 +1,6 @@
 const axios = require('axios');
 const apiUrl = require('@/apiUrl.js');
 
-
 // GET BY ID
 module.exports.getOne = async (id) => {
     try {

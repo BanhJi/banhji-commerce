@@ -79,3 +79,13 @@ module.exports.upload = async function (data) {
         window.console.error(error)
     }
 }
+// Import service
+module.exports.importServiceItem = async function (data) {
+    try {
+        const response = await axios.post(apiUrl.item.import_service, data)
+
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}

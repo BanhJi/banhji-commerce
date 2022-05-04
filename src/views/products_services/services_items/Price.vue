@@ -423,7 +423,14 @@ export default {
             return code
         },
         autoPrice() {
-            const value = this.uomPrice.value || 0;
+            let value = 0;
+            let uomPrice = this.uomPrice.priceLevel;
+            let type     = uomPrice.type
+            if (type.name == "Percentage Base") {
+                value = this.uomPrice.value / 100 || 0;
+            } else {
+                value = this.uomPrice.value || 0;
+            }
             let base = this.uomPrice.base || 0;
             let price_ = (value * base) / 100;
             if (base > 100) {
