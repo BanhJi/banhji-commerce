@@ -102,14 +102,7 @@
                             {{ $t("transactions") }}
                           </span>
                         </v-tab>
-                        <v-tab v-show="campaign.type == `coupon`">
-                          <span class="hidden-sm-and-up">
-                            <v-icon left>mdi-pen</v-icon>
-                          </span>
-                            <span class="hidden-sm-and-down  text-upercase">
-                            {{ $t("coupon_list") }}
-                          </span>
-                        </v-tab>
+                        
                         <v-btn
                             to="loyalty_card"
                             color="primary"
@@ -356,77 +349,7 @@
                                 </v-col>
                             </v-row>
                         </v-tab-item>
-                        <!-- Coupon -->
-                        <v-tab-item>
-                            <v-row>
-                                <v-col sm="12" cols="12" class="pt-0 px-6">
-                                    <v-row class="grayBg" style="width: 104%;">
-                                        <v-col sm="12" cols="12" class="">
-                                            <v-card outlined color="white" class="pa-3">
-                                                <v-row class="">
-                                                    <v-col sm="3" cols="12" class="py-0">
-                                                        <v-text-field
-                                                            class="mt-1"
-                                                            v-model="couponName"
-                                                            :placeholder="$t('search_coupon_number')"
-                                                            outlined
-                                                        />
-                                                    </v-col>
-                                                    <v-col sm="1" cols="1" class="py-0 mt-1">
-                                                        <v-btn
-                                                            color="primary white--text"
-                                                            @click="searchCoupon"
-                                                        >
-                                                            <i
-                                                                class="b-search"
-                                                                style="font-size: 18px; color:#fff !important;"
-                                                            />
-                                                        </v-btn>
-                                                    </v-col>
-                                                </v-row>
-                                                <v-row class="">
-                                                    <v-col sm="12" cols="12" class="py-0">
-                                                        <LoadingMe
-                                                            :isLoading="showLoadingCoupon"
-                                                            :fullPage="false"
-                                                            type="loading"
-                                                            :myLoading="true"
-                                                        >
-                                                        </LoadingMe>
-                                                        <kendo-datasource
-                                                            ref="couponDS"
-                                                            :data="couponList"
-                                                            :server-paging="false"
-                                                        />
-                                                        <kendo-grid
-                                                            id="couponDS"
-                                                            class="grid-function"
-                                                            :data-source-ref="'couponDS'"
-                                                            :editable="false"
-                                                            :groupale="true"
-                                                            :column-menu="true"
-                                                            :noRecords="true"
-                                                            :scrollable-virtual="true"
-                                                        >
-                                                            <kendo-grid-column
-                                                                :field="'pk'"
-                                                                :title="$t('number')"
-                                                                :width="200"
-                                                            />
-                                                            <kendo-grid-column
-                                                                :field="'status'"
-                                                                :title="$t('status')"
-                                                                :width="200"
-                                                            />
-                                                        </kendo-grid>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-card>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>
-                            </v-row>
-                        </v-tab-item>
+                        
                     </v-tabs>
                 </v-col>
             </v-row>

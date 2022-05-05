@@ -102,6 +102,14 @@
                             {{ $t("transactions") }}
                           </span>
                         </v-tab>
+                        <v-tab>
+                          <span class="hidden-sm-and-up">
+                            <v-icon left>mdi-pen</v-icon>
+                          </span>
+                            <span class="hidden-sm-and-down  text-upercase">
+                            {{ $t("connected_card") }}
+                          </span>
+                        </v-tab>
                         <v-btn
                             to="reward"
                             color="primary"
@@ -192,6 +200,154 @@
                             </v-row>
                         </v-tab-item>
                         <!-- Transactions -->
+                        <v-tab-item>
+                            <v-row>
+                                <v-col sm="12" cols="12" class="pt-0 px-6">
+                                    <v-row class="grayBg" style="width: 104%;">
+                                        <v-col sm="12" cols="12" class="">
+                                            <v-card outlined color="white" class="pa-3">
+                                                <v-row class="">
+                                                    <v-col sm="4" cols="12" class="pt-1 pb-0">
+                                                        <v-select
+                                                            class=""
+                                                            :items="dateSorters"
+                                                            v-model="mDateSorter"
+                                                            @change="onSorterChanges"
+                                                            clearable
+                                                            outlined
+                                                            placeholder="ALL"
+                                                        />
+                                                    </v-col>
+
+                                                    <v-col sm="3" cols="12" class="py-0">
+                                                        <app-datepicker
+                                                            :initialDate="startDate"
+                                                            @emitDate="startDate = $event"
+                                                        />
+                                                    </v-col>
+
+                                                    <v-col sm="3" cols="12" class="py-0">
+                                                        <app-datepicker
+                                                            :initialDate="endDate"
+                                                            @emitDate="endDate = $event"
+                                                        />
+                                                    </v-col>
+
+                                                    <v-col sm="1" cols="1" class="py-0 mt-1">
+                                                        <v-btn
+                                                            color="primary white--text"
+                                                            @click="searchTransaction"
+                                                        >
+                                                            <i
+                                                                class="b-search"
+                                                                style="font-size: 18px; color:#fff !important;"
+                                                            />
+                                                        </v-btn>
+                                                    </v-col>
+                                                </v-row>
+
+                                                <v-row class="">
+                                                    <v-col sm="12" cols="12" class="py-0">
+                                                        <LoadingMe
+                                                            :isLoading="showLoadingTxn"
+                                                            :fullPage="false"
+                                                            type="loading"
+                                                            :myLoading="true"
+                                                        >
+                                                        </LoadingMe>
+                                                        <kendo-datasource
+                                                            ref="transactionDS"
+                                                            :data="txnList"
+                                                            :server-paging="false"
+                                                        />
+                                                        <kendo-grid
+                                                            id="gridTransactions"
+                                                            class="grid-function"
+                                                            :data-source-ref="'transactionDS'"
+                                                            :editable="false"
+                                                            :groupale="true"
+                                                            :column-menu="true"
+                                                            :noRecords="true"
+                                                            :scrollable-virtual="true"
+                                                        >
+                                                            <!--                              <kendo-grid-column-->
+                                                            <!--                                  :field="'no'"-->
+                                                            <!--                                  :title="$t('no')"-->
+                                                            <!--                                  :template="rowNumberTmpl"-->
+                                                            <!--                                  :width="60"-->
+                                                            <!--                                  :column-menu="false"-->
+                                                            <!--                                  :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center'	}"-->
+                                                            <!--                                  :attributes="{style: 'text-align: center'}"/>-->
+                                                            <kendo-grid-column
+                                                                :field="'transactionDate'"
+                                                                :title="$t('date')"
+                                                                :width="120"
+                                                                :template="transactionDate"
+                                                                :headerAttributes="{
+                                  style: 'background-color: #EDF1F5',
+                                }"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'type'"
+                                                                :title="$t('type')"
+                                                                :width="200"
+                                                                :template="'<span>#=type#</span>'"
+                                                                :headerAttributes="{
+                                  style: 'background-color: #EDF1F5',
+                                }"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'referenceNo'"
+                                                                :title="$t('reference_no')"
+                                                                :width="200"
+                                                                :template="referenceTemplate"
+                                                                :headerAttributes="{
+                                  style:
+                                    'background-color: #EDF1F5, color: green !important',
+                                }"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'paymentCode'"
+                                                                :title="$t('payment_code')"
+                                                                :width="200"
+                                                                :template="'<span>#=paymentCode#</span>'"
+                                                                :headerAttributes="{
+                                  style:
+                                    'background-color: #EDF1F5, color: green !important',
+                                }"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'exchangeAmount'"
+                                                                :title="$t('amount')"
+                                                                :width="200"
+                                                                :attributes="{ style: 'text-align: right' }"
+                                                                :template="
+                                  '<span>#=kendo.toString(exchangeAmount, decimalFormat)#</span>'
+                                "
+                                                                :headerAttributes="{
+                                  style: 'background-color: #EDF1F5',
+                                }"
+                                                            />
+                                                            <kendo-grid-column
+                                                                :field="'status'"
+                                                                :title="$t('status')"
+                                                                :width="200"
+                                                                :template="txnStatus"
+                                                                :headerAttributes="{
+                                  style:
+                                    'text-align: left; background-color: #EDF1F5',
+                                }"
+                                                            />
+                                                        </kendo-grid>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                        </v-tab-item>
+                        <!-- connected_card -->
                         <v-tab-item>
                             <v-row>
                                 <v-col sm="12" cols="12" class="pt-0 px-6">
