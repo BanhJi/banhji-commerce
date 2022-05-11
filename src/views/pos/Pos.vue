@@ -62,7 +62,7 @@
                   <v-col sm="12" class="">
                       <v-btn
                         width="100%"
-                        @click="goPos('started')"
+                        @click="goDashoardPos('started')"
                         color="primary"
                         class="pa-3 text-bold text-capitalize"
                         elevation="0"
@@ -97,7 +97,7 @@
                   <v-col sm="12" class="">
                       <v-btn
                         width="100%"
-                        @click="goPos('started')"
+                        @click="goDashoardPos2('started')"
                         color="primary"
                         class="pa-3 text-bold text-capitalize"
                         elevation="0"
@@ -132,7 +132,7 @@
                   <v-col sm="12" class="">
                       <v-btn
                         width="100%"
-                        @click="goPos('started')"
+                        @click="goDashoardPos3('started')"
                         color="primary"
                         class="pa-3 text-bold text-capitalize"
                         elevation="0"
@@ -203,6 +203,18 @@ export default {
     ],
   }),
   methods: {
+    goDashoardPos(){
+      let routeData = this.$router.resolve({name: 'dashboard_pos'});
+      window.open(routeData.href, '_blank');
+    },
+    goDashoardPos2(){
+      let routeData = this.$router.resolve({name: 'dashboard_2'});
+      window.open(routeData.href, '_blank');
+    },
+    goDashoardPos3(){
+      let routeData = this.$router.resolve({name: 'dashboard_3'});
+      window.open(routeData.href, '_blank');
+    },
     goPos(){
       let routeData = this.$router.resolve({name: '_sale'});
       window.open(routeData.href, '_blank');

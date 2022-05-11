@@ -732,6 +732,36 @@ const routes = [{
                             title: i18n.t('point_of_sales')
                         }
                     },
+                    {
+                        path: 'dashboard_pos/retail',
+                        name: 'dashboard_pos',
+                        component: load('pos/Dashboard'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'point_of_sales',
+                            title: i18n.t('point_of_sales')
+                        }
+                    },
+                    {
+                        path: 'dashboard_pos/f_b',
+                        name: 'dashboard_2',
+                        component: load('pos/Dashboard'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'point_of_sales',
+                            title: i18n.t('point_of_sales')
+                        }
+                    },
+                    {
+                        path: 'dashboard_pos/service',
+                        name: 'dashboard_3',
+                        component: load('pos/Dashboard'),
+                        props: true,
+                        meta: {
+                            mainMenu: 'point_of_sales',
+                            title: i18n.t('point_of_sales')
+                        }
+                    },
                 ]
         },
 
