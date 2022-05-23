@@ -215,10 +215,7 @@ export default {
       let routeData = this.$router.resolve({name: 'dashboard_3'});
       window.open(routeData.href, '_blank');
     },
-    goPos(){
-      let routeData = this.$router.resolve({name: '_sale'});
-      window.open(routeData.href, '_blank');
-    }
+    
   },
   components: {
   },

@@ -10,6 +10,220 @@
                                 <div sm="12" cols="12" class=" flex-1">
                                      <SaleTransaction/>
                                 </div>
+                                <div sm="12" cols="12" class="ml-8">
+                                   
+                                    <!-- step1 -->
+                                    <template>
+                                        <v-row>
+                                            <v-dialog
+                                                v-model="dialogLoyalty"
+                                                persistent
+                                                max-width="600px"
+                                                >
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-btn
+                                                    color="primary btn_h2"
+                                                    dark
+                                                    v-bind="attrs"
+                                                    v-on="on"
+                                                    width=""
+                                                    style="font-size: 22px;"
+                                                    >
+                                                    {{$t('loyalty')}}
+                                                    </v-btn>
+                                                </template>
+                                                <v-card>
+                                                    <v-card-title>
+                                                    <span class="text-h5">{{$t('loyalty')}}</span>
+                                                    </v-card-title>
+                                                    <v-card-text>
+                                                    <v-container>
+                                                        <v-row>
+                                                        <v-col
+                                                            cols="12"
+                                                            sm="12"
+                                                            md="12"
+                                                        >
+                                                            <v-text-field
+                                                            label="Search by card number"
+                                                            required
+                                                            ></v-text-field>
+                                                        </v-col>
+                                                        <v-col
+                                                            cols="12"
+                                                            sm="12"
+                                                        >
+                                                            <v-select
+                                                            :items="['A choen', 'pheaktra', 'Ly heang', 'Nimol']"
+                                                            label="Search by Customer"
+                                                            required
+                                                            ></v-select>
+                                                        </v-col>
+                                                        </v-row>
+                                                    </v-container>
+                                                    <!-- <small>*indicates required field</small> -->
+                                                    </v-card-text>
+                                                    <v-card-actions>
+                                                        <div class="function_footer">
+                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
+                                                                @click="LoyaltyToSale()">{{ $t('skip') }}
+                                                            </v-btn>
+
+                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                @click="LoyaltyToSale()">
+                                                                {{ $t('enter') }}
+                                                            </v-btn>
+                                                        </div>
+                                                        <v-spacer></v-spacer>
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-dialog>
+                                        </v-row>
+                                    </template> 
+                                    <!-- step2 -->
+                                    <template>
+                                        <v-row>
+                                            <v-dialog
+                                                v-model="dialogPartner"
+                                                persistent
+                                                max-width="600px"
+                                                >
+                                                <v-card>
+                                                    <v-card-title>
+                                                    <span class="text-h5">{{$t('partner')}}</span>
+                                                    </v-card-title>
+                                                    <v-card-text>
+                                                    <v-container>
+                                                        <v-row>
+                                                            <v-col sm="4" cols="12" class="">
+                                                                <v-card
+                                                                    class="mx-auto"
+                                                                    max-width="465"
+                                                                    outlined
+                                                                    @click="PartnerToSale()"
+                                                                >
+                                                                    <v-list-item three-line>
+                                                                        <v-list-item-content class="pk-3">
+                                                                            <v-row>
+                                                                                <v-col sm="12" cols="12" class="">
+                                                                                    <img
+                                                                                        class="img-1"
+                                                                                        src="@/assets/images/foodpanda.png"
+                                                                                        width="100%"
+                                                                                    />
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-list-item-content>
+                                                                    </v-list-item>
+                                                                </v-card>
+                                                            </v-col>
+                                                            <v-col sm="4" cols="12" class="">
+                                                                <v-card
+                                                                    class="mx-auto"
+                                                                    max-width="465"
+                                                                    outlined
+                                                                    @click="PartnerToSale()"
+                                                                >
+                                                                    <v-list-item three-line>
+                                                                        <v-list-item-content class="pk-3">
+                                                                            <v-row>
+                                                                                <v-col sm="12" cols="12" class="">
+                                                                                    <img
+                                                                                        class="img-1"
+                                                                                        src="@/assets/images/nham24.png"
+                                                                                        width="100%"
+                                                                                    />
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-list-item-content>
+                                                                    </v-list-item>
+                                                                </v-card>
+                                                            </v-col>
+                                                            <v-col sm="4" cols="12" class="">
+                                                                <v-card
+                                                                    class="mx-auto"
+                                                                    max-width="465"
+                                                                    outlined
+                                                                    @click="PartnerToSale()"
+                                                                >
+                                                                    <v-list-item three-line>
+                                                                        <v-list-item-content class="pk-3">
+                                                                            <v-row>
+                                                                                <v-col sm="12" cols="12" class="">
+                                                                                    <img
+                                                                                        class="img-1"
+                                                                                        src="@/assets/images/wownow.png"
+                                                                                        width="100%"
+                                                                                    />
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-list-item-content>
+                                                                    </v-list-item>
+                                                                </v-card>
+                                                            </v-col>
+                                                            <v-col sm="4" cols="12" class="">
+                                                                <v-card
+                                                                    class="mx-auto"
+                                                                    max-width="465"
+                                                                    outlined
+                                                                    @click="PartnerToSale()"
+                                                                >
+                                                                    <v-list-item three-line>
+                                                                        <v-list-item-content class="pk-3">
+                                                                            <v-row>
+                                                                                <v-col sm="12" cols="12" class="">
+                                                                                    <img
+                                                                                        class="img-1"
+                                                                                        src="@/assets/images/muuve.png"
+                                                                                        width="100%"
+                                                                                    />
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-list-item-content>
+                                                                    </v-list-item>
+                                                                </v-card>
+                                                            </v-col>
+                                                            <v-col sm="4" cols="12" class="">
+                                                                <v-card
+                                                                    class="mx-auto"
+                                                                    max-width="465"
+                                                                    outlined
+                                                                    @click="PartnerToSale()"
+                                                                >
+                                                                    <v-list-item three-line>
+                                                                        <v-list-item-content class="pk-3">
+                                                                            <v-row>
+                                                                                <v-col sm="12" cols="12" class="">
+                                                                                    <img
+                                                                                        class="img-1"
+                                                                                        src="@/assets/images/bloc.png"
+                                                                                        width="100%"
+                                                                                    />
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-list-item-content>
+                                                                    </v-list-item>
+                                                                </v-card>
+                                                            </v-col>
+                                                                
+                                                        </v-row>
+                                                    </v-container>
+                                                    <!-- <small>*indicates required field</small> -->
+                                                    </v-card-text>
+                                                    <v-card-actions>
+                                                        <div class="function_footer">
+                                                             <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                @click="dialogPartner = false">
+                                                                {{ $t('skip') }}
+                                                            </v-btn>
+                                                        </div>
+                                                        <v-spacer></v-spacer>
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-dialog>
+                                        </v-row>
+                                    </template> 
+                                </div>
                                 <div sm="12" cols="12" class="">
                                     <Calculator/>
                                 </div>
@@ -69,6 +283,9 @@ import { i18n } from "@/i18n";
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
 export default {
     data: () => ({
+        dialogLoyalty: false,
+        dialogPartner: false,
+
         isHide: false,
         fullscreen: false,
         s: {
@@ -101,6 +318,13 @@ export default {
         }
     }),
     methods: {
+        LoyaltyToSale(){
+            this.dialogPartner = true;
+            this.dialogLoyalty = false;
+        },
+        PartnerToSale(){
+            window.location.reload()
+        },
         clickMe(data) {
             // alert(data.link)
             this.$router.push(`${data.link}`);
@@ -154,6 +378,11 @@ export default {
         ItemsList: () => import('./ItemsList'),
         // ParkSaleReport: () => import('./ParkSaleReport'),
         Calculator: () => import('./Calculator'),
+    },
+    computed:{
+        lang() {
+            return "/" + i18n.locale;
+            },
     },
     created: async function () {
         await this.loadSetting()
@@ -233,6 +462,9 @@ export default {
     .v-btn__content{
         font-family: "Niradei-Bold", serif !important;
         display: block !important;
+    }
+    .btn_h2{
+        font-size: 22px;
     }
     
 

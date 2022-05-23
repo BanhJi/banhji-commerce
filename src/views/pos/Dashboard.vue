@@ -105,7 +105,7 @@
                             class="mx-auto"
                             max-width="465"
                             outlined
-                            :to="lang+'/sale'"
+                             @click="goPos('started')"
                         >
                             <v-list-item three-line>
                                 <v-list-item-content class="pk-3">
@@ -701,6 +701,10 @@
 
     },
     methods:{
+        goPos(){
+        let routeData = this.$router.resolve({name: '_sale'});
+        window.open(routeData.href, '_blank');
+        }
 
     },
     mounted(){
