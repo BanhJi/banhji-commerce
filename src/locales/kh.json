@@ -4162,7 +4162,18 @@
     "employee_directory_desc": "បញ្ជីឈ្មោះបុគ្គលិកតាមមុខងារ និងផ្នែក",
     "inventory_to_be_reordered_desc": "របាយការណ៍សង្ខេបសមតុល្យផលិតផល ដែលត្រូវបញ្ជាទិញបន្ថែម ដោយផ្អែកតាមកម្រិតបញ្ជាទិញ",
     "customer_discount_item": "តារាងបញ្ចុះតម្លៃការលក់",
-    "connected_card": "កាតដែលបានភ្ជាប់រួច"
+    "connected_card": "កាតដែលបានភ្ជាប់រួច",
+    "customer_id": "Customer id",
+    "loyalty_program": "Loyalty program",
+    "loyalty_num": "Loyalty number",
+    "total_discount": "Total discount",
+    "reward": "Reward",
+    "please_configure_setting": "Please configure setting",
+    "back_to_setting": "ត្រឡប់ទៅការកំណត់",
+    "cashier": "អ្នកគិតប្រាក់",
+    "session": "វេន"
+
+
 
 
 

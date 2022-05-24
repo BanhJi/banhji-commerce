@@ -1,6 +1,157 @@
 <template>
     <div class="">
-        
+        <div
+            class="sidebar"
+            v-on:mouseover="onMouseOver"
+            v-on:mouseleave="onMouseLeave"
+        >
+            <v-navigation-drawer
+                class=""
+                v-model="drawer"
+                :mini-variant="miniVariant"
+                :expand-on-hover="handOver"
+                :mini-variant-width="40"
+                :app="isApp"
+                :fixed="isAbsolute"
+                color=""
+                width= "180"
+            >
+                <v-list dense class="pa-0">
+                    <span class="hidden-sm-and-down">
+                        <a :href="lang+'/'"  class="main_logo  d-flex pl-6 py-3">
+                        <div class="mb-0">
+                            <img
+                                src="../assets/images/banhji_pos.png"
+                                height="38"
+                                alt="BanhJi Logo"
+                            />
+                        </div>
+                        </a>
+                        <a v-if="!isAccountLogo" href="" class="">
+                        <h1 class="mb-0">
+                            <img
+                                class="small_img fade-in"
+                                src="../assets/images/banhji_icon.png"
+                                height="40"
+                                alt="BanhJi Logo"
+                            />
+                            
+                        </h1>
+                        </a>
+                    </span>
+                    <div class="hidden-sm-and-up search_phone">
+                        <v-text-field
+                            style="margin-right: 10%; background-color: #fff;	"
+                            cols="6"
+                            flat
+                            solo-inverted
+                            hide-details
+                            prepend-inner-icon="search"
+                            label="Search"
+                            class="custom_search_phone my-3"
+                        />
+                    </div>
+                    
+                    <div class="block_menu">
+                        <div class="v-list-item d-block">
+                            <v-text-field
+                            class="pl-2"
+                            outlined
+                            :placeholder="$t('search')"
+                            append-icon="search"
+                            clearable/>
+                        </div>
+                        <div class="v-list-item d-block">
+                            <h2 class="pl-2">a chouen</h2>
+                        </div>
+                        <div class="v-list-item d-block">
+                            <span class="pl-2">{{$t('customer_id')}}</span> <br>
+                            <h2 class="pl-2 border-b">092 123 456</h2>
+                        </div>
+                        <div class="v-list-item d-block">
+                            <span class="pl-2">{{$t('points')}}</span><br>
+                            <h2 class="pl-2 border-b">092 123 456</h2>
+                        </div>
+                        <div class="v-list-item d-block">
+                            <span class="pl-2">{{$t('loyalty_program')}}</span><br>
+                            <h2 class="pl-2 border-b">10%</h2>
+                        </div>
+                        <div class="v-list-item d-block mb-6">
+                            <span class="pl-2">{{$t('loyalty_num')}}</span><br>
+                            <h2 class="pl-2 border-b  primary--text">123456789</h2>
+                        </div>
+                        <div class="v-list-item d-block" style="background-color: #ffff;">
+                            <span class="pl-2">{{$t('partner')}}</span><br>
+                            <h2 class="pl-2 border-b  primary--text">foodpada</h2>
+                        </div>
+                        <div class="v-list-item d-block mb-6" style="background-color: #ffff;">
+                            <span class="pl-2">{{$t('order_number')}}</span><br>
+                            <h2 class="pl-2 border-b  primary--text">12345678</h2>
+                        </div>
+                        <template v-for="item in items">
+                            <v-row v-if="item.heading" :key="item.heading" align="center">
+                                <v-col cols="6">
+                                    <v-subheader v-if="item.heading">{{
+                                            item.heading
+                                        }}
+                                    </v-subheader>
+                                </v-col>
+                            </v-row>
+                            <v-list-group
+                                v-else-if="item.children"
+                                :key="item.id"
+                                v-model="item.path"
+                            >
+                                <template v-slot:activator>
+                                    <v-list-item-content>
+                                        <v-list-item-title>{{ item.text }}</v-list-item-title>
+                                    </v-list-item-content>
+                                </template>
+                            </v-list-group>
+                            <v-list-item
+                                v-else
+                                router
+                                :id="'id' + item.id"
+                                :to="item.path ? lang + item.path : ''"
+                                :class="item.class + ' ' + item.activeClass"
+                                :style="{ 'background-color': backHoverColor }"
+                                :key="item.id"
+                                @click.native="clickMe(item)"
+                            >
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        
+                                        <span v-html="getIcon(item.icon)"></span>
+                                        <v-badge
+                                            color="red"
+                                            :content="(item.content)"
+                                            >
+                                            {{ $t(item.menuTex) }}
+                                        </v-badge>
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </template>
+                    </div>
+                </v-list>
+                <template v-slot:append>
+                    <div
+                        class="pl-6 link_buttom"
+                        v-bind:class="{ hide_item_samll: miniVariant }"
+                    >
+                        
+                        <div class="px-4 py-2 pb-0">
+                            <img
+                                class="img-1"
+                                src="../assets/images/made_in_cambodia.png"
+                                height="auto"
+                                width="80%"
+                            />
+                        </div>
+                    </div>
+                </template>
+            </v-navigation-drawer>
+        </div>
     </div>
 </template>
 

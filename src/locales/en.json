@@ -4234,7 +4234,17 @@
     "inventory_to_be_reordered_desc": "List of products to be reordered based on their reorder points",
     "stock_count_desc": "List of stock adjustment transactions with summary of key adjusted amount and quantity",
     "customer_discount_item": "Customer discount item",
-    "connected_card": "Connected card"
+    "connected_card": "Connected card",
+    "customer_id": "Customer id",
+    "loyalty_program": "Loyalty program",
+    "loyalty_num": "Loyalty number",
+    "total_discount": "Total discount",
+    "reward": "Reward",
+    "please_configure_setting": "Please configure setting",
+    "back_to_setting": "Back to setting",
+    "cashier": "Cashier",
+    "session": "Session"
+
 
 
 }
