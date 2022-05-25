@@ -1975,6 +1975,7 @@
 <script>
 import { i18n } from "@/i18n";
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+const loanHandler = require("@/scripts/loanHandler")
 export default {
     data: () => ({
         isAccountLogo: true,
