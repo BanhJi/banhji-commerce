@@ -4243,8 +4243,13 @@
     "please_configure_setting": "Please configure setting",
     "back_to_setting": "Back to setting",
     "cashier": "Cashier",
-    "session": "Session"
-
-
+    "session": "Session",
+    "point": "Point",
+    "earn": "Earn",
+    "redeem_with": "Redeem with",
+    "available": "Available",
+    "apply": "Apply",
+    "apply_point": "Apply point",
+    "promotion": "Promotion"
 
 }

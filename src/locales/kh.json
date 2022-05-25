@@ -4171,10 +4171,14 @@
     "please_configure_setting": "Please configure setting",
     "back_to_setting": "ត្រឡប់ទៅការកំណត់",
     "cashier": "អ្នកគិតប្រាក់",
-    "session": "វេន"
-
-
-
+    "session": "វេន",
+    "point": "Point",
+    "earn": "Earn",
+    "redeem_with": "Redeem with",
+    "available": "Available",
+    "apply": "Apply",
+    "apply_point": "Apply point",
+    "promotion": "Promotion"
 
 
 } 
