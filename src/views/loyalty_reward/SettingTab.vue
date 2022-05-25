@@ -47,7 +47,7 @@
         <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0">
-              <Setting />
+              <LoyaltyCardSetting />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -75,6 +75,7 @@
 export default {
   name: "",
   components: {
+    LoyaltyCardSetting: () => import("./settings/LoyaltyCardSetting"),
     Setting: () => import("./loyalty_card/Setting"),
   },
   data: () => ({

@@ -49,7 +49,7 @@
                 />
                 <kendo-datasource
                     ref="customerDS"
-                    :data="campaings"
+                    :data="partners"
                     :schema="schemaDefinition"
                 />
 
@@ -77,7 +77,7 @@
                     <kendo-grid-column
                         :field="'name'"
                         :title="'&nbsp;'"
-                        :template="'<span>#=code# - #=name#</span>'"
+                        :template="'<span>#=name#</span>'"
                     />
                 </kendo-grid>
             </v-card>
@@ -110,12 +110,12 @@
                             {{ $t("transactions") }}
                           </span>
                         </v-tab>
-                        <v-tab v-show="campaign.type == `coupon`">
+                        <v-tab>
                           <span class="hidden-sm-and-up">
                             <v-icon left>mdi-pen</v-icon>
                           </span>
                             <span class="hidden-sm-and-down  text-upercase">
-                            {{ $t("coupon_list") }}
+                            {{ $t("campaigns") }}
                           </span>
                         </v-tab>
                         <v-btn
@@ -131,7 +131,7 @@
                                     <v-row class="grayBg" style="width: 104%;">
                                         <v-col sm="12" cols="12" class="">
                                             <v-card outlined color="white" class="pa-3">
-                                                <!-- <Info :campaign="campaign"/> -->
+                                                <!-- <Info :partner="partner"/> -->
                                                 <v-row>
                                                     <v-col sm="12" cols="12">
                                                         <v-simple-table>
@@ -139,43 +139,19 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td style="width:55%;" class="text-uppercase">{{ $t('name') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.name }}</td>
+                                                                        <td class="text-left text-bold">{{ partner.name }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('code') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.code }}</td>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('customer') }}</td>
+                                                                        <td class="text-left text-bold">{{ customerName }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('type') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.type }}</td>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('supplier') }}</td>
+                                                                        <td class="text-left text-bold">{{ vendorName }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('discount_item') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.discountItem ? campaign.discountItem.name : '' }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('effective_date') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.effectiveDate }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('end_date') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.endDate }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('description') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.description }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_sale_value') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.totalSaleValue }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_sale_valumn') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.totalSaleValumn }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('total_customer') }}</td>
-                                                                        <td class="text-left text-bold">{{ campaign.totalUniqueCustomer }}</td>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('payment_method') }}</td>
+                                                                        <td class="text-left text-bold">{{ $t(partner.paymentMethod) }}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </template>
@@ -188,7 +164,7 @@
                                                     />
                                                     <v-col sm="12" cols="12" class="py-0">
                                                         <v-row>
-                                                            <v-col sm="12" cols="12" class="py-0" v-show="hasCampaign">
+                                                            <v-col sm="12" cols="12" class="py-0" v-show="hasPartner">
                                                                 <v-col sm="12" cols="6" class="py-0">
                                                                     <router-link
                                                                         :to="{path: routerTo, query: { type: 'edit'} }">
@@ -200,7 +176,7 @@
                                                                 </v-col>
                                                                 <v-col sm="12" cols="6" class="py-0" v-show="allowDelete" >
                                                                     <v-btn width="100" color="primary"
-                                                                        @click="deleteCampaign"
+                                                                        @click="deletePartner"
                                                                         class=" white--text float-right text-capitalize mx-1">
                                                                         {{ $t('delete') }}
                                                                     </v-btn>
@@ -380,7 +356,7 @@
                                 </v-col>
                             </v-row>
                         </v-tab-item>
-                        <!-- Coupon -->
+                        <!-- Campaign -->
                         <v-tab-item>
                             <v-row>
                                 <v-col sm="12" cols="12" class="pt-0 px-6">
@@ -471,9 +447,9 @@ const billingHandler = require("@/scripts/invoice/handler/billingHandler");
 const cookieJS = require("@/cookie.js");
 const cookie = cookieJS.getCookie();
 import {i18n} from '@/i18n';
-import CampaignModel from "@/scripts/commerce/model/Campaign"
+import PartnerModel from "@/scripts/commerce/model/Partner"
 export default {
-    name: "Campaigns",
+    name: "Partners",
     props: ["id"],
     components: {
         LoadingMe: () => import(`@/components/Loading`),
@@ -481,7 +457,7 @@ export default {
     },
     data: () => ({
         //infor
-        hasCampaign: false,
+        hasPartner: false,
         activeCamp: {},
         loggedUser: {
             id: cookie.creator,
@@ -493,8 +469,8 @@ export default {
         couponName: '',
         couponList: [],
         //
-        campaign: {},
-        campaings: [],
+        partner: {},
+        partners: [],
         isSearchName: true,
         showLoading: false,
         showLoadingTxn: false,
@@ -538,24 +514,29 @@ export default {
         fileSize: 0,
         fileType: "",
         fileName: "",
+        vendorName: "",
+        customerName: ""
     }),
     methods: {
-        //coupon
-        searchCoupon(){
+        async loadAttachment() {
+            new Promise(resolve => {
+                setTimeout(() => {
+                    resolve('resolved')
+                    // if (this.$route.params.hasOwnProperty('id')) {
+                    //     this.showLoadingAtch = true
+                        const strFilter = '?id=' + this.partner.pk
+                        billingHandler.attachmentList(strFilter).then(res => {
+                            if (res.hasOwnProperty('data')) {
+                                window.console.log(res.data.data, 'att')
+                                this.attachmentList = res.data.data
+                            }
+                        })
+                    // }
 
-        },
-        //
-        loadCoupon(campaigId){
-            window.console.log(campaigId)
-            this.showLoadingCoupon = true
-            commerceHandler.campCouponGets(campaigId).then((res) => {
-                this.showLoadingCoupon = false
-                window.console.log(res, 'coupon')
-                if(res.data.data.length > 0){
-                    this.couponList = res.data.data
-                }
+                }, 10)
             })
         },
+        searchCoupon(){},
         startSearch(){},
         searchByName(){
         },
@@ -819,33 +800,39 @@ export default {
         async onChanged() {
             let grid = kendo.jQuery("#gridCustomer").data("kendoGrid");
             let selectedItem = grid.dataItem(grid.select());
-            this.campaign = selectedItem
-            this.hasCampaign = true
-            if(this.campaign.lockDelete == 'no') this.allowDelete = true
-            else this.allowDelete = false
-            this.couponList = []
-            if(this.campaign.type == 'coupon'){
-                this.loadCoupon(this.campaign.pk)
+            this.partner = selectedItem
+            window.console.log(this.partner, 'pp')
+            this.vendorName = ""
+            this.customerName = ""
+            if(Object.keys(this.partner.customer).length > 0){
+                this.customerName = this.partner.customer.name
             }
+            if(Object.keys(this.partner.vendor).length > 0){
+                this.vendorName = this.partner.vendor.name
+            }
+            this.hasPartner = true
+            if(this.partner.lockDelete == 'no') this.allowDelete = true
+            else this.allowDelete = false
+            this.loadAttachment()
         },
-        async loadCampiagn() {
+        async loadPartner() {
             this.showLoading = true
-            this.campaings = []
-            commerceHandler.campaignGets().then((res) => {
+            this.partners = []
+            commerceHandler.partnerGets().then((res) => {
                 this.showLoading = false
                 if(res.data.data.length > 0){
-                    this.campaings = res.data.data
+                    this.partners = res.data.data
                 }
             })
         },
         //info
-        addCampaign(data){
+        addPartner(data){
             data.id = data.pk
-            this.activeCamp = new CampaignModel(data)
-            if(data.pk) this.hasCampaign = true
-            else this.hasCampaign = false
+            this.activeCamp = new PartnerModel(data)
+            if(data.pk) this.hasPartner = true
+            else this.hasPartner = false
         },
-        deleteCampaign(){
+        deletePartner(){
             this.$swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -859,11 +846,11 @@ export default {
             }).then((result) => {
                 if (result.value.length > 1) {
                     this.reason = result.value
-                    this.campaign.id = this.campaign.pk
-                    this.activeCamp = new CampaignModel(this.campaign)
+                    this.partner.id = this.partner.pk
+                    this.activeCamp = new PartnerModel(this.partner)
                     const id = this.activeCamp.id
                     window.console.log(this.activeCamp, 'actvier')
-                    this.delCampaign(id, this.reason)
+                    this.delPartner(id, this.reason)
                 }
             })
         },
@@ -877,17 +864,17 @@ export default {
             }
             return obj;
         },
-        delCampaign(id, reason) {
+        delPartner(id, reason) {
             let cam = this.activeCamp
             const data = {
                 pk: id,
-                campaign: cam,
+                partner: cam,
                 user: this.loggedUser,
                 reason: reason
             }
             window.console.log(data)
             this.showLoading = true
-            commerceHandler.deleteCampaign(data).then((res) => {
+            commerceHandler.deletePartner(data).then((res) => {
                 this.showLoading = false
                 if (res.data.statusCode === 201) {
                     this.showLoading = false
@@ -902,19 +889,19 @@ export default {
                     })
                 }
                 this.activeCamp = {}
-                this.campaign = {}
-                this.hasCampaign = false
-                this.loadCampiagn();
+                this.partner = {}
+                this.hasPartner = false
+                this.loadPartner();
             });
         }
     },
     async mounted() {
-        await this.loadCampiagn();
+        await this.loadPartner();
     },
     computed: {
         routerTo() {
-            if (this.campaign) {
-                return 'campaign' + `/${this.campaign ? this.campaign.pk : ''}`
+            if (this.partner) {
+                return 'partners' + `/${this.partner ? this.partner.pk : ''}`
             }
             return ''
         }

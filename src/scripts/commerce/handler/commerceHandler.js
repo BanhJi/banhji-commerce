@@ -116,3 +116,39 @@ module.exports.customerSearchURL = function (strFilter = '') {
         window.console.error(error)
     }
 }
+module.exports.partnerCreate = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.partnerCreate, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.partnerGets = async function () {
+    try {
+        const response = await axios.get(apiUrl.commerce.partnerGets)
+
+        return response
+    } catch (error) {
+        window.console.log(error)
+    }
+}
+module.exports.partnerGet = async function (id) {
+    try {
+        const response = await axios.get(apiUrl.commerce.partnerGet + '/' + id)
+
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.partnerReward = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.partnerDelete, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}

@@ -1359,6 +1359,9 @@
                     }
                 })
             },
+            gotoCenter(){
+                this.$router.push(`${i18n.locale}` + '/marketing_promotions');
+            },
             gotoSetting(){
                 this.$swal({
                     position: 'center',

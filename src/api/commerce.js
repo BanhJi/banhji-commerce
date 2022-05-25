@@ -20,4 +20,8 @@ module.exports = {
     rewardGet                                   : url + 'reward/' + instituteId + '/get',
     rewardGets                                  : url + 'reward/' + instituteId + '/list',
     rewardDelete                                : url + 'reward/' + instituteId + '/del',
+    partnerCreate                                : url + 'partner/' + instituteId + '/create',
+    partnerGet                                   : url + 'partner/' + instituteId + '/get',
+    partnerGets                                  : url + 'partner/' + instituteId + '/list',
+    partnerDelete                                : url + 'partner/' + instituteId + '/del',
 }
