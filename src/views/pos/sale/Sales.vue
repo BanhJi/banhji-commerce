@@ -765,7 +765,7 @@
 
                                                                                             <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
                                                                                                 <v-icon>fas fa-backspace</v-icon>
-                                                                                                clear
+                                                                                                c
                                                                                             </v-btn>
                                                                                             
                                                                                         </v-col>
@@ -1130,216 +1130,288 @@
                                                         <template>
                                                             <div justify="center" style="height: 100%;">
                                                                 <v-dialog
-                                                                v-model="dialog"
-                                                                persistent
-                                                                max-width="1000"
+                                                                    v-model="dialogCash"
+                                                                    fullscreen
+                                                                    hide-overlay
+                                                                    transition="dialog-bottom-transition"
                                                                 >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn 
-                                                                        color="primary"
-                                                                        dark
-                                                                        v-bind="attrs"
-                                                                        v-on="on"
-                                                                        height="50%"
-                                                                        class="rounded-0 pay-btn" 
-                                                                        style="height:100% !important;">
-                                                                        
-                                                                        <span style="font-size: 26px;">{{$t('cash')}}</span> 
-                                                                    </v-btn>
-                                                                </template>
-                                                                <v-card>
-                                                                    
-                                                                    <v-card-text>
-                                                                        <v-card-title class="text-h5">
-                                                                        {{$t('cash_receipt')}}
-                                                                        </v-card-title>
-                                                                        <v-row>
-                                                                            <v-col sm="6" cols="6" class="">
-                                                                                <v-row>
-                                                                                    
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-text-field
-                                                                                            class="mt-1 pr-6"
-                                                                                            outlined
-                                                                                            placeholder=""
-                                                                                        />
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            1
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            2
+                                                                    <template v-slot:activator="{ on, attrs }">
+                                                                        <v-btn 
+                                                                            color="primary"
+                                                                            dark
+                                                                            v-bind="attrs"
+                                                                            v-on="on"
+                                                                            height="50%"
+                                                                            class="rounded-0 pay-btn" 
+                                                                            style="height:100% !important;">
+                                                                            
+                                                                            <span style="font-size: 26px;">{{$t('cash')}}</span> 
+                                                                        </v-btn>
+                                                                    </template>
+                                                                    <v-card style="background-color: #f8f8f9;">
+                                                                        <v-container>
+                                                                            <v-card outlined
+                                                                                dense
+                                                                                class="pa-4 no_border rounded-sm"
+                                                                                color="white">
+                                                                                <v-card-text>
+                                                                                    <v-card-title class="text-h5">
+                                                                                    {{$t('cash_receipt')}}
+                                                                                    </v-card-title>
+                                                                                    <v-row>
+                                                                                        <v-col sm="8" cols="8" class="px-6 pt-0">
+                                                                                            <v-row>
+                                                                                                <v-col sm="6" cols="6" class=" function_content pa-3">
+                                                                                                    <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
+                                                                                                            min-height="50px" color="primary">
+                                                                                                        <h3 style="font-size: 18px" class="text-white text-uppercase">
+                                                                                                        {{ $t('amount_to_pay') }}</h3>
+                                                                                                        <h3 class="text-bold float-right text-white" style="font-size: 22px">
+                                                                                                        00000000</h3>
+                                                                                                        
+                                                                                                    </v-card>
+                                                                                                    <v-simple-table>
+                                                                                                        <template v-slot:default>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td class="text-left pr-0">{{
+                                                                                                                        $t('KHR')
+                                                                                                                    }}
+                                                                                                                    </td>
+                                                                                                                    <td class="text-center">:</td>
+                                                                                                                    <td class="text-right">
+                                                                                                                        0000000 រៀល
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr>
+                                                                                                                    <td class="text-left pr-0">{{ $t('USD') }}</td>
+                                                                                                                    <td class="text-center">:</td>
+                                                                                                                    <td class="text-right">
+                                                                                                                        0000000 USD
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr>
+                                                                                                                    <td class="text-left pr-0">{{
+                                                                                                                        $t('exchange_rate')
+                                                                                                                    }}
+                                                                                                                    </td>
+                                                                                                                    <td class="text-center">:</td>
+                                                                                                                    <td class="text-right">
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr>
+                                                                                                                    <td class="text-left pr-0">{{
+                                                                                                                        $t('receipt_amount')
+                                                                                                                    }}
+                                                                                                                    </td>
+                                                                                                                    <td class="text-center">:</td>
+                                                                                                                    <td class="text-right">
+                                                                                                                        0000000
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr color="secondary">
+                                                                                                                    <td color="secondary" class="text-left pr-0">{{
+                                                                                                                        $t('balance')
+                                                                                                                    }}
+                                                                                                                    </td>
+                                                                                                                    <td class="text-center">:</td>
+                                                                                                                    <td color="secondary" class="text-right">
+                                                                                                                        0000000
+                                                                                                                    </td>
+                                                                                                                </tr>
+
+                                                                                                            </tbody>
+                                                                                                        </template>
+                                                                                                    </v-simple-table>
+                                                                                                </v-col>
+                                                                                                <v-col sm="6" cols="6" class="function_content pa-3">
+                                                                                                    <div class="text-center">
+                                                                                                        <v-text-field
+                                                                                                            class="mt-1"
+                                                                                                            outlined
+                                                                                                            placeholder=""
+                                                                                                            style="width: 96%;margin: auto;"
+                                                                                                        />
+                                                                                                        <v-btn color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                            1
+                                                                                                        </v-btn>
+                                                                                                            
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                            2
+                                                                                                        </v-btn>
+
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                            3
+                                                                                                        </v-btn>
+                                                                                                        <br>
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                            4
+                                                                                                        </v-btn>
+                                                                                                            
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                            5
+                                                                                                        </v-btn>
+
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                            6
+                                                                                                        </v-btn>
+                                                                                                        <br>
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                            7
+                                                                                                        </v-btn>
+                                                                                                            
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                            8
+                                                                                                        </v-btn>
+
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                            9
+                                                                                                        </v-btn>
+                                                                                                        <br>
+                                                                                                            
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                            0
+                                                                                                        </v-btn>
+
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                            .
+                                                                                                        </v-btn>
+
+                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                            <v-icon>fas fa-backspace</v-icon>
+                                                                                                            c
+                                                                                                        </v-btn>
+                                                                                                    </div>
+                                                                                                    
+                                                                                                </v-col>
+                                                                                                <v-col sm="12" cols="4" class="">
+                                                                                                    <v-btn color="primary" class="rounded-0 my-2 ">
+                                                                                                        KHR
+                                                                                                    </v-btn>
+                                                                                                    <v-btn color="secondary" class="rounded-0 ma-2">
+                                                                                                        USD
+                                                                                                    </v-btn>
+                                                                                                        <br>
+                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
+                                                                                                        5$
+                                                                                                    </v-btn>
+                                                                                                        
+                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
+                                                                                                        10$
+                                                                                                    </v-btn>
+
+                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
+                                                                                                        15$
+                                                                                                    </v-btn>
+                                                                                                    <br>
+                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
+                                                                                                        20$
+                                                                                                    </v-btn>
+                                                                                                        
+                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
+                                                                                                        25$
+                                                                                                    </v-btn>
+
+                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
+                                                                                                        30$
+                                                                                                    </v-btn>
+                                                                                                    <br>
+                                                                                                        
+                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
+                                                                                                        40$
+                                                                                                    </v-btn>
+                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
+                                                                                                        50$
+                                                                                                    </v-btn>
+
+                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
+                                                                                                        100$
+                                                                                                    </v-btn>
+                                                                                                    
+                                                                                                </v-col>
+                                                                                            </v-row>
+                                                                                        </v-col>
+                                                                                        <v-col sm="4" cols="4" class="pb-0 function_content pa-3">
+                                                                                            <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
+                                                                                                    min-height="50px" color="primary">
+                                                                                                <h3 style="font-size: 18px" class="text-white text-uppercase">
+                                                                                                {{ $t('amount_to_pay') }}</h3>
+                                                                                                <h3 class="text-bold float-right text-white" style="font-size: 22px">
+                                                                                                00000000</h3>
+                                                                                                
+                                                                                            </v-card>
+                                                                                            <v-simple-table>
+                                                                                                <template v-slot:default>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td class="text-left pr-0">{{
+                                                                                                                $t('KHR')
+                                                                                                            }}
+                                                                                                            </td>
+                                                                                                            <td class="text-center">:</td>
+                                                                                                            <td class="text-right">
+                                                                                                                0000000 រៀល
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="text-left pr-0">{{ $t('USD') }}</td>
+                                                                                                            <td class="text-center">:</td>
+                                                                                                            <td class="text-right">
+                                                                                                                0000000 USD
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="text-left pr-0">{{
+                                                                                                                $t('exchange_rate')
+                                                                                                            }}
+                                                                                                            </td>
+                                                                                                            <td class="text-center">:</td>
+                                                                                                            <td class="text-right">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="text-left pr-0">{{
+                                                                                                                $t('receipt_amount')
+                                                                                                            }}
+                                                                                                            </td>
+                                                                                                            <td class="text-center">:</td>
+                                                                                                            <td class="text-right">
+                                                                                                                0000000
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr color="secondary">
+                                                                                                            <td color="secondary" class="text-left pr-0">{{
+                                                                                                                $t('balance')
+                                                                                                            }}
+                                                                                                            </td>
+                                                                                                            <td class="text-center">:</td>
+                                                                                                            <td color="secondary" class="text-right">
+                                                                                                                0000000
+                                                                                                            </td>
+                                                                                                        </tr>
+
+                                                                                                    </tbody>
+                                                                                                </template>
+                                                                                            </v-simple-table>
+                                                                                        </v-col>
+                                                                                    </v-row>
+                                                                                </v-card-text>
+                                                                                <v-card-actions>
+                                                                                    <div class="function_footer">
+                                                                                        <v-btn outlined color="#494846" class="float-left text-capitalize"
+                                                                                            @click="dialogCash = false">{{ $t('cancel') }}
                                                                                         </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            3
+                                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                                            @click="dialogCash = false">
+                                                                                            {{ $t('make_cash_payment') }}
                                                                                         </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            4
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            5
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            6
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            7
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            8
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            9
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            0
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            .
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            <v-icon>fas fa-backspace</v-icon>
-                                                                                            clear
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-btn color="primary" class="rounded-0 my-2 ">
-                                                                                            KHR
-                                                                                        </v-btn>
-                                                                                        <v-btn color="secondary" class="rounded-0 ma-2">
-                                                                                            USD
-                                                                                        </v-btn>
-                                                                                            <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            5$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            10$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            15$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            20$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            25$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            30$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            40$
-                                                                                        </v-btn>
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            50$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            100$
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                </v-row>
-                                                                            </v-col>
-                                                                            <v-col sm="6" cols="6" class="pb-0 function_content pa-3">
-                                                                                <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
-                                                                                        min-height="50px" color="primary">
-                                                                                    <h3 style="font-size: 18px" class="text-white text-uppercase">
-                                                                                    {{ $t('amount_to_pay') }}</h3>
-                                                                                    <h3 class="text-bold float-right text-white" style="font-size: 22px">
-                                                                                    00000000</h3>
-                                                                                    
-                                                                                </v-card>
-                                                                                <v-simple-table>
-                                                                                    <template v-slot:default>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('KHR')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 រៀល
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{ $t('USD') }}</td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 USD
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('exchange_rate')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('receipt_amount')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr color="secondary">
-                                                                                                <td color="secondary" class="text-left pr-0">{{
-                                                                                                    $t('balance')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td color="secondary" class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-
-                                                                                        </tbody>
-                                                                                    </template>
-                                                                                </v-simple-table>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                    </v-card-text>
-                                                                    <v-card-actions>
-                                                                        <div class="function_footer">
-                                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                @click="dialog = false">{{ $t('cancel') }}
-                                                                            </v-btn>
-
-                                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                @click="dialog = false">
-                                                                                {{ $t('make_cash_payment') }}
-                                                                            </v-btn>
-                                                                        </div>
-                                                                        <v-spacer></v-spacer>
-                                                                    </v-card-actions>
-                                                                </v-card>
+                                                                                    </div>
+                                                                                    <v-spacer></v-spacer>
+                                                                                </v-card-actions>
+                                                                            </v-card>
+                                                                        </v-container>
+                                                                    </v-card>
                                                                 </v-dialog>
                                                             </div>
                                                         </template>
@@ -1817,10 +1889,10 @@
                                                     </v-btn>
 
                                                     <v-btn class="rounded-0 calculator-btn">
-                                                        disc
+                                                        d
                                                     </v-btn>
                                                     <v-btn class="rounded-0 calculator-btn mr-0">
-                                                        staff
+                                                        s
                                                     </v-btn>
                                                     <br>
                                                     <v-btn class="rounded-0 calculator-btn ml-0">
@@ -1836,7 +1908,7 @@
                                                     </v-btn>
 
                                                     <v-btn class="rounded-0 calculator-btn">
-                                                        price
+                                                        p
                                                     </v-btn>
                                                     
                                                     <v-btn class="rounded-0 calculator-btn mr-0">
@@ -1852,7 +1924,7 @@
                                                     </v-btn>
 
                                                     <v-btn class="rounded-0 calculator-btn">
-                                                        clear
+                                                        c
                                                     </v-btn>
 
                                                     <v-btn class="rounded-0 calculator-btn">
@@ -1986,6 +2058,7 @@ export default {
         dialogPromotion:false,
         dialogOrder: false,
         dialog: false,
+        dialogCash: false,
         items: '',
 
         pinActivate: false,
@@ -2281,9 +2354,9 @@ export default {
         border: 1px solid gainsboro;
     }
     .receipt-btn{
-        min-width: 25% !important;
-        width: 30%;
-        padding: 0 10px !important;
+        min-width: 22% !important;
+        height: 50px !important;
+        padding: 10px !important;
         margin: 5px;
     }
     .calculator-btn{
@@ -2316,7 +2389,7 @@ export default {
 
     }
     .v-btn.v-size--default {
-        font-size: 0.76rem;
+        font-size: 1.2rem;
     }
     .b-search.b:before {
         color: #d7d3d3 !important;
