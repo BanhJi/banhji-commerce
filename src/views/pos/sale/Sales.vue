@@ -488,8 +488,8 @@
                                     </template> 
                                 </div>
 
-                                <div sm="12" cols="12" class="px-1">
-                                   
+                                <div sm="12" cols="12" class="">
+                                    <v-row class="px-4">
                                         <v-col sm="12" cols="12" class="pb-0">
                                             <v-row>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
@@ -524,157 +524,359 @@
                                                 </v-col>
                                             </v-row>
                                         </v-col>
-                                        <v-row class="mx-1">
-                                            <v-col sm="6" cols="6" class="py-0">
-                                                <v-row>
+
+                                        <v-col sm="6" cols="6" class="pl-4 py-0">
+                                            <v-row>
+                                                <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
                                                     
-                                                    <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
-                                                        
-                                                        <!-- reward -->
-                                                        <template>
+                                                    <!-- reward -->
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogReward"
+                                                            persistent
+                                                            max-width="600px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left>mdi-percent</v-icon>
+                                                                    {{$t('reward')}}
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <v-card-title>
+                                                                <span class="text-h5">{{$t('redeem_with')}}</span>
+                                                                </v-card-title>
+                                                                <v-card-text>
+                                                                <v-container>
+                                                                    <v-row>
+                                                                        <v-col sm="6" cols="6" class="">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="465"
+                                                                                outlined
+                                                                                @click="ToRewardForm()"
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h1>{{$t('point')}}</h1>
+                                                                                                <h1>{{$t('earn')}}</h1>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        <v-col sm="6" cols="6" class="">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="465"
+                                                                                outlined
+                                                                                @click="ToRewardForm()"
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h1 class="primary--text">{{$t('point')}}</h1>
+                                                                                                <h1 class="primary--text">{{$t('purchase')}}</h1>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-container>
+                                                                <!-- <small>*indicates required field</small> -->
+                                                                </v-card-text>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogReward = false">
+                                                                            {{ $t('skip') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
+                                                    <!-- reward form-->
+                                                    <template>
+                                                        <v-row>
                                                             <v-dialog
-                                                                v-model="dialogReward"
+                                                                v-model="rewardForm"
                                                                 persistent
                                                                 max-width="600px"
                                                                 >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                        <v-icon left>mdi-percent</v-icon>
-                                                                        {{$t('reward')}}
-                                                                    </v-btn>
-                                                                </template>
                                                                 <v-card>
                                                                     <v-card-title>
-                                                                    <span class="text-h5">{{$t('redeem_with')}}</span>
+                                                                    <span class="text-h5">{{$t('apply_point')}}</span>
                                                                     </v-card-title>
                                                                     <v-card-text>
-                                                                    <v-container>
                                                                         <v-row>
-                                                                            <v-col sm="6" cols="6" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToRewardForm()"
-                                                                                >
-                                                                                    <v-list-item three-line>
-                                                                                        <v-list-item-content class="pk-3">
-                                                                                            <v-row>
-                                                                                                <v-col sm="12" cols="12" class="text-center">
-                                                                                                    <h1>{{$t('point')}}</h1>
-                                                                                                    <h1>{{$t('earn')}}</h1>
-                                                                                                </v-col>
-                                                                                            </v-row>
-                                                                                        </v-list-item-content>
-                                                                                    </v-list-item>
-                                                                                </v-card>
+                                                                            <v-col cols="12" sm="12" md="12">
+                                                                                <template>
+                                                                                    <v-simple-table>
+                                                                                        <template>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig">
+                                                                                                        <span class="niradei_medium font_14 grey--text">
+                                                                                                            {{ $t("balance") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig">:</td>
+                                                                                                    <td class="text-right">
+                                                                                                        <span class="niradei_heavy font_18 dark_grey">
+                                                                                                            00
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig">
+                                                                                                        <span class="niradei_medium font_14 grey--text">
+                                                                                                            {{ $t("available") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig">:</td>
+                                                                                                    <td class="text-right">
+                                                                                                        <span class="niradei_heavy font_18 dark_grey">
+                                                                                                    00
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig">
+                                                                                                        <span class="niradei_medium font_14 grey--text">
+                                                                                                        {{ $t("payable") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig">:</td>
+                                                                                                    <td class="text-right">
+                                                                                                        <span class="niradei_heavy font_18 dark_grey">
+                                                                                                    00
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig">
+                                                                                                        <span class="niradei_medium font_14 grey--text">
+                                                                                                        {{ $t("apply") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig">:</td>
+                                                                                                    <td class="text-right">
+                                                                                                        <v-text-field
+                                                                                                            class="mt-2"
+                                                                                                            outlined
+                                                                                                            type="number"
+                                                                                                        ></v-text-field>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                
+                                                                                            </tbody>
+                                                                                        </template>
+                                                                                    </v-simple-table>
+                                                                                </template>
                                                                             </v-col>
-                                                                            <v-col sm="6" cols="6" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToRewardForm()"
-                                                                                >
-                                                                                    <v-list-item three-line>
-                                                                                        <v-list-item-content class="pk-3">
-                                                                                            <v-row>
-                                                                                                <v-col sm="12" cols="12" class="text-center">
-                                                                                                    <h1 class="primary--text">{{$t('point')}}</h1>
-                                                                                                    <h1 class="primary--text">{{$t('purchase')}}</h1>
-                                                                                                </v-col>
-                                                                                            </v-row>
-                                                                                        </v-list-item-content>
-                                                                                    </v-list-item>
-                                                                                </v-card>
+                                                                            <v-col cols="12" sm="12" md="12" class="grayBg px-6 text-center">
+                                                                                <v-row>
+                                                                                    <v-col sm="4" cols="4" class="">
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            5%
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                            10%
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            15%
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                            20%
+                                                                                        </v-btn>
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            30%
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                            40%
+                                                                                        </v-btn>
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            50%
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                            100%
+                                                                                        </v-btn>
+                                                                                        
+                                                                                    </v-col>
+                                                                                    <v-col sm="8" cols="8" class="">
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            1
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn">
+                                                                                            2
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
+                                                                                            3
+                                                                                        </v-btn>
+                                                                                        <br>
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            4
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn">
+                                                                                            5
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
+                                                                                            6
+                                                                                        </v-btn>
+                                                                                        <br>
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            7
+                                                                                        </v-btn>
+                                                                                            
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn">
+                                                                                            8
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
+                                                                                            9
+                                                                                        </v-btn>
+                                                                                        <br>
+                                                                                            
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                            0
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn">
+                                                                                            .
+                                                                                        </v-btn>
+
+                                                                                        <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
+                                                                                            <v-icon>fas fa-backspace</v-icon>
+                                                                                            c
+                                                                                        </v-btn>
+                                                                                        
+                                                                                    </v-col>
+                                                                                </v-row>
                                                                             </v-col>
                                                                         </v-row>
-                                                                    </v-container>
                                                                     <!-- <small>*indicates required field</small> -->
                                                                     </v-card-text>
                                                                     <v-card-actions>
                                                                         <div class="function_footer">
+                                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
+                                                                                @click="rewardForm = false">{{ $t('cancel') }}
+                                                                            </v-btn>
+
                                                                             <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                @click="dialogReward = false">
-                                                                                {{ $t('skip') }}
+                                                                                @click="rewardForm = false">
+                                                                                {{ $t('apply') }}
                                                                             </v-btn>
                                                                         </div>
                                                                         <v-spacer></v-spacer>
                                                                     </v-card-actions>
                                                                 </v-card>
                                                             </v-dialog>
-                                                        </template> 
-                                                        <!-- reward form-->
-                                                        <template>
-                                                            <v-row>
-                                                                <v-dialog
-                                                                    v-model="rewardForm"
-                                                                    persistent
-                                                                    max-width="600px"
-                                                                    >
-                                                                    <v-card>
-                                                                        <v-card-title>
-                                                                        <span class="text-h5">{{$t('apply_point')}}</span>
-                                                                        </v-card-title>
-                                                                        <v-card-text>
-                                                                            <v-row>
-                                                                                <v-col cols="12" sm="12" md="12">
+                                                        </v-row>
+                                                    </template> 
+                                                </v-col>
+                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-1">
+                                                    <!-- promotion -->
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogPromotion"
+                                                            persistent
+                                                            max-width="900px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left>mdi-ticket-percent</v-icon>
+                                                                        {{$t('promotion')}}
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <v-card-title>
+                                                                <span class="text-h5">{{$t('promotion')}}</span>
+                                                                </v-card-title>
+                                                                <v-card-text>
+                                                                    <v-col col="12" class="">
+                                                                        <v-row>
+                                                                            <v-col sm="3" cols="6" class="">
+                                                                                <v-select class="mt-1 rounded-0 "
+                                                                                        clearable
+                                                                                        outlined
+                                                                                        :label="$t('code')"
+                                                                                />
+                                                                            </v-col>
+                                                                            <v-col sm="9" cols="6" class="">
+                                                                                <v-text-field
+                                                                                    class="mt-1 rounded-0 "
+                                                                                    outlined
+                                                                                    :label="$t('search')"
+                                                                                    append-icon="b-search"
+                                                                                ></v-text-field>
+                                                                            </v-col>
+                                                                        </v-row>
+                                                                        <v-row>
+                                                                            <v-col sm="3" cols="3" class="">
+                                                                                <v-card
+                                                                                    class="mx-auto"
+                                                                                    max-width="465"
+                                                                                    outlined
+                                                                                    @click="ToPromotionForm()"
+                                                                                >
                                                                                     <template>
                                                                                         <v-simple-table>
                                                                                             <template>
                                                                                                 <tbody>
                                                                                                     <tr>
-                                                                                                        <td class="text-left tdbig">
+                                                                                                        <td class="text-left tdbig px-2">
                                                                                                             <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("balance") }}
+                                                                                                                {{ $t("name") }}
                                                                                                             </span>
                                                                                                         </td>
                                                                                                         <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right">
-                                                                                                            <span class="niradei_heavy font_18 dark_grey">
-                                                                                                                00
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                                khmer new year
                                                                                                             </span>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <td class="text-left tdbig">
+                                                                                                        <td class="text-left tdbig  px-2">
                                                                                                             <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("available") }}
+                                                                                                                {{ $t("code") }}
                                                                                                             </span>
                                                                                                         </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right">
-                                                                                                            <span class="niradei_heavy font_18 dark_grey">
-                                                                                                        00
+                                                                                                        <td class="text-left tdbig ">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                        2023
                                                                                                             </span>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <td class="text-left tdbig">
+                                                                                                        <td class="text-left tdbig  px-2">
                                                                                                             <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("payable") }}
+                                                                                                            {{ $t("expiry_date") }}
                                                                                                             </span>
                                                                                                         </td>
                                                                                                         <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right">
-                                                                                                            <span class="niradei_heavy font_18 dark_grey">
-                                                                                                        00
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 primary--text">
+                                                                                                        14 04 2023
                                                                                                             </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("apply") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right">
-                                                                                                            <v-text-field
-                                                                                                                class="mt-2"
-                                                                                                                outlined
-                                                                                                                type="number"
-                                                                                                            ></v-text-field>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     
@@ -682,1262 +884,1044 @@
                                                                                             </template>
                                                                                         </v-simple-table>
                                                                                     </template>
-                                                                                </v-col>
-                                                                                <v-col cols="12" sm="12" md="12" class="grayBg px-6 text-center">
-                                                                                    <v-row>
-                                                                                        <v-col sm="4" cols="4" class="">
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                5%
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
-                                                                                                10%
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                15%
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
-                                                                                                20%
-                                                                                            </v-btn>
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                30%
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
-                                                                                                40%
-                                                                                            </v-btn>
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                50%
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
-                                                                                                100%
-                                                                                            </v-btn>
-                                                                                            
-                                                                                        </v-col>
-                                                                                        <v-col sm="8" cols="8" class="">
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                1
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn">
-                                                                                                2
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
-                                                                                                3
-                                                                                            </v-btn>
-                                                                                            <br>
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                4
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn">
-                                                                                                5
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
-                                                                                                6
-                                                                                            </v-btn>
-                                                                                            <br>
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                7
-                                                                                            </v-btn>
-                                                                                                
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn">
-                                                                                                8
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
-                                                                                                9
-                                                                                            </v-btn>
-                                                                                            <br>
-                                                                                                
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
-                                                                                                0
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn">
-                                                                                                .
-                                                                                            </v-btn>
-
-                                                                                            <v-btn color="third" class="white--text rounded-0 receipt-btn mr-0">
-                                                                                                <v-icon>fas fa-backspace</v-icon>
-                                                                                                c
-                                                                                            </v-btn>
-                                                                                            
-                                                                                        </v-col>
-                                                                                    </v-row>
-                                                                                </v-col>
-                                                                            </v-row>
-                                                                        <!-- <small>*indicates required field</small> -->
-                                                                        </v-card-text>
-                                                                        <v-card-actions>
-                                                                            <div class="function_footer">
-                                                                                <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                    @click="rewardForm = false">{{ $t('cancel') }}
-                                                                                </v-btn>
-
-                                                                                <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                    @click="rewardForm = false">
-                                                                                    {{ $t('apply') }}
-                                                                                </v-btn>
-                                                                            </div>
-                                                                            <v-spacer></v-spacer>
-                                                                        </v-card-actions>
-                                                                    </v-card>
-                                                                </v-dialog>
-                                                            </v-row>
-                                                        </template> 
-                                                    </v-col>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1 pr-1">
-                                                        <!-- promotion -->
-                                                        <template>
-                                                            <v-dialog
-                                                                v-model="dialogPromotion"
-                                                                persistent
-                                                                max-width="900px"
-                                                                >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                        <v-icon left>mdi-ticket-percent</v-icon>
-                                                                            {{$t('promotion')}}
-                                                                    </v-btn>
-                                                                </template>
-                                                                <v-card>
-                                                                    <v-card-title>
-                                                                    <span class="text-h5">{{$t('promotion')}}</span>
-                                                                    </v-card-title>
-                                                                    <v-card-text>
-                                                                        <v-col col="12" class="">
-                                                                            <v-row>
-                                                                                <v-col sm="3" cols="6" class="">
-                                                                                    <v-select class="mt-1 rounded-0 "
-                                                                                            clearable
-                                                                                            outlined
-                                                                                            :label="$t('code')"
-                                                                                    />
-                                                                                </v-col>
-                                                                                <v-col sm="9" cols="6" class="">
-                                                                                    <v-text-field
-                                                                                        class="mt-1 rounded-0 "
-                                                                                        outlined
-                                                                                        :label="$t('search')"
-                                                                                        append-icon="b-search"
-                                                                                    ></v-text-field>
-                                                                                </v-col>
-                                                                            </v-row>
-                                                                            <v-row>
-                                                                                <v-col sm="3" cols="3" class="">
-                                                                                    <v-card
-                                                                                        class="mx-auto"
-                                                                                        max-width="465"
-                                                                                        outlined
-                                                                                        @click="ToPromotionForm()"
-                                                                                    >
-                                                                                        <template>
-                                                                                            <v-simple-table>
-                                                                                                <template>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("name") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                    khmer new year
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("code") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig ">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                            2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("expiry_date") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 primary--text">
-                                                                                                            14 04 2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </template>
-                                                                                    </v-card>
-                                                                                </v-col>
-                                                                                <v-col sm="3" cols="3" class="">
-                                                                                    <v-card
-                                                                                        class="mx-auto"
-                                                                                        max-width="465"
-                                                                                        outlined
-                                                                                        @click="ToPromotionForm()"
-                                                                                    >
-                                                                                        <template>
-                                                                                            <v-simple-table>
-                                                                                                <template>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("name") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                    khmer new year
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("code") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig ">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                            2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("expiry_date") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 primary--text">
-                                                                                                            14 04 2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </template>
-                                                                                    </v-card>
-                                                                                </v-col>
-                                                                                <v-col sm="3" cols="3" class="">
-                                                                                    <v-card
-                                                                                        class="mx-auto"
-                                                                                        max-width="465"
-                                                                                        outlined
-                                                                                        @click="ToPromotionForm()"
-                                                                                    >
-                                                                                        <template>
-                                                                                            <v-simple-table>
-                                                                                                <template>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("name") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                    khmer new year
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("code") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig ">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                            2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("expiry_date") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 primary--text">
-                                                                                                            14 04 2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </template>
-                                                                                    </v-card>
-                                                                                </v-col>
-                                                                                <v-col sm="3" cols="3" class="">
-                                                                                    <v-card
-                                                                                        class="mx-auto"
-                                                                                        max-width="465"
-                                                                                        outlined
-                                                                                        @click="ToPromotionForm()"
-                                                                                    >
-                                                                                        <template>
-                                                                                            <v-simple-table>
-                                                                                                <template>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("name") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                    khmer new year
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("code") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig ">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 dark_grey">
-                                                                                                            2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig  px-2">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("expiry_date") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right  px-2">
-                                                                                                                <span class="niradei_heavy font_14 primary--text">
-                                                                                                            14 04 2023
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </template>
-                                                                                    </v-card>
-                                                                                </v-col>
-                                                                            </v-row>
-                                                                        </v-col>
-                                                                        <!-- <small>*indicates required field</small> -->
-                                                                    </v-card-text>
-                                                                    <v-card-actions>
-                                                                        <div class="function_footer">
-                                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                @click="dialogPromotion = false">
-                                                                                {{ $t('skip') }}
-                                                                            </v-btn>
-                                                                        </div>
-                                                                        <v-spacer></v-spacer>
-                                                                    </v-card-actions>
-                                                                </v-card>
-                                                            </v-dialog>
-                                                        </template> 
-                                                    </v-col>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
-                                                        <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                            <v-icon left>mdi-pencil</v-icon>
-                                                            {{$t('note')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1">
-                                                        <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                            <v-icon left>mdi-motorbike</v-icon>
-                                                            {{$t('delivery')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                </v-row>  
-                                                
-                                            </v-col>
-                                            <v-col sm="6" cols="6" class="py-0">
-                                                <v-row>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1">
-                                                        <v-btn color=secondary class="white--text rounded-0  btn-funtion" style="">
-                                                            <v-icon left>mdi-parking</v-icon>
-                                                            {{$t('parksale')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
-                                                        <v-btn color=secondary class="white--text rounded-0 btn-funtion" style="">
-                                                            <v-icon left>mdi-receipt</v-icon>
-                                                            {{$t('invoice')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                    
-                                                    <v-col md="6" sm="6" col="6" class="pa-1">
-                                                        <v-btn  color=secondary class="rounded-0 btn-funtion" style="">
-                                                            <v-icon left>mdi-cancel</v-icon>
-                                                            {{$t('cancel')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                    <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
-                                                        <v-btn color=secondary class="rounded-0 btn-funtion" style=""> 
-                                                            <v-icon left>mdi-printer</v-icon>
-                                                            {{$t('print')}}
-                                                        </v-btn>
-                                                    </v-col>
-                                                    
-                                                </v-row>
-                                            </v-col>
-                                        </v-row>
-
-                                    <v-col sm="12" cols="12" class="py-0"> 
-                                        <v-row>
-                                            <v-col md="4" sm="3" cols="12" class="pa-1 pl-0">
-                                                <v-row class="mx-0" style="height: 100%;">
-                                                    <v-col sm="12" cols="12" class="pa-1 pt-0 pb-0 mt-1" >
-                                                        <template>
-                                                            <div justify="center" style="height: 100%;">
-                                                                <v-dialog
-                                                                    v-model="dialogCash"
-                                                                    fullscreen
-                                                                    hide-overlay
-                                                                    transition="dialog-bottom-transition"
-                                                                >
-                                                                    <template v-slot:activator="{ on, attrs }">
-                                                                        <v-btn 
-                                                                            color="primary"
-                                                                            dark
-                                                                            v-bind="attrs"
-                                                                            v-on="on"
-                                                                            height="50%"
-                                                                            class="rounded-0 pay-btn" 
-                                                                            style="height:100% !important;">
-                                                                            
-                                                                            <span style="font-size: 26px;">{{$t('cash')}}</span> 
+                                                                                </v-card>
+                                                                            </v-col>
+                                                                            <v-col sm="3" cols="3" class="">
+                                                                                <v-card
+                                                                                    class="mx-auto"
+                                                                                    max-width="465"
+                                                                                    outlined
+                                                                                    @click="ToPromotionForm()"
+                                                                                >
+                                                                                    <template>
+                                                                                        <v-simple-table>
+                                                                                            <template>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("name") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                                khmer new year
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("code") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig ">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                        2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                            {{ $t("expiry_date") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 primary--text">
+                                                                                                        14 04 2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    
+                                                                                                </tbody>
+                                                                                            </template>
+                                                                                        </v-simple-table>
+                                                                                    </template>
+                                                                                </v-card>
+                                                                            </v-col>
+                                                                            <v-col sm="3" cols="3" class="">
+                                                                                <v-card
+                                                                                    class="mx-auto"
+                                                                                    max-width="465"
+                                                                                    outlined
+                                                                                    @click="ToPromotionForm()"
+                                                                                >
+                                                                                    <template>
+                                                                                        <v-simple-table>
+                                                                                            <template>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("name") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                                khmer new year
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("code") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig ">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                        2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                            {{ $t("expiry_date") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 primary--text">
+                                                                                                        14 04 2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    
+                                                                                                </tbody>
+                                                                                            </template>
+                                                                                        </v-simple-table>
+                                                                                    </template>
+                                                                                </v-card>
+                                                                            </v-col>
+                                                                            <v-col sm="3" cols="3" class="">
+                                                                                <v-card
+                                                                                    class="mx-auto"
+                                                                                    max-width="465"
+                                                                                    outlined
+                                                                                    @click="ToPromotionForm()"
+                                                                                >
+                                                                                    <template>
+                                                                                        <v-simple-table>
+                                                                                            <template>
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("name") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                                khmer new year
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                                {{ $t("code") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig ">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 dark_grey">
+                                                                                                        2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td class="text-left tdbig  px-2">
+                                                                                                            <span class="niradei_medium font_14 grey--text">
+                                                                                                            {{ $t("expiry_date") }}
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                        <td class="text-left tdbig">:</td>
+                                                                                                        <td class="text-right  px-2">
+                                                                                                            <span class="niradei_heavy font_14 primary--text">
+                                                                                                        14 04 2023
+                                                                                                            </span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    
+                                                                                                </tbody>
+                                                                                            </template>
+                                                                                        </v-simple-table>
+                                                                                    </template>
+                                                                                </v-card>
+                                                                            </v-col>
+                                                                        </v-row>
+                                                                    </v-col>
+                                                                    <!-- <small>*indicates required field</small> -->
+                                                                </v-card-text>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogPromotion = false">
+                                                                            {{ $t('skip') }}
                                                                         </v-btn>
-                                                                    </template>
-                                                                    <v-card style="background-color: #f8f8f9;">
-                                                                        <v-container>
-                                                                            <v-card outlined
-                                                                                dense
-                                                                                class="pa-4 no_border rounded-sm"
-                                                                                color="white">
-                                                                                <v-card-text>
-                                                                                    <v-card-title class="text-h5">
-                                                                                    {{$t('cash_receipt')}}
-                                                                                    </v-card-title>
-                                                                                    <v-row>
-                                                                                        <v-col sm="8" cols="8" class="px-6 pt-0">
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
+                                                </v-col>
+                                                <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
+                                                    <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
+                                                        <v-icon left>mdi-pencil</v-icon>
+                                                        {{$t('note')}}
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="6" sm="6" col="6" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
+                                                        <v-icon left>mdi-motorbike</v-icon>
+                                                        {{$t('delivery')}}
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>  
+                                            
+                                        </v-col>
+                                        <v-col sm="6" cols="6" class="pr-4 py-0">
+                                            <v-row>
+                                                <v-col md="6" sm="6" col="6" class="pa-1">
+                                                    <v-btn color=secondary class="white--text rounded-0  btn-funtion" style="">
+                                                        <v-icon left>mdi-parking</v-icon>
+                                                        {{$t('parksale')}}
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
+                                                    <v-btn color=secondary class="white--text rounded-0 btn-funtion" style="">
+                                                        <v-icon left>mdi-receipt</v-icon>
+                                                        {{$t('invoice')}}
+                                                    </v-btn>
+                                                </v-col>
+                                                
+                                                <v-col md="6" sm="6" col="6" class="pa-1">
+                                                    <v-btn  color=secondary class="rounded-0 btn-funtion" style="">
+                                                        <v-icon left>mdi-cancel</v-icon>
+                                                        {{$t('cancel')}}
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
+                                                    <v-btn color=secondary class="rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left>mdi-printer</v-icon>
+                                                        {{$t('print')}}
+                                                    </v-btn>
+                                                </v-col>
+                                                
+                                            </v-row>
+                                        </v-col>
+                                        <v-col sm="12" cols="12" class="py-0"> 
+                                            <v-row>
+                                                <!-- payments -->
+                                                <v-col md="4" sm="3" cols="12" class="pa-1 pl-0">
+                                                    <v-row class="mx-0" style="height: 100%;">
+                                                        <!-- cash -->
+                                                        <v-col sm="12" cols="12" class="pa-1 pt-0 pb-0 mt-1" >
+                                                            <template>
+                                                                <div justify="center" style="height: 100%;">
+                                                                    <v-dialog
+                                                                        v-model="dialogCash"
+                                                                        fullscreen
+                                                                        hide-overlay
+                                                                        transition="dialog-bottom-transition"
+                                                                    >
+                                                                        <template v-slot:activator="{ on, attrs }">
+                                                                            <v-btn 
+                                                                                color="primary"
+                                                                                dark
+                                                                                v-bind="attrs"
+                                                                                v-on="on"
+                                                                                height="50%"
+                                                                                class="rounded-0 pay-btn" 
+                                                                                style="height:100% !important;">
+                                                                                
+                                                                                <span style="font-size: 26px;">{{$t('cash')}}</span> 
+                                                                            </v-btn>
+                                                                        </template>
+                                                                        <v-card style="background-color: #f8f8f9;">
+                                                                            <v-container>
+                                                                                <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                                    <div class="modal_header">
+                                                                                        <v-card-title>{{ $t("cash_receipt") }}</v-card-title>
+                                                                                        <v-icon class="btn_close" @click="dialogTax = false">close</v-icon>
+                                                                                    </div>
+                                                                                    <v-card-text class="modal_text_content">
+                                                                                        <v-row>
+                                                                                            
+                                                                                            <v-col sm="7" cols="7" class="pr-0 py-0 border_right_lightgrey">
+                                                                                                <v-row>
+                                                                                                    <v-col sm="6" cols="6" class=" function_content pa-3 pb-0">
+                                                                                                      
+                                                                                                        <v-simple-table>
+                                                                                                            <template v-slot:default>
+                                                                                                                <tbody>
+                                                                                                                    <tr style="background-color: red;color: #fff;">
+                                                                                                                        <td class="text-left pr-0 text-bold ">
+                                                                                                                            {{ $t('amount_to_pay')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td class="text-right text-bold">
+                                                                                                                            0000000 រៀល
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">{{
+                                                                                                                            $t('KHR')
+                                                                                                                        }}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                            0000000 រៀល
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">{{ $t('USD') }}</td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                            0000000 USD
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">{{
+                                                                                                                            $t('exchange_rate')
+                                                                                                                        }}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">{{
+                                                                                                                            $t('receipt_amount')
+                                                                                                                        }}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                            0000000
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr color="secondary">
+                                                                                                                        <td color="secondary" class="text-left pr-0">{{
+                                                                                                                            $t('balance')
+                                                                                                                        }}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center">:</td>
+                                                                                                                        <td color="secondary" class="text-right">
+                                                                                                                            0000000
+                                                                                                                        </td>
+                                                                                                                    </tr>
+
+                                                                                                                </tbody>
+                                                                                                            </template>
+                                                                                                        </v-simple-table>
+                                                                                                    </v-col>
+                                                                                                    <v-col sm="6" cols="6" class="pb-0">
+                                                                                                        <div class="text-center">
+                                                                                                            <v-row>
+                                                                                                                <v-col sm="12" cols="12" class="py-0">
+                                                                                                                    <v-text-field
+                                                                                                                        class="mt-1 "
+                                                                                                                        outlined
+                                                                                                                        placeholder=""
+                                                                                                                        style="width: 72%;margin: auto;"
+                                                                                                                    />
+                                                                                                                </v-col>
+                                                                                                                <v-col sm="12" cols="12" class="pt-0">
+                                                                                                                    <v-btn color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                                        1
+                                                                                                                    </v-btn>
+                                                                                                                        
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                                        2
+                                                                                                                    </v-btn>
+
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                                        3
+                                                                                                                    </v-btn>
+                                                                                                                    <br>
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                                        4
+                                                                                                                    </v-btn>
+                                                                                                                        
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                                        5
+                                                                                                                    </v-btn>
+
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                                        6
+                                                                                                                    </v-btn>
+                                                                                                                    <br>
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                                        7
+                                                                                                                    </v-btn>
+                                                                                                                        
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                                        8
+                                                                                                                    </v-btn>
+
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                                        9
+                                                                                                                    </v-btn>
+                                                                                                                    <br>
+                                                                                                                        
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
+                                                                                                                        0
+                                                                                                                    </v-btn>
+
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
+                                                                                                                        .
+                                                                                                                    </v-btn>
+
+                                                                                                                    <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
+                                                                                                                        <v-icon>fas fa-backspace</v-icon>
+                                                                                                                        c
+                                                                                                                    </v-btn>
+                                                                                                                </v-col>
+                                                                                                            </v-row>
+                                                                                                        </div>
+                                                                                                        
+                                                                                                    </v-col>
+                                                                                                    <v-col sm="12" cols="4" class="pl-0 pb-0">
+                                                                                                        <v-tabs>
+                                                                                                            <v-tab>
+                                                                                                                <span  class="text-capitalize text-left">
+                                                                                                                {{ $t("kHR") }}
+                                                                                                                </span>
+                                                                                                            </v-tab>
+                                                                                                            <v-tab>
+                                                                                                                <span class="text-capitalize text-left">
+                                                                                                                {{ $t("usd") }}
+                                                                                                                </span>
+                                                                                                            </v-tab>
+                                                                                                            <v-tab-item>
+                                                                                                                <v-col sm="12" cols="12" class="grayBg">
+                                                                                                                    <v-card color="white" class="pa-3 no_border text-center" elevation="0">
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                5000 
+                                                                                                                            </v-btn>
+                                                                                                                                
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                10000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                15000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                20000
+                                                                                                                            </v-btn>
+                                                                                                                                
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                25000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                30000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                40000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                45000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                50000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                55000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                60000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                65000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                70000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                80000
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                90000
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="primary" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                100000
+                                                                                                                            </v-btn>
+                                                                                                                    </v-card>
+                                                                                                                </v-col>
+                                                                                                            </v-tab-item>
+                                                                                                            <v-tab-item>
+                                                                                                                <v-col sm="12" cols="12" class="grayBg">
+                                                                                                                    <v-card color="white" class="pa-3 no_border text-center" elevation="0">
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                5$
+                                                                                                                            </v-btn>
+                                                                                                                                
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                10$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                15$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                20$
+                                                                                                                            </v-btn>
+                                                                                                                                
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                25$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                30$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                35$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                40$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                45$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                50$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                55$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                60$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                70$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                80$
+                                                                                                                            </v-btn>
+
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                90$
+                                                                                                                            </v-btn>
+                                                                                                                            <v-btn color="third" class="text-white text-bold rounded-0 receipt-btn">
+                                                                                                                                100$
+                                                                                                                            </v-btn>
+                                                                                                                    </v-card>
+                                                                                                                </v-col>
+                                                                                                            </v-tab-item>
+                                                                                                        </v-tabs>
+                                                                                                    </v-col>
+                                                                                                </v-row>
+                                                                                            </v-col>
+                                                                                            <v-col sm="5" cols="5" class="py-0">
+                                                                                                <v-row>
+                                                                                                    <v-col cols="12" class="text-center pb-0">
+                                                                                                        <h2 class="">{{$t('receipt')}}</h2>
+                                                                                                    </v-col>
+                                                                                                    
+                                                                                                    <v-col sm="6" cols="6" class="px-0">
+                                                                                                        <v-simple-table>
+                                                                                                            <template v-slot:default>
+                                                                                                                <tbody class="tb-pong">
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('cashier')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        lin
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('customer')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('general_customer')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        6.40$
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('rat')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        4150
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    
+                                                                                                                </tbody>
+                                                                                                            </template>
+                                                                                                        </v-simple-table>
+                                                                                                    </v-col>
+                                                                                                    <v-col sm="6" cols="6" class="px-0">
+                                                                                                        <v-simple-table>
+                                                                                                            <template v-slot:default>
+                                                                                                                <tbody class="tb-pong">
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('table')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        T20
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('order_num')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                            0001
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="text-left pr-0">
+                                                                                                                            {{$t('date')}}
+                                                                                                                        </td>
+                                                                                                                        <td class="text-center pl-0">:</td>
+                                                                                                                        <td class="text-right">
+                                                                                                                        wed 10 2022
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                    
+                                                                                                                </tbody>
+                                                                                                            </template>
+                                                                                                        </v-simple-table>
+                                                                                                    </v-col>
+                                                                                                    <v-col sm="12" cols="12" class="">
+                                                                                                        <div class="d-flex flex-column" style="height: 100%;">
+                                                                                                            <v-simple-table fixed-header height="350px"  class="flex-1" >
+                                                                                                                <template v-slot:default>
+                                                                                                                    <thead class="th-invoice">
+                                                                                                                        <tr>
+                                                                                                                            <th class="text-left">
+                                                                                                                                {{$t('items')}}
+                                                                                                                            </th>
+                                                                                                                            <th class="text-left">
+                                                                                                                                {{$t('qty')}}
+                                                                                                                            </th>
+                                                                                                                            <th class="text-left">
+                                                                                                                                {{$t('price')}}
+                                                                                                                            </th>
+                                                                                                                            <th class="text-left">
+                                                                                                                                {{$t('discount')}}
+                                                                                                                            </th>
+                                                                                                                            <th class="text-left">
+                                                                                                                                {{$t('amount')}}
+                                                                                                                            </th>
+                                                                                                                        </tr>
+                                                                                                                    </thead>
+                                                                                                                    <tbody class="td-invioce">
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                បាយផាក់ឡូវ
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">1</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            0.75$
+                                                                                                                            </td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            3.00$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+
+                                                                                                                    </tbody>
+                                                                                                                </template>
+                                                                                                            </v-simple-table>
+                                                                                                            <v-simple-table>
+                                                                                                                <template v-slot:default>
+                                                                                                                    <tbody class="tb-pong">
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0" style="border-top: thin solid rgba(0, 0, 0, 0.12)">
+                                                                                                                                {{$t('sub_total')}}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center" style="border-top: thin solid rgba(0, 0, 0, 0.12)">:</td>
+                                                                                                                            <td class="text-right" style="border-top: thin solid rgba(0, 0, 0, 0.12)">
+                                                                                                                            7.90$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                {{$t('discount')}}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">:</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            1.50$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                {{$t('total usd whit tax 10%')}}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">:</td>
+                                                                                                                            <td class="text-right font_18 text-bold">
+                                                                                                                            6.40$
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                {{$t('paid_by')}}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">:</td>
+                                                                                                                            <td class="text-right">
+                                                                                                                            Cash
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-left pr-0">
+                                                                                                                                {{$t('total KHR whit tax 10%')}}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">:</td>
+                                                                                                                            <td class="text-right font_18 text-bold">
+                                                                                                                            26,560៛
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        
+                                                                                                                    </tbody>
+                                                                                                                </template>
+                                                                                                            </v-simple-table>
+                                                                                                        </div>
+                                                                                                    </v-col>
+                                                                                                </v-row>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-card-text>
+                                                                                    <v-divider/>
+                                                                                    <v-card-actions>
+                                                                                        <div class="function_footer pt-0">
                                                                                             <v-row>
-                                                                                                <v-col sm="6" cols="6" class=" function_content pa-3">
-                                                                                                    <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
-                                                                                                            min-height="50px" color="primary">
-                                                                                                        <h3 style="font-size: 18px" class="text-white text-uppercase">
-                                                                                                        {{ $t('amount_to_pay') }}</h3>
-                                                                                                        <h3 class="text-bold float-right text-white" style="font-size: 22px">
-                                                                                                        00000000</h3>
-                                                                                                        
-                                                                                                    </v-card>
-                                                                                                    <v-simple-table>
-                                                                                                        <template v-slot:default>
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td class="text-left pr-0">{{
-                                                                                                                        $t('KHR')
-                                                                                                                    }}
-                                                                                                                    </td>
-                                                                                                                    <td class="text-center">:</td>
-                                                                                                                    <td class="text-right">
-                                                                                                                        0000000 រៀល
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td class="text-left pr-0">{{ $t('USD') }}</td>
-                                                                                                                    <td class="text-center">:</td>
-                                                                                                                    <td class="text-right">
-                                                                                                                        0000000 USD
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td class="text-left pr-0">{{
-                                                                                                                        $t('exchange_rate')
-                                                                                                                    }}
-                                                                                                                    </td>
-                                                                                                                    <td class="text-center">:</td>
-                                                                                                                    <td class="text-right">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td class="text-left pr-0">{{
-                                                                                                                        $t('receipt_amount')
-                                                                                                                    }}
-                                                                                                                    </td>
-                                                                                                                    <td class="text-center">:</td>
-                                                                                                                    <td class="text-right">
-                                                                                                                        0000000
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr color="secondary">
-                                                                                                                    <td color="secondary" class="text-left pr-0">{{
-                                                                                                                        $t('balance')
-                                                                                                                    }}
-                                                                                                                    </td>
-                                                                                                                    <td class="text-center">:</td>
-                                                                                                                    <td color="secondary" class="text-right">
-                                                                                                                        0000000
-                                                                                                                    </td>
-                                                                                                                </tr>
+                                                                                                <v-col cols="7">
+                                                                                                    <v-btn outlined color="#494846" class="float-left text-capitalize"
+                                                                                                    @click="dialogCash = false">{{ $t('cancel') }}
+                                                                                                    </v-btn>
 
-                                                                                                            </tbody>
-                                                                                                        </template>
-                                                                                                    </v-simple-table>
+                                                                                                    <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                                                        @click="dialogCash = false">
+                                                                                                        {{ $t('pay') }}
+                                                                                                    </v-btn>
+
                                                                                                 </v-col>
-                                                                                                <v-col sm="6" cols="6" class="function_content pa-3">
-                                                                                                    <div class="text-center">
-                                                                                                        <v-text-field
-                                                                                                            class="mt-1"
-                                                                                                            outlined
-                                                                                                            placeholder=""
-                                                                                                            style="width: 96%;margin: auto;"
-                                                                                                        />
-                                                                                                        <v-btn color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
-                                                                                                            1
-                                                                                                        </v-btn>
-                                                                                                            
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
-                                                                                                            2
-                                                                                                        </v-btn>
-
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
-                                                                                                            3
-                                                                                                        </v-btn>
-                                                                                                        <br>
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
-                                                                                                            4
-                                                                                                        </v-btn>
-                                                                                                            
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
-                                                                                                            5
-                                                                                                        </v-btn>
-
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
-                                                                                                            6
-                                                                                                        </v-btn>
-                                                                                                        <br>
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
-                                                                                                            7
-                                                                                                        </v-btn>
-                                                                                                            
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
-                                                                                                            8
-                                                                                                        </v-btn>
-
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
-                                                                                                            9
-                                                                                                        </v-btn>
-                                                                                                        <br>
-                                                                                                            
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn ml-0">
-                                                                                                            0
-                                                                                                        </v-btn>
-
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn">
-                                                                                                            .
-                                                                                                        </v-btn>
-
-                                                                                                        <v-btn  color="secondary" class="text-bold rounded-0 receipt-btn mr-0">
-                                                                                                            <v-icon>fas fa-backspace</v-icon>
-                                                                                                            c
-                                                                                                        </v-btn>
-                                                                                                    </div>
-                                                                                                    
-                                                                                                </v-col>
-                                                                                                <v-col sm="12" cols="4" class="">
-                                                                                                    <v-btn color="primary" class="rounded-0 my-2 ">
-                                                                                                        KHR
-                                                                                                    </v-btn>
-                                                                                                    <v-btn color="secondary" class="rounded-0 ma-2">
-                                                                                                        USD
-                                                                                                    </v-btn>
-                                                                                                        <br>
-                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                                        5$
-                                                                                                    </v-btn>
-                                                                                                        
-                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                                        10$
+                                                                                                <v-col cols="5">
+                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                                                        @click="dialogCash = false">
+                                                                                                        {{ $t('print') }}
                                                                                                     </v-btn>
 
-                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                                        15$
-                                                                                                    </v-btn>
-                                                                                                    <br>
-                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                                        20$
-                                                                                                    </v-btn>
-                                                                                                        
-                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                                        25$
-                                                                                                    </v-btn>
-
-                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                                        30$
-                                                                                                    </v-btn>
-                                                                                                    <br>
-                                                                                                        
-                                                                                                    <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                                        40$
-                                                                                                    </v-btn>
-                                                                                                    <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                                        50$
-                                                                                                    </v-btn>
-
-                                                                                                    <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                                        100$
-                                                                                                    </v-btn>
-                                                                                                    
                                                                                                 </v-col>
                                                                                             </v-row>
-                                                                                        </v-col>
-                                                                                        <v-col sm="4" cols="4" class="pb-0 function_content pa-3">
-                                                                                            <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
-                                                                                                    min-height="50px" color="primary">
-                                                                                                <h3 style="font-size: 18px" class="text-white text-uppercase">
-                                                                                                {{ $t('amount_to_pay') }}</h3>
-                                                                                                <h3 class="text-bold float-right text-white" style="font-size: 22px">
-                                                                                                00000000</h3>
-                                                                                                
-                                                                                            </v-card>
-                                                                                            <v-simple-table>
-                                                                                                <template v-slot:default>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left pr-0">{{
-                                                                                                                $t('KHR')
-                                                                                                            }}
-                                                                                                            </td>
-                                                                                                            <td class="text-center">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                                0000000 រៀល
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left pr-0">{{ $t('USD') }}</td>
-                                                                                                            <td class="text-center">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                                0000000 USD
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left pr-0">{{
-                                                                                                                $t('exchange_rate')
-                                                                                                            }}
-                                                                                                            </td>
-                                                                                                            <td class="text-center">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left pr-0">{{
-                                                                                                                $t('receipt_amount')
-                                                                                                            }}
-                                                                                                            </td>
-                                                                                                            <td class="text-center">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                                0000000
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr color="secondary">
-                                                                                                            <td color="secondary" class="text-left pr-0">{{
-                                                                                                                $t('balance')
-                                                                                                            }}
-                                                                                                            </td>
-                                                                                                            <td class="text-center">:</td>
-                                                                                                            <td color="secondary" class="text-right">
-                                                                                                                0000000
-                                                                                                            </td>
-                                                                                                        </tr>
-
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </v-col>
-                                                                                    </v-row>
-                                                                                </v-card-text>
-                                                                                <v-card-actions>
-                                                                                    <div class="function_footer">
-                                                                                        <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                            @click="dialogCash = false">{{ $t('cancel') }}
-                                                                                        </v-btn>
-
-                                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                            @click="dialogCash = false">
-                                                                                            {{ $t('make_cash_payment') }}
-                                                                                        </v-btn>
-                                                                                    </div>
-                                                                                    <v-spacer></v-spacer>
-                                                                                </v-card-actions>
-                                                                            </v-card>
-                                                                        </v-container>
-                                                                    </v-card>
-                                                                </v-dialog>
-                                                            </div>
-                                                        </template>
-                                                        
-                                                    </v-col>
-                                                    <v-col sm="6" cols="6" class="pa-1 mt-1">
-                                                        <template>
-                                                            <div justify="center" style="height: 100%;">
-                                                                <v-dialog
-                                                                v-model="dialog"
-                                                                persistent
-                                                                max-width="1000"
-                                                                >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn 
-                                                                        color="primary"
-                                                                        dark
-                                                                        v-bind="attrs"
-                                                                        v-on="on"
-                                                                        class="rounded-0 pay-btn" 
-                                                                        style="height:100% !important;">
-                                                                        <v-icon style="font-size:60px;" class="b-banking"></v-icon>
-                                                                    </v-btn>
-                                                                </template>
-                                                                <v-card>
-                                                                    
-                                                                    <v-card-text>
-                                                                        <v-card-title class="text-h5">
-                                                                        {{$t('cash_receipt')}}
-                                                                        </v-card-title>
-                                                                        <v-row>
-                                                                            <v-col sm="6" cols="6" class="">
-                                                                                <v-row>
-                                                                                    
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-text-field
-                                                                                            class="mt-1 pr-6"
-                                                                                            outlined
-                                                                                            placeholder=""
-                                                                                        />
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            1
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            2
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            3
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            4
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            5
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            6
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            7
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            8
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            9
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            0
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            .
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            <v-icon>fas fa-backspace</v-icon>
-                                                                                            clear
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-btn color="primary" class="rounded-0 my-2 ">
-                                                                                            KHR
-                                                                                        </v-btn>
-                                                                                        <v-btn color="secondary" class="rounded-0 ma-2">
-                                                                                            USD
-                                                                                        </v-btn>
-                                                                                            <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            5$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            10$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            15$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            20$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            25$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            30$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            40$
-                                                                                        </v-btn>
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            50$
-                                                                                        </v-btn>
-
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            100$
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                </v-row>
-                                                                            </v-col>
-                                                                            <v-col sm="6" cols="6" class="pb-0 function_content pa-3">
-                                                                                <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
-                                                                                        min-height="50px" color="primary">
-                                                                                    <h3 style="font-size: 18px" class="text-white text-uppercase">
-                                                                                    {{ $t('amount_to_pay') }}</h3>
-                                                                                    <h3 class="text-bold float-right text-white" style="font-size: 22px">
-                                                                                    00000000</h3>
-                                                                                    
+                                                                                        </div>
+                                                                                        <v-spacer></v-spacer>
+                                                                                    </v-card-actions>
                                                                                 </v-card>
-                                                                                <v-simple-table>
-                                                                                    <template v-slot:default>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('KHR')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 រៀល
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{ $t('USD') }}</td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 USD
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('exchange_rate')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('receipt_amount')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr color="secondary">
-                                                                                                <td color="secondary" class="text-left pr-0">{{
-                                                                                                    $t('balance')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td color="secondary" class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-
-                                                                                        </tbody>
-                                                                                    </template>
-                                                                                </v-simple-table>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                    </v-card-text>
-                                                                    <v-card-actions>
-                                                                        <div class="function_footer">
-                                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                @click="dialog = false">{{ $t('cancel') }}
-                                                                            </v-btn>
-
-                                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                @click="dialog = false">
-                                                                                {{ $t('make_cash_payment') }}
-                                                                            </v-btn>
-                                                                        </div>
-                                                                        <v-spacer></v-spacer>
-                                                                    </v-card-actions>
-                                                                </v-card>
-                                                                </v-dialog>
-                                                            </div>
-                                                        </template>
+                                                                            </v-container>
+                                                                        </v-card>
+                                                                    </v-dialog>
+                                                                </div>
+                                                            </template>
+                                                            
+                                                        </v-col>
+                                                        <!-- bank -->
+                                                        <!-- qrcode -->
                                                         
-                                                    </v-col>
-                                                    <v-col sm="6" cols="6" class="pa-1 mt-1">
-                                                        <template>
-                                                            <div justify="center" style="height: 100%;">
-                                                                <v-dialog
-                                                                v-model="dialog"
-                                                                persistent
-                                                                max-width="1000"
-                                                                >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-btn 
-                                                                        color="primary"
-                                                                        dark
-                                                                        v-bind="attrs"
-                                                                        v-on="on"
-                                                                        class="rounded-0 pay-btn" 
-                                                                        style="height:100% !important;">
-                                                                        <v-icon style="font-size:60px;" class="b-payment"></v-icon>
-                                                                    </v-btn>
-                                                                </template>
-                                                                <v-card>
-                                                                    
-                                                                    <v-card-text>
-                                                                        <v-card-title class="text-h5">
-                                                                        {{$t('cash_receipt')}}
-                                                                        </v-card-title>
-                                                                        <v-row>
-                                                                            <v-col sm="6" cols="6" class="">
-                                                                                <v-row>
-                                                                                    
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-text-field
-                                                                                            class="mt-1 pr-6"
-                                                                                            outlined
-                                                                                            placeholder=""
-                                                                                        />
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            1
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            2
-                                                                                        </v-btn>
+                                                    </v-row>
+                                                </v-col>
+                                                <v-col md="8" sm="9" cols="12" class="pa-1 pl-0 float-right text-right">
+                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                            1
+                                                        </v-btn>
+                                                            
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            2
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            3
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            4
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            5
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            3
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            6
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            7
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            8
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            qty
+                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn mr-0">
+                                                            m
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            9
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0">
-                                                                                            0
-                                                                                        </v-btn>
+                                                        <br>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn">
-                                                                                            .
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                            4
+                                                        </v-btn>
+                                                            
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            5
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0">
-                                                                                            <v-icon>fas fa-backspace</v-icon>
-                                                                                            clear
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                    <v-col sm="12" cols="4" class="">
-                                                                                        <v-btn color="primary" class="rounded-0 my-2 ">
-                                                                                            KHR
-                                                                                        </v-btn>
-                                                                                        <v-btn color="secondary" class="rounded-0 ma-2">
-                                                                                            USD
-                                                                                        </v-btn>
-                                                                                            <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            5$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            10$
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            6
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            15$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            20$
-                                                                                        </v-btn>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            25$
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            d
+                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn mr-0">
+                                                            s
+                                                        </v-btn>
+                                                        <br>
+                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                            7
+                                                        </v-btn>
+                                                            
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            8
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            30$
-                                                                                        </v-btn>
-                                                                                        <br>
-                                                                                            
-                                                                                        <v-btn class="rounded-0 receipt-btn ml-0 btn-money">
-                                                                                            40$
-                                                                                        </v-btn>
-                                                                                        <v-btn class="rounded-0 receipt-btn btn-money">
-                                                                                            50$
-                                                                                        </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            9
+                                                        </v-btn>
 
-                                                                                        <v-btn class="rounded-0 receipt-btn mr-0 btn-money">
-                                                                                            100$
-                                                                                        </v-btn>
-                                                                                        
-                                                                                    </v-col>
-                                                                                </v-row>
-                                                                            </v-col>
-                                                                            <v-col sm="6" cols="6" class="pb-0 function_content pa-3">
-                                                                                <v-card class="pa-3 no-boxshadow d-flex justify-space-between align-center"
-                                                                                        min-height="50px" color="primary">
-                                                                                    <h3 style="font-size: 18px" class="text-white text-uppercase">
-                                                                                    {{ $t('amount_to_pay') }}</h3>
-                                                                                    <h3 class="text-bold float-right text-white" style="font-size: 22px">
-                                                                                    00000000</h3>
-                                                                                    
-                                                                                </v-card>
-                                                                                <v-simple-table>
-                                                                                    <template v-slot:default>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('KHR')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 រៀល
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{ $t('USD') }}</td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000 USD
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('exchange_rate')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="text-left pr-0">{{
-                                                                                                    $t('receipt_amount')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr color="secondary">
-                                                                                                <td color="secondary" class="text-left pr-0">{{
-                                                                                                    $t('balance')
-                                                                                                }}
-                                                                                                </td>
-                                                                                                <td class="text-center">:</td>
-                                                                                                <td color="secondary" class="text-right">
-                                                                                                    0000000
-                                                                                                </td>
-                                                                                            </tr>
-
-                                                                                        </tbody>
-                                                                                    </template>
-                                                                                </v-simple-table>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                    </v-card-text>
-                                                                    <v-card-actions>
-                                                                        <div class="function_footer">
-                                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                @click="dialog = false">{{ $t('cancel') }}
-                                                                            </v-btn>
-
-                                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                                @click="dialog = false">
-                                                                                {{ $t('make_cash_payment') }}
-                                                                            </v-btn>
-                                                                        </div>
-                                                                        <v-spacer></v-spacer>
-                                                                    </v-card-actions>
-                                                                </v-card>
-                                                                </v-dialog>
-                                                            </div>
-                                                        </template>
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            p
+                                                        </v-btn>
                                                         
-                                                    </v-col>
-                                                    
-                                                </v-row>
-                                            </v-col>
-                                            <v-col md="8" sm="9" cols="12" class="pa-1 pl-0 float-right text-right">
-                                                    <v-btn class="rounded-0 calculator-btn ml-0">
-                                                        1
-                                                    </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn mr-0">
+                                                            
+                                                        </v-btn>
+                                                        <br>   
+                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                            0
+                                                        </v-btn>
+                                                            
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            .
+                                                        </v-btn>
+
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            c
+                                                        </v-btn>
+
+                                                        <v-btn class="rounded-0 calculator-btn">
+                                                            
+                                                        </v-btn>
                                                         
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        2
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        3
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        qty
-                                                    </v-btn>
-                                                    <v-btn class="rounded-0 calculator-btn mr-0">
-                                                        m
-                                                    </v-btn>
-
-                                                    <br>
-
-                                                    <v-btn class="rounded-0 calculator-btn ml-0">
-                                                        4
-                                                    </v-btn>
+                                                        <v-btn class="rounded-0 calculator-btn mr-0">
+                                                            
+                                                        </v-btn>
                                                         
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        5
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        6
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        d
-                                                    </v-btn>
-                                                    <v-btn class="rounded-0 calculator-btn mr-0">
-                                                        s
-                                                    </v-btn>
-                                                    <br>
-                                                    <v-btn class="rounded-0 calculator-btn ml-0">
-                                                        7
-                                                    </v-btn>
-                                                        
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        8
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        9
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        p
-                                                    </v-btn>
-                                                    
-                                                    <v-btn class="rounded-0 calculator-btn mr-0">
-                                                        
-                                                    </v-btn>
-                                                    <br>   
-                                                    <v-btn class="rounded-0 calculator-btn ml-0">
-                                                        0
-                                                    </v-btn>
-                                                        
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        .
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        c
-                                                    </v-btn>
-
-                                                    <v-btn class="rounded-0 calculator-btn">
-                                                        
-                                                    </v-btn>
-                                                    
-                                                    <v-btn class="rounded-0 calculator-btn mr-0">
-                                                        
-                                                    </v-btn>
-                                                    
-                                            </v-col>
-                                        </v-row> 
-                                    </v-col>
+                                                </v-col>
+                                            </v-row> 
+                                        </v-col>
+                                    </v-row>
                                 </div>
                             </div>
                                
@@ -2265,7 +2249,7 @@ export default {
     }
     .v-tab {
         justify-content: left;
-        font-size: 36px;
+        font-size: 20px;
     }
 
     .v-tab--active {
@@ -2378,7 +2362,7 @@ export default {
     .function_content {
         padding: 0px;
         border-bottom: none !important;
-        background-color: rgb(237, 241, 245);
+        background-color: #f8f8f9;
     }
     .notification{
         background-color: #ed263a;
@@ -2706,6 +2690,16 @@ export default {
     #pin >.v-input input {
         text-align: center !important;
         font-size: 35px !important;
+    }
+    .td-invioce td{
+        border: thin solid rgba(0, 0, 0, 0.12);
+    }
+    .tb-pong td{
+        border-bottom: none !important;
+        height: 25px !important;
+    }
+    .th-invoice th{
+      border-top: thin solid rgba(0, 0, 0, 0.12) !important;  
     }
 
 
