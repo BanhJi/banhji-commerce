@@ -984,7 +984,7 @@
     const Luhn = require('luhn-js')
     const cookie = cookieJS.getCookie();
     const discountItemHandler = require("@/scripts/discountItemHandler");
-    const saleChannelHandler = require("@/scripts/saleChannelHandler");
+    // const saleChannelHandler = require("@/scripts/saleChannelHandler");
     const categoryHandler = require("@/scripts/categoryHandler");
     const groupHandler = require("@/scripts/groupHandler");
     import kendo from "@progress/kendo-ui"
@@ -1896,7 +1896,7 @@
             },
             async loadSaleChannel() {
                 this.showLoading = true;
-                saleChannelHandler.get().then((res) => {
+                commerceHandler.partnerGets().then((res) => {
                     this.showLoading = false;
                     if (res.data.statusCode === 200) {
                         this.saleChannels = res.data.data;

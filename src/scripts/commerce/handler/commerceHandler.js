@@ -152,3 +152,12 @@ module.exports.partnerReward = async (data) => {
         window.console.error(error)
     }
 }
+module.exports.deletePartner = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.deletePartner, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}

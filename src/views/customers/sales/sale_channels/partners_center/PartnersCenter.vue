@@ -150,8 +150,8 @@
                                                                         <td class="text-left text-bold">{{ vendorName }}</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('payment_method') }}</td>
-                                                                        <td class="text-left text-bold">{{ $t(partner.paymentMethod) }}</td>
+                                                                        <td style="width:55%;" class="text-uppercase">{{ $t('settlement_method') }}</td>
+                                                                        <td class="text-left text-bold">{{ $t(partner.settlementMethod) }}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </template>

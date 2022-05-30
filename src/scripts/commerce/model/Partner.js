@@ -4,8 +4,8 @@ export default class Partner {
         this.name = data.name || ''
         this.customerId = data.customerId || ''
         this.vendorId = data.vendorId || ''
-        this.paymentMethod = data.paymentMethod || 'cash'
-        this.attachmentId = data.attachmentId || ''
+        this.settlementMethod = data.settlementMethod || 'cash'
+        this.saleChannelId = data.saleChannelId || ''
         this.customer = data.customer || {}
         this.vendor = data.vendor || {}
         this.user = data.user || {}
