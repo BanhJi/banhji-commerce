@@ -366,7 +366,7 @@ export default {
         class: "",
         activeClass: "",
         name: "channels_partners",
-        menuTex: "channels_partners",
+        menuTex: "channels",
         path: "/sale_channels",
         icon: "",
       },

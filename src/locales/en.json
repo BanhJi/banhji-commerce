@@ -4250,6 +4250,14 @@
     "available": "Available",
     "apply": "Apply",
     "apply_point": "Apply point",
-    "promotion": "Promotion"
+    "promotion": "Promotion",
+    "general_customer": "General customer",
+    "table": "Table",
+    "order_num": "Order num",
+    "paid_by": "Paid by",
+    "bank_info": "Bank info",
+    "points": "Points",
+    "card": "Card"
+
 
 }
