@@ -59,7 +59,7 @@
                             class="mx-auto grey-custom"
                             max-width="465"
                             outlined
-                            :to="lang+'/setting'"
+                            :to="lang+'/pos/setting'"
                         >
                             <v-list-item three-line>
                                 <v-list-item-content>

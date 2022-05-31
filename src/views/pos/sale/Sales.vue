@@ -70,7 +70,7 @@
                                             </div>
 
 
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" >
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
                                                     <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
                                                         <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
@@ -80,7 +80,7 @@
                                                 </v-row>
                                         
                                             </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0">
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
                                                     <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
                                                         <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
@@ -89,7 +89,7 @@
                                                     </v-col>
                                                 </v-row>
                                             </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1">
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
                                                     <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
                                                         <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
@@ -103,11 +103,11 @@
 
                                             <div class="v-list-item v-list-item-left  d-block mr-0 pt-2">
                                                 <v-row>
-                                                    <v-col md="6" cols="12">
+                                                    <v-col md="6" cols="12" class="pr-0">
                                                         <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
                                                         <small class="pl-2">Pheaktra</small>
                                                     </v-col>
-                                                    <v-col md="6" cols="12" class="pl-0">
+                                                    <v-col md="6" cols="12" class="px-0">
                                                         <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
                                                         <small class="pl-2">May 25 2022</small>
                                                     </v-col>
@@ -954,10 +954,53 @@
                                                     </template> 
                                                 </v-col>
                                                 <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
-                                                    <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                        <v-icon left>mdi-pencil</v-icon>
-                                                        {{$t('note')}}
-                                                    </v-btn>
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogNote"
+                                                            persistent
+                                                            max-width="350px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left>mdi-note</v-icon>
+                                                                    {{$t('note')}}
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("note") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogReward = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col sm="12" cols="12" class="">
+                                                                            <v-select
+                                                                            :items="['cancel', 'worng', 'change invoice']"
+                                                                            :label="$t('note')"
+                                                                            outlined
+                                                                            append-icon="mdi-border-color"
+                                                                            required
+                                                                            ></v-select>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogNote = false">
+                                                                            {{ $t('enter') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
                                                 </v-col>
                                                 <v-col md="6" sm="6" col="6" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
@@ -3838,7 +3881,7 @@
                             </div>         
                         </v-col>
                         <!-- items list -->
-                        <v-col md="5" sm="12" cols="12" class="sidebar-left2 pt-0" style="overflow-y: auto;">
+                        <v-col md="5" sm="12" cols="12" class=" sidebar-left2 pt-0" style="overflow-y: auto;">
                             <v-row>
                                 <v-col sm="12" cols="12" class="pa-0">
                                     <v-card flat height="98vh" class="card-item" style=""> 
@@ -3892,7 +3935,7 @@
                             </v-row>
                         </v-col>
                         <!-- right sidebar -->
-                        <v-col sm="1" cols="1" class="pa-0 pl-4">
+                        <v-col sm="1" cols="1" class=" sidebar-left3 pa-0">
                             <v-card flat  height="98vh" color="">
                                 <v-btn class=" rounded-0  btn-right" icon @click="toggle">
                                     <i   
@@ -3959,6 +4002,7 @@ export default {
         dialogCash: false,
         dialogBank: false,
         dialogQrcode: false,
+        dialogNote: false,
         infoBank: false,
         items: '',
 
@@ -4251,15 +4295,21 @@ export default {
     }
     .sidebar-left{
         -webkit-box-flex: 0;
-        -ms-flex: 0 0 10.666667%;
-        flex: 0 0 10.666667%;
-        max-width: 10.666667%;
+        -ms-flex: 0 0 12.666667%;
+        flex: 0 0 12.666667%;
+        max-width: 12.666667%;
     }
     .sidebar-left2{
         -webkit-box-flex: 0;
         -ms-flex: 0 0 38.666667%;
         flex: 0 0 38.666667%;
         max-width: 38.666667%;
+    }
+    .sidebar-left3{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 7.000000%;
+    flex: 0 0 7.000000%;
+    max-width: 7.000000%;
     }
     .container h2 {
         font-size: 17px;

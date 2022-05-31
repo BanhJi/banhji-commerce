@@ -6,11 +6,8 @@
             <HeaderPos />
             
           </div>
-           <div v-else-if="isHead == 2">
-            <HeaderApp />
-          </div>
           <div v-else>
-            <Header/>
+            <HeaderApp/>
           </div>
          
         <router-view />
@@ -23,26 +20,26 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
 import HeaderPos from "@/components/HeaderPos.vue";
 import HeaderApp from "@/components/HeaderApp.vue";
+import { data } from "@/observable/store";
 const instituteHandler = require("@/scripts/instituteHandler.js");
 
 export default {
-  name: "Homeindex",
+  name: "PosIndex",
   components: {
-    Header,
     HeaderPos,
     HeaderApp,
+    // HeaderApp,
     // Footer
     Resource: () => import("@/components/Resource"),
   },
   data: () => ({
     my_part: "",
-    show:true,
     isHead: 1
   }),
   created() {
+    // Initial Institute
     instituteHandler.init();
   },
   methods: {
@@ -51,12 +48,13 @@ export default {
       this.my_part = part;
       if (part == "/en/pos/retail"  || part == "/kh/pos/retail" || part == "/kh/pos/f_b" || part == "/en/pos/f_b" || part == "/kh/pos/service" || part == "/en/pos/service"){
         this.isHead = 2
-      } else if (part == "/en/_sale" || part == "/en/_sale/" || part == "/kh/_sale/" || part == "/kh/_sale"){
-        this.isHead = 3
       }
     },
   },
   computed: {
+    app() {
+      return data.app;
+    },
     part() {
       return window.location.pathname;
     },

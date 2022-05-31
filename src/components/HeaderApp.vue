@@ -3,10 +3,10 @@
         <v-app-bar
             fixed
             app
-            class="no_border  header-app"
+            class="no_border  header-app px-0"
             color="grayBg"
             v-bind:class="{ sidebar_small: miniVariant }">
-            <span class="">
+            <span class="px-0">
                 <a href="\">
                 <img
                     class="mt-3"
@@ -406,6 +406,9 @@
     margin-left: auto;
     }
     .header-app .v-toolbar__content{
+        padding: 0px !important;
+    }
+    .v-toolbar__content, .v-toolbar__extension{
         padding: 0px !important;
     }
 

@@ -1509,7 +1509,9 @@ header .v-menu__content {
   }
   
 }
-
+.v-slide-group__content{
+  white-space: inherit;
+}
 .tab_setting.theme--light .v-slide-group__content {
   width: 175px !important;
 }
