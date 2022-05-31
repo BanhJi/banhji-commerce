@@ -477,7 +477,11 @@
                                 <div sm="3" cols="12" class="ml-8">
                                     <template>
                                         <v-row>
-                                            <v-dialog v-model="pinActivate" max-width="350px">
+                                            <v-dialog 
+                                                v-model="pinActivate"
+                                                persistent 
+                                                max-width="350px">
+                                                
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <v-btn
                                                     color="primary btn_h2"
