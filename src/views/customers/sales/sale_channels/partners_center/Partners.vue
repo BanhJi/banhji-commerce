@@ -61,13 +61,13 @@
                                                         />
                                                     </v-col>
                                                     <v-col sm="6" cols="12" class="py-0 kendo_dropdown_custom">
-                                                        <label class="label mb-0">{{ $t('payment_method') }}</label>
+                                                        <label class="label mb-0">{{ $t('settlement_method') }}</label>
                                                         <v-select
                                                             class="mt-1"
                                                             item-text="name"
                                                             item-value="id"
-                                                            :items="paymentMethods"
-                                                            v-model="p.paymentMethod"
+                                                            :items="settlementMethods"
+                                                            v-model="p.settlementMethod"
                                                             :placeholder="$t('select')"
                                                             outlined>
                                                         </v-select>
@@ -95,6 +95,18 @@
                                                             </v-file-input>
                                                         </template>
                                                     </v-col>
+                                                    <v-col sm="6" cols="12" class="py-0 kendo_dropdown_custom">
+                                                        <label class="label mb-0">{{ $t('sale_channel') }}</label>
+                                                        <v-select
+                                                            class="mt-1"
+                                                            item-text="name"
+                                                            item-value="id"
+                                                            :items="saleChannels"
+                                                            v-model="p.saleChannelId"
+                                                            :placeholder="$t('select')"
+                                                            outlined>
+                                                        </v-select>
+                                                    </v-col>
                                                 </v-row>
                                             </v-col>
                                         </v-form>
@@ -113,6 +125,7 @@
                                             {{ $t('save_close') }}
                                         </v-btn>
                                         <v-btn color="primary"
+                                            v-show="!isEdit"
                                                class="float-right  white--text text-capitalize mr-3 "
                                                @click="saveNew">
                                             {{ $t('save_new') }}
@@ -155,6 +168,7 @@ import {
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
 const cookieJS = require("@/cookie.js");
 const cookie = cookieJS.getCookie();
+const saleChannelHandler = require("@/scripts/saleChannelHandler");
 export default {
     props: {
     },
@@ -197,9 +211,19 @@ export default {
             name: cookie.email
         },
         isEdit: false,
-        errors: []
+        errors: [],
+        saleChannels: []
     }),
     methods: {
+        async loadSaleChannel() {
+            this.showLoading = true;
+            saleChannelHandler.get().then((res) => {
+                this.showLoading = false;
+                if (res.data.statusCode === 200) {
+                    this.saleChannels = res.data.data;
+                }
+            });
+        },
         async initData() {
             if (this.$route.params.id !== undefined) {
                 this.isEdit = true
@@ -475,9 +499,10 @@ export default {
     mounted: async function () {
         this.requestData(0, this.filter, this.cusBaseUrl);
         this.initData();
+        this.loadSaleChannel();
     },
     computed:{
-        paymentMethods(){
+        settlementMethods(){
             return [
                 {id: 'cash', name: i18n.t('cash')},
                 {id: 'credit', name: i18n.t('credit')}

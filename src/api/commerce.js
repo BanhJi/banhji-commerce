@@ -23,5 +23,5 @@ module.exports = {
     partnerCreate                                : url + 'partner/' + instituteId + '/create',
     partnerGet                                   : url + 'partner/' + instituteId + '/get',
     partnerGets                                  : url + 'partner/' + instituteId + '/list',
-    partnerDelete                                : url + 'partner/' + instituteId + '/del',
+    deletePartner                                : url + 'partner/' + instituteId + '/del',
 }
