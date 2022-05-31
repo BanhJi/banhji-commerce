@@ -5,128 +5,140 @@
             <v-col sm="12" cols="12" class="pb-0">
                 <v-card color="#f8f8f9" class="pa-0 no_border" elevation="0">
                     <v-row>
-                        <!-- left sidebar -->
                         <v-col md="2" cols="2" class="pa-0 sidebar-left hidden-sm-and-down">
-                            <v-card flat  height="98vh" color="" style="background-color: rgb(248 248 249);">
-                               <v-list dense class="pa-0">
-                                    <span class="hidden-sm-and-down">
-                                        <a :href="lang+'/'"  class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
-                                        <div class="mb-0">
-                                            <img
-                                                src="@/assets/images/banhji-logo-r.png"
-                                                height="40"
-                                                alt="BanhJi Logo"
-                                            />
-                                        </div>
-                                        </a>
-                                        <a v-if="!isAccountLogo" href="" class="">
-                                        <h1 class="mb-0">
-                                            <img
-                                                class="small_img fade-in"
-                                                src="@/assets/images/banhji_icon.png"
-                                                height="40"
-                                                alt="BanhJi Logo"
-                                            />
+                            <div class="d-flex flex-column" style="height: 98vh;background-color: rgb(248 248 249);">
+                                <div sm="12" cols="12" class=" flex-1">
+                                    <v-card flat color="" style="background-color: rgb(248 248 249);">
+                                        <span class="hidden-sm-and-down">
+                                            <a :href="lang+'/'"  class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
+                                            <div class="mb-0">
+                                                <img
+                                                    src="@/assets/images/banhji-logo-r.png"
+                                                    width="100%"
+                                                    height="auto"
+                                                    alt="BanhJi Logo"
+                                                />
+                                            </div>
+                                            </a>
+                                            <a v-if="!isAccountLogo" href="" class="">
+                                            <h1 class="mb-0">
+                                                <img
+                                                    class="small_img fade-in"
+                                                    src="@/assets/images/banhji_icon.png"
+                                                    height="40"
+                                                    alt="BanhJi Logo"
+                                                />
+                                                
+                                            </h1>
+                                            </a>
+                                        </span>
+                                        
+                                        <div class="block_menu" style="background-color: rgb(248 248 249);">
+                                            <div class="v-list-item v-list-item-left  d-block mr-0 pr-0">
+                                                <v-text-field
+                                                class="pl-2"
+                                                outlined
+                                                :placeholder="$t('search')"
+                                                append-icon="search"
+                                                clearable/>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
+                                                <h2 class="pl-2">chouen loy</h2>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                <span class="pl-2 dark_grey">{{$t('points')}}</span><br>
+                                                <h2 class="pl-2 border-b">1000</h2>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                <span class="pl-2 dark_grey">{{$t('loyalty_program')}}</span><br>
+                                                <h2 class="pl-2 border-b">10%</h2>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
+                                                <h2 class="pl-2 border-b">123456789</h2>
+                                            </div>
+                                        <v-divider />
+
+                                            <div class="v-list-item v-list-item-left  d-block mr-0 pt-2" style="">
+                                                <span class="pl-2 dark_grey">{{$t('partner')}}</span><br>
+                                                <h2 class="pl-2 border-b  primary--text">foodpada</h2>
+                                            </div>
+                                            <div class="v-list-item  v-list-item-left d-block mr-0" style="">
+                                                <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
+                                                <h2 class="pl-2 border-b  primary--text">12345678</h2>
+                                            </div>
+
+
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" >
+                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
+                                                        <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
+                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                        
+                                                    </v-col>
+                                                </v-row>
+                                        
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0">
+                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
+                                                        <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
+                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                        
+                                                    </v-col>
+                                                </v-row>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1">
+                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
+                                                        <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
+                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                        
+                                                    </v-col>
+                                                </v-row>
+                                            </div>
+
+                                            <!-- <div class="v-list-item d-block ma-3 mb-0 mr-0 v-divider"></div> -->
+
+                                            <div class="v-list-item v-list-item-left  d-block mr-0 pt-2">
+                                                <v-row>
+                                                    <v-col md="6" cols="12">
+                                                        <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
+                                                        <small class="pl-2">Pheaktra</small>
+                                                    </v-col>
+                                                    <v-col md="6" cols="12" class="pl-0">
+                                                        <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
+                                                        <small class="pl-2">May 25 2022</small>
+                                                    </v-col>
+                                                </v-row>
+                                            </div>
                                             
-                                        </h1>
-                                        </a>
-                                    </span>
-                                    
-                                    <div class="block_menu" style="background-color: rgb(248 248 249);">
-                                        <div class="v-list-item d-block mr-0 pr-0">
-                                            <v-text-field
-                                            class="pl-2"
-                                            outlined
-                                            :placeholder="$t('search')"
-                                            append-icon="search"
-                                            clearable/>
-                                        </div>
-                                        <div class="v-list-item d-block mr-0">
-                                            <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
-                                            <h2 class="pl-2">chouen loy</h2>
-                                        </div>
-                                        <div class="v-list-item d-block mr-0">
-                                            <span class="pl-2 dark_grey">{{$t('points')}}</span><br>
-                                            <h2 class="pl-2 border-b">1000</h2>
-                                        </div>
-                                        <div class="v-list-item d-block mr-0">
-                                            <span class="pl-2 dark_grey">{{$t('loyalty_program')}}</span><br>
-                                            <h2 class="pl-2 border-b">10%</h2>
-                                        </div>
-                                        <div class="v-list-item d-block mr-0">
-                                            <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
-                                            <h2 class="pl-2 border-b">123456789</h2>
-                                        </div>
-                                       <v-divider />
-
-                                        <div class="v-list-item d-block mr-0 pt-2" style="">
-                                            <span class="pl-2 dark_grey">{{$t('partner')}}</span><br>
-                                            <h2 class="pl-2 border-b  primary--text">foodpada</h2>
-                                        </div>
-                                        <div class="v-list-item d-block mr-0" style="">
-                                            <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
-                                            <h2 class="pl-2 border-b  primary--text">12345678</h2>
-                                        </div>
-
-
-                                        <div class="v-list-item d-block mb-1 mr-0 pr-1 mt-2" >
-                                            <v-btn  class="rounded-0 btn-funtion mx-1 btn-sidebar" width="100%" style="">
-                                             
-                                                {{$t('parksale')}}
-                                                <h2 class="notification px-2" style="border-radius: 5px;">20</h2>
-                                            </v-btn>
-                                        </div>
-                                        <div class="v-list-item d-block mb-1 mr-0 pr-1">
-                                            <v-btn  class="rounded-0 btn-funtion mx-1 btn-sidebar" width="100%" style="">
                                             
-                                                {{$t('invoice')}}
-                                                <h2 class="notification px-2" style="border-radius: 5px;">20</h2>
-
-                                            </v-btn>
                                         </div>
-                                        <div class="v-list-item d-block mb-1 mr-0 pr-1">
-                                            <v-btn  class="rounded-0 btn-funtion mx-1 btn-sidebar" width="100%" style="">
-                                            
-                                                {{$t('order')}}
-                                                <h2 class="notification px-2" style="border-radius: 5px;">20</h2>
-
-                                            </v-btn>
-                                        </div>
-
-                                        <!-- <div class="v-list-item d-block ma-3 mb-0 mr-0 v-divider"></div> -->
-
-                                        <div class="v-list-item d-block mr-0 pt-2">
-                                            <v-row>
-                                                <v-col md="6" cols="12">
-                                                    <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
-                                                    <small class="pl-2">Pheaktra</small>
-                                                </v-col>
-                                                <v-col md="6" cols="12" class="pl-0">
-                                                    <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
-                                                    <small class="pl-2">May 25 2022</small>
-                                                </v-col>
-                                            </v-row>
-                                        </div>
+                                    </v-card>
+                                </div>
+                                <div sm="12" cols="12" class="">
+                                    <v-card flat color="" style="background-color: rgb(248 248 249);">
                                         <div
-                                            class="link_buttom">
+                                            class="">
                                             <img
-                                            class="mx-6 mt-1"
+                                            class="mt-1 v-list-item v-list-item-left "
                                             src="@/assets/images/made_in_cambodia.png"
-                                            height="45"
+                                            width="100%"
+                                            height="auto"
                                             alt=""
                                             />
-                                            <div class="px-4 py-1">
                                             <v-divider />
-                                            <p class="mb-0 font_14 mt-3 pl-2">
-                                                © {{ year }} {{ $t("banhji_name_desc") }}
-                                            </p>
-                                            <!--                            <p class="line_14 font_10 mb-3 pl-2">{{ $t("banhji_term") }}</p>-->
+                                            <div class=" v-list-item py-1">
+                                                <p class="mb-0 font_14 mt-3 pl-2">
+                                                    © {{ year }} {{ $t("banhji_name_desc") }}
+                                                </p>
                                             </div>
                                         </div>
-                                        
-                                    </div>
-                                </v-list>
-                            </v-card>
+                                    </v-card>
+                                </div>
+                            </div>
                         </v-col>
                         <!-- function -->
                         <v-col md="5" sm="12" cols="12" class="py-0 ">
@@ -190,13 +202,13 @@
                                 <!-- loyalty pop up -->
                                 <div sm="3" cols="12" class="ml-8">
                                    
-                                    <!-- step1 -->
+                                    <!-- loyalty -->
                                     <template>
                                         <v-row>
                                             <v-dialog
                                                 v-model="dialogLoyalty"
                                                 persistent
-                                                max-width="600px"
+                                                max-width="350px"
                                                 >
                                                 <template v-slot:activator="{ on, attrs }">
                                                     <v-btn
@@ -211,39 +223,45 @@
                                                     </v-btn>
                                                 </template>
                                                 <v-card>
-                                                    <v-card-title>
-                                                    <span class="text-h5">{{$t('loyalty')}}</span>
-                                                    </v-card-title>
-                                                    <v-card-text>
-                                                    <v-row>
-                                                        <v-col cols="6" sm="6" md="6">
-                                                            <v-text-field
-                                                            label="card number"
-                                                            required
-                                                            outlined
-                                                            append-icon="mdi-credit-card-settings-outline"
-                                                            type="number"
-                                                            ></v-text-field>
-                                                        </v-col>
-                                                        <v-col cols="6" sm="6" md="6">
-                                                            <v-select
-                                                            :items="['A choen', 'pheaktra', 'Ly heang', 'Nimol']"
-                                                            label="Customer"
-                                                            outlined
-                                                            append-icon="mdi-account"
-                                                            required
-                                                            ></v-select>
-                                                        </v-col>
-                                                    </v-row>
-                                                    <!-- <small>*indicates required field</small> -->
-                                                    </v-card-text>
+                                                    <div class="modal_header">
+                                                        <v-card-title>{{ $t("loyalty") }}</v-card-title>
+                                                        <v-icon
+                                                            @click="dialogLoyalty = false"
+                                                            style="cursor: pointer; font-size: 30px;"
+                                                            color="grey"
+                                                            class="float-right mt-n1">close
+                                                        </v-icon>
+                                                    </div>
+                                                    <v-col md="12" col="12" class="function_content pa-3">
+                                                        <v-row>
+                                                            <v-col sm="12" cols="12" class="pb-0">
+                                                                <v-text-field
+                                                                :label="$t('card_number')"
+                                                                required
+                                                                outlined
+                                                                append-icon="mdi-credit-card-settings-outline"
+                                                                type="number"
+                                                                ></v-text-field>
+                                                            </v-col>
+                                                            <v-col sm="12" cols="12" class="pt-1">
+                                                                <v-select
+                                                                :items="['A choen', 'pheaktra', 'Ly heang', 'Nimol']"
+                                                                :label="$t('customer')"
+                                                                outlined
+                                                                append-icon="mdi-account"
+                                                                required
+                                                                ></v-select>
+                                                            </v-col>
+                                                        </v-row>
+                                                    </v-col>
                                                     <v-card-actions>
-                                                        <div class="function_footer">
-                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                @click="LoyaltyToSale()">{{ $t('skip') }}
-                                                            </v-btn>
+                                                        <div class="function_footer text-right">
 
-                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                            <v-btn color="secondary" class="mr-2 white--text text-capitalize"
+                                                                @click="LoyaltyToSale()">
+                                                                {{ $t('skip') }}
+                                                            </v-btn>
+                                                            <v-btn color="primary" class="float-right white--text text-capitalize"
                                                                 @click="LoyaltyToSale()">
                                                                 {{ $t('enter') }}
                                                             </v-btn>
@@ -254,20 +272,25 @@
                                             </v-dialog>
                                         </v-row>
                                     </template> 
-                                    <!-- step2 -->
+                                    <!-- partner -->
                                     <template>
                                         <v-row>
                                             <v-dialog
                                                 v-model="dialogPartner"
                                                 persistent
-                                                max-width="600px"
+                                                max-width="450px"
                                                 >
                                                 <v-card>
-                                                    <v-card-title>
-                                                    <span class="text-h5">{{$t('partner')}}</span>
-                                                    </v-card-title>
-                                                    <v-card-text>
-                                                    <v-container>
+                                                    <div class="modal_header">
+                                                        <v-card-title>{{ $t("partner") }}</v-card-title>
+                                                        <v-icon
+                                                            @click="dialogPartner = false"
+                                                            style="cursor: pointer; font-size: 30px;"
+                                                            color="grey"
+                                                            class="float-right mt-n1">close
+                                                        </v-icon>
+                                                    </div>
+                                                    <v-col md="12" col="12" class="function_content pa-3">
                                                         <v-row>
                                                             <v-col sm="4" cols="4" class="">
                                                                 <v-card
@@ -381,9 +404,8 @@
                                                             </v-col>
                                                                 
                                                         </v-row>
-                                                    </v-container>
-                                                    <!-- <small>*indicates required field</small> -->
-                                                    </v-card-text>
+                                                        <!-- <small>*indicates required field</small> -->
+                                                    </v-col>
                                                     <v-card-actions>
                                                         <div class="function_footer">
                                                              <v-btn color="secondary" class="float-right white--text text-capitalize"
@@ -403,38 +425,43 @@
                                             <v-dialog
                                                 v-model="dialogOrder"
                                                 persistent
-                                                max-width="600px"
+                                                max-width="350px"
                                                 >
                                                 <v-card>
-                                                    <v-card-title>
-                                                    <span class="text-h5">{{$t('order_number')}}</span>
-                                                    </v-card-title>
-                                                    <v-card-text>
-                                                    <v-row>
-                                                        <v-col cols="4"  md="4" style="background-color: antiquewhite;">
-                                                            <h2 class="font_14">{{$t('partner')}}</h2>
-                                                            <h2 class="font_18 primary--text">foodpada</h2>
+                                                    <div class="modal_header">
+                                                        <v-card-title>{{ $t("order_number") }}</v-card-title>
+                                                        <v-icon
+                                                            @click="dialogOrder = false"
+                                                            style="cursor: pointer; font-size: 30px;"
+                                                            color="grey"
+                                                            class="float-right mt-n1">close
+                                                        </v-icon>
+                                                    </div>
+                                                    <v-col md="12" col="12" class="function_content pa-3">
+                                                        <v-row>
+                                                            <v-col sm="12" cols="12" style="background-color: antiquewhite;">
+                                                                <h2 class="font_14">{{$t('partner')}}</h2>
+                                                                <h2 class="font_18 primary--text">foodpada</h2>
 
-                                                        </v-col>
-                                                        <v-col cols="8"  md="8">
-                                                            <v-text-field
-                                                            label="number"
-                                                            required
-                                                            outlined
-                                                            append-icon="mdi-credit-card-settings-outline"
-                                                            type="number"
-                                                            ></v-text-field>
-                                                        </v-col>
-                                                    </v-row>
-                                                    <!-- <small>*indicates required field</small> -->
-                                                    </v-card-text>
+                                                            </v-col>
+                                                            <v-col md="12" cols="12" class="">
+                                                                <v-text-field
+                                                                :label="$t('number')"
+                                                                required
+                                                                outlined
+                                                                append-icon="mdi-credit-card-settings-outline"
+                                                                type="number"
+                                                                ></v-text-field>
+                                                            </v-col>
+                                                        </v-row>
+                                                    </v-col>
                                                     <v-card-actions>
-                                                        <div class="function_footer">
-                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                @click="dialogOrder = false">{{ $t('skip') }}
+                                                        <div class="function_footer text-right">
+                                                            <v-btn color="secondary" class="white--text text-capitalize mr-2"
+                                                                @click="dialogOrder = false">
+                                                                {{ $t('skip') }}
                                                             </v-btn>
-
-                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                            <v-btn color="primary" class="float-right white--text text-capitalize"
                                                                 @click="dialogOrder = false">
                                                                 {{ $t('enter') }}
                                                             </v-btn>
@@ -535,7 +562,6 @@
                                                 </v-col>
                                             </v-row>
                                         </v-col>
-
                                         <v-col sm="6" cols="6" class="pl-4 py-0">
                                             <v-row>
                                                 <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
@@ -545,7 +571,7 @@
                                                         <v-dialog
                                                             v-model="dialogReward"
                                                             persistent
-                                                            max-width="600px"
+                                                            max-width="350px"
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
@@ -554,11 +580,16 @@
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
-                                                                <v-card-title>
-                                                                <span class="text-h5">{{$t('redeem_with')}}</span>
-                                                                </v-card-title>
-                                                                <v-card-text>
-                                                                <v-container>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("redeem_with") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogReward = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
                                                                     <v-row>
                                                                         <v-col sm="6" cols="6" class="">
                                                                             <v-card
@@ -571,8 +602,8 @@
                                                                                     <v-list-item-content class="pk-3">
                                                                                         <v-row>
                                                                                             <v-col sm="12" cols="12" class="text-center">
-                                                                                                <h1>{{$t('point')}}</h1>
-                                                                                                <h1>{{$t('earn')}}</h1>
+                                                                                                <h2 class="font_22">{{$t('point')}}</h2>
+                                                                                                <h2 class="font_22">{{$t('earn')}}</h2>
                                                                                             </v-col>
                                                                                         </v-row>
                                                                                     </v-list-item-content>
@@ -590,8 +621,8 @@
                                                                                     <v-list-item-content class="pk-3">
                                                                                         <v-row>
                                                                                             <v-col sm="12" cols="12" class="text-center">
-                                                                                                <h1 class="primary--text">{{$t('point')}}</h1>
-                                                                                                <h1 class="primary--text">{{$t('purchase')}}</h1>
+                                                                                                <h2 class="primary--text font_22">{{$t('point')}}</h2>
+                                                                                                <h2 class="primary--text font_22">{{$t('purchase')}}</h2>
                                                                                             </v-col>
                                                                                         </v-row>
                                                                                     </v-list-item-content>
@@ -599,9 +630,7 @@
                                                                             </v-card>
                                                                         </v-col>
                                                                     </v-row>
-                                                                </v-container>
-                                                                <!-- <small>*indicates required field</small> -->
-                                                                </v-card-text>
+                                                                </v-col>
                                                                 <v-card-actions>
                                                                     <div class="function_footer">
                                                                         <v-btn color="secondary" class="float-right white--text text-capitalize"
@@ -620,15 +649,21 @@
                                                             <v-dialog
                                                                 v-model="rewardForm"
                                                                 persistent
-                                                                max-width="600px"
+                                                                max-width="500px"
                                                                 >
                                                                 <v-card>
-                                                                    <v-card-title>
-                                                                    <span class="text-h5">{{$t('apply_point')}}</span>
-                                                                    </v-card-title>
-                                                                    <v-card-text>
+                                                                    <div class="modal_header">
+                                                                        <v-card-title>{{ $t("apply_point") }}</v-card-title>
+                                                                        <v-icon
+                                                                            @click="rewardForm = false"
+                                                                            style="cursor: pointer; font-size: 30px;"
+                                                                            color="grey"
+                                                                            class="float-right mt-n1">close
+                                                                        </v-icon>
+                                                                    </div>
+                                                                    <v-col md="12" col="12" class="function_content pa-3">
                                                                         <v-row>
-                                                                            <v-col cols="12" sm="12" md="12">
+                                                                            <v-col cols="12" sm="12" md="12" class="">
                                                                                 <template>
                                                                                     <v-simple-table>
                                                                                         <template>
@@ -693,41 +728,41 @@
                                                                                     </v-simple-table>
                                                                                 </template>
                                                                             </v-col>
-                                                                            <v-col cols="12" sm="12" md="12" class="grayBg px-6 text-center">
+                                                                            <v-col cols="12" sm="12" md="12" class="grayBg px-6 py-0 text-center">
                                                                                 <v-row>
-                                                                                    <v-col sm="4" cols="4" class="">
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                    <v-col sm="5" cols="5" class="px-0">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn ml-0">
                                                                                             5%
                                                                                         </v-btn>
                                                                                             
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn">
                                                                                             10%
                                                                                         </v-btn>
 
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn ml-0">
                                                                                             15%
                                                                                         </v-btn>
                                                                                             
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn">
                                                                                             20%
                                                                                         </v-btn>
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn ml-0">
                                                                                             30%
                                                                                         </v-btn>
                                                                                             
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn">
                                                                                             40%
                                                                                         </v-btn>
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn ml-0">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn ml-0">
                                                                                             50%
                                                                                         </v-btn>
                                                                                             
-                                                                                        <v-btn color="secondary" class="white--text rounded-0 receipt-btn">
+                                                                                        <v-btn color="primary" class="white--text rounded-0 apply-btn">
                                                                                             100%
                                                                                         </v-btn>
                                                                                         
                                                                                     </v-col>
-                                                                                    <v-col sm="8" cols="8" class="">
+                                                                                    <v-col sm="7" cols="7" class="px-0">
                                                                                         <v-btn color="third" class="white--text rounded-0 receipt-btn ml-0">
                                                                                             1
                                                                                         </v-btn>
@@ -782,15 +817,11 @@
                                                                                 </v-row>
                                                                             </v-col>
                                                                         </v-row>
-                                                                    <!-- <small>*indicates required field</small> -->
-                                                                    </v-card-text>
+                                                                    </v-col>
                                                                     <v-card-actions>
                                                                         <div class="function_footer">
-                                                                            <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                @click="rewardForm = false">{{ $t('cancel') }}
-                                                                            </v-btn>
 
-                                                                            <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                            <v-btn color="primary" class="float-right white--text text-capitalize"
                                                                                 @click="rewardForm = false">
                                                                                 {{ $t('apply') }}
                                                                             </v-btn>
@@ -808,7 +839,7 @@
                                                         <v-dialog
                                                             v-model="dialogPromotion"
                                                             persistent
-                                                            max-width="900px"
+                                                            max-width="500px"
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
@@ -817,261 +848,94 @@
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
-                                                                <v-card-title>
-                                                                <span class="text-h5">{{$t('promotion')}}</span>
-                                                                </v-card-title>
-                                                                <v-card-text>
-                                                                    <v-col col="12" class="">
-                                                                        <v-row>
-                                                                            <v-col sm="3" cols="6" class="">
-                                                                                <v-select class="mt-1 rounded-0 "
-                                                                                        clearable
-                                                                                        outlined
-                                                                                        :label="$t('code')"
-                                                                                />
-                                                                            </v-col>
-                                                                            <v-col sm="9" cols="6" class="">
-                                                                                <v-text-field
-                                                                                    class="mt-1 rounded-0 "
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("promotion") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogPromotion = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col sm="3" cols="6" class="">
+                                                                            <v-select class="mt-1 rounded-0 "
+                                                                                    clearable
                                                                                     outlined
-                                                                                    :label="$t('search')"
-                                                                                    append-icon="b-search"
-                                                                                ></v-text-field>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                        <v-row>
-                                                                            <v-col sm="3" cols="3" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToPromotionForm()"
-                                                                                >
-                                                                                    <template>
-                                                                                        <v-simple-table>
-                                                                                            <template>
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("name") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                khmer new year
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("code") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig ">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                        2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("expiry_date") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 primary--text">
-                                                                                                        14 04 2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    
-                                                                                                </tbody>
-                                                                                            </template>
-                                                                                        </v-simple-table>
-                                                                                    </template>
-                                                                                </v-card>
-                                                                            </v-col>
-                                                                            <v-col sm="3" cols="3" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToPromotionForm()"
-                                                                                >
-                                                                                    <template>
-                                                                                        <v-simple-table>
-                                                                                            <template>
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("name") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                khmer new year
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("code") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig ">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                        2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("expiry_date") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 primary--text">
-                                                                                                        14 04 2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    
-                                                                                                </tbody>
-                                                                                            </template>
-                                                                                        </v-simple-table>
-                                                                                    </template>
-                                                                                </v-card>
-                                                                            </v-col>
-                                                                            <v-col sm="3" cols="3" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToPromotionForm()"
-                                                                                >
-                                                                                    <template>
-                                                                                        <v-simple-table>
-                                                                                            <template>
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("name") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                khmer new year
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("code") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig ">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                        2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("expiry_date") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 primary--text">
-                                                                                                        14 04 2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    
-                                                                                                </tbody>
-                                                                                            </template>
-                                                                                        </v-simple-table>
-                                                                                    </template>
-                                                                                </v-card>
-                                                                            </v-col>
-                                                                            <v-col sm="3" cols="3" class="">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="ToPromotionForm()"
-                                                                                >
-                                                                                    <template>
-                                                                                        <v-simple-table>
-                                                                                            <template>
-                                                                                                <tbody>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("name") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                                khmer new year
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("code") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig ">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 dark_grey">
-                                                                                                        2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td class="text-left tdbig  px-2">
-                                                                                                            <span class="niradei_medium font_14 grey--text">
-                                                                                                            {{ $t("expiry_date") }}
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                        <td class="text-left tdbig">:</td>
-                                                                                                        <td class="text-right  px-2">
-                                                                                                            <span class="niradei_heavy font_14 primary--text">
-                                                                                                        14 04 2023
-                                                                                                            </span>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    
-                                                                                                </tbody>
-                                                                                            </template>
-                                                                                        </v-simple-table>
-                                                                                    </template>
-                                                                                </v-card>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                    </v-col>
-                                                                    <!-- <small>*indicates required field</small> -->
-                                                                </v-card-text>
+                                                                                    :label="$t('code')"
+                                                                            />
+                                                                        </v-col>
+                                                                        <v-col sm="9" cols="6" class="">
+                                                                            <v-text-field
+                                                                                class="mt-1 rounded-0 "
+                                                                                outlined
+                                                                                :label="$t('search')"
+                                                                                append-icon="b-search"
+                                                                            ></v-text-field>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                    <v-row>
+                                                                        <v-col sm="4" cols="4" class="">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="500"
+                                                                                outlined
+                                                                                @click="ToPromotionForm()"
+                                                                            >
+                                                                                <template>
+                                                                                    <v-simple-table>
+                                                                                        <template>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig px-2">
+                                                                                                        <span class="niradei_medium font_12 grey--text">
+                                                                                                            {{ $t("name") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig px-0">:</td>
+                                                                                                    <td class="text-right  px-1">
+                                                                                                        <span class="niradei_heavy font_12 dark_grey">
+                                                                                                            khmer new year
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig  px-2">
+                                                                                                        <span class="niradei_medium font_12 grey--text">
+                                                                                                            {{ $t("code") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig px-0 ">:</td>
+                                                                                                    <td class="text-right  px-2">
+                                                                                                        <span class="niradei_heavy font_12 dark_grey">
+                                                                                                    2023
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-left tdbig  px-2">
+                                                                                                        <span class="niradei_medium font_14 grey--text">
+                                                                                                        {{ $t("expiry_date") }}
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td class="text-left tdbig px-0">:</td>
+                                                                                                    <td class="text-right  px-2">
+                                                                                                        <span class="niradei_heavy font_14 primary--text">
+                                                                                                    14 04 2023
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                
+                                                                                            </tbody>
+                                                                                        </template>
+                                                                                    </v-simple-table>
+                                                                                </template>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        
+                                                                    </v-row>
+                                                                </v-col>
                                                                 <v-card-actions>
                                                                     <div class="function_footer">
                                                                         <v-btn color="secondary" class="float-right white--text text-capitalize"
@@ -1852,7 +1716,6 @@
                                                                     </v-dialog>
                                                                 </div>
                                                             </template>
-                                                            
                                                         </v-col>
                                                         <!-- card -->
                                                         <v-col sm="6" cols="6" class="pa-1 pt-0 pb-0 mt-1" >
@@ -1906,7 +1769,7 @@
                                                                                                                 class="mx-auto"
                                                                                                                 max-width="465"
                                                                                                                 outlined
-                                                                                                                @click="InfoBank()"
+                                                                                                                @click="cardPayment()"
                                                                                                             >
                                                                                                                 <v-list-item three-line>
                                                                                                                     <v-list-item-content class="pk-3">
@@ -1928,7 +1791,7 @@
                                                                                                                 class="mx-auto"
                                                                                                                 max-width="465"
                                                                                                                 outlined
-                                                                                                                @click="InfoBank()"
+                                                                                                                @click="cardPayment()"
                                                                                                             >
                                                                                                                 <v-list-item three-line>
                                                                                                                     <v-list-item-content class="pk-3">
@@ -1950,7 +1813,7 @@
                                                                                                                 class="mx-auto"
                                                                                                                 max-width="465"
                                                                                                                 outlined
-                                                                                                                @click="InfoBank()"
+                                                                                                                @click="cardPayment()"
                                                                                                             >
                                                                                                                 <v-list-item three-line>
                                                                                                                     <v-list-item-content class="pk-3">
@@ -1972,7 +1835,7 @@
                                                                                                                 class="mx-auto"
                                                                                                                 max-width="465"
                                                                                                                 outlined
-                                                                                                                @click="InfoBank()"
+                                                                                                                @click="cardPayment()"
                                                                                                             >
                                                                                                                 <v-list-item three-line>
                                                                                                                     <v-list-item-content class="pk-3">
@@ -2396,6 +2259,69 @@
                                                             </template>
                                                             
                                                         </v-col>
+                                                         <!-- cardPayment -->
+                                                        <template>
+                                                            <v-row>
+                                                                <v-dialog
+                                                                    v-model="dialogCardPayment"
+                                                                    persistent
+                                                                    max-width="350px"
+                                                                    >
+                                                                    <v-card>
+                                                                        <div class="modal_header">
+                                                                            <v-card-title>{{ $t("card_payment") }}</v-card-title>
+                                                                            <v-icon
+                                                                                @click="dialogCardPayment = false"
+                                                                                style="cursor: pointer; font-size: 30px;"
+                                                                                color="grey"
+                                                                                class="float-right mt-n1">close
+                                                                            </v-icon>
+                                                                        </div>
+                                                                        <v-col md="12" col="12" class="function_content pa-3">
+                                                                            <v-row>
+                                                                                <v-col  sm="12" cols="12" class="pb-0">
+                                                                                    <v-select
+                                                                                    :items="['ABA', 'Acleda', 'PPCB', 'AMK']"
+                                                                                    :label="$t('select_banks')"
+                                                                                    outlined
+                                                                                    append-icon="mdi-account"
+                                                                                    required
+                                                                                    ></v-select>
+                                                                                </v-col>
+                                                                                <v-col  sm="6" cols="6" class="pt-1 pr-0">
+                                                                                    <v-text-field
+                                                                                    :label="$t('expiry_date')"
+                                                                                    required
+                                                                                    outlined
+                                                                                    type="number"
+                                                                                    ></v-text-field>
+                                                                                </v-col>
+                                                                                <v-col  sm="6" cols="6" class="pt-1">
+                                                                                    <v-text-field
+                                                                                    :label="$t('last_4_digit')"
+                                                                                    required
+                                                                                    outlined
+                                                                                    type="number"
+                                                                                    ></v-text-field>
+                                                                                </v-col>
+                                                                                
+                                                                            </v-row>
+                                                                                
+                                                                        </v-col>
+                                                                        <v-card-actions>
+                                                                            <div class="function_footer">
+                                                                                <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                                    @click="dialogCardPayment = false">
+                                                                                    {{ $t('enter') }}
+                                                                                </v-btn>
+                                                                            </div>
+                                                                            <v-spacer></v-spacer>
+                                                                        </v-card-actions>
+                                                                    </v-card>
+                                                                </v-dialog>
+                                                            </v-row>
+                                                        </template>
+
                                                         <!-- bank -->
                                                         <v-col sm="6" cols="6" class="pa-1 mt-1" >
                                                             <template>
@@ -3206,103 +3132,131 @@
                                                                 <v-dialog
                                                                     v-model="infoBank"
                                                                     persistent
-                                                                    max-width="600px"
+                                                                    max-width="400px"
                                                                     >
                                                                     <v-card>
-                                                                        <v-card-title>
-                                                                        <span class="text-h5">{{$t('bank_info')}}</span>
-                                                                        </v-card-title>
-                                                                        <v-card-text>
-                                                                        <v-row>
-                                                                            <v-col sm="4" cols="4" class="pt-0">
-                                                                                <v-card
-                                                                                    class="mx-auto"
-                                                                                    max-width="465"
-                                                                                    outlined
-                                                                                    @click="InfoBank()"
-                                                                                >
-                                                                                    <v-list-item three-line>
-                                                                                        <v-list-item-content class="pk-3">
-                                                                                            <v-row>
-                                                                                                <v-col sm="12" cols="12" class="">
-                                                                                                    <img
-                                                                                                        class="img-1"
-                                                                                                        src="@/assets/images/bank/bakong.png"
-                                                                                                        width="100%"
-                                                                                                    />
-                                                                                                </v-col>
-                                                                                            </v-row>
-                                                                                        </v-list-item-content>
-                                                                                    </v-list-item>
-                                                                                </v-card>
-                                                                            </v-col>
-                                                                            <v-col cols="8"  md="8" class="pt-0">
-                                                                                <v-row>
-                                                                                    <v-col md="12" col="12" class="function_content pa-3">
-                                                                                        <template>
-                                                                                            <v-simple-table>
-                                                                                                <template>
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                    {{ $t("account_name") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                                <span class="niradei_heavy font_18 dark_grey">
-                                                                                                            pheakdey
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("account_num") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right">
-                                                                                                                <span class="niradei_heavy font_18 dark_grey">
-                                                                                                            0000000001234
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td class="text-left tdbig">
-                                                                                                                <span class="niradei_medium font_14 grey--text">
-                                                                                                                {{ $t("reference_num") }}
-                                                                                                                </span>
-                                                                                                            </td>
-                                                                                                            <td class="text-left tdbig">:</td>
-                                                                                                            <td class="text-right px-0 pt-2">
-                                                                                                                <v-text-field
-                                                                                                                    required
-                                                                                                                    outlined
-                                                                                                                    type="number"
-                                                                                                                    ></v-text-field>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                        
-                                                                                                    </tbody>
-                                                                                                </template>
-                                                                                            </v-simple-table>
-                                                                                        </template>
-                                                                                    </v-col>
-                                                                                    
-                                                                                </v-row>
-                                                                            </v-col>
-                                                                        </v-row>
-                                                                        <!-- <small>*indicates required field</small> -->
-                                                                        </v-card-text>
+                                                                        <div class="modal_header">
+                                                                            <v-card-title>{{ $t("bank_info") }}</v-card-title>
+                                                                            <v-icon
+                                                                                @click="infoBank = false"
+                                                                                style="cursor: pointer; font-size: 30px;"
+                                                                                color="grey"
+                                                                                class="float-right mt-n1">close
+                                                                            </v-icon>
+                                                                        </div>
+                                                                        <v-col md="12" col="12" class="function_content pa-3">
+                                                                            <v-row>
+                                                                                <v-col sm="6" cols="6" class="pt-0">
+                                                                                    <v-card
+                                                                                        class="mx-auto"
+                                                                                        max-width="465"
+                                                                                        outlined
+                                                                                        @click="InfoBank()"
+                                                                                    >
+                                                                                        <v-list-item three-line>
+                                                                                            <v-list-item-content class="pk-3">
+                                                                                                <v-row>
+                                                                                                    <v-col sm="12" cols="12" class="">
+                                                                                                        <img
+                                                                                                            class="img-1"
+                                                                                                            src="@/assets/images/bank/bakong.png"
+                                                                                                            width="100%"
+                                                                                                        />
+                                                                                                    </v-col>
+                                                                                                </v-row>
+                                                                                            </v-list-item-content>
+                                                                                        </v-list-item>
+                                                                                    </v-card>
+                                                                                </v-col>
+                                                                                <v-col sm="6" cols="6" class="pt-0">
+                                                                                    <v-card
+                                                                                        class="mx-auto"
+                                                                                        max-width="465"
+                                                                                        outlined
+                                                                                        @click="InfoBank()"
+                                                                                    >
+                                                                                        <v-list-item three-line>
+                                                                                            <v-list-item-content class="pk-3">
+                                                                                                <v-row>
+                                                                                                    <v-col sm="12" cols="12" class="">
+                                                                                                        <img
+                                                                                                            class="img-1"
+                                                                                                            src="@/assets/images/bank/qr-code.png"
+                                                                                                            width="100%"
+                                                                                                        />
+                                                                                                    </v-col>
+                                                                                                </v-row>
+                                                                                            </v-list-item-content>
+                                                                                        </v-list-item>
+                                                                                    </v-card>
+                                                                                </v-col>
+                                                                                <v-col cols="12"  md="12" class="pt-0">
+                                                                                    <v-row>
+                                                                                        <v-col md="12" col="12" class="function_content pa-3">
+                                                                                            <template>
+                                                                                                <v-simple-table>
+                                                                                                    <template>
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td class="text-left tdbig">
+                                                                                                                    <span class="niradei_medium font_14 grey--text">
+                                                                                                                        {{ $t("account_name") }}
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                                <td class="text-left tdbig">:</td>
+                                                                                                                <td class="text-right">
+                                                                                                                    <span class="niradei_heavy font_18 dark_grey">
+                                                                                                                pheakdey
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="text-left tdbig">
+                                                                                                                    <span class="niradei_medium font_14 grey--text">
+                                                                                                                    {{ $t("account_num") }}
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                                <td class="text-left tdbig">:</td>
+                                                                                                                <td class="text-right">
+                                                                                                                    <span class="niradei_heavy font_18 dark_grey">
+                                                                                                                0000000001234
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="text-left tdbig">
+                                                                                                                    <span class="niradei_medium font_14 grey--text">
+                                                                                                                    {{ $t("reference_num") }}
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                                <td class="text-left tdbig">:</td>
+                                                                                                                <td class="text-right px-0 pt-2">
+                                                                                                                    <v-text-field
+                                                                                                                        required
+                                                                                                                        outlined
+                                                                                                                        type="number"
+                                                                                                                        ></v-text-field>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            
+                                                                                                        </tbody>
+                                                                                                    </template>
+                                                                                                </v-simple-table>
+                                                                                            </template>
+                                                                                        </v-col>
+                                                                                        
+                                                                                    </v-row>
+                                                                                </v-col>
+                                                                            </v-row>
+                                                                        </v-col>
                                                                         <v-card-actions>
-                                                                            <div class="function_footer">
-                                                                                <v-btn outlined color="#494846" class="float-left text-capitalize"
-                                                                                    @click="infoBank = false">{{ $t('skip') }}
+                                                                            <div class="function_footer text-right">
+                                                                                <v-btn color="secondary" class="mr-2 white--text text-capitalize"
+                                                                                    @click="infoBank = false">
+                                                                                    {{ $t('skip') }}
                                                                                 </v-btn>
 
-                                                                                <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                                <v-btn color="primary" class="float-right white--text text-capitalize"
                                                                                     @click="infoBank = false">
                                                                                     {{ $t('enter') }}
                                                                                 </v-btn>
@@ -3877,8 +3831,7 @@
                                         </v-col>
                                     </v-row>
                                 </div>
-                            </div>
-                               
+                            </div>         
                         </v-col>
                         <!-- items list -->
                         <v-col md="5" sm="12" cols="12" class="sidebar-left2 pt-0" style="overflow-y: auto;">
@@ -3997,6 +3950,7 @@ export default {
         dialogPromotion:false,
         dialogOrder: false,
         dialogCard: false,
+        dialogCardPayment: false,
         dialog: false,
         dialogCash: false,
         dialogBank: false,
@@ -4062,6 +4016,9 @@ export default {
                 }
             });
         },
+        close() {
+           this.$router.go(-1);
+        },
         LoyaltyToOrder(){
             this.dialogOrder = true;
             this.dialogPartner = false;
@@ -4082,6 +4039,9 @@ export default {
         },
         PartnerToSale(){
             window.location.reload()
+        },
+        cardPayment(){
+            this.dialogCardPayment = true;
         },
         clickMe(data) {
             // alert(data.link)
@@ -4329,6 +4289,12 @@ export default {
         padding: 10px !important;
         margin: 5px;
     }
+    .apply-btn{
+        min-width: 33% !important;
+        height: 50px !important;
+        padding: 5px !important;
+        margin: 5px;
+    }
     .calculator-btn{
        min-width: 18% !important;
         margin: 4px;
@@ -4353,7 +4319,6 @@ export default {
     .notification{
         background-color: #ed263a;
         width: auto;
-        height: 100%;
         margin-left: 2px;
         color: #fff;
 
@@ -4686,6 +4651,9 @@ export default {
     }
     .th-invoice th{
       border-top: thin solid rgba(0, 0, 0, 0.12) !important;  
+    }
+    .v-list-item-left {
+        padding: 0 0px 0 16px !important;
     }
 
 

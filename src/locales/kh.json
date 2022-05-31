@@ -4185,10 +4185,12 @@
     "paid_by": "Paid by",
     "bank_info": "Bank info",
     "points": "Points",
-    "card": "Card"
-
-
-
+    "card": "Card",
+    "select_banks": "Select bank",
+    "cvv": "CVV",
+    "last_4_digit": "last 4 digits",
+    "account_num": "Account num",
+    "reference_num": "Reference num"
 
 
 } 
