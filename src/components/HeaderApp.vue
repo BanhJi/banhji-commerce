@@ -10,7 +10,7 @@
                 <a href="\">
                 <img
                     class="mt-3"
-                    src="../assets/images/banhji_pos.png"
+                    src="../assets/images/banhji-logo-r.png"
                     height="60"
                 />
                 </a>

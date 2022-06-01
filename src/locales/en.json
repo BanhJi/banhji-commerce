@@ -4262,7 +4262,14 @@
     "cvv": "CVV",
     "last_4_digit": "last 4 digits",
     "account_num": "Account num",
-    "reference_num": "Reference num"
+    "reference_num": "Reference num",
+    "reset_order": "Reset order",
+    "split_item": "split inv",
+    "clear_order": "Clear order",
+    "count_guest": "Count guest",
+    "merge_inoice": "Merge inv",
+    "order_list": "Order list",
+    "order_type": "Order type"
 
 
 }

@@ -10,7 +10,7 @@
                                 <div sm="12" cols="12" class=" flex-1">
                                     <v-card flat color="" style="background-color: rgb(248 248 249);">
                                         <span class="hidden-sm-and-down">
-                                            <a :href="lang+'/'"  class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
+                                            <a class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
                                             <div class="mb-0">
                                                 <img
                                                     src="@/assets/images/banhji-logo-r.png"
@@ -566,9 +566,9 @@
                                                 </v-col>
                                             </v-row>
                                         </v-col>
-                                        <v-col sm="6" cols="6" class="pl-4 py-0">
+                                        <v-col sm="12" cols="12" class="pl-4 py-0">
                                             <v-row>
-                                                <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
                                                     
                                                     <!-- reward -->
                                                     <template>
@@ -579,8 +579,9 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left>mdi-percent</v-icon>
-                                                                    {{$t('reward')}}
+                                                                    <v-icon left class="mr-0">mdi-percent</v-icon>
+                                                                    <span class="text-bold letter_spacing">{{$t('reward')}}</span>
+                        
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
@@ -837,7 +838,7 @@
                                                         </v-row>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-1">
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <!-- promotion -->
                                                     <template>
                                                         <v-dialog
@@ -847,8 +848,8 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left>mdi-ticket-percent</v-icon>
-                                                                        {{$t('promotion')}}
+                                                                    <v-icon left class="mr-0">mdi-ticket-percent</v-icon>
+                                                                    <span class="text-bold letter_spacing">{{$t('promotion')}}</span>
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
@@ -953,7 +954,8 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="6" sm="6" col="6" class="pa-1 pl-0">
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <!-- note -->
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogNote"
@@ -962,8 +964,8 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left>mdi-note</v-icon>
-                                                                    {{$t('note')}}
+                                                                    <v-icon left class="mr-0">mdi-note</v-icon>
+                                                                     <span class="text-bold letter_spacing">{{$t('note')}}</span>
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
@@ -1002,45 +1004,82 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="6" sm="6" col="6" class="pa-1">
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                        <v-icon left>mdi-motorbike</v-icon>
-                                                        {{$t('delivery')}}
+                                                        <v-icon left class="mr-0">mdi-truck-fast-outline</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('delivery')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
+                                                        <v-icon left class="mr-0">mdi-parking</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('parksale')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style="">
+                                                        <v-icon left class="mr-0">mdi-receipt</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('invoice')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn  color=third class="white--text rounded-0 btn-funtion" style="">
+                                                        <v-icon left class="mr-0">mdi-cancel</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('cancel')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-autorenew</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('reset_order')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-axis-arrow</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('split_item')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-archive-outline</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('clear_order')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-line-scan</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('sale_unit')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-account-group</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('count_guest')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-arrow-collapse-all</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('merge_inoice')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-ballot-outline</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('order_list')}}</span>
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
+                                                        <v-icon left class="mr-0">mdi-layers-outline</v-icon>
+                                                         <span class="text-bold letter_spacing">{{$t('order_type')}}</span>
                                                     </v-btn>
                                                 </v-col>
                                             </v-row>  
                                             
                                         </v-col>
-                                        <v-col sm="6" cols="6" class="pr-4 py-0">
-                                            <v-row>
-                                                <v-col md="6" sm="6" col="6" class="pa-1">
-                                                    <v-btn color=secondary class="white--text rounded-0  btn-funtion" style="">
-                                                        <v-icon left>mdi-parking</v-icon>
-                                                        {{$t('parksale')}}
-                                                    </v-btn>
-                                                </v-col>
-                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
-                                                    <v-btn color=secondary class="white--text rounded-0 btn-funtion" style="">
-                                                        <v-icon left>mdi-receipt</v-icon>
-                                                        {{$t('invoice')}}
-                                                    </v-btn>
-                                                </v-col>
                                                 
-                                                <v-col md="6" sm="6" col="6" class="pa-1">
-                                                    <v-btn  color=secondary class="rounded-0 btn-funtion" style="">
-                                                        <v-icon left>mdi-cancel</v-icon>
-                                                        {{$t('cancel')}}
-                                                    </v-btn>
-                                                </v-col>
-                                                <v-col md="6" sm="6" col="6" class="pa-1 pr-0">
-                                                    <v-btn color=secondary class="rounded-0 btn-funtion" style=""> 
-                                                        <v-icon left>mdi-printer</v-icon>
-                                                        {{$t('print')}}
-                                                    </v-btn>
-                                                </v-col>
-                                                
-                                            </v-row>
-                                        </v-col>
                                         <v-col sm="12" cols="12" class="py-0"> 
                                             <v-row>
                                                 <!-- payments -->
@@ -3793,83 +3832,83 @@
                                                     </v-row>
                                                 </v-col>
                                                 <v-col md="8" sm="9" cols="12" class="pa-1 pl-0 float-right text-right">
-                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             1
                                                         </v-btn>
                                                             
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             2
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             3
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             qty
                                                         </v-btn>
-                                                        <v-btn class="rounded-0 calculator-btn mr-0">
-                                                            m
+                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
+                                                            modi.
                                                         </v-btn>
 
                                                         <br>
 
-                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             4
                                                         </v-btn>
                                                             
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             5
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             6
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
-                                                            d
+                                                        <v-btn class="rounded-0 calculator-btn-1">
+                                                            dis.
                                                         </v-btn>
-                                                        <v-btn class="rounded-0 calculator-btn mr-0">
-                                                            s
+                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
+                                                           emp.
                                                         </v-btn>
                                                         <br>
-                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             7
                                                         </v-btn>
                                                             
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             8
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             9
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
-                                                            p
+                                                        <v-btn class="rounded-0 calculator-btn-1">
+                                                            price
                                                         </v-btn>
                                                         
-                                                        <v-btn class="rounded-0 calculator-btn mr-0">
-                                                            
+                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
+                                                            uom
                                                         </v-btn>
                                                         <br>   
-                                                        <v-btn class="rounded-0 calculator-btn ml-0">
+                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             0
                                                         </v-btn>
                                                             
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             .
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
+                                                        <v-btn class="rounded-0 calculator-btn-1">
                                                             c
                                                         </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn">
-                                                            
+                                                        <v-btn class="rounded-0 calculator-btn-1">
+                                                           
                                                         </v-btn>
                                                         
-                                                        <v-btn class="rounded-0 calculator-btn mr-0">
+                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
                                                             
                                                         </v-btn>
                                                         
@@ -4047,6 +4086,9 @@ export default {
         }
     }),
     methods: {
+        hasHistory () { 
+            return window.history.length > 2 
+        },
         cancel() {
             this.$swal({
                 title: i18n.t("msg_title_warning"),
@@ -4354,6 +4396,14 @@ export default {
         margin: 4px;
         padding: 0 10px !important;
     }
+    .calculator-btn-1{
+        min-width: 17% !important;
+        margin: 4px;
+        padding: 0 2px !important;
+        font-size: 13px !important;
+        letter-spacing: inherit;
+        font-weight: bold;
+    }
     .pay-btn{
         width: 100%;
         border: 1px solid #e0e0e0;
@@ -4364,6 +4414,8 @@ export default {
     .btn-funtion{
         font-size: 14px;
         width: 100% !important;
+        display: flex;
+        justify-content: space-between;
     }
     .function_content {
         padding: 0px;
@@ -4506,6 +4558,10 @@ export default {
       width: 25%;
       margin-left: 10%;
       margin-top: 10%;
+    }
+    .letter_spacing{
+        letter-spacing:initial;
+        font-size: 12px !important;
     }
 
     #pin p { font-size: 1.2em; }

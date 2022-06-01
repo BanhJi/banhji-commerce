@@ -1,6 +1,6 @@
 <template>
     
-    <v-container>
+    <v-container class="big-widht">
         <!-- pos for retail -->
         <v-row v-if="this.$route.name == 'dashboard_pos'" class="mx-6 mt-3">
             <v-col sm="4" cols="12">
@@ -793,8 +793,8 @@ body {
     line-height: normal;
 }
 @media (min-width: 1904px){
-.container {
-    max-width: 1400px;
+    .big-widht {
+    max-width: 1510px;
     }
 }
 @media (max-width: 576px) {
@@ -1111,5 +1111,6 @@ body {
         text-align: center !important;
         font-size: 35px !important;
     }
+    
     
 </style>

@@ -761,7 +761,7 @@ const routes = [{
                     component: load('pos/Dashboard'),
                     meta: {
                         mainMenu: 'overview',
-                        title:'Member & Share'
+                        title: i18n.t('point_of_sales')
 
                     },
 
