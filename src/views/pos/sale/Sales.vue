@@ -972,7 +972,7 @@
                                                                 <div class="modal_header">
                                                                     <v-card-title>{{ $t("note") }}</v-card-title>
                                                                     <v-icon
-                                                                        @click="dialogReward = false"
+                                                                        @click="dialogNote = false"
                                                                         style="cursor: pointer; font-size: 30px;"
                                                                         color="grey"
                                                                         class="float-right mt-n1">close
