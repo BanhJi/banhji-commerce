@@ -1103,10 +1103,86 @@
                                                     </template> 
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                        <v-icon left class="mr-0">mdi-truck-fast-outline</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('delivery')}}</span>
-                                                    </v-btn>
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogDelivery"
+                                                            persistent
+                                                            max-width="350px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left class="mr-0">mdi-bike-fast</v-icon>
+                                                                     <span class="text-bold letter_spacing">{{$t('delivery')}}</span>
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("delivery") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogDelivery = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col sm="12" cols="12" class="">
+                                                                            <v-select
+                                                                            :items="['watphnom', 'toul tompong', 'chormchav']"
+                                                                            :label="$t('address')"
+                                                                            outlined
+                                                                            append-icon="mdi-border-color"
+                                                                            required
+                                                                            ></v-select>
+                                                                        </v-col>
+                                                                        <v-col sm="12" cols="12" class="pt-0">
+                                                                            <v-text-field
+                                                                            :label="$t('phone_number')"
+                                                                            outlined
+                                                                            append-icon="mdi-phone"
+                                                                            required
+                                                                            type="number"
+                                                                            ></v-text-field>
+                                                                        </v-col>
+                                                                        <v-col cols="12" sm="12" class="pt-1">
+                                                                            <v-menu
+                                                                            v-model="menu2"
+                                                                            :close-on-content-click="false"
+                                                                            :nudge-right="40"
+                                                                            offset-y
+                                                                            min-width="auto"
+                                                                            >
+                                                                            <template v-slot:activator="{ on, attrs }">
+                                                                                <v-text-field
+                                                                                v-model="date"
+                                                                                label="time to completion"
+                                                                                append-icon="mdi-calendar"
+                                                                                outlined
+                                                                                v-bind="attrs"
+                                                                                v-on="on"
+                                                                                ></v-text-field>
+                                                                            </template>
+                                                                            <v-date-picker
+                                                                                v-model="date"
+                                                                                @input="menu2 = false"
+                                                                            ></v-date-picker>
+                                                                            </v-menu>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogDelivery = false">
+                                                                            {{ $t('enter') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
@@ -1121,22 +1197,111 @@
                                                     </v-btn>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn  color=third class="white--text rounded-0 btn-funtion" style="">
-                                                        <v-icon left class="mr-0">mdi-cancel</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('cancel')}}</span>
-                                                    </v-btn>
-                                                </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
                                                         <v-icon left class="mr-0">mdi-autorenew</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('reset_order')}}</span>
                                                     </v-btn>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
-                                                        <v-icon left class="mr-0">mdi-axis-arrow</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('split_item')}}</span>
-                                                    </v-btn>
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogSplit"
+                                                            persistent
+                                                            max-width="600px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left class="mr-0">mdi-axis-arrow</v-icon>
+                                                                     <span class="text-bold letter_spacing">{{$t('split_item')}}</span>
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("split_item") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogSplit = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col cols="6" class="py-0">
+                                                                            <v-card color="white" class="pa-3 no_border" elevation="0" style="min-height: auto">
+                                                                                <h2 class="font_20">{{$t('from')}}</h2>
+                                                                                <v-list three-line class="list1">
+                                                                                    <drop-list :items="items1" @reorder="$event.apply(items1)" @insert="insert1" mode="cut"  style="min-height: 300px;" >
+                                                                                        <template v-slot:item="{item, reorder}">
+                                                                                            <drag :key="item.title" :data="item" @cut="remove(items1, item)">
+                                                                                                <v-list-item class="my-2" style="background-color: #e0e0e0!important; min-height: 0"
+                                                                                                                :style="reorder ? {borderLeft: '2px solid #1976D2', marginLeft:'-2px'} : {}">
+                                                                                                    <v-list-item-content>
+                                                                                                        <v-list-item-title v-html="item.title"/>
+                                                                                                    </v-list-item-content>
+                                                                                                </v-list-item>
+                                                                                            </drag>
+                                                                                        </template>
+                                                                                        <template v-slot:inserting-drag-image="{data}">
+                                                                                            <v-list-item-avatar style="transform:translate(-50%, -50%) scale(1.5)">
+                                                                                                <img :src="data.avatar">
+                                                                                            </v-list-item-avatar>
+                                                                                        </template>
+                                                                                        <template v-slot:reordering-drag-image/>
+                                                                                        <template v-slot:feedback="{data}">
+                                                                                            <v-skeleton-loader
+                                                                                                    type="list-item-avatar-three-line"
+                                                                                                    :key="data.title"
+                                                                                            />
+                                                                                        </template>
+                                                                                    </drop-list>
+                                                                                </v-list>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        <v-col cols="6"  class="py-0">
+                                                                            <v-card color="third" class="pa-3 no_border" elevation="0" style="min-height: 100%">
+                                                                                <h2 class="text-white font_20">{{$t('to')}}</h2>
+                                                                                <drop-list class="list2 py-2" :items="items2" @reorder="$event.apply(items2)" @insert="insert2"
+                                                                                            mode="cut" style="min-height: 300px;">
+                                                                                    <template v-slot:item="{item,reorder}">
+                                                                                        <drag :key="item.title" class="chip my-2" :data="item" @cut="remove(items2, item)">
+                                                                                            <!-- <v-chip class="py-2" :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.title}}</v-chip> -->
+                                                                                            <v-list-item class="my-2" style="background-color: #e0e0e0!important; min-height: 0"
+                                                                                                            :style="reorder ? {borderLeft: '2px solid #1976D2', marginLeft:'-2px'} : {}">
+                                                                                                <v-list-item-content>
+                                                                                                    <v-list-item-title v-html="item.title"/>
+                                                                                                </v-list-item-content>
+                                                                                            </v-list-item>
+                                                                                            
+                                                                                        </drag>
+                                                                                    </template>
+                                                                                    <template v-slot:feedback="{data}">
+                                                                                        <div class="chip" :key="data.title">
+                                                                                            <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.title}}</v-chip>
+                                                                                        </div>
+                                                                                    </template>
+                                                                                    <template v-slot:inserting-drag-image="{data}">
+                                                                                        <v-chip :key="data.title" style="transform: translate(-50%, -50%)">{{data.title}}
+                                                                                        </v-chip>
+                                                                                    </template>
+                                                                                </drop-list>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogSplit = false">
+                                                                            {{ $t('save') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
+                                                    
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
@@ -1157,10 +1322,105 @@
                                                     </v-btn>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
-                                                        <v-icon left class="mr-0">mdi-arrow-collapse-all</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('merge_inoice')}}</span>
-                                                    </v-btn>
+                                                    
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogMerge"
+                                                            persistent
+                                                            max-width="600px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left class="mr-0">mdi-arrow-collapse-all</v-icon>
+                                                                     <span class="text-bold letter_spacing">{{$t('merge_inoice')}}</span>
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("merge_inoice") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogMerge = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col cols="6" class="py-0">
+                                                                            <v-card color="white" class="pa-3 no_border" elevation="0" style="min-height: auto">
+                                                                                <h2 class="font_20">{{$t('from')}}</h2>
+                                                                                <v-list three-line class="list1">
+                                                                                    <drop-list :items="merge1" @reorder="$event.apply(merge1)" @insert="insert3" mode="cut"  style="min-height: 300px;" >
+                                                                                        <template v-slot:item="{item, reorder}">
+                                                                                            <drag :key="item.title" :data="item" @cut="remove(merge1, item)">
+                                                                                                <v-list-item class="my-2" style="background-color: #e0e0e0!important; min-height: 0"
+                                                                                                                :style="reorder ? {borderLeft: '2px solid #1976D2', marginLeft:'-2px'} : {}">
+                                                                                                    <v-list-item-content>
+                                                                                                        <v-list-item-title v-html="item.title"/>
+                                                                                                    </v-list-item-content>
+                                                                                                </v-list-item>
+                                                                                            </drag>
+                                                                                        </template>
+                                                                                        <template v-slot:inserting-drag-image="{data}">
+                                                                                            <v-list-item-avatar style="transform:translate(-50%, -50%) scale(1.5)">
+                                                                                                <img :src="data.avatar">
+                                                                                            </v-list-item-avatar>
+                                                                                        </template>
+                                                                                        <template v-slot:reordering-drag-image/>
+                                                                                        <template v-slot:feedback="{data}">
+                                                                                            <v-skeleton-loader
+                                                                                                    type="list-item-avatar-three-line"
+                                                                                                    :key="data.title"
+                                                                                            />
+                                                                                        </template>
+                                                                                    </drop-list>
+                                                                                </v-list>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        <v-col cols="6"  class="py-0">
+                                                                            <v-card color="third" class="pa-3 no_border" elevation="0" style="min-height: 100%">
+                                                                                <h2 class="text-white font_20">{{$t('to')}}</h2>
+                                                                                <drop-list class="list2 py-2" :items="merge2" @reorder="$event.apply(merge2)" @insert="insert4"
+                                                                                            mode="cut" style="min-height: 300px;">
+                                                                                    <template v-slot:item="{item,reorder}">
+                                                                                        <drag :key="item.title" class="chip my-2" :data="item" @cut="remove(merge2, item)">
+                                                                                            <!-- <v-chip class="py-2" :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.title}}</v-chip> -->
+                                                                                            <v-list-item class="my-2" style="background-color: #e0e0e0!important; min-height: 0"
+                                                                                                            :style="reorder ? {borderLeft: '2px solid #1976D2', marginLeft:'-2px'} : {}">
+                                                                                                <v-list-item-content>
+                                                                                                    <v-list-item-title v-html="item.title"/>
+                                                                                                </v-list-item-content>
+                                                                                            </v-list-item>
+                                                                                            
+                                                                                        </drag>
+                                                                                    </template>
+                                                                                    <template v-slot:feedback="{data}">
+                                                                                        <div class="chip" :key="data.title">
+                                                                                            <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.title}}</v-chip>
+                                                                                        </div>
+                                                                                    </template>
+                                                                                    <template v-slot:inserting-drag-image="{data}">
+                                                                                        <v-chip :key="data.title" style="transform: translate(-50%, -50%)">{{data.title}}
+                                                                                        </v-chip>
+                                                                                    </template>
+                                                                                </drop-list>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogMerge = false">
+                                                                            {{ $t('merge') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
@@ -4120,11 +4380,17 @@
 </template>
 
 <script>
+import {Drag,DropList} from "vue-easy-dnd";
+import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
 import { i18n } from "@/i18n";
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
 const loanHandler = require("@/scripts/loanHandler")
 export default {
     data: () => ({
+        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+        menu: false,
+        modal: false,
+        menu2: false,
         year: new Date().getFullYear(),
         isAccountLogo: true,
         dialogLoyalty: false,
@@ -4144,6 +4410,9 @@ export default {
         dialogParksale: false,
         dialogInvoice: false,
         dialogOrderReport: false,
+        dialogDelivery: false,
+        dialogSplit: false,
+        dialogMerge: false,
         items: '',
 
         pinActivate: false,
@@ -4184,7 +4453,41 @@ export default {
             appNature: 'Retail',
             screenDisplay: 'Surface',
             receiptTemplate: '80mm'
-        }
+        },
+
+        g: new generalSettingModel({}),
+        items1: [
+            {
+                name: "coffee",
+                title: "Coffee"
+            },
+            {
+                name: "hotCoffee",
+                title: "Hot Coffee"
+            },
+            {
+                name: "iceCream",
+                title: "Ice Cream"
+            }
+        ],
+        items2: [
+        ],
+        merge1: [
+            {
+                name: "table1",
+                title: "Table 01"
+            },
+            {
+                name: "table2",
+                title: "Table 02"
+            },
+            {
+                name: "table3",
+                title: "Table 03"
+            }
+        ],
+        merge2: [
+        ],
     }),
     
     methods: {
@@ -4339,12 +4642,35 @@ export default {
                 }, 300);
             })
         },
+
+        // split
+        insert1(event) {
+            this.items1.splice(event.index, 0, event.data);
+        },
+        insert2(event) {
+            this.items2.splice(event.index, 0, event.data);
+        },
+        remove(array, value) {
+            let index = array.indexOf(value);
+            array.splice(index, 1);
+        },
+
+        // marge
+        insert3(event) {
+            this.merge1.splice(event.index, 0, event.data);
+        },
+        insert4(event) {
+            this.merge2.splice(event.index, 0, event.data);
+        },
     },
     components: {
         LoadingMe: () => import(`@/components/Loading`),
         Parksale: () => import("../Parksale.vue"),
         InvoiceReport: () => import ("../InvoiceReport"),
-        OrderReport: () => import ("../OrderReport")
+        OrderReport: () => import ("../OrderReport"),
+
+        Drag,
+        DropList,
 
     },
     computed:{
