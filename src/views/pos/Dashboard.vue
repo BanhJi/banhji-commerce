@@ -2,7 +2,7 @@
     
     <v-container class="big-widht">
         <!-- pos for retail -->
-        <v-row v-if="this.$route.name == 'dashboard_pos'" class="mx-6 mt-3">
+        <v-row v-if="this.$route.name == 'dashboard_pos'" class="mx-6 mt-0">
             <v-col sm="4" cols="12">
                 <v-row>
                     <v-col sm="12" cols="12" class="">
@@ -229,7 +229,7 @@
         </v-row>  
 
          <!-- pos for resturant -->
-        <v-row v-else-if="this.$route.name == 'dashboard_2'" class="mx-6 mt-3">
+        <v-row v-else-if="this.$route.name == 'dashboard_2'" class="mx-6 mt-0">
             <v-col sm="4" cols="12">
                 <v-row>
                     <v-col sm="12" cols="12" class="">
@@ -457,7 +457,7 @@
         </v-row>  
 
          <!-- pos for service -->
-        <v-row v-else class="mx-6 mt-3">
+        <v-row v-else class="mx-6 mt-0">
             <v-col sm="4" cols="12">
                 <v-row>
                     <v-col sm="12" cols="12" class="">

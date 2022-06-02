@@ -7,7 +7,7 @@
             color="grayBg"
             v-bind:class="{ sidebar_small: miniVariant }">
             <span class="px-0">
-                <a href="\">
+                <a @click="close()">
                 <img
                     class="mt-3"
                     src="../assets/images/banhji-logo-r.png"
@@ -215,6 +215,9 @@
             source: String,
         },
         methods: {
+            close() {
+                this.$router.go(-1);
+            },
             amIOnline(e) {
                 const iconOffline = require("@/assets/images/outline_wifi_off_black_48dp.png")
                 const iconOnline = require("@/assets/images/outline_wifi_white_48dp.png")
@@ -362,6 +365,7 @@
             VOffline
         },
         computed: {
+            
             appType(){
                 return data.app
             },
@@ -397,11 +401,11 @@
 </script>
 <style scoped>
     .header-app{
-    height: 145px !important;
-    padding: 75px 0 0 0 !important;
+    height: 130px !important;
+    padding: 50px 0 0 0 !important;
     transform: translateY(0px);
     position: fixed;
-    width: 1190px;
+    width: 1135px;
     margin-right: auto;
     margin-left: auto;
     }

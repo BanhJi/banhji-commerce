@@ -4199,9 +4199,11 @@
     "order_list": "Order list",
     "order_type": "Order type",
     "parksale": "Parksale",
-    "scan_code": "Scan code"
-    
+    "scan_code": "Scan code",
+    "user_pin": "User pin",
+    "order_flow": "Order flow",
+    "add_pin": "Add pin"
 
-
+ 
 
 } 
