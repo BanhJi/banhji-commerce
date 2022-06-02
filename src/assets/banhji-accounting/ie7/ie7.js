@@ -57,6 +57,8 @@
 		'b-transation': '&#xe92b;',
 		'b-reward': '&#xe920;',
 		'b-pos': '&#xe925;',
+		'b-favorite': '&#xe92c;',
+		'b-catagories': '&#xe92d;',
 		'0': 0
 		},
 		els = document.getElementsByTagName('*'),

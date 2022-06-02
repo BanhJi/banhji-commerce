@@ -4197,7 +4197,11 @@
     "count_guest": "Count guest",
     "merge_inoice": "Merge inv",
     "order_list": "Order list",
-    "order_type": "Order type"
+    "order_type": "Order type",
+    "parksale": "Parksale",
+    "scan_code": "Scan code"
+    
+
 
 
 } 

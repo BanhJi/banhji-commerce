@@ -1,6 +1,6 @@
 <template>
   <v-row class="">
-    <v-container class="px-7 pt-4" style="max-width: 1475px;">
+    <v-container class="px-0 pt-4 body-app" >
       <v-card outlined dense color="white" class=" no_border" elevation="0" height="680" style="overflow-y: auto;">
         <v-col sm="12" cols="12" class="pt-4">
           <v-tabs
@@ -171,6 +171,12 @@ p {
 .v-slide-group__content{
   white-space: normal !important;
 }
+@media (min-width: 1904px){
+      .body-app {
+          width: 1450px !important;
+          max-width: 1480px;
+      }
+  }
 
 @media (max-width: 576px) {
   .tab_setting.theme--light.v-tabs.tab_setting > .v-tabs-bar {

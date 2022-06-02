@@ -72,30 +72,128 @@
 
                                             <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
-                                                        <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
-                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                        
-                                                    </v-col>
+                                                    <template>
+                                                        <div justify="center" style="height: 100%;width:100%">
+                                                            <v-dialog
+                                                                v-model="dialogParksale"
+                                                                fullscreen
+                                                                hide-overlay
+                                                                transition="dialog-bottom-transition"
+                                                            >
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                        cols="12" class="py-2"
+                                                                        style=" background-color: #fff;border-radius: 5px;">
+
+                                                                        <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                    </v-col>
+                                                                </template>
+                                                                <v-card style="background-color: #f8f8f9;">
+                                                                    <v-container>
+                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                            <div class="modal_header">
+                                                                                <v-card-title>{{ $t("parksale") }}</v-card-title>
+                                                                                <v-icon
+                                                                                    @click="dialogParksale = false"
+                                                                                    style="cursor: pointer; font-size: 40px;"
+                                                                                    color="grey"
+                                                                                    class="float-right mt-n1">close
+                                                                                </v-icon>
+                                                                            </div>
+                                                                            <v-card-text class="modal_text_content">
+                                                                                <Parksale/>
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-container>
+                                                                </v-card>
+                                                            </v-dialog>
+                                                        </div>
+                                                    </template>
                                                 </v-row>
-                                        
                                             </div>
                                             <div class="v-list-item v-list-item-left  d-block mb-1 mr-0" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
-                                                        <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
-                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                        
-                                                    </v-col>
+                                                    <template>
+                                                        <div justify="center" style="height: 100%;width:100%">
+                                                            <v-dialog
+                                                                v-model="dialogInvoice"
+                                                                fullscreen
+                                                                hide-overlay
+                                                                transition="dialog-bottom-transition"
+                                                            >
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                        cols="12" class="py-2"
+                                                                        style=" background-color: #fff;border-radius: 5px;">
+
+                                                                        <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                    </v-col>
+                                                                </template>
+                                                                <v-card style="background-color: #f8f8f9;">
+                                                                    <v-container>
+                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                            <div class="modal_header">
+                                                                                <v-card-title>{{ $t("invoice") }}</v-card-title>
+                                                                                <v-icon
+                                                                                    @click="dialogInvoice = false"
+                                                                                    style="cursor: pointer; font-size: 40px;"
+                                                                                    color="grey"
+                                                                                    class="float-right mt-n1">close
+                                                                                </v-icon>
+                                                                            </div>
+                                                                            <v-card-text class="modal_text_content">
+                                                                                <InvoiceReport/>
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-container>
+                                                                </v-card>
+                                                            </v-dialog>
+                                                        </div>
+                                                    </template>
                                                 </v-row>
                                             </div>
                                             <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <v-col sm="12" cols="12" class="py-2" style=" background-color: #fff;border-radius: 5px;">
-                                                        <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
-                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                        
-                                                    </v-col>
+                                                    <template>
+                                                        <div justify="center" style="height: 100%;width:100%">
+                                                            <v-dialog
+                                                                v-model="dialogOrderReport"
+                                                                fullscreen
+                                                                hide-overlay
+                                                                transition="dialog-bottom-transition"
+                                                            >
+                                                                <template v-slot:activator="{ on, attrs }">
+                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                        cols="12" class="py-2"
+                                                                        style=" background-color: #fff;border-radius: 5px;">
+
+                                                                        <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                    </v-col>
+                                                                </template>
+                                                                <v-card style="background-color: #f8f8f9;">
+                                                                    <v-container>
+                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                            <div class="modal_header">
+                                                                                <v-card-title>{{ $t("order") }}</v-card-title>
+                                                                                <v-icon
+                                                                                    @click="dialogOrderReport = false"
+                                                                                    style="cursor: pointer; font-size: 40px;"
+                                                                                    color="grey"
+                                                                                    class="float-right mt-n1">close
+                                                                                </v-icon>
+                                                                            </div>
+                                                                            <v-card-text class="modal_text_content">
+                                                                                <OrderReport/>
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-container>
+                                                                </v-card>
+                                                            </v-dialog>
+                                                        </div>
+                                                    </template>
                                                 </v-row>
                                             </div>
 
@@ -3983,33 +4081,33 @@
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
-                                        <i  class=" b-segment" />
-                                        <h6>{{$t('categories')}}</h6>
+                                        <i  class=" b-catagories" />
+                                        <h6 class="letter_spacing">{{$t('categories')}}</h6>
                                     </div>
                                     
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-dimensions" />
-                                        <h6>{{$t('group')}}</h6>
+                                        <h6 class="letter_spacing">{{$t('group')}}</h6>
                                     </div>
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-specific" />
-                                        <h6>{{$t('sub_group')}}</h6>
+                                        <h6 class="letter_spacing">{{$t('sub_group')}}</h6>
                                     </div>
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
-                                        <i  class=" b-compliance" />
-                                        <h6>{{$t('favorite')}}</h6>
+                                        <i  class=" b-favorite" />
+                                        <h6 class="letter_spacing">{{$t('favorite')}}</h6>
                                     </div>
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-product" />
-                                        <h6>{{$t('items')}}</h6>
+                                        <h6 class="letter_spacing">{{$t('items')}}</h6>
                                     </div>
                                 </v-btn>
                             </v-card>
@@ -4043,6 +4141,9 @@ export default {
         dialogQrcode: false,
         dialogNote: false,
         infoBank: false,
+        dialogParksale: false,
+        dialogInvoice: false,
+        dialogOrderReport: false,
         items: '',
 
         pinActivate: false,
@@ -4085,6 +4186,7 @@ export default {
             receiptTemplate: '80mm'
         }
     }),
+    
     methods: {
         hasHistory () { 
             return window.history.length > 2 
@@ -4240,6 +4342,10 @@ export default {
     },
     components: {
         LoadingMe: () => import(`@/components/Loading`),
+        Parksale: () => import("../Parksale.vue"),
+        InvoiceReport: () => import ("../InvoiceReport"),
+        OrderReport: () => import ("../OrderReport")
+
     },
     computed:{
         lang() {

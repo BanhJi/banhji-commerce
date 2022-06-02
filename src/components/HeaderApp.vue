@@ -401,7 +401,7 @@
     padding: 75px 0 0 0 !important;
     transform: translateY(0px);
     position: fixed;
-    width: 1135px;
+    width: 1190px;
     margin-right: auto;
     margin-left: auto;
     }

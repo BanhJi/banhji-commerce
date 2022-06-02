@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?l3bq9u');
-  src:  url('fonts/banhji-accounting-icon.eot?l3bq9u#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?l3bq9u') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?l3bq9u') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?l3bq9u#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?cbz7n8');
+  src:  url('fonts/banhji-accounting-icon.eot?cbz7n8#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?cbz7n8') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?cbz7n8') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?cbz7n8#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -199,5 +199,13 @@
 }
 .b-pos:before {
   content: "\e925";
+  color: #474747;
+}
+.b-favorite:before {
+  content: "\e92c";
+  color: #474747;
+}
+.b-catagories:before {
+  content: "\e92d";
   color: #474747;
 }
