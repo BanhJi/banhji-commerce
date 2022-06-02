@@ -43,14 +43,6 @@
                 <v-icon left>mdi-pen</v-icon>
               </span>
               <span class="hidden-sm-and-down text-capitalize text-left">
-                {{ $t("order_flow") }}
-              </span>
-            </v-tab>
-            <v-tab>
-              <span class="hidden-sm-and-up">
-                <v-icon left>mdi-pen</v-icon>
-              </span>
-              <span class="hidden-sm-and-down text-capitalize text-left">
                 {{ $t("user_pin") }}
               </span>
             </v-tab>
@@ -75,7 +67,7 @@
                 <v-icon left>mdi-pen</v-icon>
               </span>
               <span class="hidden-sm-and-down text-capitalize text-left">
-                {{ $t("ordering") }}
+                {{ $t("ordering_management") }}
               </span>
             </v-tab>
             <v-tab>
@@ -90,13 +82,6 @@
               <v-card flat>
                 <v-card-text class="py-0 pr-0">
                   <General />
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text class="py-0 pr-0">
-                  <OrderFlow />
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -152,7 +137,6 @@ export default {
     SaleUnitTab: () => import("./sale_unit_management/SaleUnitTab"),
     OrderingTab: () => import("./ordering/OrderingTab"),
     Booking: () => import("./booking/Booking"),
-    OrderFlow: () => import("./OrderFlow"),
     UserPin: () => import("./UserPin"),
 
 
