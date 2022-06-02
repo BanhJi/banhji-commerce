@@ -205,5 +205,7 @@ module.exports = {
     mptc                                : mptc,
 
     // commerce 
-    commerce                            : require("./api/commerce")
+    commerce                            : require("./api/commerce"),
+    //pos
+    pos                                 : require("./api/pos")
 }

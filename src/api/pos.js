@@ -4,7 +4,11 @@ const store = require("@/institute.js")
 const { instituteId } = store.default.state.cookies
 
 const myUrl = require("@/url")
-const baseUrl = myUrl.url
+let baseUrl = myUrl.url
+if(process.env.VUE_APP_MODE == 'dev'){
+    baseUrl = 'https://dev-apis.banhji.com'
+}
+// const baseUrl = myUrl.url
 const url          = baseUrl + '/pos-service/'
 // const url          = 'https://dev-apis.banhji.com/loan-settings/'
 

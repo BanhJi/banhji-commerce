@@ -7,8 +7,8 @@ const baseUrl = myUrl.url
 const url          = baseUrl + '/commerce-service/'
 
 module.exports = {
-    settingGet                                  : url + 'commerce/setting/' + instituteId + '/get',
-    settingCreate                               : url + 'commerce/setting/' + instituteId + '/create',
+    settingGet                                  : url + 'setting/' + instituteId + '/get',
+    settingCreate                               : url + 'setting/' + instituteId + '/create',
     campaignCreate                              : url + 'campaign/' + instituteId + '/create',
     campaignGet                                 : url + 'campaign/' + instituteId + '/get',
     campaignGets                                : url + 'campaign/' + instituteId + '/list',
