@@ -91,6 +91,10 @@ export default {
                 title: "Loyalty"
             },
             {
+                name: "orderType",
+                title: "Order Type"
+            },
+            {
                 name: "partner",
                 title: "Partner"
             }

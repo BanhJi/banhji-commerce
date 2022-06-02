@@ -4,15 +4,39 @@
             <div style="background-color: #fff; padding: 0 0 5px;">
                 <v-tabs class="tabs_2">
                     <v-tab>
-            <span class="text-uppercase text-left">
-              {{ $t("display") }}
-            </span>
+                        <span class="text-uppercase text-left">
+                        {{ $t("order_flow") }}
+                        </span>
                     </v-tab>
                     <v-tab>
-            <span class="text-uppercase">
-              {{ $t("mobile_order") }}
-            </span>
+                        <span class="text-uppercase text-left">
+                        {{ $t("order_type") }}
+                        </span>
                     </v-tab>
+                    <v-tab>
+                        <span class="text-uppercase text-left">
+                        {{ $t("display") }}
+                        </span>
+                    </v-tab>
+                    <v-tab>
+                        <span class="text-uppercase">
+                        {{ $t("mobile_order") }}
+                        </span>
+                    </v-tab>
+                    <v-tab-item>
+                        <v-row>
+                            <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
+                                <OrderFlow/>
+                            </v-col>
+                        </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <v-row>
+                            <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
+                                <OrderType/>
+                            </v-col>
+                        </v-row>
+                    </v-tab-item>
                     <v-tab-item>
                         <v-row>
                             <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
@@ -46,10 +70,10 @@ export default {
         },
     },
     components: {
-    Display: () => import("./Display"),
-    MobileOrder: () => import("./MobileOrder"),
-
-
+        Display: () => import("./Display"),
+        MobileOrder: () => import("./MobileOrder"),
+        OrderFlow: () => import("./OrderFlow"),
+        OrderType: () => import("./OrderType"),
     },
 };
 </script>
