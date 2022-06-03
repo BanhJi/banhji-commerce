@@ -1359,15 +1359,15 @@
                                                                                                     src="@/assets/images/khmer_man.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">{{localCoun.coun}}</h2>
+                                                                                                <h2 class="font_30 primary--text">{{localMen.coun}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn color="third" class="white--text text-capitalize">
-                                                                                                        <v-icon dark @click="increaseLocal(localCoun)">
+                                                                                                    <v-btn @click="increaseLocalMen(localMen)" color="third" class="white--text text-capitalize">
+                                                                                                        <v-icon dark >
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
-                                                                                                        <v-icon dark @click="decreaseLocal(localCoun)">
+                                                                                                    <v-btn @click="decreaseLocalMen(localMen)" color="secondary" class="float-right white--text text-capitalize">
+                                                                                                        <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
@@ -1379,14 +1379,14 @@
                                                                                                     src="@/assets/images/khmer_women.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <h2 class="font_30 primary--text">{{localWomen.coun}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn color="third" class="white--text text-capitalize">
+                                                                                                    <v-btn @click="increaseLocalWomen(localWomen)" color="third" class="white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                    <v-btn @click="decreaseLocalWomen(localWomen)" color="secondary" class="float-right white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
@@ -1458,10 +1458,15 @@
                                                                     </v-row>
                                                                 </v-col>
                                                                 <v-card-actions>
-                                                                    <div class="function_footer">
-                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                    <div class="function_footer text-right">
+                                                                        <v-btn color="secondary" class="mr-2 white--text text-capitalize"
                                                                             @click="dialogCountGuest = false">
                                                                             {{ $t('skip') }}
+                                                                        </v-btn>
+
+                                                                        <v-btn color="primary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogCountGuest = false">
+                                                                            {{ $t('enter') }}
                                                                         </v-btn>
                                                                     </div>
                                                                     <v-spacer></v-spacer>
@@ -4563,7 +4568,10 @@ export default {
         dialogSplit: false,
         dialogMerge: false,
         dialogCountGuest: false,
-        localCoun: {
+        localMen: {
+            coun: 0
+        },
+        localWomen: {
             coun: 0
         },
         items: '',
@@ -4644,12 +4652,20 @@ export default {
     }),
     
     methods: {
-        increaseLocal(men) {
+        increaseLocalMen(men) {
             men.coun += 1;
             },
-        decreaseLocal(men) {
+        decreaseLocalMen(men) {
         if(men.coun > 0) {
             men.coun -= 1;
+            }
+        },
+        increaseLocalWomen(women) {
+            women.coun += 1;
+            },
+        decreaseLocalWomen(women) {
+        if(women.coun > 0) {
+            women.coun -= 1;
             }
         },
         hasHistory () { 
