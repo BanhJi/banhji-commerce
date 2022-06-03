@@ -1316,10 +1316,159 @@
                                                     </v-btn>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
-                                                        <v-icon left class="mr-0">mdi-account-group</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('count_guest')}}</span>
-                                                    </v-btn>
+                                                     <template>
+                                                        <v-dialog
+                                                            v-model="dialogCountGuest"
+                                                            persistent
+                                                            max-width="750px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left class="mr-0">mdi-account-group</v-icon>
+                                                                    <span class="text-bold letter_spacing">{{$t('count_guest')}}</span>
+                        
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("count_guest") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogCountGuest = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col sm="6" cols="6" class="pl-8">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="750"
+                                                                                outlined
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h2 class="font_22">{{$t('local')}}</h2>
+                                                                                            </v-col>
+                                                                                            <v-col sm="6" cols="6" class="text-center">
+                                                                                                <img
+                                                                                                    class="img-1"
+                                                                                                    src="@/assets/images/khmer_man.png"
+                                                                                                    width="100%"
+                                                                                                />
+                                                                                                <h2 class="font_30 primary--text">{{localCoun.coun}}</h2>
+                                                                                                <div class="function_footer pt-0">
+                                                                                                    <v-btn color="third" class="white--text text-capitalize">
+                                                                                                        <v-icon dark @click="increaseLocal(localCoun)">
+                                                                                                            mdi-plus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                        <v-icon dark @click="decreaseLocal(localCoun)">
+                                                                                                            mdi-minus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                </div>
+                                                                                            </v-col>
+                                                                                            <v-col sm="6" cols="6" class="text-center">
+                                                                                               <img
+                                                                                                    class="img-1"
+                                                                                                    src="@/assets/images/khmer_women.png"
+                                                                                                    width="100%"
+                                                                                                />
+                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <div class="function_footer pt-0">
+                                                                                                    <v-btn color="third" class="white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-plus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-minus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                </div>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        <v-col sm="6" cols="6" class="pr-8">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="465"
+                                                                                outlined
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h2 class="primary--text font_22">{{$t('foreigner')}}</h2>
+                                                                                            </v-col>
+                                                                                            <v-col sm="6" cols="6" class="text-center">
+                                                                                                <img
+                                                                                                    class="img-1"
+                                                                                                    src="@/assets/images/foreigner_men.png"
+                                                                                                    width="100%"
+                                                                                                />
+                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <div class="function_footer pt-0">
+                                                                                                    <v-btn color="primary" class="white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-plus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-minus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                </div>
+                                                                                            </v-col>
+                                                                                            <v-col sm="6" cols="6" class="text-center">
+                                                                                               <img
+                                                                                                    class="img-1"
+                                                                                                    src="@/assets/images/foreigner_women.png"
+                                                                                                    width="100%"
+                                                                                                />
+                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <div class="function_footer pt-0">
+                                                                                                    <v-btn color="primary" class="white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-plus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                        <v-icon dark>
+                                                                                                            mdi-minus
+                                                                                                        </v-icon>
+                                                                                                    </v-btn>
+                                                                                                </div>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogCountGuest = false">
+                                                                            {{ $t('skip') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
                                                     
@@ -4413,6 +4562,10 @@ export default {
         dialogDelivery: false,
         dialogSplit: false,
         dialogMerge: false,
+        dialogCountGuest: false,
+        localCoun: {
+            coun: 0
+        },
         items: '',
 
         pinActivate: false,
@@ -4491,6 +4644,14 @@ export default {
     }),
     
     methods: {
+        increaseLocal(men) {
+            men.coun += 1;
+            },
+        decreaseLocal(men) {
+        if(men.coun > 0) {
+            men.coun -= 1;
+            }
+        },
         hasHistory () { 
             return window.history.length > 2 
         },

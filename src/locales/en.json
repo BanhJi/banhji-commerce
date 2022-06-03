@@ -4274,7 +4274,9 @@
     "scan_code": "Scan code",
     "user_pin": "User pin",
     "order_flow": "Order flow",
-    "add_pin": "Add pin"
+    "add_pin": "Add pin",
+    "local": "Local",
+    "foreigner": "Foreigner"
 
 
 
