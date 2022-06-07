@@ -16,7 +16,7 @@
                 </a>
                 <v-spacer/>
             </span>
-            <h3 class="ml-2 ml-4 py-4 pl-4" style="font-size: 18px;border-left: 1px solid gainsboro;">{{$t('pos_des')}}</h3> 
+            <h3 class="ml-2 ml-4 py-4 pl-4" style="font-size: 18px;border-left: 1px solid gainsboro;">{{disc}}</h3> 
             <h1 v-if="this.$route.meta.logo" class="ml-2 hidden-sm-and-down">
                 <img style="height: 50px;" :src="'/images/' + this.$route.meta.logo"/>
             </h1>
@@ -365,6 +365,13 @@
             VOffline
         },
         computed: {
+            disc(){
+                window.console.log(this.$route,"aaaa")
+                if(this.$route.meta.description){
+                    return this.$route.meta.description
+                }
+                return ''
+            },
             
             appType(){
                 return data.app
@@ -397,7 +404,13 @@
         watch: {
             $route: "miniSideInFunction",
         },
+        created() {
+            window.console.log(
+                this.$route,"abc"
+            )
+        }
     };
+
 </script>
 <style scoped>
     .header-app{

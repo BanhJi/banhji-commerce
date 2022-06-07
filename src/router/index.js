@@ -761,7 +761,8 @@ const routes = [{
                     component: load('pos/Dashboard'),
                     meta: {
                         mainMenu: 'overview',
-                        title: i18n.t('point_of_sales')
+                        title: i18n.t('point_of_sales'),
+                        description: i18n.t('pos_retail_dis')
 
                     },
 
@@ -773,7 +774,8 @@ const routes = [{
                     props: true,
                     meta: {
                         mainMenu: 'point_of_sales',
-                        title: i18n.t('point_of_sales')
+                        title: i18n.t('point_of_sales'),
+                        description: i18n.t('pos_f_b_dis')
                     }
                 },
                 {
@@ -783,7 +785,8 @@ const routes = [{
                     props: true,
                     meta: {
                         mainMenu: 'point_of_sales',
-                        title: i18n.t('point_of_sales')
+                        title: i18n.t('point_of_sales'),
+                        description: i18n.t('pos_service_dis')
                     }
                 },
                 {

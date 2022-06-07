@@ -4524,6 +4524,12 @@
                                         <h6 class="letter_spacing">{{$t('items')}}</h6>
                                     </div>
                                 </v-btn>
+                                <v-btn class=" rounded-0  btn-right" style="">
+                                    <div class="d-block">
+                                        <i  class=" b-product" />
+                                        <h6 class="letter_spacing">{{$t('refresh')}}</h6>
+                                    </div>
+                                </v-btn>
                             </v-card>
                         </v-col>
                     </v-row>
