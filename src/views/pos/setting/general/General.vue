@@ -94,6 +94,19 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="text-bold" >
+                                        {{ $t('allow_order_flow') }}
+                                    </td>
+                                    <!-- <td>{{ $t('description') }}</td> -->
+                                    <td class="primary--text align-center justify-center d-flex text-bold">
+                                        <v-switch
+                                            v-model="g.allowOrderFlow"
+                                            color="primary"
+                                            :label="g.allowOrderFlow ? 'ON' : 'OFF'"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="text-bold">{{ $t('number_people') }}</td>
                                     <!-- <td>{{ $t('description') }}</td> -->
                                     <td style="" class="primary--text align-center justify-center d-flex text-bold">
@@ -206,6 +219,7 @@
                                         />
                                     </td>
                                 </tr>
+                                
                                 </tbody>
                             </template>
                         </v-simple-table>
@@ -216,6 +230,33 @@
                         <v-simple-table class="">
                             <template>
                                 <tbody>
+                                <tr>
+                                    <td class="text-bold">{{ $t('payment_option') }}</td>
+                                    <td>
+                                        <v-combobox
+                                            v-model="g.paymentOption"
+                                            :items="paymentOptions"
+                                            label="-- Select --"
+                                            item-value="value.id"
+                                            item-text="name"
+                                            multiple
+                                            chips
+                                        >
+                                            <template v-slot:selection="data">
+                                                <v-chip
+                                                    :key="data.item.id"
+                                                >
+                                                    <v-avatar
+                                                        class="accent white--text"
+                                                        left
+                                                        v-text="data.item.name.slice(0, 1).toUpperCase()"
+                                                    ></v-avatar>
+                                                    {{ data.item.name }}
+                                                </v-chip>
+                                            </template>
+                                        </v-combobox>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="text-bold">{{ $t('price_level') }}</td>
                                     <td>
@@ -452,6 +493,12 @@ export default {
         display: ['Surface', 'Desktop', 'Tablet', 'Huawei 8inc', 'Huawei 10inc'],
         decimalStyle: [0, 2, 3, 4, 5],
         categories: [],
+        paymentOptions: [
+            {id: 'cash', name: 'Cash'},
+            {id: 'card', name: 'Card'},
+            {id: 'bank', name: 'Bank'},
+            {id: 'khqr', name: 'KHQR'},
+        ],
         appNatures: [
             'Retail',
             'Coffee Shop',

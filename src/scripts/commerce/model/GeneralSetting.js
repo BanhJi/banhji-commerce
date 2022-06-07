@@ -33,6 +33,8 @@ export default class GeneralSetting {
         this.allowSelectSegment = data.allowSelectSegment || false
         this.type = data.type || 'retail'
         this.orderFlow = data.orderFlow || []
+        this.allowOrderFlow = data.allowOrderFlow || false
+        this.paymentOption = data.paymentOption || []
         this.createdAt = data.createdAt || new Date().toISOString().substr(0, 10)
     }
 

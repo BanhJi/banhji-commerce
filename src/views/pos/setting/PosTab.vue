@@ -138,9 +138,6 @@ export default {
     OrderingTab: () => import("./ordering/OrderingTab"),
     Booking: () => import("./booking/Booking"),
     UserPin: () => import("./UserPin"),
-
-
-  
   },
   data: () => ({
     isHide: false,
