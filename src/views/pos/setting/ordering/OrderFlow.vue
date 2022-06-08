@@ -8,10 +8,10 @@
                     <v-col sm="12" cols="12" class="pt-0">
                         <h2 class="font_20 mb-0">{{$t('order_flow')}}</h2>
                         <v-row align-content="stretch">
-                            <v-col style="min-height: 400px">
+                            <v-col style="min-height: 300px">
                                 <label>{{$t('function_name')}}</label>
-                                <v-list three-line class="list1">
-                                    <drop-list :items="items1" @reorder="$event.apply(items1)" @insert="insert1" mode="cut" style="min-height: 400px;">
+                                <v-list three-line class="list1 pa-2">
+                                    <drop-list :items="items1" @reorder="$event.apply(items1)" @insert="insert1" mode="cut" style="min-height: 300px;">
                                         <template v-slot:item="{item, reorder}">
                                             <drag :key="item.title" :data="item" @cut="remove(items1, item)">
                                                 <v-list-item style="background-color: #e0e0e0!important; min-height: 0"
@@ -39,26 +39,28 @@
                                     </drop-list>
                                 </v-list>
                             </v-col>
-                            <v-col style="background: #eee;min-height: 400px" class="mr-3">
+                            <v-col style="min-height: 300px" class="mr-3">
                                 <label>{{$t('orders_flow')}}</label>
-                                <drop-list style="min-height: 400px;" class="list2" :items="items2" @reorder="$event.apply(items2)" @insert="insert2"
-                                            mode="cut">
-                                    <template v-slot:item="{item,reorder}">
-                                        <drag :key="item.title" class="chip" :data="item" @cut="remove(items2, item)">
-                                            <v-chip :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.title}}</v-chip>
-                                        </drag>
-                                    </template>
-                                    <template v-slot:feedback="{data}">
-                                        <div class="chip" :key="data.title">
-                                            <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.title}}</v-chip>
-                                        </div>
-                                    </template>
-                                    <template v-slot:inserting-drag-image="{data}">
-                                        <v-chip :key="data.title" style="transform: translate(-50%, -50%)">{{data.title}}
-                                        </v-chip>
-                                    </template>
-                                </drop-list>
-                                <p style="background: #ccc; width: 100%; margin: 0; padding: 10px;">Select Product</p>
+                                <div style="background: #eee;" class="mt-2 pa-2">
+                                    <drop-list style="min-height: 300px;" class="list2" :items="items2" @reorder="$event.apply(items2)" @insert="insert2"
+                                                mode="cut">
+                                        <template v-slot:item="{item,reorder}">
+                                            <drag :key="item.title" class="chip" :data="item" @cut="remove(items2, item)">
+                                                <v-chip :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.title}}</v-chip>
+                                            </drag>
+                                        </template>
+                                        <template v-slot:feedback="{data}">
+                                            <div class="chip" :key="data.title">
+                                                <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.title}}</v-chip>
+                                            </div>
+                                        </template>
+                                        <template v-slot:inserting-drag-image="{data}">
+                                            <v-chip :key="data.title" style="transform: translate(-50%, -50%)">{{data.title}}
+                                            </v-chip>
+                                        </template>
+                                    </drop-list>
+                                    <p style="background: #ccc; width: 100%; margin: 0; padding: 10px;">{{$t('drag_drop')}}</p>
+                                </div>
                             </v-col>
                         </v-row>
                         <v-divider/>
