@@ -28,7 +28,7 @@
                     <v-tab-item>
                         <v-row>
                             <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
-                                <PinManagement/>
+                                <UserPin/>
                             </v-col>
                         </v-row>
                     </v-tab-item>
@@ -59,7 +59,7 @@ export default {
     },
     components: {
     UserRoles: () => import("./UserRoles"),
-    PinManagement: () => import("./PinManagement"),
+    UserPin: () => import("./UserPin"),
     SessionReconcillation: () => import("./SessionReconcillation"),
 
 

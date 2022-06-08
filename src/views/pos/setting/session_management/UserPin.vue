@@ -6,7 +6,7 @@
                     <v-col sm="12" cols="12" class="py-0">
                         <v-card color="white" class="pl-2 no_border" elevation="0">
 
-                            <h2 class="mb-0 font_20">{{ $t('order_type') }}</h2>
+                            <h2 class="mb-0 font_20">{{ $t('user_pin') }}</h2>
                             <v-dialog v-model="dialogm2" max-width="500px">
                                 <template v-slot:activator="{ on }">
                                     <v-btn class="white--text float-right text-capitalize" color="primary" v-on="on" @click="onNewClick">
@@ -30,6 +30,58 @@
                                                         placeholder=""
                                                         :rules="[v => !!v || 'name is required']"
                                                     />
+                                                    <label class="label">{{ $t('pin') }}</label>
+                                                    <v-text-field
+                                                        class="mt-1"
+                                                        v-model="p.pinCode"
+                                                        outlined
+                                                        placeholder=""
+                                                        @change="checkPin"
+                                                        :rules="[v => !!v || 'PIN is required']"
+                                                        :attributes="{style: 'text-align: center; '}"
+                                                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                                        :type="show1 ? 'number' : 'password'"
+                                                        @click:append="show1 = !show1"
+                                                    />
+                                                    <label class="label">{{ $t('group') }}</label>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        :placeholder="$t('select_group')"
+                                                        outlined
+                                                        v-model="p.groupMember"
+                                                        :items="groupMemberList"
+                                                        chips
+                                                        multiple
+                                                        item-value="value.id"
+                                                        item-text="name"
+                                                        return-object
+                                                        required
+                                                    />
+                                                    <label class="label">{{ $t('function') }}</label>
+                                                    <v-combobox
+                                                        v-model="p.menu"
+                                                        :items="menuList"
+                                                        item-value="value.id"
+                                                        item-text="name"
+                                                        :label="$t('select_function')"
+                                                        chips
+                                                        multiple
+                                                        >
+                                                    </v-combobox>
+                                                    <!-- <v-select
+                                                        id="select_function"
+                                                        class="mt-1 "
+                                                        :placeholder="$t('select_function')"
+                                                        outlined
+                                                        v-model="p.menu"
+                                                        :items="menuList"
+                                                        chips
+                                                        multiple
+                                                        item-value="value.id"
+                                                        item-text="name"
+                                                        return-object
+                                                        required
+                                                    /> -->
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>

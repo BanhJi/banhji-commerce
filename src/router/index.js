@@ -798,6 +798,15 @@ const routes = [{
                         title: 'POS Settings',
                     }
                 },
+                {
+                    path: 'session',
+                    name: 'session',
+                    component: load('pos/Session'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: 'POS Settings',
+                    }
+                },
                 
             ]
 

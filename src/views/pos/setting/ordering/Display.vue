@@ -2,63 +2,69 @@
     <v-row class="">
         <!-- not modal -->
         <v-col sm="12" cols="12" class="grayBg px-6">
-            <h2 class="font_20">{{$t('display_setting')}}</h2>
-            <p class="mb-0">{{ $t('sale_form_content_desc') }} </p>
-            <template>
-                <v-simple-table class="attachment_table">
-                    <template>
-                        <tbody>
-                        <tr>
-                            <td class="text-bold">{{ $t('screen_display') }}</td>
-                            <td style="width:250px" class="primary--text text-center hide_form_alert">
-                                <v-select class="my-1"
-                                      :placeholder="$t('touch_driven_display')"
-                                      :items="display"
-                                      outlined
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('type_of_order') }}</td>
-                            <td style="width:250px" class="primary--text text-center hide_form_alert">
-                                <v-select class="my-1"
-                                      :placeholder="$t('walk_in')"
-                                      :items="typeOrder"
-                                      outlined
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('e_menu') }}</td>
-                            <td style="width:250px" class="primary--text text-center hide_form_alert">
-                                <v-select class="my-1"
-                                      :placeholder="$t('public_link')"
-                                      :items="emenu"
-                                      outlined
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('scaling') }}</td>
-                            <td style="width:250px"  class="primary--text align-center justify-left d-flex text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        
-                        </tbody>
-                    </template>
-                </v-simple-table>
-            </template>
-            <v-divider/>
+            <v-card color="white" class="pa-3 no_border" elevation="0">
+                <v-row>
+                    <v-col sm="12" cols="12" class="py-0">
+                        <h2 class="font_20">{{$t('display_setting')}}</h2>
+                        <p class="mb-0">{{ $t('sale_form_content_desc') }} </p>
+                        <template>
+                            <v-simple-table class="attachment_table">
+                                <template>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('screen_display') }}</td>
+                                        <td style="width:250px" class="primary--text text-center hide_form_alert">
+                                            <v-select class="my-1"
+                                                :placeholder="$t('touch_driven_display')"
+                                                :items="display"
+                                                outlined
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('type_of_order') }}</td>
+                                        <td style="width:250px" class="primary--text text-center hide_form_alert">
+                                            <v-select class="my-1"
+                                                :placeholder="$t('walk_in')"
+                                                :items="typeOrder"
+                                                outlined
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('e_menu') }}</td>
+                                        <td style="width:250px" class="primary--text text-center hide_form_alert">
+                                            <v-select class="my-1"
+                                                :placeholder="$t('public_link')"
+                                                :items="emenu"
+                                                outlined
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('scaling') }}</td>
+                                        <td style="width:250px"  class="primary--text align-center justify-left d-flex text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                </template>
+                            </v-simple-table>
+                        </template>
+                        <v-divider/>
 
-            <v-card outlined dense class="no_border function_footer">
-                <v-btn color="primary" class="float-right white--text" @click="onSaveClose">
-                    {{ $t('save') }}
-                </v-btn>
+                        <v-card outlined dense class="no_border function_footer">
+                            <v-btn color="primary" class="float-right white--text" @click="onSaveClose">
+                                {{ $t('save') }}
+                            </v-btn>
+                        </v-card>
+                    </v-col>
+                </v-row>
 
             </v-card>
         </v-col>

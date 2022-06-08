@@ -4280,7 +4280,10 @@
     "ordering_management": "Ordering management",
     "pos_retail_dis": "Point of sales for retail",
     "pos_f_b_dis": "Point of sales for resturant",
-    "pos_service_dis": "Point of sales for service"
+    "pos_service_dis": "Point of sales for service",
+    "new_session": "New Session",
+    "function_name": "Function name",
+    "orders_flow": "Orders flow"
 
 
 

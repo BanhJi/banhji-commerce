@@ -405,9 +405,6 @@
             $route: "miniSideInFunction",
         },
         created() {
-            window.console.log(
-                this.$route,"abc"
-            )
         }
     };
 

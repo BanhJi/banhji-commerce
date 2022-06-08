@@ -59,6 +59,7 @@
 		'b-pos': '&#xe925;',
 		'b-favorite': '&#xe92c;',
 		'b-catagories': '&#xe92d;',
+		'b-refresh': '&#xe92e;',
 		'0': 0
 		},
 		els = document.getElementsByTagName('*'),

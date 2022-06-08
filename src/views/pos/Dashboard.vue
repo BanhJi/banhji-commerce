@@ -34,7 +34,7 @@
                             class="mx-auto grey-custom"
                             max-width="465"
                             outlined
-                        
+                            :to="lang+'/pos/session'"
                         >
                             <v-list-item three-line>
                                 <v-list-item-content>

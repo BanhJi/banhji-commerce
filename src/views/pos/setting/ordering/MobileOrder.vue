@@ -2,74 +2,80 @@
     <v-row class="">
         <!-- not modal -->
         <v-col sm="12" cols="12" class="grayBg px-6">
-            <h2 class="font_20">{{$t('mobile')}}</h2>
-            <p class="mb-0">{{ $t('sale_form_content_desc') }} </p>
-            <template>
-                <v-simple-table class="attachment_table">
-                    <template>
-                        <tbody>
-                        <tr>
-                            <td class="text-bold" style="width:100%;">{{ $t('Scan/ input Table No.') }}</td>
-                            <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('Place order with/without modifiers options & qty') }}</td>
-                            <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('Confirm Order') }}</td>
-                            <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('Click on Serving to add additional order') }}</td>
-                            <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bold">{{ $t('Check out') }}</td>
-                            <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
-                                <v-switch
-                                    v-model="saleFormContent.discountItem"
-                                    color="primary"
-                                    :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
-                                />
-                            </td>
-                        </tr>
-                        
-                        </tbody>
-                    </template>
-                </v-simple-table>
-            </template>
-            <v-divider/>
+            <v-card color="white" class="pa-3 no_border" elevation="0">
+                <v-row>
+                    <v-col sm="12" cols="12" class=" py-0">
+                        <h2 class="font_20">{{$t('mobile')}}</h2>
+                        <p class="mb-0">{{ $t('sale_form_content_desc') }} </p>
+                        <template>
+                            <v-simple-table class="attachment_table">
+                                <template>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-bold" style="width:100%;">{{ $t('Scan/ input Table No.') }}</td>
+                                        <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('Place order with/without modifiers options & qty') }}</td>
+                                        <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('Confirm Order') }}</td>
+                                        <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('Click on Serving to add additional order') }}</td>
+                                        <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bold">{{ $t('Check out') }}</td>
+                                        <td style="width:250px;display: flex;"  class="primary--text align-center justify-center  text-bold">
+                                            <v-switch
+                                                v-model="saleFormContent.discountItem"
+                                                color="primary"
+                                                :label="saleFormContent.discountItem ? 'TURN ON' : 'TURN OFF'"
+                                            />
+                                        </td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                </template>
+                            </v-simple-table>
+                        </template>
+                        <v-divider/>
 
-            <v-card outlined dense class="no_border function_footer">
-                <v-btn color="primary" class="float-right white--text" @click="onSaveClose">
-                    {{ $t('save') }}
-                </v-btn>
+                        <v-card outlined dense class="no_border function_footer">
+                            <v-btn color="primary" class="float-right white--text" @click="onSaveClose">
+                                {{ $t('save') }}
+                            </v-btn>
 
+                        </v-card>
+                    </v-col>
+                </v-row>
             </v-card>
         </v-col>
     </v-row>
