@@ -7,47 +7,29 @@
                 <v-row>
                     <v-col sm="12" cols="12" class="">
                         <v-card
-                            class="mx-auto grey-custom"
-                            max-width="465"
-                            outlined
-                        >
-                            <v-list-item three-line>
-                                <v-list-item-content>
-                                    <v-row>
-                                        <v-col sm="4" cols="4" class="pk-1">
-                                            <img
-                                                class="img-1"
-                                                src="@/assets/images/coo_loyalty.png"
-                                                width="80%"
-                                            />
-                                        </v-col>
-                                        <v-col sm="8" cols="8" class="pk-1">
-                                                <v-list-item-title class=" mb-1  headline-left">{{$t('cash_receipt')}}</v-list-item-title>
-                                        </v-col>
-                                    </v-row>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-card>
-                    </v-col> 
-                    <v-col sm="12" cols="12" class="">
-                        <v-card
-                            class="mx-auto grey-custom"
+                            class="mx-auto"
                             max-width="465"
                             outlined
                             :to="lang+'/pos/session'"
                         >
                             <v-list-item three-line>
-                                <v-list-item-content>
+                                <v-list-item-content class="pk-3">
+                                    <v-list-item-title class="headline mb-1 primary--text">
+                                        {{$t('session')}}
+                                    </v-list-item-title>
+                                    <div class="overline mb-4 business">
+                                    {{$t('management')}}
+                                    </div>
                                     <v-row>
-                                        <v-col sm="4" cols="4" class="pk-1">
+                                        <v-col sm="5" cols="5" class="">
                                             <img
                                                 class="img-1"
                                                 src="@/assets/images/coo_session.png"
                                                 width="80%"
                                             />
                                         </v-col>
-                                        <v-col sm="8" cols="8" class="pk-1">
-                                                <v-list-item-title class=" mb-1  headline-left">{{$t('session_management')}}</v-list-item-title>
+                                        <v-col sm="7" cols="7" class="pl-0">
+                                            <v-list-item-subtitle>Rural Saving & Credit Management </v-list-item-subtitle>
                                         </v-col>
                                     </v-row>
                                 </v-list-item-content>
@@ -198,7 +180,7 @@
                             class="mx-auto"
                             max-width="465"
                             outlined
-                            :to="lang+'/delivery'"
+                            :to="lang+'/pos/delivery'"
                         >
                             <v-list-item three-line>
                                 <v-list-item-content class="pk-3">

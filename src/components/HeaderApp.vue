@@ -366,7 +366,6 @@
         },
         computed: {
             disc(){
-                window.console.log(this.$route,"aaaa")
                 if(this.$route.meta.description){
                     return this.$route.meta.description
                 }

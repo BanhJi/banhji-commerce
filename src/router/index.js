@@ -200,32 +200,9 @@ const routes = [{
                         }
                     },
                     {
-                        path: 'service/:id?',
-                        name: 'Service',
-                        props: true,
-                        component: load('products_services/services_items/Service'),
-                        meta: {
-                            moduleId: 6,
-                            mainMenu: 'services_projects_non',
-                            title: 'Services & Project'
-                        }
-                    },
-                    {
                         path: 'inventory_adjustment/:id?',
                         name: 'Inventory Adjustment',
                         component: load('products/product/inventory_adjustment/InventoryAdjustment'),
-                        props: true,
-                        meta: {
-                            moduleId: 5,
-                            mainMenu: 'products',
-                            title: 'Products',
-                            miniSideBar: true
-                        }
-                    },
-                    {
-                        path: 'stock_count/:id?',
-                        name: 'Stock Count',
-                        component: load('products_services/products/count_adjustment/StockCounts'),
                         props: true,
                         meta: {
                             moduleId: 5,
@@ -258,15 +235,13 @@ const routes = [{
                         }
                     },
                     {
-                        path: 'item-modifier/:id?',
-                        name: 'Item Modifier',
-                        component: load('products_services/products/product/ItemModifier'),
-                        props: true,
+                        path: 'products',
+                        name: 'Products',
+                        component: load('products/ProductTab'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'products',
-                            miniSideBar: false,
-                            title: 'Products',
+                            title: 'Products'
                         }
                     },
                     {
@@ -368,17 +343,6 @@ const routes = [{
                             moduleId: 5,
                             mainMenu: 'products',
                             miniSideBar: false,
-                            title: 'Products',
-                        }
-                    },
-                    {
-                        path: 'product_variant/:id?',
-                        name: 'Product Variant',
-                        component: load('products_services/products/product/product_variants/products/ProductVariant'),
-                        props: true,
-                        meta: {
-                            moduleId: 5,
-                            mainMenu: 'products',
                             title: 'Products',
                         }
                     },
@@ -692,16 +656,6 @@ const routes = [{
                         }
                     },
                     {
-                        path: 'products_services',
-                        name: 'products_services',
-                        component: load('products_services/ProductServiceTeb'),
-                        props: true,
-                        meta: {
-                            mainMenu: 'products_services',
-                            title: i18n.t('products_services')
-                        }
-                    },
-                    {
                         path: 'point_of_sales',
                         name: 'point_of_sales',
                         component: load('pos/Pos'),
@@ -732,16 +686,65 @@ const routes = [{
                             title: i18n.t('point_of_sales')
                         }
                     },
-                    // {
-                    //     path: 'dashboard_pos/retail',
-                    //     name: 'dashboard_pos',
-                    //     component: load('pos/Dashboard'),
-                    //     props: true,
-                    //     meta: {
-                    //         mainMenu: 'point_of_sales',
-                    //         title: i18n.t('point_of_sales')
-                    //     }
-                    // },
+                    {
+                        path: 'stock_count/:id?',
+                        name: 'Stock Count',
+                        component: load('products/count_adjustment/StockCounts'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                            miniSideBar: true
+                        }
+                    },
+                    {
+                        path: 'product_import',
+                        name: 'Product Import',
+                        component: load('products/ProductImports'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                            miniSideBar: true
+                        }
+                    },
+                    {
+                        path: 'item-modifier/:id?',
+                        name: 'Item Modifier',
+                        component: load('products/product/ItemModifier'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'service/:id?',
+                        name: 'Service',
+                        props: true,
+                        component: load('services_projects/items/services_items/Service'),
+                        meta: {
+                            moduleId: 6,
+                            mainMenu: 'services_projects_non',
+                            title: 'Services & Project'
+                        }
+                    },
+                    {
+                        path: 'services_project/:id?',
+                        name: 'Services Project',
+                        props: true,
+                        component: load('services_projects/project/projects/Project'),
+                        meta: {
+                            moduleId: 6,
+                            mainMenu: 'services_projects_non',
+                            type: 'project',
+                            title: 'Services & Project'
+                        }
+                    },
                     
                     
                 ]
@@ -805,6 +808,24 @@ const routes = [{
                     meta: {
                         mainMenu: 'point_of_sales',
                         title: 'POS Settings',
+                    }
+                },
+                {
+                    path: 'delivery',
+                    name: 'delivery',
+                    component: load('pos/delivery_order/DeliveryOrderTab'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: 'delivery',
+                    }
+                },
+                {
+                    path: 'delivery_order',
+                    name: 'Delivery Order',
+                    component: load('pos/operations/DeliveryOrder'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: 'delivery',
                     }
                 },
                 

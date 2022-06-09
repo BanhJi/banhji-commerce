@@ -1,43 +1,39 @@
+const baseHandler = require('@/scripts/baseHandler.js')
+const apiUrl = require('@/apiUrl.js') 
 const axios = require('axios')
-// const store	= require("../institute")
-// GET BY ID
-module.exports.getOne = async (baseUrl, id) => {
-    try {
-        return await axios.get(baseUrl + `/${id}`);
-    } catch (error) {
-        window.console.error(error)
-    }
-}
 
+// GET BY ID
+module.exports.getOne = async (id) => {
+    baseHandler.getOne(apiUrl.banking + '/banks', id).then(result=>{
+        return result.data;
+    })
+}
 // GET LIST
-module.exports.getAll = async (baseUrl) => {
+module.exports.getAll = async () => {
     try {
-        return await axios.get(baseUrl)
+        const response = await axios.get(apiUrl.banking + '/banks')
+        
+        return response;
     } catch (error) {
         window.console.error(error)
     }
 }
 
 // SAVE
-module.exports.save = async (baseUrl, data) => {
+module.exports.save = async (data) => {
     try {
-        window.console.log(baseUrl);
-        // store.default.commit(vueXKey, data)
-        return await axios.post(baseUrl, data, {headers:{'Content-Type': 'application/json', 'accept':'application/json',
-        'Access-Control-Request-Headers': 'Content-Type, Authorization, accept',
-        'method': 'POST, OPTIONS'}})
+        const response = await axios.post(apiUrl.banking + '/banks', data)
+        
+        return response;
     } catch (error) {
         window.console.error(error)
     }
-    
 }
 
-// active currency or functional currency that allowed by company
-module.exports.get = async function (baseUrl) {
+module.exports.createQr = async function (bankName, data) {
     try {
-        const response = await axios.get(baseUrl)
-
-        return response.data.data
+        const response = await axios.post(apiUrl.bank_qr + bankName, data)
+        return response.data
     } catch (error) {
         window.console.error(error)
     }

@@ -21,3 +21,4 @@ module.exports = {
   sale_plan_post        : url + 'sale-plan/institute/' + instituteId + '/add',
   sale_plan_get         : url + 'sale-plan/institute/' + instituteId + '/list',
 }
+

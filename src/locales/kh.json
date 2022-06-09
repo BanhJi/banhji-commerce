@@ -2064,7 +2064,6 @@
   "payables2": "គណនីអ្នក​ផ្គត់ផ្គង់",
   "conversion_rate": "សមាមាត្របម្លែង",
   "price_margin_summary" : "ការវិភាគសរុប",
-  "product_analysis_detail" : "ការវិភាគលម្អិត",
   "price_margin_detail" : "ប្រតិបត្តិការលម្អិត",
   "base_uom_desc": "ការបម្លែងនេះគឺផ្អែកលើខ្នាត់រង្វាស់គោល",
   "new_variant": "ផលិតផលលក់ថ្មី",
@@ -4212,13 +4211,34 @@
     "new_session": "New Session",
     "function_name": "Function name",
     "orders_flow": "Orders flow",
-    "drag_drop": "Drag and drop"
+    "drag_drop": "Drag and drop",
+    "add_delivery_agency": "បង្កើតអ្នកដឹកជញ្ជូន",
+    "offline_online": "Offline & online order",
+    "product_center": "តារាងផលិតផលគោល",
+    "variant_directory": "បញ្ចីឈ្មោះផលិតផលលក់",
+    "product_analysis": "ការវិភាគផលិតផល",
+    "total_products": "ចំនួនផលិផលសរុប",
+    "price_margin_product_summary": "សង្ខេបតាមផលិតផល",
+    "price_margin_product_detail": "លម្អិតតាមផលិតផល",
+    "product_analysis_detail": "ការវិភាគលម្អិត",
+    "inventory_adjustment_desc": "តារាងការកែតម្រូវចំនួនផលិតផល ដោយមានចំនួន និងបរិមាណដែលបានកែរ",
+    "service_directory" : "បញ្ចីឈ្មោះសេវាកម្ម",
+    "margin_analysis_service": "ការវិភាគអត្រាចំណេញដុលរបស់សេវាកម្ម",
+    "service_categories_report": "របាយការណ៍តាមប្រភេទសេវាកម្ម",
+    "total_services": "សរុបសេវាកម្ម",
+    "service_transaction_report": "របាយការណ៍ប្រតិបត្តិការសេវាកម្មលំអិត",
+    "project_report": "របាយការណ៍គម្រោង",
+    "profit_or_lost": "របាយការណ៍ចំណេញ ឬខាត",
+    "receipt_payment": "ការទទួលមូលនិធិ និងចំណាយ",
+    "import_product": "បញ្ចូលបញ្ជីផលិតផល",
+    "variant_type": "លក្ខណៈផលិតផល",
+    "variant_attributes": "ប្រភេទលក្ខណៈផលិតផល",
+    "add_funct_service_desc": "លំនាំដើមគណនី ដែលនឹងត្រូវបានប្រើសម្រាប់ការបញ្ចូលទិនានុប្បវត្តិនៃប្រតិបត្តិការសេវាកម្ម",
+    "project_transaction_detail": "របាយការណ៍ប្រតិបត្តិការគម្រោង",
+    "statmant_pro_lost_project": "របាយការណ៍លទ្ធផលតាមគម្រោង",
+    "budget_performance_report_project": "របាយការណ៍លទ្ធផលថវិការលំអិតតាមគម្រោងអាជីវកម្ម",
+    "budget_performance_report_project_desc": "របាយការណ៍ប្រៀបធៀបរវាង លទ្ធផលជាគ់ស្តែង ជាមួយផែនការថវិការតាមគម្រោងអាជីវកម្ម"
 
 
-
-
-
-
- 
 
 } 

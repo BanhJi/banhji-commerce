@@ -91,3 +91,32 @@ module.exports.getActualClassBudgetDetail = async (params) => {
         window.console.error(error);
     }
 }
+
+// GET ACTUAL CLASS BUDGETS
+module.exports.getActualClassBudgets = async (asOfDate, budgetIds) => {
+    try {
+        let requests = [];
+        for (const budgetId of budgetIds) {
+            let request = await axios.get(urlPath + '/actuatClassBudget', {
+                params: {
+                    as_of_date: asOfDate,
+                    budget_uuid: budgetId
+                },
+            })
+
+            /* Add requests */
+            requests.push(request);
+        }
+
+        let responses = await Promise.all(requests);
+
+        let results = [];
+        for (let i = 0; i < budgetIds.length; i++) {
+            const element = responses[i];
+            results.push(element.data);
+        }
+        return results;
+    } catch (error) {
+        window.console.error(error);
+    }
+}
