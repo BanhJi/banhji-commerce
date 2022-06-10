@@ -15,6 +15,11 @@
                     </v-tab>
                     <v-tab>
                         <span class="text-uppercase text-left">
+                        {{ $t("categories") }}
+                        </span>
+                    </v-tab>
+                    <v-tab>
+                        <span class="text-uppercase text-left">
                         {{ $t("display") }}
                         </span>
                     </v-tab>
@@ -34,6 +39,13 @@
                         <v-row>
                             <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
                                 <OrderType/>
+                            </v-col>
+                        </v-row>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <v-row>
+                            <v-col style="background: #fff" sm="12" cols="12" class="pt-0">
+                                <Categories/>
                             </v-col>
                         </v-row>
                     </v-tab-item>
@@ -74,6 +86,8 @@ export default {
         MobileOrder: () => import("./MobileOrder"),
         OrderFlow: () => import("./OrderFlow"),
         OrderType: () => import("./OrderType"),
+        Categories: () => import("./Categories"),
+
     },
 };
 </script>

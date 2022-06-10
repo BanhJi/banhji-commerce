@@ -4310,7 +4310,9 @@
     "project_transaction_detail": "Project Transaction Detail",
     "statmant_pro_lost_project": "Statement of Profit or Loss by Project",
     "budget_performance_report_project": "Budget Performance Report by project",
-    "budget_performance_report_project_desc": "A comparison between actual and budget statement of profit or loss by project"
+    "budget_performance_report_project_desc": "A comparison between actual and budget statement of profit or loss by project",
+    "to_use": "To use",
+    "bank_wallets": "Bank wallets"
 
 
 

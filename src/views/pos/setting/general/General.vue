@@ -2,6 +2,8 @@
     <v-row class="">
         <!-- not modal -->
         <v-col sm="12" cols="12" class="pt-0">
+            <h2 class="font_20">{{$t('general_setting')}}</h2>
+            <p class="mb-0">{{ $t('general_setting_dis') }} </p>
             <v-row>
                 <v-col sm="6" cols="12" class="py-0">
                     <template>

@@ -70,6 +70,14 @@
                 {{ $t("booking") }}
               </span>
             </v-tab>
+            <v-tab>
+              <span class="hidden-sm-and-up">
+                <v-icon left>mdi-pen</v-icon>
+              </span>
+              <span class="hidden-sm-and-down text-capitalize text-left">
+                {{ $t("bank_wallets") }}
+              </span>
+            </v-tab>
             <v-tab-item>
               <v-card flat>
                 <v-card-text class="py-0 pr-0">
@@ -106,6 +114,13 @@
                 </v-card-text>
               </v-card>
             </v-tab-item>
+            <v-tab-item>
+              <v-card flat>
+                <v-card-text class="py-0 pr-0">
+                    <BankWallet/>
+                </v-card-text>
+              </v-card>
+            </v-tab-item>
           </v-tabs>
         </v-col>
       </v-card>
@@ -122,6 +137,8 @@ export default {
     SaleUnitTab: () => import("./sale_unit_management/SaleUnitTab"),
     OrderingTab: () => import("./ordering/OrderingTab"),
     Booking: () => import("./booking/Booking"),
+    BankWallet: () => import("./ordering/BankWallet"),
+
   },
   data: () => ({
     isHide: false,
