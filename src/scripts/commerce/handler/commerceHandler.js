@@ -161,3 +161,21 @@ module.exports.deletePartner = async (data) => {
         window.console.error(error)
     }
 }
+module.exports.getAllItem = async function (data) {
+    try {
+        const response = await axios.post(apiUrl.commerce.getAllItem, data)
+
+        return response
+    } catch (error) {
+        window.console.log(error)
+    }
+}
+module.exports.getPLItem = async function (data) {
+    try {
+        const response = await axios.post(apiUrl.commerce.getPLItem, data)
+
+        return response
+    } catch (error) {
+        window.console.log(error)
+    }
+}

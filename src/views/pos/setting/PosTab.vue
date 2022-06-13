@@ -74,7 +74,7 @@
               <span class="hidden-sm-and-up">
                 <v-icon left>mdi-pen</v-icon>
               </span>
-              <span class="hidden-sm-and-down text-capitalize text-left">
+              <span class="text-capitalize text-left">
                 {{ $t("bank_wallets") }}
               </span>
             </v-tab>

@@ -15,7 +15,7 @@
                                 </template>
                                 <v-form ref="form" v-model="valid" lazy-validation>
                                     <v-card>
-                                        <v-card-title>{{ $t('add_pin') }}</v-card-title>
+                                        <v-card-title>{{ $t('add_order_type') }}</v-card-title>
                                         <v-icon class="btn_close" @click="dialogm2 = false">close</v-icon>
                                         <v-divider/>
                                         <v-card-text style="background-color: #EDF1F5; color: #333333;">
@@ -26,6 +26,15 @@
                                                         class="mt-1"
                                                         v-model="p.name"
                                                         @change="checkPinName"
+                                                        outlined
+                                                        placeholder=""
+                                                        :rules="[v => !!v || 'name is required']"
+                                                    />
+                                                    <label class="label">{{ $t('abbr') }}</label>
+                                                    <v-text-field
+                                                        class="mt-1"
+                                                        v-model="p.abbr"
+                                                        @change="checkPinAbbr"
                                                         outlined
                                                         placeholder=""
                                                         :rules="[v => !!v || 'name is required']"
@@ -66,12 +75,14 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase">{{ $t('name') }}</th>
+                                        <th class="text-uppercase">{{ $t('abbr') }}</th>
                                         <th style="width: 50px"/>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="d in ps" v-bind:key="d.id">
                                         <td>{{ d.name }}</td>
+                                        <td>{{ d.abbr }}</td>
                                         <td>
                                             <v-btn class="btn_edit_setting" @click="onEditClick(d)">
                                                 <v-icon class="white--text" size="12">fa fa-pen</v-icon>
@@ -95,11 +106,11 @@
 </template>
 
 <script>
-import { i18n } from '@/i18n';
-import UserPinModel from "@/scripts/model/UserPin"
-const loanHandler = require("@/scripts/loanHandler")
-import kendo from "@progress/kendo-ui"
-const $ = kendo.jQuery
+// import { i18n } from '@/i18n';
+import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
+const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+// import kendo from "@progress/kendo-ui"
+// const $ = kendo.jQuery
 export default {
     components: {
         LoadingMe: () => import(`@/components/Loading`),
@@ -118,7 +129,7 @@ export default {
         //
         valid: true,
         saveOption: '',
-        p: new UserPinModel({}),
+        p: { name: '', pinCode: ''},
         ps: [],
         oldps: [],
         edit: false,
@@ -132,36 +143,20 @@ export default {
         },
     },
     methods: {
-        async loadUserPin() {
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    this.checkPinData = []
-                    this.checkPinNameData = []
-                    loanHandler.userPinGet().then(res => {
-                        this.ps = res.data.data
-                        this.oldps = res.data.data
-                        let self = this
-                        $.each(this.ps, function(i,v){
-                            self.checkPinData.push({
-                                pinCode: v.pinCode
-                            })
-                            self.checkPinNameData.push({
-                                name: v.name
-                            })
-                        })
-                    })
-                }, 300);
-            })
-        },
-        async loadMemberGroup() {
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    loanHandler.groupMemberGet().then(res => {
-                        this.groupMemberList = res.data.data
-                    })
-                }, 300);
+        async loadSaleFormContent() {
+            this.showLoading = true
+            commerceHandler.settingGet().then(res => {
+                this.showLoading = false
+                if (res.data.statusCode === 200) {
+                    const data = res.data.data
+                    let d = data.filter((o) => {return o.type == 'retail'})
+                    if (d.length > 0) {
+                        this.g = new generalSettingModel(d[0])
+                        this.g.id = d[0].pk
+                        this.ps = this.g.orderTypes
+                        this.checkPinData = this.g.orderTypes
+                    }
+                }
             })
         },
         async onEditClick(value) {
@@ -176,92 +171,69 @@ export default {
         },
         onNewClick() {
             this.edit = false
-            this.p = new UserPinModel({})
-            this.p.id = ''
-            this.clear()
+            this.p = {
+                name: '',
+                abbr: ''
+            }
         },
         saveClose() {
-            this.saveOption = "saveClose"
-            this.save()
-        },
-        async save() {
-            if (!this.$refs.form.validate()) {
-                this.$refs.form.validate()
-                return
-            }
-            if(this.edit === false) {
-                let dub = this.oldps.filter((obj) => {
-                    return obj.name === this.p.name
-                })
-                if (dub.length > 0) {
-                    this.$snotify.error('Dublicate Name')
-                    return
-                }
-            }
             this.showLoading = true
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved')
-                    loanHandler.userPinCreate(new UserPinModel(this.p)).then(response => {
-                        this.showLoading = false
-                        if (response.data.statusCode === 201) {
-                            this.close()
-                            this.loadUserPin()
-                            this.$refs.form.reset()
-                            this.$snotify.success('Successfully')
-                        }
-                    }).catch(e => {
-                        this.$snotify.error('Something went wrong')
-                        this.errors.push(e)
-                        window.console.log(e)
-                    })
-                }, 300);
+            this.checkPin()
+            this.g.orderTypes.push(this.p)
+            commerceHandler.settingCreate(new generalSettingModel(this.g)).then(response => {
+                if (response.data.statusCode === 201) {
+                    const res = response.data.data
+                    this.g = res
+                    this.$snotify.success('Update Successfully')
+                    this.showLoading = false
+                    this.dialogm2 = false
+                }
+            }).catch(e => {
+                this.$snotify.error('Something went wrong')
+                this.errors.push(e)
+                this.showLoading = false
             })
         },
         close() {
             this.dialogm2 = false
         },
-        clear() {
-        },
         checkPin(){
-            window.console.log(this.p.pinCode, this.oldps, this.ps)
+            window.console.log(this.p.abbr, this.oldps, this.ps)
             let ex = this.checkPinData.filter((obj) => {
-                return obj.pinCode == this.p.pinCode
+                return obj.abbr == this.p.abbr || obj.name == this.p.name
             })
             if(ex.length > 0){
-                this.p.pinCode = ''
-                this.$snotify.error('Pin code is exist!')
+                this.p.abbr = ''
+                this.p.name = ''
+                this.$snotify.error('Name or abbr is exist!')
+                return
+            }
+        },
+        checkPinAbbr(){
+            let ex = this.checkPinData.filter((obj) => {
+                return obj.abbr == this.p.abbr
+            })
+            if(ex.length > 0){
+                this.p.abbr = ''
+                this.$snotify.error('Abbr is exist!')
             }
         },
         checkPinName(){
-            let ex = this.checkPinNameData.filter((obj) => {
+            let ex = this.checkPinData.filter((obj) => {
                 return obj.name == this.p.name
             })
             if(ex.length > 0){
                 this.p.name = ''
-                this.$snotify.error('Pin code is exist!')
+                this.$snotify.error('Name is exist!')
             }
         }
     },
     mounted: async function () {
-        await this.loadUserPin()
+        await this.loadSaleFormContent()
     },
     created: async function () {
-        await this.loadMemberGroup()
     },
     computed: {
-        menuList(){
-            return [
-                {id: 1, name: i18n.t('statistics_reports')},
-                {id: 2, name: i18n.t('accounting_budgeting')},
-                {id: 3, name: i18n.t('saving_credit_business')},
-                {id: 4, name: i18n.t('supply_business')},
-                {id: 5, name: i18n.t('marketing_business')},
-                {id: 6, name: i18n.t('service_business')},
-                {id: 7, name: i18n.t('member_share')}
-            ]
-        },
-
     },
 };
 </script>

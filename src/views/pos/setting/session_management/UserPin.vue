@@ -43,45 +43,6 @@
                                                         :type="show1 ? 'number' : 'password'"
                                                         @click:append="show1 = !show1"
                                                     />
-                                                    <label class="label">{{ $t('group') }}</label>
-                                                    <v-select
-                                                        class="mt-1"
-                                                        :placeholder="$t('select_group')"
-                                                        outlined
-                                                        v-model="p.groupMember"
-                                                        :items="groupMemberList"
-                                                        chips
-                                                        multiple
-                                                        item-value="value.id"
-                                                        item-text="name"
-                                                        return-object
-                                                        required
-                                                    />
-                                                    <label class="label">{{ $t('function') }}</label>
-                                                    <v-combobox
-                                                        v-model="p.menu"
-                                                        :items="menuList"
-                                                        item-value="value.id"
-                                                        item-text="name"
-                                                        :label="$t('select_function')"
-                                                        chips
-                                                        multiple
-                                                        >
-                                                    </v-combobox>
-                                                    <!-- <v-select
-                                                        id="select_function"
-                                                        class="mt-1 "
-                                                        :placeholder="$t('select_function')"
-                                                        outlined
-                                                        v-model="p.menu"
-                                                        :items="menuList"
-                                                        chips
-                                                        multiple
-                                                        item-value="value.id"
-                                                        item-text="name"
-                                                        return-object
-                                                        required
-                                                    /> -->
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>
@@ -147,11 +108,11 @@
 </template>
 
 <script>
-import { i18n } from '@/i18n';
-import UserPinModel from "@/scripts/model/UserPin"
-const loanHandler = require("@/scripts/loanHandler")
-import kendo from "@progress/kendo-ui"
-const $ = kendo.jQuery
+// import { i18n } from '@/i18n';
+import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
+const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+// import kendo from "@progress/kendo-ui"
+// const $ = kendo.jQuery
 export default {
     components: {
         LoadingMe: () => import(`@/components/Loading`),
@@ -170,7 +131,7 @@ export default {
         //
         valid: true,
         saveOption: '',
-        p: new UserPinModel({}),
+        p: { name: '', pinCode: ''},
         ps: [],
         oldps: [],
         edit: false,
@@ -184,36 +145,20 @@ export default {
         },
     },
     methods: {
-        async loadUserPin() {
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    this.checkPinData = []
-                    this.checkPinNameData = []
-                    loanHandler.userPinGet().then(res => {
-                        this.ps = res.data.data
-                        this.oldps = res.data.data
-                        let self = this
-                        $.each(this.ps, function(i,v){
-                            self.checkPinData.push({
-                                pinCode: v.pinCode
-                            })
-                            self.checkPinNameData.push({
-                                name: v.name
-                            })
-                        })
-                    })
-                }, 300);
-            })
-        },
-        async loadMemberGroup() {
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    loanHandler.groupMemberGet().then(res => {
-                        this.groupMemberList = res.data.data
-                    })
-                }, 300);
+        async loadSaleFormContent() {
+            this.showLoading = true
+            commerceHandler.settingGet().then(res => {
+                this.showLoading = false
+                if (res.data.statusCode === 200) {
+                    const data = res.data.data
+                    let d = data.filter((o) => {return o.type == 'retail'})
+                    if (d.length > 0) {
+                        this.g = new generalSettingModel(d[0])
+                        this.g.id = d[0].pk
+                        this.ps = this.g.userPinData
+                        this.checkPinData = this.g.userPinData
+                    }
+                }
             })
         },
         async onEditClick(value) {
@@ -228,61 +173,42 @@ export default {
         },
         onNewClick() {
             this.edit = false
-            this.p = new UserPinModel({})
-            this.p.id = ''
-            this.clear()
+            this.p = {
+                name: '',
+                pinCode: ''
+            }
         },
         saveClose() {
-            this.saveOption = "saveClose"
-            this.save()
-        },
-        async save() {
-            if (!this.$refs.form.validate()) {
-                this.$refs.form.validate()
-                return
-            }
-            if(this.edit === false) {
-                let dub = this.oldps.filter((obj) => {
-                    return obj.name === this.p.name
-                })
-                if (dub.length > 0) {
-                    this.$snotify.error('Dublicate Name')
-                    return
-                }
-            }
             this.showLoading = true
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved')
-                    loanHandler.userPinCreate(new UserPinModel(this.p)).then(response => {
-                        this.showLoading = false
-                        if (response.data.statusCode === 201) {
-                            this.close()
-                            this.loadUserPin()
-                            this.$refs.form.reset()
-                            this.$snotify.success('Successfully')
-                        }
-                    }).catch(e => {
-                        this.$snotify.error('Something went wrong')
-                        this.errors.push(e)
-                        window.console.log(e)
-                    })
-                }, 300);
+            this.checkPin()
+            this.g.userPinData.push(this.p)
+            commerceHandler.settingCreate(new generalSettingModel(this.g)).then(response => {
+                if (response.data.statusCode === 201) {
+                    const res = response.data.data
+                    this.g = res
+                    this.$snotify.success('Update Successfully')
+                    this.showLoading = false
+                    this.dialogm2 = false
+                }
+            }).catch(e => {
+                this.$snotify.error('Something went wrong')
+                this.errors.push(e)
+                this.showLoading = false
             })
         },
         close() {
             this.dialogm2 = false
         },
-        clear() {
-        },
         checkPin(){
             window.console.log(this.p.pinCode, this.oldps, this.ps)
             let ex = this.checkPinData.filter((obj) => {
-                return obj.pinCode == this.p.pinCode
+                return obj.pinCode == this.p.pinCode || obj.name == this.p.name
             })
             if(ex.length > 0){
                 this.p.pinCode = ''
-                this.$snotify.error('Pin code is exist!')
+                this.p.name = ''
+                this.$snotify.error('Name or Pin code is exist!')
+                return
             }
         },
         checkPinName(){
@@ -296,24 +222,11 @@ export default {
         }
     },
     mounted: async function () {
-        await this.loadUserPin()
+        await this.loadSaleFormContent()
     },
     created: async function () {
-        await this.loadMemberGroup()
     },
     computed: {
-        menuList(){
-            return [
-                {id: 1, name: i18n.t('statistics_reports')},
-                {id: 2, name: i18n.t('accounting_budgeting')},
-                {id: 3, name: i18n.t('saving_credit_business')},
-                {id: 4, name: i18n.t('supply_business')},
-                {id: 5, name: i18n.t('marketing_business')},
-                {id: 6, name: i18n.t('service_business')},
-                {id: 7, name: i18n.t('member_share')}
-            ]
-        },
-
     },
 };
 </script>

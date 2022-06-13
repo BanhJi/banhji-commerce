@@ -505,75 +505,9 @@ export default {
     }
     ,
     methods: {
-        async onSaveClose() {
-            // if (!this.$refs.form.validate()) {
-            //   this.$refs.form.validate()
-            //   return
-            // }
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    let data = {
-                        id: this.saleFormContent.id ? this.saleFormContent.id : '',
-                        serviceDate: this.saleFormContent.serviceDate,
-                        serviceDateTo: this.saleFormContent.serviceDateTo,
-                        discountItem: this.saleFormContent.discountItem,
-                        otherCharge: this.saleFormContent.otherCharge,
-                        specificTax: this.saleFormContent.specificTax,
-                        otherTax: this.saleFormContent.otherTax,
-                        publicLightingTax: this.saleFormContent.publicLightingTax,
-                        saleUnit: this.saleFormContent.saleUnit,
-                        modifier: this.saleFormContent.modifier,
-                        employee: this.saleFormContent.employee,
-                        decimal: this.saleFormContent.decimal,
-                        saleQuote: this.saleFormContent.saleQuote,
-                        saleOrder: this.saleFormContent.saleOrder,
-
-                        negativeInventory: this.saleFormContent.negativeInventory,
-                        lateFee: this.saleFormContent.lateFee,
-                        email: this.saleFormContent.email,
-                        pdfAttachment: this.saleFormContent.pdfAttachment,
-                        invoiceReminder: this.saleFormContent.invoiceReminder,
-                        reminder1: this.saleFormContent.reminder1,
-                        reminder2: this.saleFormContent.reminder2,
-                        reminder3: this.saleFormContent.reminder3,
-                        statement: this.saleFormContent.statement
-                    }
-                    saleFormContentHandler.create(data).then(response => {
-                        if (response.data.statusCode === 201) {
-                            const res = response.data.data
-                            this.saleFormContent = res
-                            this.$snotify.success('Update Successfully')
-                            // this.$refs.form.reset()
-                        }
-                    }).catch(e => {
-                        this.$snotify.error('Something went wrong')
-                        this.errors.push(e)
-                    })
-
-                }, 300);
-            })
-        },
-        async loadSaleFormContent() {
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    saleFormContentHandler.list().then(res => {
-                        if (res.data.statusCode === 200) {
-                            const data = res.data.data
-                            if (data.length > 0) {
-                                this.saleFormContent = data[0]
-                            }
-                        }
-
-                    })
-                }, 10)
-            })
-        },
     }
     ,
     mounted: async function () {
-        await this.loadSaleFormContent()
     }
 }
 ;

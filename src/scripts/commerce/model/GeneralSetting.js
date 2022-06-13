@@ -35,6 +35,8 @@ export default class GeneralSetting {
         this.orderFlow = data.orderFlow || []
         this.allowOrderFlow = data.allowOrderFlow || false
         this.paymentOption = data.paymentOption || []
+        this.userPinData = data.userPinData || []
+        this.orderTypes = data.orderTypes || []
         this.createdAt = data.createdAt || new Date().toISOString().substr(0, 10)
     }
 

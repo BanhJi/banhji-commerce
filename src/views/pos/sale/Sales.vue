@@ -4,6 +4,10 @@
         <v-row>
             <v-col sm="12" cols="12" class="pb-0">
                 <v-card color="#f8f8f9" class="pa-0 no_border" elevation="0">
+                    <LoadingMe
+                        :isLoading="loadPullData"
+                        :fullPage="false"
+                        :myLoading="true" />
                     <v-row>
                         <v-col md="2" cols="2" class="pa-0 sidebar-left hidden-sm-and-down">
                             <div class="d-flex flex-column" style="height: 98vh;background-color: rgb(248 248 249);">
@@ -68,8 +72,20 @@
                                                 <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
                                                 <h2 class="pl-2 border-b  primary--text">12345678</h2>
                                             </div>
-
-
+                                            <div class="v-list-item  v-list-item-left d-block mr-0" style="">
+                                                <span class="pl-2 dark_grey">{{$t('price_level')}}</span><br>
+                                                <v-select
+                                                    class="mt-1"
+                                                    v-model="g.defaultPriceLevel"
+                                                    :items="priceLevels"
+                                                    :disabled="!g.allowSelectPriceLevel"
+                                                    item-value="id"
+                                                    item-text="name"
+                                                    placeholder="Price Level"
+                                                    tage="Default Price Level"
+                                                    outlined
+                                                />
+                                            </div>
                                             <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
                                                     <template>
@@ -203,7 +219,7 @@
                                                 <v-row>
                                                     <v-col md="6" cols="12" class="pr-0">
                                                         <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
-                                                        <small class="pl-2">Pheaktra</small>
+                                                        <small class="pl-2">{{activePin.name}}</small>
                                                     </v-col>
                                                     <v-col md="6" cols="12" class="px-0">
                                                         <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
@@ -288,10 +304,7 @@
                                                     <LoadingMe
                                                         :isLoading="showLoading"
                                                         :fullPage="false"
-                                                        :myLoading="true"
-                                                        :alertMessage="loadingAlert"
-                                                        :color="loadingColorAlert"
-                                                        :alertText="loadingTextAlert"/>
+                                                        :myLoading="true" />
                                                 </template>
                                             </v-col>
                                         </v-row>
@@ -354,9 +367,8 @@
                                                     </v-col>
                                                     <v-card-actions>
                                                         <div class="function_footer text-right">
-
                                                             <v-btn color="secondary" class="mr-2 white--text text-capitalize"
-                                                                @click="LoyaltyToSale()">
+                                                                @click="skipLoyalty()">
                                                                 {{ $t('skip') }}
                                                             </v-btn>
                                                             <v-btn color="primary" class="float-right white--text text-capitalize"
@@ -507,7 +519,7 @@
                                                     <v-card-actions>
                                                         <div class="function_footer">
                                                              <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                @click="dialogPartner = false">
+                                                                @click="skipPartner">
                                                                 {{ $t('skip') }}
                                                             </v-btn>
                                                         </div>
@@ -556,11 +568,11 @@
                                                     <v-card-actions>
                                                         <div class="function_footer text-right">
                                                             <v-btn color="secondary" class="white--text text-capitalize mr-2"
-                                                                @click="dialogOrder = false">
+                                                                @click="skipPartner">
                                                                 {{ $t('skip') }}
                                                             </v-btn>
                                                             <v-btn color="primary" class="float-right white--text text-capitalize"
-                                                                @click="dialogOrder = false">
+                                                                @click="enterPartner">
                                                                 {{ $t('enter') }}
                                                             </v-btn>
                                                         </div>
@@ -1203,6 +1215,86 @@
                                                     </v-btn>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pa-1">
+                                                    <!-- OrderType -->
+                                                    <template>
+                                                        <v-dialog
+                                                            v-model="dialogOrderType"
+                                                            persistent
+                                                            max-width="350px"
+                                                            >
+                                                            <template v-slot:activator="{ on, attrs }">
+                                                                <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
+                                                                    <v-icon left class="mr-0">mdi-percent</v-icon>
+                                                                    <span class="text-bold letter_spacing">{{$t('order_type')}}</span>
+                        
+                                                                </v-btn>
+                                                            </template>
+                                                            <v-card>
+                                                                <div class="modal_header">
+                                                                    <v-card-title>{{ $t("redeem_with") }}</v-card-title>
+                                                                    <v-icon
+                                                                        @click="dialogReward = false"
+                                                                        style="cursor: pointer; font-size: 30px;"
+                                                                        color="grey"
+                                                                        class="float-right mt-n1">close
+                                                                    </v-icon>
+                                                                </div>
+                                                                <v-col md="12" col="12" class="function_content pa-3">
+                                                                    <v-row>
+                                                                        <v-col sm="6" cols="6" class="">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="465"
+                                                                                outlined
+                                                                                @click="ToRewardForm()"
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h2 class="font_22">{{$t('point')}}</h2>
+                                                                                                <h2 class="font_22">{{$t('earn')}}</h2>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                        <v-col sm="6" cols="6" class="">
+                                                                            <v-card
+                                                                                class="mx-auto"
+                                                                                max-width="465"
+                                                                                outlined
+                                                                                @click="ToRewardForm()"
+                                                                            >
+                                                                                <v-list-item three-line>
+                                                                                    <v-list-item-content class="pk-3">
+                                                                                        <v-row>
+                                                                                            <v-col sm="12" cols="12" class="text-center">
+                                                                                                <h2 class="primary--text font_22">{{$t('point')}}</h2>
+                                                                                                <h2 class="primary--text font_22">{{$t('purchase')}}</h2>
+                                                                                            </v-col>
+                                                                                        </v-row>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card>
+                                                                        </v-col>
+                                                                    </v-row>
+                                                                </v-col>
+                                                                <v-card-actions>
+                                                                    <div class="function_footer">
+                                                                        <v-btn color="secondary" class="float-right white--text text-capitalize"
+                                                                            @click="dialogReward = false">
+                                                                            {{ $t('skip') }}
+                                                                        </v-btn>
+                                                                    </div>
+                                                                    <v-spacer></v-spacer>
+                                                                </v-card-actions>
+                                                            </v-card>
+                                                        </v-dialog>
+                                                    </template> 
+                                                </v-col>
+                                                <v-col md="3" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogSplit"
@@ -1359,14 +1451,14 @@
                                                                                                     src="@/assets/images/khmer_man.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">{{localMen.coun}}</h2>
+                                                                                                <h2 class="font_30 primary--text">{{guestCount.localMen}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn @click="increaseLocalMen(localMen)" color="third" class="white--text text-capitalize">
+                                                                                                    <v-btn @click="guestIncLocalMen()" color="third" class="white--text text-capitalize">
                                                                                                         <v-icon dark >
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn @click="decreaseLocalMen(localMen)" color="secondary" class="float-right white--text text-capitalize">
+                                                                                                    <v-btn @click="guestDecLocalMen()" color="secondary" class="float-right white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
@@ -1379,14 +1471,14 @@
                                                                                                     src="@/assets/images/khmer_women.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">{{localWomen.coun}}</h2>
+                                                                                                <h2 class="font_30 primary--text">{{guestCount.localWomen}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn @click="increaseLocalWomen(localWomen)" color="third" class="white--text text-capitalize">
+                                                                                                    <v-btn @click="guestIncLocalWomen()" color="third" class="white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn @click="decreaseLocalWomen(localWomen)" color="secondary" class="float-right white--text text-capitalize">
+                                                                                                    <v-btn @click="guestDecLocalWomen()" color="secondary" class="float-right white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
@@ -1416,14 +1508,14 @@
                                                                                                     src="@/assets/images/foreigner_men.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <h2 class="font_30 primary--text">{{guestCount.forMen}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn color="primary" class="white--text text-capitalize">
+                                                                                                    <v-btn @click="guestIncForMen()" color="primary" class="white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                    <v-btn @click="guestDecForMen()" color="secondary" class="float-right white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
@@ -1436,14 +1528,14 @@
                                                                                                     src="@/assets/images/foreigner_women.png"
                                                                                                     width="100%"
                                                                                                 />
-                                                                                                <h2 class="font_30 primary--text">0</h2>
+                                                                                                <h2 class="font_30 primary--text">{{guestCount.forWomen}}</h2>
                                                                                                 <div class="function_footer pt-0">
-                                                                                                    <v-btn color="primary" class="white--text text-capitalize">
+                                                                                                    <v-btn @click="guestIncForWomen()" color="primary" class="white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-plus
                                                                                                         </v-icon>
                                                                                                     </v-btn>
-                                                                                                    <v-btn color="secondary" class="float-right white--text text-capitalize">
+                                                                                                    <v-btn @click="guestDecForWomen()" color="secondary" class="float-right white--text text-capitalize">
                                                                                                         <v-icon dark>
                                                                                                             mdi-minus
                                                                                                         </v-icon>
@@ -1460,12 +1552,12 @@
                                                                 <v-card-actions>
                                                                     <div class="function_footer text-right">
                                                                         <v-btn color="secondary" class="mr-2 white--text text-capitalize"
-                                                                            @click="dialogCountGuest = false">
+                                                                            @click="skipGuestCount">
                                                                             {{ $t('skip') }}
                                                                         </v-btn>
 
                                                                         <v-btn color="primary" class="float-right white--text text-capitalize"
-                                                                            @click="dialogCountGuest = false">
+                                                                            @click="enterGuestCount">
                                                                             {{ $t('enter') }}
                                                                         </v-btn>
                                                                     </div>
@@ -4524,10 +4616,10 @@
                                         <h6 class="letter_spacing">{{$t('items')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="pullData()" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-product" />
-                                        <h6 class="letter_spacing">{{$t('refresh')}}</h6>
+                                        <h6 class="letter_spacing">{{$t('pull_data')}}</h6>
                                     </div>
                                 </v-btn>
                             </v-card>
@@ -4544,9 +4636,14 @@ import {Drag,DropList} from "vue-easy-dnd";
 import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
 import { i18n } from "@/i18n";
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
-const loanHandler = require("@/scripts/loanHandler")
+const priceLevelHandler = require("@/scripts/priceLevelHandler")
+const categoryHandler = require("@/scripts/categoryHandler")
+const groupHandler = require("@/scripts/groupHandler")
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie();
 export default {
     data: () => ({
+        disPriceLevel: false,
         date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         menu: false,
         modal: false,
@@ -4581,12 +4678,10 @@ export default {
             coun: 0
         },
         items: '',
-
         pinActivate: false,
         pin: '',
         valid: true,
         incorrect: false,
-
         showLoading: false,
         loadingAlert: false,
         loadingColorAlert: '',
@@ -4621,7 +4716,6 @@ export default {
             screenDisplay: 'Surface',
             receiptTemplate: '80mm'
         },
-
         g: new generalSettingModel({}),
         items1: [
             {
@@ -4655,25 +4749,97 @@ export default {
         ],
         merge2: [
         ],
-    }),
-    
+        //
+        imgUrl: "https://s3-ap-southeast-1.amazonaws.com/images.banhji/",
+        priceLevels: [],
+        priceLevel: '',
+        // price product
+        lastPPKey: {},
+        priceProducts: [],
+        // itme
+        lastPKey: {},
+        allItems: [],
+        loadingSetting: true,
+        loadPrice: true,
+        loadPullData: false,
+        startFlowAt: 0,
+        activePin: {
+            name: '',
+            pinCode: ''
+        },
+        // guest
+        guestCount: {
+            localMen: 0,
+            localWomen: 0,
+            forMen: 0,
+            forWomen: 0
+        },
+        // order type
+        dialogOrderType: false
+    }),  
     methods: {
-        increaseLocalMen(men) {
-            men.coun += 1;
-            },
-        decreaseLocalMen(men) {
-        if(men.coun > 0) {
-            men.coun -= 1;
+        // guest count
+        guestIncLocalMen(){
+            this.guestCount.localMen += 1
+        },
+        guestDecLocalMen(){
+            if(this.guestCount.localMen > 0){
+                this.guestCount.localMen -= 1
             }
         },
-        increaseLocalWomen(women) {
-            women.coun += 1;
-            },
-        decreaseLocalWomen(women) {
-        if(women.coun > 0) {
-            women.coun -= 1;
+        guestIncLocalWomen(){
+            this.guestCount.localWomen += 1
+        },
+        guestDecLocalWomen(){
+            if(this.guestCount.localWomen > 0){
+                this.guestCount.localWomen -= 1
             }
         },
+         guestIncForMen(){
+            this.guestCount.forMen += 1
+        },
+        guestDecForMen(){
+            if(this.guestCount.forMen > 0){
+                this.guestCount.forMen -= 1
+            }
+        },
+        guestIncForWomen(){
+            this.guestCount.forWomen += 1
+        },
+        guestDecForWomen(){
+            if(this.guestCount.forWomen > 0){
+                this.guestCount.forWomen -= 1
+            }
+        },
+        skipGuestCount(){
+            this.dialogCountGuest = false
+            this.guestCount = {
+                localMen: 0,
+                localWomen: 0,
+                forMen: 0,
+                forWomen: 0
+            }
+            this.checkOrderFlow()
+        },
+        enterGuestCount(){
+            this.dialogCountGuest = false
+            this.checkOrderFlow()
+        },
+        //loyalty
+        skipLoyalty(){
+            this.dialogLoyalty = true
+            this.checkOrderFlow()
+        },
+        // partner
+        skipPartner(){
+            this.dialogPartner = false
+            this.checkOrderFlow()
+        },
+        enterPartner(){
+            this.dialogPartner = false
+            this.checkOrderFlow()
+        },
+        //
         hasHistory () { 
             return window.history.length > 2 
         },
@@ -4742,15 +4908,141 @@ export default {
         fullscreenChange(fullscreen) {
             this.fullscreen = fullscreen;
         },
+        // pin
+        pinClick(num){
+            this.incorrect = false
+            if(num == 'clear'){
+                this.pin = ''
+            }else{
+                this.pin = this.pin + num.toString()
+            }
+        },
+        searchPin(){
+            window.console.log(this.pin, 'pin')
+            let activePin = this.g.userPinData.filter((o) => {return o.pinCode == this.pin})
+            window.console.log(activePin, 'actvie pin')
+            if(activePin.length > 0){
+                this.activePin = activePin[0]
+                this.pin = ''
+                this.pinActivate = false
+                this.checkOrderFlow()
+            }else{
+                this.pin = ''
+                this.activePin = {
+                    name: '',
+                    pinCode: ''
+                }
+            }
+        },
+        // split
+        insert1(event) {
+            this.items1.splice(event.index, 0, event.data);
+        },
+        insert2(event) {
+            this.items2.splice(event.index, 0, event.data);
+        },
+        remove(array, value) {
+            let index = array.indexOf(value);
+            array.splice(index, 1);
+        },
+        // marge
+        insert3(event) {
+            this.merge1.splice(event.index, 0, event.data);
+        },
+        insert4(event) {
+            this.merge2.splice(event.index, 0, event.data);
+        },
+        // data
+        async loadPriceLevel() {
+            this.showLoading = true;
+            const strFilter = "?nature=sale";
+            priceLevelHandler.get(strFilter).then((res) => {
+                this.showLoading = false;
+                this.priceLevels = res;
+                this.loadProductPriceLevel()
+            });
+        },
+        loadProductPriceLevel(){
+            this.priceProducts = []
+            let i = 1
+            let isLast = false
+            this.priceLevels.forEach(e => {
+                i++
+                if(i == this.priceLevels.length){
+                    isLast = true
+                }
+                let d = {
+                    key: {},
+                    priceLevelId: e.id
+                }
+                commerceHandler.getPLItem(d).then((res) => {
+                    let data = res.data.data
+                    if(data.Items.length > 0){
+                        data.Items.forEach(e => {
+                            this.priceProducts.push(e)
+                        })
+                    }
+                    if(data.hasOwnProperty('LastEvaluatedKey')){
+                        this.lastPPKey = data.LastEvaluatedKey
+                        this.getPriceProMore(this.lastPPKey, e.id, isLast)
+                    }else{
+                        if(isLast){
+                            this.bindPriceProduct()
+                            this.loadPrice = true
+                            this.checkPullDataComplete()
+                        }
+                    }
+                });
+                
+            })
+        },
+        getPriceProMore(key, id, isLast){
+            let d = {
+                key: key,
+                priceLevelId: id
+            }
+            commerceHandler.getPLItem(d).then((res) => {
+                let data = res.data.data
+                if(data.Items.length > 0){
+                    // this.bindPriceProduct(data.Items)
+                    data.Items.forEach(e => {
+                        this.priceProducts.push(e)
+                    })
+                }
+                if(data.hasOwnProperty('LastEvaluatedKey')){
+                    this.lastPPKey = data.LastEvaluatedKey
+                    this.getPriceProMore(this.lastPPKey, id, isLast)
+                }else{
+                    if(isLast){
+                        this.bindPriceProduct()
+                        this.loadPrice = true
+                        this.checkPullDataComplete()
+                    }
+                }
+            })
+        },
+        bindPriceProduct(){
+            localStorage.setItem(instituteId + 'commRProductPrice', JSON.stringify(this.priceProducts))
+        },
+        // Setting
         loadSetting(){
             commerceHandler.settingGet().then((res) => {
-                window.console.log(res, 'setting')
-                if(res.status == 200){
-                    this.gotoSetting()
+                let d = res.data.data
+                this.loadingSetting = true
+                this.checkPullDataComplete()
+                // for retail
+                let set = d.filter((o) => {return o.type == 'retail'})
+                if(set.length > 0){
+                    this.addSetting(d[0])
+                    this.g = new generalSettingModel(d[0])
+                    this.startOrder()
                 }else{
                     this.gotoSetting()
                 }
             })
+        },
+        addSetting(data){
+            localStorage.setItem(instituteId + 'commRSetting', JSON.stringify(data));
         },
         gotoSetting(){
             this.$swal({
@@ -4768,101 +5060,155 @@ export default {
                 }
             })
         },
-        // pin
-        pinClick(num){
-            this.incorrect = false
-            if(num == 'clear'){
-                this.pin = ''
-            }else{
-                this.pin = this.pin + num.toString()
-            }
+        // Category
+        async loadCategory() {
+            categoryHandler.get().then((res) => {
+                localStorage.setItem(instituteId + 'commRCategory', JSON.stringify(res));
+            });
+            const param = {
+                pattern: "grp",
+            };
+            groupHandler.getAllv2(param).then((res) => {
+                localStorage.setItem(instituteId + 'commRCateGroup', JSON.stringify(res.data.data));
+            });
+            this.loadAllProduct()
         },
-        searchPin(){
-            if (!this.$refs.form.validate()) {
-            this.$refs.form.validate();
-            return;
+        // Items
+        async loadAllProduct(){
+            let data = {
+                key: {}
             }
-            new Promise(resolve => {
-                setTimeout(() => {
-                    resolve('resolved');
-                    this.showLoading = true
-                    loanHandler.userPinSearchGet(this.pin, this.func).then(res => {
-                        this.showLoading = false
-                        window.console.log('userpin',res.data.data)
-                        if(res.data.data[0].hasPin == true){
-                            this.pinActivate = false
-                            this.pin = ''
-                            switch(this.func) {
-                                case 1:
-                                    this.goS()
-                                    break;
-                                case 2:
-                                    this.goA()
-                                    break;
-                                case 3:
-                                    this.goC(res.data.data[0].group, res.data.data[0].pinName)
-                                    break;
-                                case 4:
-                                    this.goI()
-                                    break;
-                                case 5:
-                                    this.goM()
-                                    break;
-                                case 6:
-                                    this.goJ()
-                                    break;
-                                case 7:
-                                    this.goMS(res.data.data[0].group, res.data.data[0].pinName)
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }else{
-                            this.pin = ''
-                            this.incorrect = true
-                        }
+            //load products
+            this.showLoadingP = true
+            this.allItems = []
+            commerceHandler.getAllItem(data).then((res) => {
+                let data = res.data.data
+                if(data.Items.length > 0){
+                    data.Items.forEach(e => {
+                        this.allItems.push(e)
                     })
-                }, 300);
+                }
+                if(data.hasOwnProperty('LastEvaluatedKey')){
+                    this.lastPKey = data.LastEvaluatedKey
+                    this.getMoreItem(this.lastPKey)
+                }else{
+                    this.showLoadingP = false
+                    this.bindAllItem()
+                }
+            });
+        },
+        bindAllItem(){
+            localStorage.setItem(instituteId + 'commRProduct', JSON.stringify(this.allItems))
+        },
+        getMoreItem(key){
+            let data = {
+                key: key
+            }
+            commerceHandler.getAllItem(data).then((res) => {
+                let data = res.data.data
+                if(data.Items.length > 0){
+                    data.Items.forEach(e => {
+                        this.allItems.push(e)
+                    })
+                }
+                if(data.hasOwnProperty('LastEvaluatedKey')){
+                    this.lastPKey = data.LastEvaluatedKey
+                    this.getMoreItem(this.lastPKey)
+                }else{
+                    this.showLoadingP = false
+                    this.bindAllItem()
+                }
             })
         },
-
-        // split
-        insert1(event) {
-            this.items1.splice(event.index, 0, event.data);
+        //pull data
+        async pullData(){
+            this.loadPullData = true
+            this.loadingSetting = false
+            this.loadPrice = false
+            localStorage.clear();
+            await this.loadSetting()
+            await this.loadCategory()
+            await this.loadPriceLevel()
+            localStorage.setItem(instituteId + 'commRActiveDate', new Date().toISOString().substr(0, 10))
+            localStorage.setItem(instituteId + 'commRPullDataAt', new Date().getTime())
         },
-        insert2(event) {
-            this.items2.splice(event.index, 0, event.data);
+        checkPullDataComplete(){
+            if(this.loadingSetting && this.loadPrice){
+                this.loadPullData = false
+            }
         },
-        remove(array, value) {
-            let index = array.indexOf(value);
-            array.splice(index, 1);
+        startOrder(){
+            this.checkOrderFlow()
         },
-
-        // marge
-        insert3(event) {
-            this.merge1.splice(event.index, 0, event.data);
+        startOrderFlow(){
+            this.checkOrderShow(this.g.orderFlow[this.startFlowAt].name)
+            this.startOrderAdd()
         },
-        insert4(event) {
-            this.merge2.splice(event.index, 0, event.data);
+        checkOrderShow(func){
+            switch(func) {
+                case 'pin':
+                    this.pinActivate = true
+                    break;
+                case 'guestCount':
+                    window.console.log('guestcount')
+                    this.dialogCountGuest = true
+                    break;
+                case 'loyalty':
+                    window.console.log('loyalty')
+                    this.dialogLoyalty = true
+                    break;
+                case 'orderType':
+                    window.console.log('orderType')
+                    this.dialogOrderType = true
+                    break;
+                case 'partner':
+                    window.console.log('partner')
+                    this.dialogPartner = true
+                    break;
+                default:
+                    // code block
+            }
         },
+        startOrderAdd(){
+            this.startFlowAt += 1
+            window.consle
+        },
+        bindData(){
+            this.g = new generalSettingModel(JSON.parse(localStorage.getItem(instituteId + 'commRSetting')))
+            this.startOrder()
+        },
+        checkOrderFlow(){
+            // check order flow
+            window.console.log(this.g, 'setting')
+            if(this.g.allowOrderFlow == true){
+                this.startOrderFlow()
+            }
+        }
     },
     components: {
         LoadingMe: () => import(`@/components/Loading`),
         Parksale: () => import("../Parksale.vue"),
         InvoiceReport: () => import ("../InvoiceReport"),
         OrderReport: () => import ("../OrderReport"),
-
         Drag,
         DropList,
-
     },
     computed:{
         lang() {
             return "/" + i18n.locale;
-            },
+        },
     },
     created: async function () {
-        await this.loadSetting()
+        let d = localStorage.getItem(instituteId + 'commRActiveDate');
+        if(d != null){
+            if(d != new Date().toISOString().substr(0, 10)){
+                this.pullData()
+            }else{
+                this.bindData()
+            }
+        }else{
+            this.pullData()
+        }
     },
     
 };
