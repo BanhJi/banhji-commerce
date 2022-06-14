@@ -270,7 +270,7 @@
                                             </v-col>
                                         </v-row>
                                         <v-row>
-                                            <v-col sm="12" cols="12" class="py-0">
+                                            <v-col sm="12" cols="12" class="py-0" style="overflow-y: scroll;max-height: 325px;">
                                                 <template>
                                                     <kendo-datasource 
                                                         ref="lineDS"
@@ -292,7 +292,7 @@
                                                         <kendo-grid-column
                                                             :field="'description'"
                                                             :title="$t('description')"
-                                                            :width="200"
+                                                            :width="150"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
                                                         <kendo-grid-column
                                                             :field="'qty'"
@@ -321,7 +321,7 @@
                                     </v-card>
                                 </div>
                                 <!-- loyalty pop up -->
-                                <div sm="3" cols="12" class="ml-8">
+                                <div sm="3" cols="12" class="ml-8" hidden>
                                    
                                     <!-- loyalty -->
                                     <template>
@@ -331,18 +331,6 @@
                                                 persistent
                                                 max-width="350px"
                                                 >
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <v-btn
-                                                    color="primary btn_h2"
-                                                    dark
-                                                    v-bind="attrs"
-                                                    v-on="on"
-                                                    width=""
-                                                    style="font-size: 22px;"
-                                                    >
-                                                    {{$t('loyalty')}}
-                                                    </v-btn>
-                                                </template>
                                                 <v-card>
                                                     <div class="modal_header">
                                                         <v-card-title>{{ $t("loyalty") }}</v-card-title>
@@ -601,19 +589,6 @@
                                                 v-model="pinActivate"
                                                 persistent 
                                                 max-width="350px">
-                                                
-                                                <template v-slot:activator="{ on, attrs }">
-                                                    <v-btn
-                                                    color="primary btn_h2"
-                                                    dark
-                                                    v-bind="attrs"
-                                                    v-on="on"
-                                                    width=""
-                                                    style="font-size: 22px;"
-                                                    >
-                                                    {{$t('pin')}}
-                                                    </v-btn>
-                                                </template>
                                                 <v-form ref="form" v-model="valid" lazy-validation>
                                                     <template>
                                                         <!-- <v-container> -->
@@ -650,9 +625,9 @@
                                     </template> 
                                 </div>
 
-                                <div sm="12" cols="12" class="">
+                                <div sm="12" cols="12" class="pt-0">
                                     <v-row class="px-4">
-                                        <v-col sm="12" cols="12" class="pb-0">
+                                        <v-col sm="12" cols="12" class="py-0" style="border-top: 1px solid lightblue;">
                                             <v-row>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
                                                     <small class="dark_grey">{{$t('sub_total')}}</small>
@@ -4554,7 +4529,7 @@
                                                             height="140"
                                                             :src="item.img"
                                                         ></v-img>
-                                                        <p class="pa-2 name-items" style="height: 32px;">{{ item.name }}</p>
+                                                        <p class="pa-2 name-items mb-0" style="height: 32px;">{{ item.name }}</p>
                                                         <v-divider class="mx-4"></v-divider>
                                                         <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
                                                             <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
@@ -4571,11 +4546,20 @@
                         <!-- right sidebar -->
                         <v-col sm="1" cols="1" class=" sidebar-left3 pa-0">
                             <v-card flat  height="98vh" color="">
-                                <v-btn class=" rounded-0  btn-right" icon @click="toggle">
-                                    <i   
-                                        :class="[fullscreen ? 'b-mini' : 'b-full']"
-                                    />
+                                
+                                <v-btn class=" rounded-0  btn-right" style="">
+                                    <div class="d-block">
+                                        <i  class=" b-product" />
+                                        <h6 class="letter_spacing">{{$t('items')}}</h6>
+                                    </div>
                                 </v-btn>
+                                <v-btn class=" rounded-0  btn-right" style="">
+                                    <div class="d-block">
+                                        <i  class=" b-favorite" />
+                                        <h6 class="letter_spacing">{{$t('favorite')}}</h6>
+                                    </div>
+                                </v-btn>
+                                
                                 <v-btn @click="goCategory" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-catagories" />
@@ -4594,23 +4578,17 @@
                                         <h6 class="letter_spacing">{{$t('sub_group')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
-                                    <div class="d-block">
-                                        <i  class=" b-favorite" />
-                                        <h6 class="letter_spacing">{{$t('favorite')}}</h6>
-                                    </div>
+                                <v-btn class=" rounded-0  btn-right" icon @click="toggle">
+                                    <i   
+                                        :class="[fullscreen ? 'b-mini' : 'b-full']"
+                                    />
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
-                                    <div class="d-block">
-                                        <i  class=" b-product" />
-                                        <h6 class="letter_spacing">{{$t('items')}}</h6>
-                                    </div>
-                                </v-btn>
-                                <v-btn @click="pullData()" class=" rounded-0  btn-right" style="">
+                               
+                                <v-btn @click="pullData()" class=" rounded-0  btn-right" style="padding: 15px 0 !important;height: auto!important;">
                                     <div class="d-block">
                                         <i  class=" b-product" />
                                         <h6 class="letter_spacing">{{$t('pull_data')}}</h6>
-                                        <p>As of: {{pullAsOf}}</p>
+                                        <p class="font_10" style="letter-spacing: initial;">As of:<br> {{pullAsOf}}</p>
                                     </div>
                                 </v-btn>
                             </v-card>
