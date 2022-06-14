@@ -4557,6 +4557,11 @@
                         <!-- right sidebar -->
                         <v-col sm="1" cols="1" class=" sidebar-left3 pa-0">
                             <v-card flat  height="98vh" color="">
+                                <v-btn class=" rounded-0  btn-right" icon @click="toggle">
+                                    <i   
+                                        :class="[fullscreen ? 'b-mini' : 'b-full']"
+                                    />
+                                </v-btn>
                                 
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
@@ -4589,15 +4594,9 @@
                                         <h6 class="letter_spacing">{{$t('sub_group')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" icon @click="toggle">
-                                    <i   
-                                        :class="[fullscreen ? 'b-mini' : 'b-full']"
-                                    />
-                                </v-btn>
-                               
                                 <v-btn @click="pullData()" class=" rounded-0  btn-right" style="padding: 15px 0 !important;height: auto!important;">
                                     <div class="d-block">
-                                        <i  class=" b-product" />
+                                        <i  class=" b-refresh" />
                                         <h6 class="letter_spacing">{{$t('pull_data')}}</h6>
                                         <p class="font_10" style="letter-spacing: initial;">As of:<br> {{pullAsOf}}</p>
                                     </div>
