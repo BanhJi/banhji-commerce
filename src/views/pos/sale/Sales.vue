@@ -42,14 +42,25 @@
                                         </span>
                                         
                                         <div class="block_menu" style="background-color: rgb(248 248 249);">
+                                            
                                             <div class="v-list-item v-list-item-left  d-block mr-0 pr-0">
-                                                <v-text-field
-                                                class="pl-2"
-                                                outlined
-                                                :placeholder="$t('search')"
-                                                append-icon="search"
-                                                clearable/>
+                                                
+                                                <v-col cols="12">
+                                                    <v-row>
+                                                        <v-text-field
+                                                        class="pl-2"
+                                                        outlined
+                                                        :placeholder="$t('search')"
+                                                        clearable
+                                                        style="width: 50px"/>
+                                                        <v-btn class=" rounded-0 ml-1" color="primary" style="min-width: 25px">
+                                                            <i  class=" b-search" />
+                                                        </v-btn>
+                                                    </v-row>
+                                                </v-col>
+                                            
                                             </div>
+                                            
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
                                                 <h2 class="pl-2">chouen loy</h2>
