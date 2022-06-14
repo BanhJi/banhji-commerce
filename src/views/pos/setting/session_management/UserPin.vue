@@ -189,6 +189,7 @@ export default {
                     this.$snotify.success('Update Successfully')
                     this.showLoading = false
                     this.dialogm2 = false
+                    this.loadSaleFormContent()
                 }
             }).catch(e => {
                 this.$snotify.error('Something went wrong')

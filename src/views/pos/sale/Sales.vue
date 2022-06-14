@@ -8,6 +8,10 @@
                         :isLoading="loadPullData"
                         :fullPage="false"
                         :myLoading="true" />
+                    <LoadingMe
+                        :isLoading="showLoading"
+                        :fullPage="false"
+                        :myLoading="true" />
                     <v-row>
                         <v-col md="2" cols="2" class="pa-0 sidebar-left hidden-sm-and-down">
                             <div class="d-flex flex-column" style="height: 98vh;background-color: rgb(248 248 249);">
@@ -268,22 +272,28 @@
                                         <v-row>
                                             <v-col sm="12" cols="12" class="py-0">
                                                 <template>
-                                                    <kendo-datasource ref="gridCollectionDS"
-                                                                    :type="'JSON'"
-                                                                    :server-paging="false"/>
-                                                    <kendo-grid id="gridCollection" class="grid-function"
-                                                                :data-source-ref="'gridCollectionDS'"
-                                                                :editable="false"
-                                                                :groupable="false"
-                                                                :column-menu="true"
-                                                                :noRecords="true"
-                                                                :scrollable-virtual="true">
+                                                    <kendo-datasource 
+                                                        ref="lineDS"
+                                                        :type="'JSON'"
+                                                        :data="lineDS"
+                                                        :server-paging="false"
+                                                    />
+                                                    <kendo-grid 
+                                                        id="lineDS" 
+                                                        class="grid-function"
+                                                        :data-source-ref="'lineDS'"
+                                                        :editable="false"
+                                                        :groupable="false"
+                                                        :column-menu="true"
+                                                        :noRecords="true"
+                                                        :change="lineChange"
+                                                        :selectable="true"
+                                                        :scrollable-virtual="true">
                                                         <kendo-grid-column
-                                                            :field="'product'"
-                                                            :title="$t('product')"
+                                                            :field="'description'"
+                                                            :title="$t('description')"
                                                             :width="200"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-
                                                         <kendo-grid-column
                                                             :field="'qty'"
                                                             :title="$t('qty')"
@@ -296,15 +306,15 @@
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
                                                         <kendo-grid-column
                                                             :field="'discount'"
-                                                            :title="`%`"
+                                                            :title="`Dis.`"
                                                             :width="100"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
-                                                        
+                                                        <kendo-grid-column
+                                                            :field="'amount'"
+                                                            :title="$t('amount')"
+                                                            :width="100"
+                                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
                                                     </kendo-grid>
-                                                    <LoadingMe
-                                                        :isLoading="showLoading"
-                                                        :fullPage="false"
-                                                        :myLoading="true" />
                                                 </template>
                                             </v-col>
                                         </v-row>
@@ -1231,7 +1241,7 @@
                                                             </template>
                                                             <v-card>
                                                                 <div class="modal_header">
-                                                                    <v-card-title>{{ $t("redeem_with") }}</v-card-title>
+                                                                    <v-card-title>{{ $t("order_type") }}</v-card-title>
                                                                     <v-icon
                                                                         @click="dialogReward = false"
                                                                         style="cursor: pointer; font-size: 30px;"
@@ -1240,39 +1250,20 @@
                                                                     </v-icon>
                                                                 </div>
                                                                 <v-col md="12" col="12" class="function_content pa-3">
-                                                                    <v-row>
+                                                                    <v-row v-for="d in g.orderTypes" v-bind:key="d.id">
                                                                         <v-col sm="6" cols="6" class="">
                                                                             <v-card
                                                                                 class="mx-auto"
                                                                                 max-width="465"
                                                                                 outlined
-                                                                                @click="ToRewardForm()"
+                                                                                @click="enterOrderType(d)"
                                                                             >
                                                                                 <v-list-item three-line>
                                                                                     <v-list-item-content class="pk-3">
                                                                                         <v-row>
                                                                                             <v-col sm="12" cols="12" class="text-center">
-                                                                                                <h2 class="font_22">{{$t('point')}}</h2>
-                                                                                                <h2 class="font_22">{{$t('earn')}}</h2>
-                                                                                            </v-col>
-                                                                                        </v-row>
-                                                                                    </v-list-item-content>
-                                                                                </v-list-item>
-                                                                            </v-card>
-                                                                        </v-col>
-                                                                        <v-col sm="6" cols="6" class="">
-                                                                            <v-card
-                                                                                class="mx-auto"
-                                                                                max-width="465"
-                                                                                outlined
-                                                                                @click="ToRewardForm()"
-                                                                            >
-                                                                                <v-list-item three-line>
-                                                                                    <v-list-item-content class="pk-3">
-                                                                                        <v-row>
-                                                                                            <v-col sm="12" cols="12" class="text-center">
-                                                                                                <h2 class="primary--text font_22">{{$t('point')}}</h2>
-                                                                                                <h2 class="primary--text font_22">{{$t('purchase')}}</h2>
+                                                                                                <h2 class="font_22">{{d.name}}</h2>
+                                                                                                <h2 class="font_22">{{d.abbr}}</h2>
                                                                                             </v-col>
                                                                                         </v-row>
                                                                                     </v-list-item-content>
@@ -1284,7 +1275,7 @@
                                                                 <v-card-actions>
                                                                     <div class="function_footer">
                                                                         <v-btn color="secondary" class="float-right white--text text-capitalize"
-                                                                            @click="dialogReward = false">
+                                                                            @click="skipOrderType">
                                                                             {{ $t('skip') }}
                                                                         </v-btn>
                                                                     </div>
@@ -4550,6 +4541,7 @@
                                                         class="pb-0"
                                                         elevation="0"
                                                         max-width="200"
+                                                        @click="addItem(item)"
                                                     >
                                                         <template slot="progress">
                                                             <v-progress-linear
@@ -4558,7 +4550,6 @@
                                                                 indeterminate
                                                             ></v-progress-linear>
                                                         </template>
-
                                                         <v-img
                                                             height="140"
                                                             :src="item.img"
@@ -4566,7 +4557,7 @@
                                                         <p class="pa-2 name-items" style="height: 32px;">{{ item.name }}</p>
                                                         <v-divider class="mx-4"></v-divider>
                                                         <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
-                                                            <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} ៛</h2>
+                                                            <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
                                                         </v-card-text>
                                                     </v-card>
                                                 </v-col>
@@ -4585,12 +4576,11 @@
                                         :class="[fullscreen ? 'b-mini' : 'b-full']"
                                     />
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="goCategory" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-catagories" />
                                         <h6 class="letter_spacing">{{$t('categories')}}</h6>
                                     </div>
-                                    
                                 </v-btn>
                                 <v-btn class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
@@ -4620,6 +4610,7 @@
                                     <div class="d-block">
                                         <i  class=" b-product" />
                                         <h6 class="letter_spacing">{{$t('pull_data')}}</h6>
+                                        <p>As of: {{pullAsOf}}</p>
                                     </div>
                                 </v-btn>
                             </v-card>
@@ -4640,7 +4631,8 @@ const priceLevelHandler = require("@/scripts/priceLevelHandler")
 const categoryHandler = require("@/scripts/categoryHandler")
 const groupHandler = require("@/scripts/groupHandler")
 const cookieJS = require("@/cookie.js");
-const { instituteId } = cookieJS.getCookie();
+const { instituteId } = cookieJS.getCookie()
+import kendo from "@progress/kendo-ui"
 export default {
     data: () => ({
         disPriceLevel: false,
@@ -4775,7 +4767,18 @@ export default {
             forWomen: 0
         },
         // order type
-        dialogOrderType: false
+        dialogOrderType: false,
+        activeOrderType: {},
+        isCategoryPage: false,
+        // category
+        categories: [],
+        cateGroup: [],
+        cateSubGroup: [],
+        // pull data
+        pullAsOf: localStorage.getItem(instituteId + 'commRPullDataAt') != null ? kendo.toString(new Date(parseInt(localStorage.getItem(instituteId + 'commRPullDataAt'))), 'yyyy-MM-dd h:m:s') : '',
+        // line 
+        lineDS: [],
+        selectItem: {}
     }),  
     methods: {
         // guest count
@@ -4827,19 +4830,30 @@ export default {
         },
         //loyalty
         skipLoyalty(){
-            this.dialogLoyalty = true
+            this.dialogLoyalty = false
             this.checkOrderFlow()
         },
         // partner
         skipPartner(){
             this.dialogPartner = false
+            this.dialogOrder = false
             this.checkOrderFlow()
         },
         enterPartner(){
             this.dialogPartner = false
+            this.dialogOrder = false
             this.checkOrderFlow()
         },
-        //
+        // order type
+        skipOrderType(){
+            this.dialogOrderType = false
+            this.checkOrderFlow()
+        },
+        enterOrderType(e){
+            this.activeOrderType = e
+            this.dialogOrderType = false
+            this.checkOrderFlow()
+        },
         hasHistory () { 
             return window.history.length > 2 
         },
@@ -5141,8 +5155,10 @@ export default {
             this.checkOrderFlow()
         },
         startOrderFlow(){
-            this.checkOrderShow(this.g.orderFlow[this.startFlowAt].name)
-            this.startOrderAdd()
+            if(this.startFlowAt <= this.g.orderFlow.length){
+                this.checkOrderShow(this.g.orderFlow[this.startFlowAt].name)
+                this.startOrderAdd()
+            }
         },
         checkOrderShow(func){
             switch(func) {
@@ -5171,11 +5187,41 @@ export default {
         },
         startOrderAdd(){
             this.startFlowAt += 1
-            window.consle
         },
         bindData(){
             this.g = new generalSettingModel(JSON.parse(localStorage.getItem(instituteId + 'commRSetting')))
             this.startOrder()
+            this.bindItems()
+            this.bindCategory()
+        },
+        bindCategory(){
+            this.categories = JSON.parse(localStorage.getItem(instituteId + 'commRCategory'))
+            this.cateGroup = JSON.parse(localStorage.getItem(instituteId + 'commRCateGroup'))
+        },
+        bindItems(){
+            // items
+            let item = JSON.parse(localStorage.getItem(instituteId + 'commRProduct'))
+            let itemPrice = JSON.parse(localStorage.getItem(instituteId + 'commRProductPrice'))
+            this.items = []
+            if(item.length > 0){
+                item.forEach(e => {
+                    let itp = itemPrice.filter((o) => {return o.itemId == e.pk && this.g.defaultPriceLevel == o.priceLevel.id})
+                    if(itp.length > 0){
+                        this.items.push({
+                            id: e.pk,
+                            name: e.name,
+                            saleDescription: e.saleDescription,
+                            price: e.price,
+                            categoryId: e.categoryId,
+                            groupId: e.group.id,
+                            subGroupId: e.subGroup.id,
+                            img: e.thumb != '' ? 'https://s3-ap-southeast-1.amazonaws.com/images.banhji/' + e.thumb : '',
+                            uom: itp,
+                        })
+                    }
+                })
+            }
+            // 
         },
         checkOrderFlow(){
             // check order flow
@@ -5183,6 +5229,32 @@ export default {
             if(this.g.allowOrderFlow == true){
                 this.startOrderFlow()
             }
+        },
+        //category
+        goCategory(){
+            this.isCategoryPage = true
+        },
+        //product
+        addItem(item){
+            // window.console.log(item)
+            this.lineDS.push({
+                itemId: item.id,
+                amount: item.price,
+                price: item.price,
+                qty: 1,
+                description: item.saleDescription ? item.saleDescription : item.name,
+                uom: item.uom,
+                discount: 0,
+                employees: [],
+                modifier: [],
+            })
+        },
+        // line
+        lineChange(){
+            let grid = kendo.jQuery("#lineDS").data("kendoGrid")
+            let selectedItem = grid.dataItem(grid.select())
+            // window.console.log(selectedItem, 'select item')
+            this.selectItem = selectedItem
         }
     },
     components: {
