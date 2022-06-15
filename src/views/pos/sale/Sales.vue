@@ -4537,8 +4537,10 @@
                                                             ></v-progress-linear>
                                                         </template>
                                                         <v-img
+                                                            class="mt-2"
                                                             height="140"
-                                                            style="background-position: top center"
+                                                            aspect-ratio="1.7"
+                                                            contain
                                                             :src="item.img"
                                                         ></v-img>
                                                         <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
@@ -5229,7 +5231,7 @@ export default {
                                 price: e.price,
                                 categoryId: e.categoryId,
                                 category: cate[0],
-                                borderColor: 'border: 2px solid ' + cate[0].color,
+                                borderColor: 'border: 3px solid ' + cate[0].color,
                                 groupId: e.group.id,
                                 subGroupId: e.subGroup.id,
                                 img: e.thumb != '' ? 'https://s3-ap-southeast-1.amazonaws.com/images.banhji/' + e.thumb : './images/default.png',
@@ -5305,6 +5307,10 @@ export default {
 };
 </script>
 <style scoped>
+    .v-image__image--cover {
+        background-size: contain;
+        margin-top: 5px;
+    }
     .v-image__image {
         background-position: top center !important;
     }
