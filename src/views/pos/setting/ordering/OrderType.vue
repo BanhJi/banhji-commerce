@@ -5,7 +5,10 @@
                 <v-row>
                     <v-col sm="12" cols="12" class="py-0">
                         <v-card color="white" class="pl-2 no_border" elevation="0">
-
+                            <LoadingMe
+                                :isLoading="showLoading"
+                                :fullPage="false"
+                                :myLoading="true" />
                             <h2 class="mb-0 font_20">{{ $t('order_type') }}</h2>
                             <v-dialog v-model="dialogm2" max-width="500px">
                                 <template v-slot:activator="{ on }">

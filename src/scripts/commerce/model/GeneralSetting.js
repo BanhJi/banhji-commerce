@@ -37,6 +37,7 @@ export default class GeneralSetting {
         this.paymentOption = data.paymentOption || []
         this.userPinData = data.userPinData || []
         this.orderTypes = data.orderTypes || []
+        this.usedCategory = data.usedCategory || []
         this.createdAt = data.createdAt || new Date().toISOString().substr(0, 10)
     }
 

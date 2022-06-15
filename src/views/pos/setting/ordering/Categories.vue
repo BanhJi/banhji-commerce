@@ -4,20 +4,23 @@
         <v-col sm="12" cols="12" class="grayBg px-6">
             <v-card color="white" class="pa-3 pb-0 no_border" elevation="0">
                 <v-row>
-
+                    <LoadingMe
+                        :isLoading="showLoading"
+                        :fullPage="false"
+                        :myLoading="true" />
                     <v-col sm="12" cols="12" class="py-0">
                         <h2 class="font_20 mb-0">{{$t('categories')}}</h2>
                         <v-row align-content="stretch">
                             <v-col style="min-height: 300px">
-                                <label>{{$t('list')}}</label>
+                                <label>{{$t('category_list')}}</label>
                                 <v-list three-line class="list1 pa-2">
                                     <drop-list :items="items1" @reorder="$event.apply(items1)" @insert="insert1" mode="cut" style="min-height: 300px;">
                                         <template v-slot:item="{item, reorder}">
-                                            <drag :key="item.title" :data="item" @cut="remove(items1, item)">
+                                            <drag :key="item.id" :data="item" @cut="remove(items1, item)">
                                                 <v-list-item style="background-color: #e0e0e0!important; min-height: 0"
                                                                 :style="reorder ? {borderLeft: '2px solid #1976D2', marginLeft:'-2px'} : {}">
                                                     <v-list-item-content>
-                                                        <v-list-item-title v-html="item.title"/>
+                                                        <v-list-item-title v-html="item.name"/>
                                                     </v-list-item-content>
                                                 </v-list-item>
                                                 <v-divider/>
@@ -32,7 +35,7 @@
                                         <template v-slot:feedback="{data}">
                                             <v-skeleton-loader
                                                     type="list-item-avatar-three-line"
-                                                    :key="data.title"
+                                                    :key="data.id"
                                                     style="border-left: 2px solid #1976D2; margin-left: -2px;"
                                             />
                                         </template>
@@ -45,17 +48,17 @@
                                     <drop-list style="min-height: 300px;" class="list2" :items="items2" @reorder="$event.apply(items2)" @insert="insert2"
                                                 mode="cut">
                                         <template v-slot:item="{item,reorder}">
-                                            <drag :key="item.title" class="chip" :data="item" @cut="remove(items2, item)">
-                                                <v-chip :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.title}}</v-chip>
+                                            <drag :key="item.id" class="chip" :data="item" @cut="remove(items2, item)">
+                                                <v-chip :color="reorder ? 'primary' : null" style="border-radius: 0!important;width:100%;">{{item.name}}</v-chip>
                                             </drag>
                                         </template>
                                         <template v-slot:feedback="{data}">
-                                            <div class="chip" :key="data.title">
-                                                <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.title}}</v-chip>
+                                            <div class="chip" :key="data.id">
+                                                <v-chip color="primary" style="border-radius: 0!important;width:100%;">{{data.name}}</v-chip>
                                             </div>
                                         </template>
                                         <template v-slot:inserting-drag-image="{data}">
-                                            <v-chip :key="data.title" style="transform: translate(-50%, -50%)">{{data.title}}
+                                            <v-chip :key="data.id" style="transform: translate(-50%, -50%)">{{data.name}}
                                             </v-chip>
                                         </template>
                                     </drop-list>
@@ -80,6 +83,9 @@
 import {Drag,DropList} from "vue-easy-dnd";
 import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+import kendo from "@progress/kendo-ui"
+const $ = kendo.jQuery
+const categoryHandler = require("@/scripts/categoryHandler")
 export default {
     components: {
         Drag,
@@ -87,28 +93,9 @@ export default {
     },
     data: () => ({
         g: new generalSettingModel({}),
-        items1: [
-            {
-                name: "drink",
-                title: "Drink"
-            },
-            {
-                name: "food",
-                title: "Food"
-            },
-            {
-                name: "vegetable",
-                title: "Vegetable"
-            },
-            {
-                name: "wine",
-                title: "Wine"
-            },
-            {
-                name: "milk",
-                title: "Milk"
-            }
+        itemsDefault: [
         ],
+        items1: [],
         items2: [
         ],
         showLoading: false,
@@ -118,13 +105,14 @@ export default {
         async onSaveClose() {
             window.console.log(this.items2, 'ittmememem')
             this.showLoading = true
-            this.g.orderFlow = this.items2
+            this.g.usedCategory = this.items2
             commerceHandler.settingCreate(new generalSettingModel(this.g)).then(response => {
                 if (response.data.statusCode === 201) {
                     const res = response.data.data
                     this.g = res
                     this.$snotify.success('Update Successfully')
                     this.showLoading = false
+                    this.loadSaleFormContent()
                 }
             }).catch(e => {
                 this.$snotify.error('Something went wrong')
@@ -147,23 +135,46 @@ export default {
             commerceHandler.settingGet().then(res => {
                 this.showLoading = false
                 this.items2 = []
+                this.items1 = []
                 if (res.data.statusCode === 200) {
                     const data = res.data.data
                     let d = data.filter((o) => {return o.type == 'retail'})
                     if (d.length > 0) {
-                        this.g = d[0]
+                        this.g = new generalSettingModel(d[0])
                         this.g.id = d[0].pk
-                        if(this.g.orderFlow.length > 0){
-                            this.items2 = this.g.orderFlow
+                        if(this.g.usedCategory.length > 0){
+                            if(this.g.usedCategory.length > 0){
+                                this.items2 = this.g.usedCategory
+                                let myarray = []
+                                this.items2.forEach(e => {
+                                    myarray.push(e.name)
+                                })
+                                this.itemsDefault.forEach(e => {
+                                    window.console.log(e.name, 'itm1')
+                                    if($.inArray(e.name, myarray) == -1) {
+                                        this.items1.push(e)
+                                    }
+                                })
+                            }
+                        }else{
+                            this.items1 = this.itemsDefault
                         }
                     }
                 }
             })
         },
-    }
-    ,
+        async loadCategory() {
+            this.itemsDefault = []
+            categoryHandler.get().then((res) => {
+                this.itemsDefault = res
+                window.console.log(this.itemsDefault, 'category')
+                this.loadSaleFormContent()
+            });
+        }
+    },
     mounted: async function () {
-        await this.loadSaleFormContent()
+        await this.loadCategory()
+        // await this.loadSaleFormContent()
     }
 }
 ;

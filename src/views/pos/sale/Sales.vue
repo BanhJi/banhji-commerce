@@ -1,5 +1,4 @@
 <template>
-
     <v-container fluid class="sale-container py-0">
         <v-row>
             <v-col sm="12" cols="12" class="pb-0">
@@ -4527,6 +4526,7 @@
                                                         class="pb-0"
                                                         elevation="0"
                                                         max-width="200"
+                                                        :style="item.borderColor"
                                                         @click="addItem(item)"
                                                     >
                                                         <template slot="progress">
@@ -4538,9 +4538,10 @@
                                                         </template>
                                                         <v-img
                                                             height="140"
+                                                            style="background-position: top center"
                                                             :src="item.img"
                                                         ></v-img>
-                                                        <p class="pa-2 name-items mb-0" style="height: 32px;">{{ item.name }}</p>
+                                                        <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
                                                         <v-divider class="mx-4"></v-divider>
                                                         <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
                                                             <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
@@ -4616,11 +4617,13 @@ import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
 import { i18n } from "@/i18n";
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
 const priceLevelHandler = require("@/scripts/priceLevelHandler")
-const categoryHandler = require("@/scripts/categoryHandler")
+// const categoryHandler = require("@/scripts/categoryHandler")
 const groupHandler = require("@/scripts/groupHandler")
+const subGroupHandler = require("@/scripts/subGroupHandler")
 const cookieJS = require("@/cookie.js");
 const { instituteId } = cookieJS.getCookie()
 import kendo from "@progress/kendo-ui"
+const $ = kendo.jQuery
 export default {
     data: () => ({
         disPriceLevel: false,
@@ -4761,9 +4764,9 @@ export default {
         // category
         categories: [],
         cateGroup: [],
-        cateSubGroup: [],
+        subGroup: [],
         // pull data
-        pullAsOf: localStorage.getItem(instituteId + 'commRPullDataAt') != null ? kendo.toString(new Date(parseInt(localStorage.getItem(instituteId + 'commRPullDataAt'))), 'yyyy-MM-dd h:m:s') : '',
+        pullAsOf: localStorage.getItem(instituteId + 'commRPullDataAt') != null ? kendo.toString(new Date(parseInt(localStorage.getItem(instituteId + 'commRPullDataAt'))), 'yyyy-MM-dd h:m tt') : '',
         // line 
         lineDS: [],
         selectItem: {}
@@ -5064,15 +5067,23 @@ export default {
         },
         // Category
         async loadCategory() {
-            categoryHandler.get().then((res) => {
-                localStorage.setItem(instituteId + 'commRCategory', JSON.stringify(res));
-            });
+            // categoryHandler.get().then((res) => {
+            //     localStorage.setItem(instituteId + 'commRCategory', JSON.stringify(res));
+            // });
             const param = {
                 pattern: "grp",
             };
             groupHandler.getAllv2(param).then((res) => {
                 localStorage.setItem(instituteId + 'commRCateGroup', JSON.stringify(res.data.data));
             });
+            let p = {
+                key: {},
+                pattern: "sgr",
+            }
+            subGroupHandler.getv2(p).then((res) => {
+                window.console.log(res.data.data, 'sub group')
+                localStorage.setItem(instituteId + 'commRSubGroup', JSON.stringify(res.data.data));
+            })
             this.loadAllProduct()
         },
         // Items
@@ -5136,7 +5147,10 @@ export default {
         },
         checkPullDataComplete(){
             if(this.loadingSetting && this.loadPrice){
-                this.loadPullData = false
+                setTimeout(() => {
+                    this.loadPullData = false
+                    window.location.reload()
+                }, 5000)
             }
         },
         startOrder(){
@@ -5183,8 +5197,9 @@ export default {
             this.bindCategory()
         },
         bindCategory(){
-            this.categories = JSON.parse(localStorage.getItem(instituteId + 'commRCategory'))
+            this.categories = this.g.usedCategory
             this.cateGroup = JSON.parse(localStorage.getItem(instituteId + 'commRCateGroup'))
+            this.subGroup = JSON.parse(localStorage.getItem(instituteId + 'commRSubGroup'))
         },
         bindItems(){
             // items
@@ -5192,22 +5207,38 @@ export default {
             let itemPrice = JSON.parse(localStorage.getItem(instituteId + 'commRProductPrice'))
             this.items = []
             if(item.length > 0){
+                let myarray = []
+                this.g.usedCategory.forEach(e => {
+                    myarray.push(e.id)
+                })
                 item.forEach(e => {
-                    let itp = itemPrice.filter((o) => {return o.itemId == e.pk && this.g.defaultPriceLevel == o.priceLevel.id})
-                    if(itp.length > 0){
-                        this.items.push({
-                            id: e.pk,
-                            name: e.name,
-                            saleDescription: e.saleDescription,
-                            price: e.price,
-                            categoryId: e.categoryId,
-                            groupId: e.group.id,
-                            subGroupId: e.subGroup.id,
-                            img: e.thumb != '' ? 'https://s3-ap-southeast-1.amazonaws.com/images.banhji/' + e.thumb : '',
-                            uom: itp,
+                    if($.inArray(e.categoryId, myarray) != -1) {
+                        let tod = new Date().getTime()
+                        let itp = itemPrice.filter((o) => {
+                            return o.itemId == e.pk && this.g.defaultPriceLevel == o.priceLevel.id && new Date(o.appliedDate).getTime() <= tod
                         })
+                        let cate = this.g.usedCategory.filter((a) => {
+                            return a.id == e.categoryId
+                        })
+                        if(itp.length > 0){
+                            this.items.push({
+                                id: e.pk,
+                                name: e.name,
+                                sku: e.sku,
+                                saleDescription: e.saleDescription,
+                                price: e.price,
+                                categoryId: e.categoryId,
+                                category: cate[0],
+                                borderColor: 'border: 2px solid ' + cate[0].color,
+                                groupId: e.group.id,
+                                subGroupId: e.subGroup.id,
+                                img: e.thumb != '' ? 'https://s3-ap-southeast-1.amazonaws.com/images.banhji/' + e.thumb : './images/default.png',
+                                uom: itp,
+                            })
+                        }
                     }
                 })
+                window.console.log(this.items, 'item')
             }
             // 
         },
@@ -5274,6 +5305,9 @@ export default {
 };
 </script>
 <style scoped>
+    .v-image__image {
+        background-position: top center !important;
+    }
     .b-cash:before {
         color: #ffffff;
     }   

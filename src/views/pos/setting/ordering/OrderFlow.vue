@@ -4,7 +4,10 @@
         <v-col sm="12" cols="12" class="grayBg px-6">
             <v-card color="white" class="pa-3 pb-0 no_border" elevation="0">
                 <v-row>
-
+                    <LoadingMe
+                        :isLoading="showLoading"
+                        :fullPage="false"
+                        :myLoading="true" />
                     <v-col sm="12" cols="12" class="py-0">
                         <h2 class="font_20 mb-0">{{$t('order_flow')}}</h2>
                         <v-row align-content="stretch">
@@ -80,6 +83,8 @@
 import {Drag,DropList} from "vue-easy-dnd";
 import generalSettingModel from "@/scripts/commerce/model/GeneralSetting"
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+import kendo from "@progress/kendo-ui"
+const $ = kendo.jQuery
 export default {
     components: {
         Drag,
@@ -87,7 +92,7 @@ export default {
     },
     data: () => ({
         g: new generalSettingModel({}),
-        items1: [
+        itemsDefault: [
             {
                 name: "pin",
                 title: "PIN"
@@ -109,6 +114,7 @@ export default {
                 title: "Partner"
             }
         ],
+        items1: [],
         items2: [
         ],
         showLoading: false,
@@ -125,6 +131,7 @@ export default {
                     this.g = res
                     this.$snotify.success('Update Successfully')
                     this.showLoading = false
+                    this.loadSaleFormContent()
                 }
             }).catch(e => {
                 this.$snotify.error('Something went wrong')
@@ -154,7 +161,21 @@ export default {
                         this.g = d[0]
                         this.g.id = d[0].pk
                         if(this.g.orderFlow.length > 0){
-                            this.items2 = this.g.orderFlow
+                            if(this.g.orderFlow.length > 0){
+                                this.items2 = this.g.orderFlow
+                                let myarray = []
+                                this.items2.forEach(e => {
+                                    myarray.push(e.name)
+                                })
+                                this.itemsDefault.forEach(e => {
+                                    window.console.log(e.name, 'itm1')
+                                    if($.inArray(e.name, myarray) == -1) {
+                                        this.items1.push(e)
+                                    }
+                                })
+                            }
+                        }else{
+                            this.items1 = this.itemsDefault
                         }
                     }
                 }
