@@ -44,7 +44,7 @@
                                             
                                             <div class="v-list-item v-list-item-left  d-block mr-0 pr-0">
                                                 
-                                                <v-col cols="12">
+                                                <v-col cols="12" class="py-0">
                                                     <v-row>
                                                         <v-text-field
                                                         class="pl-2"
@@ -75,6 +75,10 @@
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
                                                 <h2 class="pl-2 border-b">123456789</h2>
+                                            </div>
+                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                <span class="pl-2 dark_grey">{{$t('cashier_name')}}</span><br>
+                                                <h2 class="pl-2 border-b">Rothany sleep</h2>
                                             </div>
                                         <v-divider />
 
@@ -4505,7 +4509,7 @@
                                 <v-col sm="12" cols="12" class="pa-0">
                                     <v-card flat height="98vh" class="card-item" style=""> 
                                         <v-card-text class="py-0">
-                                            <v-row>
+                                            <v-row class="px-6" style=" margin: auto;">
                                                 <v-col sm="3" cols="6" class="pa-1 py-0 pr-0">
                                                     <v-select class="mt-1 rounded-0 "
                                                             clearable
@@ -4526,7 +4530,7 @@
                                                     :fullPage="false"
                                                     :myLoading="true" />
                                                 <!-- item -->
-                                                <v-row v-show="showItem">
+                                                <div v-show="showItem" style="width: 100%;display: contents; text-align: center;">
                                                     <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in items" :key="item.id">
                                                         <v-card
                                                             class="pb-0"
@@ -4556,9 +4560,9 @@
                                                             </v-card-text>
                                                         </v-card>
                                                     </v-col>
-                                                </v-row>
+                                                </div>
                                                 <!-- category -->
-                                                <v-row v-show="showCatePage">
+                                                <v-row v-show="showCatePage" style="width: 100%;display: contents; text-align: center;">
                                                     <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in categories" :key="item.id">
                                                         <v-card
                                                             class="pb-0"
@@ -4590,7 +4594,7 @@
                                                     </v-col>
                                                 </v-row>
                                                 <!-- group -->
-                                                <v-row v-show="showGroupPage">
+                                                <v-row v-show="showGroupPage" style="width: 100%;display: contents; text-align: center;">
                                                     <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in cateGroup" :key="item.id">
                                                         <v-card
                                                             class="pb-0"
