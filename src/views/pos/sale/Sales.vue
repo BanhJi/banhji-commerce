@@ -4521,36 +4521,105 @@
                                                         append-icon="mdi-barcode-scan"
                                                     ></v-text-field>
                                                 </v-col>
-                                                <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in items" :key="item.id">
-                                                    <v-card
-                                                        class="pb-0"
-                                                        elevation="0"
-                                                        max-width="200"
-                                                        :style="item.borderColor"
-                                                        @click="addItem(item)"
-                                                    >
-                                                        <template slot="progress">
-                                                            <v-progress-linear
-                                                                color="deep-purple"
-                                                                height="10"
-                                                                indeterminate
-                                                            ></v-progress-linear>
-                                                        </template>
-                                                        <v-img
-                                                            class="mt-2"
-                                                            height="140"
-                                                            aspect-ratio="1.7"
-                                                            contain
-                                                            :src="item.img"
-                                                        ></v-img>
-                                                        <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
-                                                        <v-divider class="mx-4"></v-divider>
-                                                        <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
-                                                            <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
-                                                        </v-card-text>
-                                                    </v-card>
-                                                </v-col>
-
+                                                <LoadingMe
+                                                    :isLoading="loadingItmBlock"
+                                                    :fullPage="false"
+                                                    :myLoading="true" />
+                                                <!-- item -->
+                                                <v-row v-show="showItem">
+                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in items" :key="item.id">
+                                                        <v-card
+                                                            class="pb-0"
+                                                            elevation="0"
+                                                            max-width="200"
+                                                            :style="item.borderColor"
+                                                            @click="addItem(item)"
+                                                        >
+                                                            <template slot="progress">
+                                                                <v-progress-linear
+                                                                    color="deep-purple"
+                                                                    height="10"
+                                                                    indeterminate
+                                                                ></v-progress-linear>
+                                                            </template>
+                                                            <v-img
+                                                                class="mt-2"
+                                                                height="140"
+                                                                aspect-ratio="1.7"
+                                                                contain
+                                                                :src="item.img"
+                                                            ></v-img>
+                                                            <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
+                                                            <v-divider class="mx-4"></v-divider>
+                                                            <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
+                                                                <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-col>
+                                                </v-row>
+                                                <!-- category -->
+                                                <v-row v-show="showCatePage">
+                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in categories" :key="item.id">
+                                                        <v-card
+                                                            class="pb-0"
+                                                            elevation="0"
+                                                            max-width="200"
+                                                            :style="item.borderColor"
+                                                            @click="searchItemByCate(item.id)"
+                                                        >
+                                                            <template slot="progress">
+                                                                <v-progress-linear
+                                                                    color="deep-purple"
+                                                                    height="10"
+                                                                    indeterminate
+                                                                ></v-progress-linear>
+                                                            </template>
+                                                            <v-img
+                                                                class="mt-2"
+                                                                height="140"
+                                                                aspect-ratio="1.7"
+                                                                contain
+                                                                :src="item.img"
+                                                            ></v-img>
+                                                            <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
+                                                            <v-divider class="mx-4"></v-divider>
+                                                            <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
+                                                                <!--h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2-->
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-col>
+                                                </v-row>
+                                                <!-- group -->
+                                                <v-row v-show="showGroupPage">
+                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in cateGroup" :key="item.id">
+                                                        <v-card
+                                                            class="pb-0"
+                                                            elevation="0"
+                                                            max-width="200"
+                                                            :style="item.borderColor"
+                                                        >
+                                                            <template slot="progress">
+                                                                <v-progress-linear
+                                                                    color="deep-purple"
+                                                                    height="10"
+                                                                    indeterminate
+                                                                ></v-progress-linear>
+                                                            </template>
+                                                            <v-img
+                                                                class="mt-2"
+                                                                height="140"
+                                                                aspect-ratio="1.7"
+                                                                contain
+                                                                :src="item.img"
+                                                            ></v-img>
+                                                            <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
+                                                            <v-divider class="mx-4"></v-divider>
+                                                            <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
+                                                                <!--h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2-->
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-col>
+                                                </v-row>
                                             </v-row>
                                         </v-card-text>
                                     </v-card>
@@ -4566,7 +4635,7 @@
                                     />
                                 </v-btn>
                                 
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="bindItems" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-product" />
                                         <h6 class="letter_spacing">{{$t('items')}}</h6>
@@ -4585,7 +4654,7 @@
                                         <h6 class="letter_spacing">{{$t('categories')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="goGroup" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-dimensions" />
                                         <h6 class="letter_spacing">{{$t('group')}}</h6>
@@ -4767,11 +4836,16 @@ export default {
         categories: [],
         cateGroup: [],
         subGroup: [],
+        showCatePage: false,
+        showItem: true,
+        showGroupPage: false,
+        showSupGroupPage: false,
         // pull data
         pullAsOf: localStorage.getItem(instituteId + 'commRPullDataAt') != null ? kendo.toString(new Date(parseInt(localStorage.getItem(instituteId + 'commRPullDataAt'))), 'yyyy-MM-dd h:m tt') : '',
         // line 
         lineDS: [],
-        selectItem: {}
+        selectItem: {},
+        loadingItmBlock: false
     }),  
     methods: {
         // guest count
@@ -5067,7 +5141,25 @@ export default {
                 }
             })
         },
+        isshowItem(){
+            this.showCatePage = false
+            this.showGroupPage = false
+            this.showSupGroupPage = false
+            this.showItem = true
+        },
         // Category
+        searchItemByCate(cateId){
+            window.console.log(cateId)
+            this.bindItems()
+            this.loadingItmBlock = true
+            setTimeout(() => {
+                let itm = this.items.filter((o) => { return o.categoryId == cateId })
+                this.items = itm
+                this.loadingItmBlock = false
+                this.isshowItem()
+            }, 500)
+            
+        },
         async loadCategory() {
             // categoryHandler.get().then((res) => {
             //     localStorage.setItem(instituteId + 'commRCategory', JSON.stringify(res));
@@ -5087,6 +5179,28 @@ export default {
                 localStorage.setItem(instituteId + 'commRSubGroup', JSON.stringify(res.data.data));
             })
             this.loadAllProduct()
+        },
+        goCategory(){
+            this.categories = this.g.usedCategory
+            window.console.log(this.categories, 'go category')
+            $.each(this.categories, function(i,v){
+                window.console.log(v, 'border: 3px solid ' + v.color)
+                v.borderColor = 'border: 3px solid ' + v.color
+            })
+            this.showCatePage = true
+            this.showGroupPage = false
+            this.showSupGroupPage = false
+            this.showItem = false
+        },
+        goGroup(){
+            window.console.log(this.cateGroup, 'go group')
+            $.each(this.cateGroup, function(i,v){
+                v.borderColor = 'border: 3px solid ' + v.color
+            })
+            this.showCatePage = false
+            this.showGroupPage = true
+            this.showSupGroupPage = false
+            this.showItem = false
         },
         // Items
         async loadAllProduct(){
@@ -5242,7 +5356,7 @@ export default {
                 })
                 window.console.log(this.items, 'item')
             }
-            // 
+            this.isshowItem()
         },
         checkOrderFlow(){
             // check order flow
@@ -5250,10 +5364,6 @@ export default {
             if(this.g.allowOrderFlow == true){
                 this.startOrderFlow()
             }
-        },
-        //category
-        goCategory(){
-            this.isCategoryPage = true
         },
         //product
         addItem(item){
