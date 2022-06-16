@@ -39,6 +39,8 @@ export default class GeneralSetting {
         this.orderTypes = data.orderTypes || []
         this.usedCategory = data.usedCategory || []
         this.otherFunction = data.otherFunction || []
+        this.defaultCustomer = data.defaultCustomer || {}
+        this.allowSelectCustomer = data.allowSelectCustomer || false
         this.createdAt = data.createdAt || new Date().toISOString().substr(0, 10)
     }
 

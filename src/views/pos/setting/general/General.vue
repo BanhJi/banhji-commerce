@@ -287,6 +287,32 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="text-bold">{{ $t('default_customer') }}</td>
+                                    <td>
+                                        <dropdownlist
+                                            :data-items="customerList"
+                                            @change="onChange"
+                                            :value="g.defaultCustomer"
+                                            :data-item-key="dataItemKey"
+                                            :text-field="textField"
+                                            :default-item="defaultItem"
+                                            :filterable="true"
+                                            :required="true"
+                                            :loading="loading"
+                                            :valid="validCustomer"
+                                            @filterchange="onFilterChange"
+                                        >
+                                        </dropdownlist>
+                                    </td>
+                                    <td style="" class="primary--text align-center justify-center  text-bold">
+                                        <v-switch
+                                            v-model="g.allowSelectCustomer"
+                                            color="primary"
+                                            :label="g.allowSelectCustomer ? 'ON' : 'LOCK'"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="text-bold">{{ $t('price_level') }}</td>
                                     <td>
                                         <v-select 
@@ -508,11 +534,28 @@ const categoryHandler = require("@/scripts/categoryHandler")
 const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
 const priceLevelHandler = require("@/scripts/priceLevelHandler")
 const settingsHandler = require("@/scripts/settingsHandler")
+const defaultItem = { [textField]: "Select customer...", [keyField]: null };
+const SECOND_DELAY = 1000;
+const customerHandler = require("@/scripts/customerHandler")
+const textField = "name"
+const keyField = "id"
+const emptyItem = { [textField]: "loading ..." }
+import { DropDownList } from "@progress/kendo-vue-dropdowns";
+import CustomerModel from "@/scripts/model/Customer";
 export default {
     components: {
         LoadingMe: () => import(`@/components/Loading`),
+        dropdownlist: DropDownList,
     },
     data: () => ({
+        customer: new CustomerModel({}),
+        filter: "",
+        cusBaseUrl: customerHandler.search(),
+        loading: false,
+        textField: "name",
+        dataItemKey: "id",
+        defaultItem: defaultItem,
+        customerList: [],
         showLoading: false,
         loadingAlert: false,
         loadingColorAlert: '',
@@ -565,8 +608,90 @@ export default {
         ]
     }),
     methods: {
+        onChange(event) {
+            const value = event.value;
+            if (value && value[textField] === emptyItem[textField]) {
+                return;
+            }
+            const id = value.id || "";
+            if (id !== "") {
+                this.loadCustomerDetail(id);
+            }
+        },
+        async loadCustomerDetail(customerId) {
+            try {
+                const strFilter = "?id=" + customerId;
+                customerHandler.customerDetail(strFilter).then((res) => {
+                if (res.data.statusCode === 200) {
+                    const lines = res.data.data || [];
+                    lines.forEach((item) => {
+                        this.customer = {
+                            id: item.id,
+                            type: item.type || {},
+                            isDonor: item.isDonor || false,
+                            crn: item.crn || "",
+                            customerType: item.customerType || {},
+                            number: item.number || "",
+                            numberName: (item.number || "") + " - " + (item.name || ""),
+                            name: item.name || "",
+                            connectId: item.connectId || "",
+                            gender: item.gender || "",
+                            alternativeName: item.alternativeName || "",
+                            taxId: item.taxId || "",
+                            consumerId: item.consumerId || "",
+                            registeredDate: item.registeredDate || "",
+                            customerGroup: item.customerGroup,
+                            receivableAcc: item.receivableAcc,
+                            saleDepositAcc: item.saleDepositAcc,
+                            saleDiscountAcc: item.saleDiscountAcc,
+                            priceLevel: item.priceLevel,
+                            billPayment: item.billPayment,
+                            cashPayment: item.cashPayment || {},
+                            qrPayment: item.qrPayment || {},
+                            cardPayment: item.cardPayment || {},
+                            nature: item.nature,
+                            image: item.image || {},
+                            noteOnInvoice: item.noteOnInvoice || "",
+                            billingAddress: item.billingAddress,
+                            contactPerson: item.contactPerson,
+                            deliveryAddress: item.deliveryAddress,
+                            email: item.email,
+                            baseCurrency: item.baseCurrency,
+                            decimalFormat: item.decimalFormat,
+                        };
+                    });
+                    window.console.log("this.customer", this.customer);
+                }
+                });
+            } catch (e) {
+                window.console.log("Error on customer detail", e);
+            }
+        },
+        onFilterChange(event) {
+            const filter = event.filter.value;
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                this.requestData(0, filter, this.cusBaseUrl);
+                this.filter = filter;
+                this.loading = false;
+            }, SECOND_DELAY);
+            this.loading = true;
+        },
+        requestData(skip, filter, baseUrl) {
+            const url = baseUrl + `?filter=${filter}`;
+            this.requestStarted = true;
+            fetch(url)
+                .then((response) => {
+                return response.json();
+                })
+                .then(this.afterFetch);
+        },
+        afterFetch(json) {
+            this.customerList = json.data;
+        },
         async onSaveClose() {
             this.showLoading = true
+            this.g.defaultCustomer = this.customer
             commerceHandler.settingCreate(new generalSettingModel(this.g)).then(response => {
                 if (response.data.statusCode === 201) {
                     const res = response.data.data
@@ -591,6 +716,9 @@ export default {
                     if (d.length > 0) {
                         this.g = d[0]
                         this.g.id = d[0].pk
+                        if(Object.keys(this.g.defaultCustomer).length > 0){
+                            this.customer = this.g.defaultCustomer
+                        }
                     }
                 }
             })
@@ -616,13 +744,19 @@ export default {
                 }
             })
         },
-    }
-    ,
+    },
+    computed: {
+        validCustomer: function () {
+            return this.customer.id !== undefined && this.customer.id !== null;
+        }
+    },
     mounted: async function () {
+        await this.requestData(0, this.filter, this.cusBaseUrl);
         await this.loadSaleFormContent()
         await this.loadCategory()
         await this.loadPriceLevel()
         await this.loadSegment()
+        
     }
 }
 ;

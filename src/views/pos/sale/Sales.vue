@@ -42,7 +42,7 @@
                                         
                                         <div class="block_menu" style="background-color: rgb(248 248 249);">
                                             
-                                            <div class="v-list-item v-list-item-left  d-block mr-0 pr-0">
+                                            <div v-if="g.allowSelectCustomer" class="v-list-item v-list-item-left  d-block mr-0 pr-0">
                                                 
                                                 <v-col cols="12" class="py-0">
                                                     <v-row>
@@ -62,23 +62,23 @@
                                             
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
-                                                <h2 class="pl-2">chouen loy</h2>
+                                                <h2 class="pl-2">{{customer.name}}</h2>
                                             </div>
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('points')}}</span><br>
-                                                <h2 class="pl-2 border-b">1000</h2>
+                                                <h2 class="pl-2 border-b">{{customerPoint}}</h2>
                                             </div>
-                                            <div class="v-list-item v-list-item-left  d-block mr-0">
+                                            <!-- <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('loyalty_program')}}</span><br>
                                                 <h2 class="pl-2 border-b">10%</h2>
                                             </div>
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
                                                 <h2 class="pl-2 border-b">123456789</h2>
-                                            </div>
+                                            </div> -->
                                             <div class="v-list-item v-list-item-left  d-block mr-0">
                                                 <span class="pl-2 dark_grey">{{$t('cashier_name')}}</span><br>
-                                                <h2 class="pl-2 border-b">Rothany sleep</h2>
+                                                <h2 class="pl-2 border-b">{{activePin.name}}</h2>
                                             </div>
                                         <v-divider />
 
@@ -237,11 +237,11 @@
                                                 <v-row>
                                                     <v-col md="6" cols="12" class="pr-0">
                                                         <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
-                                                        <small class="pl-2">{{activePin.name}}</small>
+                                                        <small class="pl-2">{{session.name}}</small>
                                                     </v-col>
                                                     <v-col md="6" cols="12" class="px-0">
                                                         <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
-                                                        <small class="pl-2">May 25 2022</small>
+                                                        <small class="pl-2">{{session.startDate}}</small>
                                                     </v-col>
                                                 </v-row>
                                             </div>
@@ -4759,6 +4759,7 @@ const saleFormContentHandler = require("@/scripts/saleFormContentHandler")
 import InvoiceModel from "@/scripts/invoice/model/Invoice"
 const invoiceModel = new InvoiceModel({})
 const accountHandler = require("@/scripts/handler/accounting/account")
+import CustomerModel from "@/scripts/model/Customer"
 export default {
     data: () => ({
         disPriceLevel: false,
@@ -4938,6 +4939,14 @@ export default {
         jRaw: [],
         coa: [],
         receivableAcc: [],
+        //session
+        session: {
+            name: '',
+            startDate: kendo.toString(new Date(), 'yyyy-MM-dd')
+        },
+        //customer
+        customerPoint: 0,
+        customer: new CustomerModel({}),
     }),  
     methods: {
         // guest count
@@ -5126,13 +5135,15 @@ export default {
             this.merge2.splice(event.index, 0, event.data);
         },
         // data
-        async loadPriceLevel() {
+        async loadPriceLevel(num) {
             this.showLoading = true;
             const strFilter = "?nature=sale";
             priceLevelHandler.get(strFilter).then((res) => {
                 this.showLoading = false;
                 this.priceLevels = res;
-                this.loadProductPriceLevel()
+                if(num == 1){
+                    this.loadProductPriceLevel()
+                }
             });
         },
         loadProductPriceLevel(){
@@ -6543,7 +6554,7 @@ export default {
             localStorage.clear();
             await this.loadSetting()
             await this.loadCategory()
-            await this.loadPriceLevel()
+            await this.loadPriceLevel(1)
             localStorage.setItem(instituteId + 'commRActiveDate', new Date().toISOString().substr(0, 10))
             localStorage.setItem(instituteId + 'commRPullDataAt', new Date().getTime())
         },
@@ -6594,9 +6605,62 @@ export default {
         },
         bindData(){
             this.g = new generalSettingModel(JSON.parse(localStorage.getItem(instituteId + 'commRSetting')))
+            this.customer = new CustomerModel(this.g.defaultCustomer)
+            this.checkOtherFunction()
             this.startOrder()
             this.bindItems()
             this.bindCategory()
+            this.loadPriceLevel(2)
+        },
+        checkOtherFunction(){
+            this.g.otherFunction.forEach(e => {
+                switch(e.id) {
+                    case 'reward':
+                        this.func.reward = true
+                        break;
+                    case 'promotion':
+                        this.func.promotion = true
+                        break;
+                    case 'parksale':
+                        this.func.parksale = true
+                        break;
+                    case 'invoice':
+                        this.func.invoice = true
+                        break;
+                    case 'note':
+                        this.func.note = true
+                        break;
+                    case 'delivery':
+                        this.func.delivery = true
+                        break;
+                    case 'resetOrder':
+                        this.func.resetOrder = true
+                        break;
+                    case 'splitInv':
+                        this.func.splitInv = true
+                        break;
+                    case 'clearOrder':
+                        this.func.clearOrder = true
+                        break;
+                    case 'saleUnit':
+                        this.func.saleUnit = true
+                        break;
+                    case 'countGuest':
+                        this.func.countGuest = true
+                        break;
+                    case 'mergeInv':
+                        this.func.mergeInv = true
+                        break;
+                    case 'orderList':
+                        this.func.orderList = true
+                        break;
+                    case 'orderType':
+                        this.func.orderType = true
+                        break;
+                    default:
+                        break;
+                }
+            })
         },
         bindCategory(){
             this.categories = this.g.usedCategory
