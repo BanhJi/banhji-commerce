@@ -298,11 +298,25 @@
                                                         :data-source-ref="'lineDS'"
                                                         :editable="false"
                                                         :groupable="false"
-                                                        :column-menu="true"
+                                                        :column-menu="false"
                                                         :noRecords="true"
                                                         :change="lineChange"
                                                         :selectable="true"
                                                         :scrollable-virtual="true">
+                                                        <kendo-grid-column
+                                                            :command="{
+                                                                iconClass: 'k-icon k-i-trash',
+                                                                text: ' ',
+                                                                click: removeRow,
+                                                                className: 'btn-plus isEditable',
+                                                            }"
+                                                            :title="''"
+                                                            :width="63"
+                                                            :headerAttributes="{
+                                                                style:
+                                                                'text-align: left; background-color: #EDF1F5',
+                                                            }"
+                                                        />
                                                         <kendo-grid-column
                                                             :field="'description'"
                                                             :title="$t('description')"
@@ -312,21 +326,28 @@
                                                             :field="'qty'"
                                                             :title="$t('qty')"
                                                             :width="100"
+                                                            :attributes="{ style: 'text-align: center' }"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
                                                         <kendo-grid-column
                                                             :field="'price'"
                                                             :title="$t('price')"
                                                             :width="100"
+                                                            :attributes="{ style: 'text-align: right' }"
+                                                            :template="'<span>#=kendo.toString(price || 0, decimalFormat)#</span>'"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
                                                         <kendo-grid-column
-                                                            :field="'discount'"
+                                                            :field="'discountAmount'"
                                                             :title="`Dis.`"
+                                                            :template="'<span>#=kendo.toString(discountAmount || 0, decimalFormat)#</span>'"
                                                             :width="100"
+                                                            :attributes="{ style: 'text-align: right' }"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
                                                         <kendo-grid-column
                                                             :field="'amount'"
                                                             :title="$t('amount')"
+                                                            :template="'<span>#=kendo.toString(amount || 0, decimalFormat)#</span>'"
                                                             :width="100"
+                                                            :attributes="{ style: 'text-align: right' }"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
                                                     </kendo-grid>
                                                 </template>
@@ -595,7 +616,7 @@
                                         </v-row>
                                     </template>
                                 </div>
-                                 <!-- Pin pop up -->
+                                <!-- Pin pop up -->
                                 <div sm="3" cols="12" class="ml-8">
                                     <template>
                                         <v-row>
@@ -638,28 +659,26 @@
                                         </v-row>
                                     </template> 
                                 </div>
-
                                 <div sm="12" cols="12" class="pt-0">
                                     <v-row class="px-4">
                                         <v-col sm="12" cols="12" class="py-0" style="border-top: 1px solid lightblue;">
                                             <v-row>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
                                                     <small class="dark_grey">{{$t('sub_total')}}</small>
-                                                    <small class="float-right primary--text">{{$t('00000')}}</small>
+                                                    <small class="float-right primary--text">{{numberFormat(invoice.subTotal)}}</small>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
                                                     <small class="dark_grey">{{$t('discount')}}</small>
-                                                    <small class="float-right primary--text">{{$t('00000')}}</small>
+                                                    <small class="float-right primary--text">{{numberFormat(invoice.discountTotal)}}</small>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
                                                     <small class="dark_grey">{{$t('reward')}}</small>
-                                                    <small class="float-right primary--text">{{$t('00000')}}</small>
+                                                    <small class="float-right primary--text">{{numberFormat(pointAmount)}}</small>
                                                 </v-col>
                                                 <v-col md="3" sm="3" col="3" class="pb-0">
                                                     <small class="dark_grey">{{$t('total_tax')}}</small>
-                                                    <small class="float-right primary--text">{{$t('00000')}}</small>
+                                                    <small class="float-right primary--text">{{numberFormat(invoice.totalTaxAmount)}}</small>
                                                 </v-col>
-
                                             </v-row>
                                             <v-row class="mt-0">
                                                 
@@ -670,16 +689,15 @@
                                                 </v-col>
                                                 <v-col md="8" sm="8" col="8" class="pa-2 px-0 py-0">
                                                     <div class="ma-1 ml-0 pr-2" style="background-color: #c7c6c6;text-align: right;">
-                                                        <h2 class="text-white font_20 mb-0">0</h2>
+                                                        <h2 class="text-white font_20 mb-0">{{numberFormat(invoice.total)}}</h2>
                                                     </div>
                                                 </v-col>
                                             </v-row>
                                         </v-col>
                                         <v-col sm="12" cols="12" class="pl-4 py-0">
                                             <v-row>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    
-                                                    <!-- reward -->
+                                                <!-- reward -->
+                                                <v-col md="3" v-show="func.reward" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogReward"
@@ -947,8 +965,8 @@
                                                         </v-row>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <!-- promotion -->
+                                                <!-- promotion -->
+                                                <v-col md="3" v-show="func.promotion" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogPromotion"
@@ -1063,8 +1081,8 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <!-- note -->
+                                                <!-- note -->
+                                                <v-col md="3" v-show="func.note" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogNote"
@@ -1113,7 +1131,8 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- delivery -->
+                                                <v-col md="3" v-show="func.delivery" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogDelivery"
@@ -1195,26 +1214,29 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- parksale -->
+                                                <v-col md="3" v-show="func.parksale" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
                                                         <v-icon left class="mr-0">mdi-parking</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('parksale')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- invoice -->
+                                                <v-col md="3" v-show="func.invoice" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style="">
                                                         <v-icon left class="mr-0">mdi-receipt</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('invoice')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- reset order -->
+                                                <v-col md="3" v-show="func.resetOrder" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
                                                         <v-icon left class="mr-0">mdi-autorenew</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('reset_order')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <!-- OrderType -->
+                                                <!-- OrderType -->
+                                                <v-col md="3" v-show="func.orderType" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogOrderType"
@@ -1274,7 +1296,8 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- split inv-->
+                                                <v-col md="3" v-show="func.splitInv" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogSplit"
@@ -1372,22 +1395,24 @@
                                                                 </v-card-actions>
                                                             </v-card>
                                                         </v-dialog>
-                                                    </template> 
-                                                    
+                                                    </template>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- clear order -->
+                                                <v-col md="3" v-show="func.clearOrder" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
                                                         <v-icon left class="mr-0">mdi-archive-outline</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('clear_order')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- Sale Unit-->
+                                                <v-col md="3" v-show="func.saleUnit" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
                                                         <v-icon left class="mr-0">mdi-line-scan</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('sale_unit')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- count guest-->
+                                                <v-col md="3" v-show="func.countGuest" sm="3" col="3" class="pa-1">
                                                      <template>
                                                         <v-dialog
                                                             v-model="dialogCountGuest"
@@ -1547,8 +1572,8 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    
+                                                <!-- merge inv-->
+                                                <v-col md="3" v-show="func.mergeInv" sm="3" col="3" class="pa-1">
                                                     <template>
                                                         <v-dialog
                                                             v-model="dialogMerge"
@@ -1558,7 +1583,7 @@
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
                                                                     <v-icon left class="mr-0">mdi-arrow-collapse-all</v-icon>
-                                                                     <span class="text-bold letter_spacing">{{$t('merge_inoice')}}</span>
+                                                                     <span class="text-bold letter_spacing">{{$t('merge_inv')}}</span>
                                                                 </v-btn>
                                                             </template>
                                                             <v-card>
@@ -1648,22 +1673,15 @@
                                                         </v-dialog>
                                                     </template> 
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
+                                                <!-- order list-->
+                                                <v-col md="3" v-show="func.orderList" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
                                                         <v-icon left class="mr-0">mdi-ballot-outline</v-icon>
                                                          <span class="text-bold letter_spacing">{{$t('order_list')}}</span>
                                                     </v-btn>
                                                 </v-col>
-                                                <v-col md="3" sm="3" col="3" class="pa-1">
-                                                    <v-btn color=third class="white--text rounded-0 btn-funtion" style=""> 
-                                                        <v-icon left class="mr-0">mdi-layers-outline</v-icon>
-                                                         <span class="text-bold letter_spacing">{{$t('order_type')}}</span>
-                                                    </v-btn>
-                                                </v-col>
-                                            </v-row>  
-                                            
+                                            </v-row>
                                         </v-col>
-                                                
                                         <v-col sm="12" cols="12" class="py-0"> 
                                             <v-row>
                                                 <!-- payments -->
@@ -4555,7 +4573,7 @@
                                                             ></v-img>
                                                             <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
                                                             <v-divider class="mx-4"></v-divider>
-                                                            <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
+                                                            <v-card-text class="py-0 text-white" :style="'background-color: #898c8f;text-align: center;border-radius: 0;' + item.titleColor">
                                                                 <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
                                                             </v-card-text>
                                                         </v-card>
@@ -4601,6 +4619,39 @@
                                                             elevation="0"
                                                             max-width="200"
                                                             :style="item.borderColor"
+                                                            @click="searchItemByGroup(item.id)"
+                                                        >
+                                                            <template slot="progress">
+                                                                <v-progress-linear
+                                                                    color="deep-purple"
+                                                                    height="10"
+                                                                    indeterminate
+                                                                ></v-progress-linear>
+                                                            </template>
+                                                            <v-img
+                                                                class="mt-2"
+                                                                height="140"
+                                                                aspect-ratio="1.7"
+                                                                contain
+                                                                :src="item.img"
+                                                            ></v-img>
+                                                            <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
+                                                            <v-divider class="mx-4"></v-divider>
+                                                            <v-card-text class="py-0 text-white" style="background-color: #898c8f;text-align: center;">
+                                                                <!--h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2-->
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-col>
+                                                </v-row>
+                                                <!-- sub group -->
+                                                <v-row v-show="showSupGroupPage" style="width: 100%;display: contents; text-align: center;">
+                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in subGroup" :key="item.id">
+                                                        <v-card
+                                                            class="pb-0"
+                                                            elevation="0"
+                                                            max-width="200"
+                                                            :style="item.borderColor"
+                                                            @click="searchItemBySubGroup(item.id)"
                                                         >
                                                             <template slot="progress">
                                                                 <v-progress-linear
@@ -4638,14 +4689,13 @@
                                         :class="[fullscreen ? 'b-mini' : 'b-full']"
                                     />
                                 </v-btn>
-                                
                                 <v-btn @click="bindItems" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-product" />
                                         <h6 class="letter_spacing">{{$t('items')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="itemFavorite" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-favorite" />
                                         <h6 class="letter_spacing">{{$t('favorite')}}</h6>
@@ -4664,7 +4714,7 @@
                                         <h6 class="letter_spacing">{{$t('group')}}</h6>
                                     </div>
                                 </v-btn>
-                                <v-btn class=" rounded-0  btn-right" style="">
+                                <v-btn @click="goSubGroup" class=" rounded-0  btn-right" style="">
                                     <div class="d-block">
                                         <i  class=" b-specific" />
                                         <h6 class="letter_spacing">{{$t('sub_group')}}</h6>
@@ -4699,6 +4749,16 @@ const cookieJS = require("@/cookie.js");
 const { instituteId } = cookieJS.getCookie()
 import kendo from "@progress/kendo-ui"
 const $ = kendo.jQuery
+// item line
+const itemLinePrefix = "lin-"
+import ItemLineModel from "@/scripts/invoice/model/ItemLine"
+import { uuid } from "vue-uuid"
+import SaleFormContentModel from "@/scripts/model/SaleFormContent"
+const saleFormContentModel = new SaleFormContentModel({})
+const saleFormContentHandler = require("@/scripts/saleFormContentHandler")
+import InvoiceModel from "@/scripts/invoice/model/Invoice"
+const invoiceModel = new InvoiceModel({})
+const accountHandler = require("@/scripts/handler/accounting/account")
 export default {
     data: () => ({
         disPriceLevel: false,
@@ -4825,6 +4885,23 @@ export default {
             name: '',
             pinCode: ''
         },
+        // other function
+        func: {
+            reward: false,
+            promotion: false,
+            parksale: false,
+            invoice: false,
+            note: false,
+            delivery: false,
+            resetOrder: false,
+            splitInv: false,
+            clearOrder: false,
+            saleUnit: false,
+            countGuest: false,
+            mergeInv: false,
+            orderList: false,
+            orderType: false, 
+        },
         // guest
         guestCount: {
             localMen: 0,
@@ -4849,7 +4926,18 @@ export default {
         // line 
         lineDS: [],
         selectItem: {},
-        loadingItmBlock: false
+        loadingItmBlock: false,
+        // 
+        itemLine: new ItemLineModel({}),
+        saleFormContent: saleFormContentModel,
+        invoice: invoiceModel,
+        taxListTotal: [],
+        customerOtherChargeItem: [],
+        mOtherCharge: [],
+        pointAmount: 0,
+        jRaw: [],
+        coa: [],
+        receivableAcc: [],
     }),  
     methods: {
         // guest count
@@ -4985,7 +5073,7 @@ export default {
             this.isHide = !this.isHide;
         },
         toggle() {
-        this.$fullscreen.toggle(document.getElementsByTagName("body")[0], {
+            this.$fullscreen.toggle(document.getElementsByTagName("body")[0], {
                 wrap: false,
                 callback: this.fullscreenChange,
             });
@@ -5158,9 +5246,14 @@ export default {
             this.loadingItmBlock = true
             setTimeout(() => {
                 let itm = this.items.filter((o) => { return o.categoryId == cateId })
-                this.items = itm
-                this.loadingItmBlock = false
-                this.isshowItem()
+                if(itm.length > 0){
+                    this.items = itm
+                    this.loadingItmBlock = false
+                    this.isshowItem()
+                }else{
+                    this.loadingItmBlock = false
+                    this.msgNoData()
+                }
             }, 500)
             
         },
@@ -5190,21 +5283,84 @@ export default {
             $.each(this.categories, function(i,v){
                 window.console.log(v, 'border: 3px solid ' + v.color)
                 v.borderColor = 'border: 3px solid ' + v.color
+                v.titleColor = 'background-color: ' + v.color
             })
             this.showCatePage = true
             this.showGroupPage = false
             this.showSupGroupPage = false
             this.showItem = false
         },
+        searchItemByGroup(id){
+            window.console.log(id)
+            this.bindItems()
+            this.loadingItmBlock = true
+            setTimeout(() => {
+                let itm = this.items.filter((o) => { return o.groupId == id })
+                if(itm.length > 0){
+                    this.items = itm
+                    this.loadingItmBlock = false
+                    this.isshowItem()
+                }else{
+                    this.loadingItmBlock = false
+                    this.msgNoData()
+                }
+            }, 500)
+        },
         goGroup(){
             window.console.log(this.cateGroup, 'go group')
             $.each(this.cateGroup, function(i,v){
                 v.borderColor = 'border: 3px solid ' + v.color
+                v.titleColor = 'background-color: ' + v.color
             })
             this.showCatePage = false
             this.showGroupPage = true
             this.showSupGroupPage = false
             this.showItem = false
+        },
+        searchItemBySubGroup(id){
+            window.console.log(id)
+            this.bindItems()
+            this.loadingItmBlock = true
+            setTimeout(() => {
+                let itm = this.items.filter((o) => { return o.subGroupId == id })
+                if(itm.length > 0){
+                    this.items = itm
+                    this.loadingItmBlock = false
+                    this.isshowItem()
+                }else{
+                    this.loadingItmBlock = false
+                    this.msgNoData()
+                }
+            }, 500)
+        },
+        goSubGroup(){
+            window.console.log(this.subGroup, 'go group')
+            $.each(this.subGroup, function(i,v){
+                v.borderColor = 'border: 3px solid ' + v.color
+                v.titleColor = 'background-color: ' + v.color
+            })
+            this.showCatePage = false
+            this.showGroupPage = false
+            this.showSupGroupPage = true
+            this.showItem = false
+        },
+        itemFavorite(){
+            this.bindItems()
+            this.loadingItmBlock = true
+            setTimeout(() => {
+                let itm = this.items.filter((o) => { return o.isFavorite == true })
+                if(itm.length > 0){
+                    this.items = itm
+                    this.loadingItmBlock = false
+                    this.isshowItem()
+                }else{
+                    this.loadingItmBlock = false
+                    this.msgNoData()
+                }
+            }, 500)
+        },
+        msgNoData(){
+            this.$snotify.error('No Item found!')
         },
         // Items
         async loadAllProduct(){
@@ -5252,6 +5408,1132 @@ export default {
                     this.bindAllItem()
                 }
             })
+        },
+        autoCalculate() {
+            // let ds = this.$refs.lineDS.kendoWidget(),
+            let subTotal = 0,
+                totalTax = 0,
+                discountTotal = 0,
+                otherChargeTotal = 0,
+                spTax = 0,
+                pltax = 0,
+                otherTax = 0,
+                vatTax = 0,
+                discountInvoice = 0,
+                taxList = [],
+                taxListDetail = [],
+                discountItem = [],
+                otherChargeItem = [],
+                saleUnit = [],
+                inclusiveTax = 0,
+                discountLine = [],
+                otherChargeLine = [],
+                saleUnitLine = [],
+                itemSubtotal = 0,
+                txnItmSubtotal = 0,
+                serviceSubtotal = 0,
+                itemDiscount = 0,
+                serviceDiscount = 0,
+                txnDiscount = 0;
+            let nature = "";
+            this.jRaw = [];
+            
+            const rows = this.lineDS.filter((m) => parseFloat(m.amount) > 0); // ds.data().filter((m) => parseFloat(m.amount) > 0);
+            rows.forEach((value) => {
+                let modifierPrice = 0;
+                let inclusiveTaxAmt = 0;
+                let vatSpTax = {},
+                vatPLTax = {},
+                vatOtherTax = {};
+                if (value.modifier.hasOwnProperty('price')) {
+                    modifierPrice = kendo.parseFloat(value.modifier.price);
+                    window.console.log(modifierPrice, 'modi price')
+                }
+
+                // subTotal += (kendo.parseFloat(value.amount) + modifierPrice)
+                let discount = 0,
+                otherCharge = 0;
+                const otherChargeField = value.otherChargeItem || {};
+                const otherChargeFieldAcc = otherChargeField.account || {};
+                const otherChargeFieldAccId = otherChargeFieldAcc.uuid || "";
+                if (value.otherChargeItem) {
+                const subTotal =
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty);
+                otherCharge = this.autoCalculateDiscount(otherChargeField, subTotal);
+                value["otherChargeAmount"] = otherCharge;
+                value["otherChargeExchangeAmount"] =
+                    otherCharge * kendo.parseFloat(this.invoice.txnRate);
+                if (value.otherChargeItem.hasOwnProperty("id")) {
+                    otherChargeItem.push(value.otherChargeItem);
+                    otherChargeLine.push({
+                    id: value.otherChargeItem.id,
+                    name: value.otherChargeItem.name,
+                    amount: otherCharge,
+                    account: value.otherChargeItem.account || {},
+                    exchangeAmount: otherCharge * parseFloat(this.invoice.txnRate),
+                    });
+                }
+                otherChargeTotal += otherCharge || 0;
+                if (otherCharge * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                if (otherChargeFieldAcc) {
+                    if (otherChargeFieldAccId !== "") {
+                    const account = this.mappingAccount(
+                        this.coa,
+                        otherChargeFieldAccId
+                    );
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        description: "Other Charge",
+                        account: account,
+                        accountId: account.id,
+                        amount: otherCharge * -1,
+                        exchangeAmount:
+                        otherCharge * -1 * kendo.parseFloat(this.invoice.txnRate),
+                        type: nature,
+                        typeAs: "otherCharge",
+                    });
+                    }
+                }
+                }
+                if (value.discountItem) {
+                const disItemField = value.discountItem;
+                const subTo =
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty);
+                discount = this.autoCalculateDiscount(value.discountItem, subTo);
+                value["discountAmount"] = discount;
+                value["discountExchangeAmount"] =
+                    discount * kendo.parseFloat(this.invoice.txnRate);
+                // window.console.log('value', JSON.stringify(value))
+                if (value.discountItem.hasOwnProperty("id")) {
+                    discountItem.push(value.discountItem);
+                    discountLine.push({
+                    id: value.discountItem.id,
+                    name: value.discountItem.name,
+                    amount: discount,
+                    exchangeAmount: discount * parseFloat(this.invoice.txnRate),
+                    });
+                }
+                discountTotal += discount || 0;
+                if (discount > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                if (disItemField.account) {
+                    if (disItemField.account.hasOwnProperty("id")) {
+                    const disItemFieldAcc = disItemField.account || {};
+                    const account = this.mappingAccount(this.coa, disItemFieldAcc.id);
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: "Discount",
+                        account: account,
+                        accountId: account.id,
+                        amount: discount,
+                        exchangeAmount:
+                        discount * kendo.parseFloat(this.invoice.txnRate),
+                        type: nature,
+                        typeAs: "discount",
+                    });
+                    }
+                }
+                }
+                if (value.saleUnit) {
+                if (value.saleUnit.hasOwnProperty("id")) {
+                    saleUnit.push(value.saleUnit);
+                    const item_ = value.item || {};
+                    const amount_ =
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty) || 0;
+                    const itemObj = {
+                    id: item_.id || "",
+                    name: item_.name || "",
+                    amount: amount_ - (discount || 0),
+                    sku: item_.sku || ''
+                    };
+                    saleUnitLine.push({
+                    lineId: value.id || "",
+                    id: value.saleUnit.id,
+                    name: value.saleUnit.name,
+                    category: value.saleUnit.category,
+                    item: itemObj,
+                    amount: itemObj.amount,
+                    exchangeAmount: itemObj.amount * (this.invoice.txnRate || 1),
+                    discount: discount || 0,
+                    exchangeDiscount: (discount || 0) * (this.invoice.txnRate || 1),
+                    });
+                }
+                }
+                if (value.specificTax) {
+                const spTaxNoDiscount = this.autoCalculateTax(
+                    value.specificTax,
+                    kendo.parseFloat(value.amount)
+                );
+                spTax = this.autoCalculateTax(
+                    value.specificTax,
+                    kendo.parseFloat(value.amount) - kendo.parseFloat(discount)
+                );
+                spTax = kendo.parseFloat(spTax) ? kendo.parseFloat(spTax) : 0;
+                value["specificTaxAmount"] = spTax;
+                value["specificTaxExchangeAmount"] =
+                    spTax * kendo.parseFloat(this.invoice.txnRate);
+                const tax = value.specificTax;
+                const baseAmount = tax.baseAmount;
+                if (baseAmount) {
+                    if (baseAmount.toLowerCase() === "inclusive") {
+                    inclusiveTax += spTax;
+                    window.console.log("spTaxNoDiscount", spTaxNoDiscount);
+                    inclusiveTaxAmt += kendo.parseFloat(spTaxNoDiscount || 0);
+                    }
+                }
+                // window.console.log(value.specificTax)
+                if (value.specificTax.hasOwnProperty("taxType")) {
+                    taxList.push({
+                    name: value.specificTax.taxType.name,
+                    amount: spTax,
+                    id: value.specificTax.taxType.id,
+                    });
+                    const spTax_ = value.specificTax || {};
+                    // spTax_['taxAmount'] = spTax
+                    spTax_["taxAmount_"] = spTax;
+                    spTax_["amount"] = value.amount || 0;
+                    spTax_["discount"] = discount || 0;
+                    spTax_["txnRate"] = this.invoice.txnRate || 1;
+                    // delete tax_['account']
+                    taxListDetail.push(spTax_);
+                    vatSpTax = spTax_;
+                }
+                if (spTax * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                const specificTaxField = value.specificTax;
+                if (specificTaxField.account) {
+                    if (specificTaxField.account.hasOwnProperty("id")) {
+                    const specificTaxFieldAcc = specificTaxField.account || {};
+                    const account = this.mappingAccount(
+                        this.coa,
+                        specificTaxFieldAcc.id
+                    );
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: "Tax",
+                        account: account,
+                        accountId: account.id,
+                        amount: spTax * -1,
+                        exchangeAmount:
+                        spTax * -1 * kendo.parseFloat(this.invoice.txnRate),
+                        type: nature,
+                        typeAs: "tax",
+                    });
+                    }
+                }
+                }
+                if (value.publicLightingTax) {
+                const pltaxNoDiscount = this.autoCalculateTax(
+                    value.publicLightingTax,
+                    kendo.parseFloat(value.amount)
+                );
+                pltax = this.autoCalculateTax(
+                    value.publicLightingTax,
+                    kendo.parseFloat(value.amount) - kendo.parseFloat(discount)
+                );
+                pltax = kendo.parseFloat(pltax) ? kendo.parseFloat(pltax) : 0;
+                value["publicLightingTaxAmount"] = pltax;
+                value["publicLightingTaxExchangeAmount"] =
+                    pltax * kendo.parseFloat(this.invoice.txnRate);
+                const tax = value.publicLightingTax;
+                const baseAmount = tax.baseAmount;
+                if (baseAmount) {
+                    if (baseAmount.toLowerCase() === "inclusive") {
+                    inclusiveTax += pltax;
+                    window.console.log("pltaxNoDiscount", pltaxNoDiscount);
+                    inclusiveTaxAmt += kendo.parseFloat(pltaxNoDiscount || 0);
+                    }
+                }
+                if (value.publicLightingTax.hasOwnProperty("taxType")) {
+                    taxList.push({
+                    name: value.publicLightingTax.taxType.name,
+                    amount: pltax,
+                    id: value.publicLightingTax.taxType.id,
+                    });
+                    const plTax_ = value.publicLightingTax || {};
+                    // plTax_['taxAmount'] = pltax
+                    plTax_["taxAmount_"] = pltax;
+                    plTax_["amount"] = value.amount || 0;
+                    plTax_["discount"] = discount || 0;
+                    plTax_["txnRate"] = this.invoice.txnRate || 1;
+                    // delete tax_['account']
+                    taxListDetail.push(plTax_);
+                    vatPLTax = plTax_;
+                }
+                if (pltax * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                const PLTaxField = value.publicLightingTax;
+                if (PLTaxField.account) {
+                    if (PLTaxField.account.hasOwnProperty("id")) {
+                    const PLTaxFieldAcc = PLTaxField.account || {};
+                    const account = this.mappingAccount(this.coa, PLTaxFieldAcc.id);
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: "Tax",
+                        account: account,
+                        accountId: account.id,
+                        amount: pltax * -1,
+                        exchangeAmount:
+                        pltax * kendo.parseFloat(this.invoice.txnRate) * -1,
+                        type: nature,
+                        typeAs: "tax",
+                    });
+                    }
+                }
+                }
+                if (value.otherTax) {
+                const otherTaxNoDiscount = this.autoCalculateTax(
+                    value.otherTax,
+                    kendo.parseFloat(value.amount)
+                );
+                otherTax = this.autoCalculateTax(
+                    value.otherTax,
+                    kendo.parseFloat(value.amount) - kendo.parseFloat(discount)
+                );
+                otherTax = kendo.parseFloat(otherTax)
+                    ? kendo.parseFloat(otherTax)
+                    : 0;
+                value["otherTaxAmount"] = otherTax;
+                value["otherTaxExchangeAmount"] =
+                    otherTax * kendo.parseFloat(this.invoice.txnRate);
+                const tax = value.otherTax;
+                const baseAmount = tax.baseAmount;
+                if (baseAmount) {
+                    if (baseAmount.toLowerCase() === "inclusive") {
+                    inclusiveTax += otherTax;
+                    window.console.log("otherTaxNoDiscount", otherTaxNoDiscount);
+                    inclusiveTaxAmt += kendo.parseFloat(otherTaxNoDiscount || 0);
+                    }
+                }
+                if (value.otherTax.hasOwnProperty("taxType")) {
+                    taxList.push({
+                    name: value.otherTax.taxType.name,
+                    amount: otherTax,
+                    id: value.otherTax.taxType.id,
+                    });
+                    const tax__ = value.otherTax || {};
+                    // tax__['taxAmount'] = otherTax
+                    tax__["taxAmount_"] = otherTax;
+                    tax__["amount"] = value.amount || 0;
+                    tax__["discount"] = discount || 0;
+                    tax__["txnRate"] = this.invoice.txnRate || 1;
+                    // delete tax_['account']
+                    taxListDetail.push(tax__);
+                    vatOtherTax = tax__;
+                }
+                if (otherTax * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                const otherTaxField = value.otherTax || {};
+                if (otherTaxField.account) {
+                    if (otherTaxField.account.hasOwnProperty("id")) {
+                    const otherTaxFieldAcc = otherTaxField.account || {};
+                    const account = this.mappingAccount(
+                        this.coa,
+                        otherTaxFieldAcc.id
+                    );
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: "Tax",
+                        account: account,
+                        accountId: account.id,
+                        amount: otherTax * -1,
+                        exchangeAmount:
+                        otherTax * kendo.parseFloat(this.invoice.txnRate) * -1,
+                        type: nature,
+                        typeAs: "tax",
+                    });
+                    }
+                }
+                }
+
+                if (value.vatTax) {
+                // window.console.log('Vat Tax', value.vatTax)
+                const amtNoDiscount =
+                    kendo.parseFloat(spTax ? spTax : 0) +
+                    kendo.parseFloat(pltax ? pltax : 0) +
+                    kendo.parseFloat(otherTax ? otherTax : 0) +
+                    kendo.parseFloat(value.amount ? value.amount : 0);
+                let amt =
+                    kendo.parseFloat(spTax ? spTax : 0) +
+                    kendo.parseFloat(pltax ? pltax : 0) +
+                    kendo.parseFloat(otherTax ? otherTax : 0) +
+                    (kendo.parseFloat(value.amount ? value.amount : 0) -
+                    (discount ? discount : 0));
+                const vatTaxNoDiscount = this.autoCalculateTax(
+                    value.vatTax,
+                    amtNoDiscount
+                );
+                vatTax = this.autoCalculateTax(value.vatTax, amt);
+                vatTax = kendo.parseFloat(vatTax) ? kendo.parseFloat(vatTax) : 0;
+                value["vatTaxAmount"] = vatTax;
+                value["vatTaxExchangeAmount"] =
+                    vatTax * kendo.parseFloat(this.invoice.txnRate);
+                const tax = value.vatTax;
+                const baseAmount = tax.baseAmount;
+                if (baseAmount) {
+                    if (baseAmount.toLowerCase() === "inclusive") {
+                    inclusiveTax += vatTax;
+                    window.console.log("vatTaxNoDiscount", vatTaxNoDiscount);
+                    inclusiveTaxAmt += kendo.parseFloat(vatTaxNoDiscount || 0);
+                    }
+                }
+                if (value.vatTax.hasOwnProperty("taxType")) {
+                    taxList.push({
+                    name: value.vatTax.taxType.name,
+                    amount: vatTax,
+                    id: value.vatTax.taxType.id,
+                    });
+                    const vatTax_ = value.vatTax || {};
+                    // vatTax_['taxAmount'] = vatTax
+                    vatTax_["taxAmount_"] = vatTax;
+                    vatTax_["amount"] = value.amount || 0;
+                    vatTax_["discount"] = discount || 0;
+                    vatTax_["txnRate"] = this.invoice.txnRate || 1;
+                    vatTax_["isVat"] = 1;
+                    vatTax_.detail = {
+                    specificTax: vatSpTax,
+                    publicLightingTax: vatPLTax,
+                    otherTax: vatOtherTax,
+                    };
+                    // delete tax_['account']
+                    taxListDetail.push(vatTax_);
+                }
+
+                if (vatTax * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                const vatTaxField = value.vatTax;
+                if (vatTaxField.account) {
+                    if (vatTaxField.account.hasOwnProperty("id")) {
+                    const vatTaxFieldAcc = vatTaxField.account || {};
+                    const account = this.mappingAccount(this.coa, vatTaxFieldAcc.id);
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: "Tax",
+                        account: account,
+                        accountId: account.id,
+                        amount: vatTax * -1,
+                        exchangeAmount:
+                        vatTax * kendo.parseFloat(this.invoice.txnRate) * -1,
+                        type: nature,
+                        typeAs: "tax",
+                    });
+                    }
+                }
+                }
+                (vatSpTax = {}), (vatPLTax = {}), (vatOtherTax = {});
+                totalTax +=
+                kendo.parseFloat(spTax ? spTax : 0) +
+                kendo.parseFloat(pltax ? pltax : 0) +
+                kendo.parseFloat(otherTax ? otherTax : 0) +
+                kendo.parseFloat(vatTax ? vatTax : 0);
+                subTotal +=
+                kendo.parseFloat(value.amount) + modifierPrice - inclusiveTax;
+                window.console.log(kendo.parseFloat(value.amount), modifierPrice, inclusiveTax, 'before amt')
+                const amt = kendo.parseFloat(value.amount) + modifierPrice - inclusiveTax;
+                const xAmount = kendo.parseFloat(amt) * kendo.parseFloat(this.invoice.txnRate) * -1;
+                const item = value.item;
+                const itmType = item.type || "";
+                if (itmType === "Variant") {
+                itemSubtotal +=
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty);
+                itemDiscount += kendo.parseFloat(discount);
+                } else if (itmType === "Service") {
+                serviceSubtotal +=
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty);
+                itemDiscount += kendo.parseFloat(discount);
+                } else {
+                txnItmSubtotal +=
+                    kendo.parseFloat(value.price) * kendo.parseFloat(value.qty);
+                itemDiscount += kendo.parseFloat(discount);
+                }
+
+                const conversionRate = value.conversionRate || 1;
+                const bQty = parseFloat(value.qty * conversionRate);
+                const wac = parseFloat(value.wac) || 0;
+                const itemAmount = parseFloat(bQty) * wac;
+                // const itemxAmount = itemAmount
+                if (amt * -1 > 0) {
+                nature = "dr";
+                } else {
+                nature = "cr";
+                }
+                if (item) {
+                if (item.type === "Service") {
+                    if (value.isPlan) {
+                    if (item.hasOwnProperty("deferredIncomeAcc")) {
+                        if (item.deferredIncomeAcc.hasOwnProperty("id")) {
+                        const deferredInAcc = item.deferredIncomeAcc || {};
+                        const account = this.mappingAccount(
+                            this.coa,
+                            deferredInAcc.id
+                        );
+                        this.jRaw.push({
+                            id: account.id + "-" + nature,
+                            // line: new ItemLineModel(value),
+                            description: this.invoice.journalNote,
+                            account: account,
+                            accountId: account.id,
+                            amount: amt * -1,
+                            exchangeAmount: xAmount,
+                            type: nature,
+                            typeAs: "item",
+                        });
+                        }
+                    }
+                    } else {
+                    const incomeAcc = item.incomeAcc || {};
+                    if (item.hasOwnProperty("incomeAcc")) {
+                        if (item.incomeAcc.hasOwnProperty("id")) {
+                        const account = this.mappingAccount(this.coa, incomeAcc.id);
+                        this.jRaw.push({
+                            id: account.id + "-" + nature,
+                            // line: new ItemLineModel(value),
+                            description: this.invoice.journalNote,
+                            account: account,
+                            accountId: account.id,
+                            amount: amt * -1,
+                            exchangeAmount: xAmount,
+                            type: nature,
+                            typeAs: "item",
+                            cashBasic: 1,
+                        });
+                        }
+                    }
+                    }
+                } else if (item.type === "Variant") {
+                    if (item.hasOwnProperty("incomeAcc")) {
+                    if (item.incomeAcc.hasOwnProperty("id")) {
+                        const incomeAcc = item.incomeAcc || {};
+                        const account = this.mappingAccount(this.coa, incomeAcc.id);
+                        this.jRaw.push({
+                            id: account.id + "-" + nature,
+                            // line: new ItemLineModel(value),
+                            description: this.invoice.journalNote,
+                            account: account,
+                            accountId: account.id,
+                            amount: amt * -1,
+                            exchangeAmount: xAmount,
+                            type: nature,
+                            typeAs: "item",
+                            cashBasic: 1,
+                        });
+                    }
+                    }
+                    if (item.hasOwnProperty("inventoryAcc")) {
+                    if (item.inventoryAcc.hasOwnProperty("id")) {
+                        const inventoryAcc = item.inventoryAcc || {};
+                        const account = this.mappingAccount(this.coa, inventoryAcc.id);
+                        this.jRaw.push({
+                        id: inventoryAcc.id + "-" + "cr",
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: itemAmount * -1, // qty*avg_cost ,
+                        exchangeAmount: itemAmount * -1, //xAmount,
+                        type: "cr",
+                        typeAs: "item",
+                        });
+                    }
+                    }
+                    if (item.hasOwnProperty("costOfGoodsSoldAcc")) {
+                    if (item.costOfGoodsSoldAcc.hasOwnProperty("id")) {
+                        const costOfGoodsSoldAcc = item.costOfGoodsSoldAcc || {};
+                        const account = this.mappingAccount(
+                        this.coa,
+                        costOfGoodsSoldAcc.id
+                        );
+                        this.jRaw.push({
+                        id: account.id + "-" + "dr",
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: itemAmount, // qty*avg_cost ,
+                        exchangeAmount: itemAmount, //xAmount,
+                        type: "dr",
+                        typeAs: "item",
+                        });
+                    }
+                    }
+                } else if (item.type === "Fixed Asset") {
+                    if (item.hasOwnProperty("assetAcc")) {
+                    if (item.assetAcc.hasOwnProperty("id")) {
+                        const assetAcc = item.assetAcc || {};
+                        const account = this.mappingAccount(this.coa, assetAcc.id);
+                        this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: amt * -1,
+                        exchangeAmount: xAmount,
+                        type: nature,
+                        typeAs: "item",
+                        });
+                    }
+                    }
+                } else if (item.type === "Transaction Item") {
+                    if (item.hasOwnProperty("account")) {
+                    if (item.account.hasOwnProperty("id")) {
+                        const account_ = item.account || {};
+                        const account = this.mappingAccount(this.coa, account_.id);
+                        this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: amt * -1,
+                        exchangeAmount: xAmount,
+                        type: nature,
+                        typeAs: "item",
+                        });
+                    }
+                    }
+                }
+                }
+                value["amountWithoutTax"] =
+                kendo.parseFloat(value.amount) - inclusiveTaxAmt;
+                window.console.log(
+                "ItemLine",
+                value,
+                "-",
+                inclusiveTaxAmt,
+                "--",
+                kendo.parseFloat(value.price) * kendo.parseFloat(value.qty)
+                );
+                //include Tax Amount
+                const amountNodiscount =
+                kendo.parseFloat(value.price) * kendo.parseFloat(value.qty) -
+                discount;
+                const includeTaxAmount =
+                amountNodiscount + vatTax + pltax + spTax + otherTax;
+                value["includeTaxAmount"] = includeTaxAmount;
+                value["includeTaxExchangeAmount"] =
+                includeTaxAmount * kendo.parseFloat(this.invoice.txnRate);
+            });
+            this.invoice.itemSubtotal = itemSubtotal;
+            this.invoice.exchangeItemSubtotal =
+                itemSubtotal * kendo.parseFloat(this.invoice.txnRate);
+            this.invoice.serviceSubtotal = serviceSubtotal;
+            this.invoice.exchangeServiceSubtotal =
+                serviceSubtotal * kendo.parseFloat(this.invoice.txnRate);
+            this.invoice.txnItmSubtotal = txnItmSubtotal;
+            this.invoice.exchangeTxnItmSubtotal =
+                txnItmSubtotal * kendo.parseFloat(this.invoice.txnRate);
+            this.invoice.itemDiscount = itemDiscount;
+            this.invoice.exchangeItemDiscount =
+                itemDiscount * kendo.parseFloat(this.invoice.txnRate);
+            this.invoice.serviceDiscount = serviceDiscount;
+            this.invoice.exchangeServiceDiscount =
+                serviceDiscount * kendo.parseFloat(this.invoice.txnRate);
+            this.invoice.txnItmDiscount = txnDiscount;
+            this.invoice.exchangeTxnItmDiscount =
+                txnDiscount * kendo.parseFloat(this.invoice.txnRate);
+            // window.console.log(spTax, pltax, otherTax, vatTax)
+            let total =
+                kendo.parseFloat(subTotal) -
+                kendo.parseFloat(discountTotal) +
+                kendo.parseFloat(totalTax);
+            this.invoice.subTotal = subTotal;
+            this.invoice.exchangeSubTotal =
+                subTotal * parseFloat(this.invoice.txnRate);
+            // $("#subtotal").text(kendo.parseFloat(subTotal))
+            this.invoice.totalTaxAmount = kendo.parseFloat(totalTax);
+            this.invoice.discountTotal = kendo.parseFloat(discountTotal);
+            this.invoice.otherChargeTotal = kendo.parseFloat(otherChargeTotal);
+            if (this.invoice.specificDiscountItem) {
+                discountInvoice = this.autoCalculateDiscount(
+                this.invoice.specificDiscountItem,
+                kendo.parseFloat(subTotal)
+                );
+                discountInvoice = discountInvoice ? discountInvoice : 0;
+            }
+            // this.onOtherChargeChange()
+            this.invoice.total =
+                kendo.parseFloat(total) -
+                discountInvoice +
+                kendo.parseFloat(this.invoice.otherChargeAmount) +
+                otherChargeTotal;
+            this.invoice.remainingAmount =
+                kendo.parseFloat(this.invoice.total) -
+                kendo.parseFloat(this.invoice.depositDeduction);
+            this.invoice.amountDue =
+                kendo.parseFloat(this.invoice.total) -
+                kendo.parseFloat(this.invoice.depositDeduction);
+            this.invoice.exchangeAmount =
+                kendo.parseFloat(this.invoice.amountDue) *
+                kendo.parseFloat(this.invoice.txnRate);
+            // window.console.log('Exchange Amount', this.invoice.exchangeAmount)
+            this.autoCalculateTaxByType(taxList);
+            if (this.invoice.specificDiscountItem) {
+                const specificDiscount = this.invoice.specificDiscountItem || {};
+                if (specificDiscount.id) {
+                discountItem.push(specificDiscount);
+                discountLine.push({
+                    id: specificDiscount.id,
+                    name: specificDiscount.name,
+                    account: specificDiscount.account || {},
+                    amount: this.invoice.specificDiscountTotal,
+                    exchangeAmount:
+                    this.invoice.specificDiscountTotal * this.invoice.txnRate,
+                });
+                }
+            }
+            const uniqueDiscountItem = this.removeDuplicate(discountItem);
+            this.shrinkDiscountItem(uniqueDiscountItem, discountLine);
+
+            const uniqueOtherCharge = this.removeDuplicate(otherChargeItem);
+            this.shrinkOtherChargeItem(uniqueOtherCharge, otherChargeLine);
+
+            this.customerSaleUnit = this.removeDuplicate(saleUnit);
+            this.customerSaleUnitLine = saleUnitLine; //this.removeDuplicate(saleUnit)
+            this.taxListDetail = taxListDetail;
+            // window.console.log('taxListDetail--', taxListDetail)
+            // todo: raw Journal
+            const receivableAcc = this.invoice.receivableAcc || {};
+            if (this.invoice.amountDue > 0) {
+                nature = "dr";
+            } else {
+                nature = "cr";
+            }
+            if (receivableAcc) {
+                if (receivableAcc.hasOwnProperty("id")) {
+                const account = this.mappingAccount(this.coa, receivableAcc.id);
+                const accountId = account.id || "";
+                this.jRaw.push({
+                    id: accountId + "-" + nature,
+                    // line: new ItemLineModel({}),
+                    description: this.invoice.journalNote,
+                    account: account,
+                    accountId: accountId,
+                    exchangeAmount: this.invoice.exchangeAmount || 0,
+                    amount: this.invoice.amountDue || 0,
+                    type: nature,
+                    typeAs: "ar",
+                });
+                }
+            }
+            const specificDisc = this.invoice.specificDiscountItem;
+            if (this.invoice.specificDiscountTotal > 0) {
+                nature = "dr";
+            } else {
+                nature = "cr";
+            }
+            if (specificDisc) {
+                if (specificDisc.hasOwnProperty("account")) {
+                if (specificDisc.account) {
+                    if (specificDisc.hasOwnProperty("id")) {
+                    const specificDiscAcc = specificDisc.account || {};
+                    const account = this.mappingAccount(this.coa, specificDiscAcc.id);
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        // line: new ItemLineModel({}),
+                        description: "Discount",
+                        account: account || {},
+                        accountId: account.id,
+                        exchangeAmount:
+                        kendo.parseFloat(this.invoice.specificDiscountTotal) *
+                        kendo.parseFloat(this.invoice.txnRate),
+                        amount: this.invoice.specificDiscountTotal,
+                        type: nature,
+                        typeAs: "discount",
+                    });
+                    }
+                }
+                }
+            }
+
+            if (this.invoice.depositDeduction > 0) {
+                nature = "dr";
+            } else {
+                nature = "cr";
+            }
+            this.invoice.exchangeDepositDeduction =
+                (this.invoice.txnRate || 0) * this.invoice.depositDeduction;
+            if (this.invoice.depositDeduction) {
+                if (this.invoice.depositDeduction > 0) {
+                const saleDepositAcc = this.customer.saleDepositAcc || {};
+                if (saleDepositAcc) {
+                    if (saleDepositAcc.hasOwnProperty("id")) {
+                    const account = this.mappingAccount(this.coa, saleDepositAcc.id);
+                    this.jRaw.push({
+                        id: account.id + "-" + nature,
+                        description: "Deposit",
+                        // line: new ItemLineModel({}),
+                        account: account,
+                        accountId: account.id,
+                        exchangeAmount: this.invoice.exchangeDepositDeduction,
+                        amount: this.invoice.depositDeduction,
+                        type: nature,
+                        typeAs: "deposit",
+                    });
+                    }
+                }
+                }
+            }
+            if (this.mOtherCharge.length > 0) {
+                let otherCharge = 0;
+                this.mOtherCharge.forEach((m) => {
+                otherCharge = this.autoCalculateDiscount(m, this.invoice.subTotal);
+                if (otherCharge * -1 > 0) {
+                    nature = "dr";
+                } else {
+                    nature = "cr";
+                }
+                if (m) {
+                    if (m.hasOwnProperty("account")) {
+                    if (m.account.hasOwnProperty("id")) {
+                        const account = m.account || {};
+                        const account_ = this.mappingAccount(this.coa, account.id);
+                        if (account) {
+                        if (account.hasOwnProperty("id")) {
+                            this.jRaw.push({
+                            id: account_.id + "-" + nature,
+                            // line: new ItemLineModel({}),
+                            description: "Other Charge",
+                            account: account_,
+                            accountId: account_.id,
+                            exchangeAmount:
+                                otherCharge *
+                                kendo.parseFloat(this.invoice.txnRate) *
+                                -1,
+                            amount: otherCharge * -1,
+                            type: nature,
+                            typeAs: "otherCharge",
+                            });
+                        }
+                        }
+                    }
+                    }
+                }
+                });
+                // this.invoice.otherChargeAmount = otherCharge
+
+                window.console.log(this.mOtherCharge);
+            }
+            this.autoCalculateTaxDetail();
+            // todo: end raw Journal
+            // window.console.log(JSON.stringify(this.accounts), 'accounts')
+            this.shrinkData(this.jRaw);
+            // const unique = this.removeDuplicate(this.accounts)
+            // window.console.log(unique, 'unique')
+            window.console.log(this.jRaw, 'journal')
+        },
+        autoCalculateDiscount(discountItem, subTotal) {
+            if (discountItem) {
+                const nature = discountItem.nature || "";
+                const amount = discountItem.amount || 0;
+                if (nature === "Amount") {
+                    return parseFloat(amount);
+                } else if (nature === "Percentage") {
+                    return subTotal * (parseFloat(amount) / 100);
+                } else {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
+        },
+        shrinkData(obj) {
+            const uniques =
+                this.removeDuplicate(obj); /*[...new Set(accountId.map(i => {
+                        return {
+                            id_: i.id_,
+                            id: i.id,
+                            type: i.type
+                        }
+                    }))]*/
+            /* todo: cash basic account */
+            let cashBasicAmount = 0;
+            let xCashBasicAmount = 0;
+            this.invoice.cashBasicIncomeAcc = [];
+            let cashBasicAcc = uniques.filter((m) => m.cashBasic === 1);
+            cashBasicAcc.forEach((k) => {
+                cashBasicAmount += k.amount;
+                xCashBasicAmount += k.exchangeAmount;
+            });
+            cashBasicAcc.map((o) => {
+                o["amountPercentage"] = o.amount / cashBasicAmount;
+                o["xAmountPercentage"] = o.exchangeAmount / xCashBasicAmount;
+            });
+            this.invoice.cashBasicIncomeAcc = cashBasicAcc;
+            /* todo: end */
+            uniques.forEach((n) => {
+                const found = obj.filter((m) => m.id === n.id);
+                let amount = 0,
+                xAmount = 0;
+                found.forEach((z) => {
+                amount += parseFloat(z.amount || 0);
+                xAmount += parseFloat(z.exchangeAmount || 0);
+                });
+                n.amount = parseFloat(amount); //this.numberFormat(amount)
+                n.exchangeAmount = parseFloat(xAmount); //parseFloat(parseFloat(amount * parseFloat(this.invoice.txnRate))) //this.numberFormat(amount * parseFloat(this.invoice.txnRate)) //.toFixed(this.saleFormContent.decimal)
+            });
+            this.jRaw = uniques;
+            let dr = 0,
+                cr = 0;
+            this.jRaw.forEach((j) => {
+                switch (j.type) {
+                case "cr":
+                    cr += parseFloat(j.amount);
+                    break;
+                case "dr":
+                    dr += parseFloat(j.amount);
+                    break;
+                default:
+                    break;
+                }
+            });
+            this.invoice.dr = dr;
+            this.invoice.cr = cr;
+            window.console.log("dr=", dr, "cr=", cr, "dr+cr = ", dr + cr);
+            window.console.log(JSON.stringify(uniques), "uniques");
+        },
+        autoCalculateTaxByType(tax) {
+            // return by a key
+            const groupAll = (list) =>
+                list.reduce((tax, item) => {
+                const taxAmount = tax[item.name] || 0;
+                return Object.assign({}, tax, {
+                    [item.name]: taxAmount + parseFloat(item.amount),
+                });
+                }, {});
+            this.taxListTotal = groupAll(tax);
+            // window.console.log('nimol', groupAll(tax))
+        },
+        autoCalculateTaxDetail() {
+            let ids = [];
+            this.taxListDetail.forEach((n) => {
+                ids.push(n.id || "");
+            });
+            const unique = [...new Set(ids)];
+            let result = [];
+            unique.forEach((m) => {
+                let amount = 0,
+                row = {},
+                discount = 0,
+                xDiscount = 0,
+                xAmount = 0,
+                taxAmount = 0,
+                xTaxAmount = 0;
+                let taxDetail = [],
+                isVat = 0;
+                const found = this.taxListDetail.filter((n) => n.id === m);
+                // window.console.log('taxListDetailids', found)
+                found.forEach((k) => {
+                row = k;
+                if (k.isVat === 1) {
+                    isVat = 1;
+                    const detail_ = k.detail || {};
+                    taxDetail.push(detail_);
+                }
+                taxAmount += k.taxAmount_ || 0;
+                xTaxAmount += (k.taxAmount_ || 0) * (k.txnRate || 1);
+                amount += k.amount || 0;
+                xAmount += (k.amount || 0) * (k.txnRate || 1);
+                discount += k.discount || 0;
+                xDiscount += (k.discount || 0) * (k.txnRate || 1);
+                });
+                let spTaxAmt = 0,
+                spXTaxAmt = 0,
+                plTaxAmt = 0,
+                plXTaxAmt = 0,
+                otTaxAmt = 0,
+                otXTaxAmt = 0,
+                spTaxName = "",
+                plTaxName = "",
+                otTaxName = "",
+                spTaxNameLocale = "",
+                plTaxNameLocale = "",
+                otTaxNameLocale = "",
+                spAccId = "",
+                plAccId = "",
+                otAccId = "",
+                spRate = "",
+                plRate = "",
+                otRate = "";
+                taxDetail.forEach((n) => {
+                const spTax = n.specificTax || {};
+                const plTax = n.publicLightingTax || {};
+                const otherTax = n.otherTax || {};
+                if (Object.keys(spTax).length > 0) {
+                    spTaxAmt += spTax.taxAmount_ || 0;
+                    spXTaxAmt += (spTax.taxAmount_ || 0) * (spTax.taxRate || 1);
+                    spTaxName = spTax.defaultTax || "";
+                    spTaxNameLocale = spTax.defaultTaxLocale || "";
+                    spAccId = spTax.account ? spTax.account.id : "";
+                    spRate = spTax.rate || 1;
+                }
+                if (Object.keys(plTax).length > 0) {
+                    plTaxAmt += plTax.taxAmount_ || 0;
+                    plXTaxAmt += (plTax.taxAmount_ || 0) * (plTax.taxRate || 1);
+                    plTaxName = plTax.defaultTax || "";
+                    plTaxNameLocale = plTax.defaultTaxLocale || "";
+                    plAccId = plTax.account ? plTax.account.id : "";
+                    plRate = plTax.rate || 1;
+                }
+                if (Object.keys(otherTax).length > 0) {
+                    otTaxAmt += otherTax.taxAmount_ || 0;
+                    otXTaxAmt += (otherTax.taxAmount_ || 0) * (plTax.taxRate || 1);
+                    otTaxName = otherTax.defaultTax || "";
+                    otTaxNameLocale = otherTax.defaultTaxLocale || "";
+                    otAccId = otherTax.account ? otherTax.account.id : "";
+                    otRate = otherTax.rate || 1;
+                }
+                });
+                if (isVat === 1) {
+                row.detail = {
+                    specificTax: {
+                    name: spTaxName,
+                    nameLocale: spTaxNameLocale,
+                    amount: spTaxAmt,
+                    exchangeAmount: spXTaxAmt,
+                    accountId: spAccId,
+                    rate: spRate,
+                    },
+                    publicLightingTax: {
+                    name: plTaxName,
+                    nameLocale: plTaxNameLocale,
+                    amount: plTaxAmt,
+                    exchangeAmount: plXTaxAmt,
+                    accountId: plAccId,
+                    rate: plRate,
+                    },
+                    otherTax: {
+                    name: otTaxName,
+                    nameLocale: otTaxNameLocale,
+                    amount: otTaxAmt,
+                    exchangeAmount: otXTaxAmt,
+                    accountId: otAccId,
+                    rate: otRate,
+                    },
+                };
+                } else {
+                row.detail = {};
+                }
+
+                row["amount"] = amount;
+                row["exchangeAmount"] = xAmount;
+                row["taxAmount"] = taxAmount;
+                row["exchangeTaxAmount"] = xTaxAmount;
+                row["discount"] = discount;
+                row["exchangeDiscount"] = xDiscount;
+                row["currency"] = this.invoice.exchangeRate || {};
+                result.push(row);
+                taxDetail = [];
+            });
+            this.invoice.saleTaxDetail = result;
+            window.console.log("saleTaxDetail", result);
+        },
+        removeDuplicate(array) {
+            const result = [];
+            const map = new Map();
+            for (const item of array) {
+                if (!map.has(item.id)) {
+                map.set(item.id, true); // set any value to Map
+                result.push(item);
+                }
+            }
+            return result;
+        },
+        shrinkDiscountItem(discountItem, discountLine) {
+            let uniqueDiscountItems = [];
+            const unique = this.removeDuplicate(discountItem);
+            unique.forEach((m) => {
+                const found = discountLine.filter((n) => n.id === m.id);
+                let amount = 0,
+                exchangeAmount = 0;
+                found.map((o) => {
+                amount += o.amount;
+                });
+                found.map((o) => {
+                exchangeAmount += o.exchangeAmount;
+                });
+                uniqueDiscountItems.push({
+                id: m.id,
+                name: m.name,
+                amount: amount,
+                account: m.account,
+                exchangeAmount: exchangeAmount,
+                });
+            });
+            this.customerDiscountItem = uniqueDiscountItems;
+            window.console.log(uniqueDiscountItems, "uniqueDiscountItems");
+        },
+        shrinkOtherChargeItem(otherChargeItem, otherChargeLine) {
+            let items = [];
+            const unique = this.removeDuplicate(otherChargeItem);
+            unique.forEach((m) => {
+                const found = otherChargeLine.filter((n) => n.id === m.id);
+                let amount = 0,
+                exchangeAmount = 0;
+                found.map((o) => {
+                amount += o.amount;
+                });
+                found.map((o) => {
+                exchangeAmount += o.exchangeAmount;
+                });
+                items.push({
+                id: m.id,
+                name: m.name,
+                amount: amount,
+                account: m.account,
+                exchangeAmount: exchangeAmount,
+                });
+            });
+            this.customerOtherChargeItem = items;
+        },
+        autoCalculateTax(tax, amount) {
+            if (tax) {
+                var formula = tax.formula;
+                var inAmt = kendo.parseFloat(amount);
+                var nAmt = kendo.parseFloat(amount);
+                var taxBase = kendo.parseFloat(tax.taxBase) / 100;
+                var rate = kendo.parseFloat(tax.rate) / 100;
+                var total = eval(formula);
+                window.console.log(inAmt, nAmt, taxBase, rate, formula, total);
+                return total;
+            }
+            // return 0
+        },
+        mappingAccount(coa, uuid) {
+            const account = coa.filter((k) => k.uuid === uuid);
+            return account.map((j) => {
+                j.id = j.uuid;
+                return {
+                ...j,
+                };
+            })[0];
+        },
+        numberFormat(value) {
+            return kendo.toString(value, `n${this.saleFormContent.decimal}`);
         },
         //pull data
         async pullData(){
@@ -5350,10 +6632,12 @@ export default {
                                 categoryId: e.categoryId,
                                 category: cate[0],
                                 borderColor: 'border: 3px solid ' + cate[0].color,
+                                titleColor: 'background-color: ' + cate[0].color,
                                 groupId: e.group.id,
                                 subGroupId: e.subGroup.id,
                                 img: e.thumb != '' ? 'https://s3-ap-southeast-1.amazonaws.com/images.banhji/' + e.thumb : './images/default.png',
                                 uom: itp,
+                                item: e,
                             })
                         }
                     }
@@ -5371,18 +6655,36 @@ export default {
         },
         //product
         addItem(item){
-            // window.console.log(item)
-            this.lineDS.push({
-                itemId: item.id,
-                amount: item.price,
-                price: item.price,
-                qty: 1,
-                description: item.saleDescription ? item.saleDescription : item.name,
-                uom: item.uom,
-                discount: 0,
-                employees: [],
-                modifier: [],
-            })
+            let itemLine = new ItemLineModel({})
+            itemLine.id = itemLinePrefix + uuid.v1();
+            itemLine.decimalFormat = "n" + this.saleFormContent.decimal;
+            itemLine.isEditable = true;
+            let total = this.lineDS.length
+            if (total < 36) {
+                itemLine.description = item.saleDescription ? item.saleDescription : item.name
+                itemLine.buom = item.uom
+                itemLine.uom = item.uom[0]
+                let amount = parseFloat(itemLine.uom.price) * parseFloat(itemLine.qty)
+                let xAmount = amount * parseFloat(this.invoice.txnRate)
+                itemLine.price = parseFloat(itemLine.uom.price)
+                itemLine.amount = amount
+                itemLine.exchangeAmount = xAmount
+                itemLine.item = item.item
+                window.console.log(itemLine, 'itemline')
+                this.lineDS.push(itemLine)
+                this.autoCalculate()
+            }
+            // this.lineDS.push({
+            //     itemId: item.id,
+            //     amount: item.price,
+            //     price: item.price,
+            //     qty: 1,
+            //     description: item.saleDescription ? item.saleDescription : item.name,
+            //     uom: item.uom,
+            //     discount: 0,
+            //     employees: [],
+            //     modifier: [],
+            // })
         },
         // line
         lineChange(){
@@ -5390,7 +6692,66 @@ export default {
             let selectedItem = grid.dataItem(grid.select())
             // window.console.log(selectedItem, 'select item')
             this.selectItem = selectedItem
-        }
+        },
+        // sale form content
+        async loadSaleFormContent() {
+            saleFormContentHandler.list().then((res) => {
+                if (res.data.statusCode === 200) {
+                    const data = res.data.data;
+                    if (data.length > 0) {
+                        this.saleFormContent = data[0]
+                    }
+                }
+            })
+        },
+        async loadAccount() {
+            accountHandler.getAll().then((res) => {
+                this.showLoading = false;
+                //Receivable Account
+                this.coa = res.data || [];
+                this.receivableAcc = this.coa
+                .filter((m) => m.account_type.number === 7)
+                .map((itm) => {
+                    return {
+                    id: itm.uuid,
+                    uuid: itm.uuid,
+                    name: itm.name,
+                    local_name: itm.local_name,
+                    number: itm.number,
+                    is_taxable: itm.is_taxable,
+                    banhjiAccCode: itm.banhjiAccCode,
+                    group_code: itm.group_code,
+                    parent_account: itm.parent_account,
+                    type_code: itm.type_code,
+                    account_type: itm.account_type,
+                    };
+                });
+                if (this.receivableAcc.length > 0) {
+                    this.invoice.receivableAcc = this.receivableAcc[0];
+                }
+            });
+        },
+        removeRow(e) {
+            e.preventDefault();
+            const grid = kendo.jQuery("#lineDS").data("kendoGrid"),
+                dataSource = grid.dataSource,
+                dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+            dataSource.remove(dataItem);
+            this.removeLine(dataItem)
+            setTimeout(() => {
+                this.autoCalculate();
+            }, 500)
+        },
+        removeLine(ritm) {
+            let index = 0, i = 0
+            this.lineDS.forEach(e => {
+                if(e.id == ritm){
+                    index = i
+                }
+                i++
+            })
+            this.lineDS.splice(index, 1);
+        },
     },
     components: {
         LoadingMe: () => import(`@/components/Loading`),
@@ -5416,6 +6777,8 @@ export default {
         }else{
             this.pullData()
         }
+        await this.loadSaleFormContent()
+        await this.loadAccount()
     },
     
 };

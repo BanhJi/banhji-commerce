@@ -130,7 +130,6 @@ export default {
                     const res = response.data.data
                     this.g = res
                     this.$snotify.success('Update Successfully')
-                    this.showLoading = false
                     this.loadSaleFormContent()
                 }
             }).catch(e => {

@@ -260,6 +260,33 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="text-bold">{{ $t('other_function') }}</td>
+                                    <td>
+                                        <v-combobox
+                                            v-model="g.otherFunction"
+                                            :items="otherFunctions"
+                                            label="-- Select --"
+                                            item-value="value.id"
+                                            item-text="name"
+                                            multiple
+                                            chips
+                                        >
+                                            <template v-slot:selection="data">
+                                                <v-chip
+                                                    :key="data.item.id"
+                                                >
+                                                    <v-avatar
+                                                        class="accent white--text"
+                                                        left
+                                                        v-text="data.item.name.slice(0, 1).toUpperCase()"
+                                                    ></v-avatar>
+                                                    {{ data.item.name }}
+                                                </v-chip>
+                                            </template>
+                                        </v-combobox>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td class="text-bold">{{ $t('price_level') }}</td>
                                     <td>
                                         <v-select 
@@ -520,6 +547,22 @@ export default {
         ],
         priceLevels: [],
         segments: [],
+        otherFunctions: [
+            {id: 'reward', name: 'Reward'},
+            {id: 'promotion', name: 'Promotion'},
+            {id: 'parksale', name: 'Parksale'},
+            {id: 'invoice', name: 'Invoice'},
+            {id: 'note', name: 'Note'},
+            {id: 'delivery', name: 'Delivery'},
+            {id: 'resetOrder', name: 'Reset Order'},
+            {id: 'splitInv', name: 'Split Inv'},
+            {id: 'clearOrder', name: 'Clear Order'},
+            {id: 'saleUnit', name: 'Sale Unit'},
+            {id: 'countGuest', name: 'Count Guest'},
+            {id: 'margeInv', name: 'Merge Inv'},
+            {id: 'orderList', name: 'Order List'},
+            {id: 'orderType', name: 'Order Type'},
+        ]
     }),
     methods: {
         async onSaveClose() {

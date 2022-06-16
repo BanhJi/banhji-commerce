@@ -22,6 +22,7 @@ export default class ItemLine {
         this.price = data.price || 0
         this.cost = data.cost || 0
         this.amount = data.amount || 0
+        this.amountWithoutTax = data.amountWithoutTax || 0
         this.exchangeAmount = data.exchangeAmount || 0
         this.discountPercent = data.discountPercent || 0
         this.discountAmount = data.discountAmount || 0
