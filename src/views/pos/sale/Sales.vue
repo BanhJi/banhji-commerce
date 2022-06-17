@@ -104,7 +104,7 @@
                                                     outlined
                                                 />
                                             </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-2" style="min-height: 40px;">
+                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-0" style="min-height: 40px;">
                                                 <v-row class="ml-1 mr-1" style="cursor: pointer;">
                                                     <template>
                                                         <div justify="center" style="height: 100%;width:100%">
@@ -649,7 +649,6 @@
                                                                 <div @click="pinClick('clear')" class="number" style="">{{$t("ac")}}</div>
                                                                 <div @click="pinClick(0)" class="number">0</div>
                                                                 <div @click="searchPin" class="number" style="background-color: rgb(154 27 46);color: #ffff;">{{$t("go")}}</div>
-                                                                <div class="cancelPin" @click="pinActivate = false">{{$t("cancel")}}</div>
                                                             </div>
                                                         </div>
                                                         <!-- </v-container> -->
@@ -683,18 +682,18 @@
                                             <v-row class="mt-0">
                                                 
                                                 <v-col md="4" sm="4" col="4" class="pa-2 px-0 py-0">
-                                                    <div class="ma-1 mr-0 pl-2" style="background-color: #c7c6c6;">
+                                                    <div class="ma-1 mr-0 pl-2">
                                                         <h2 class="font_20 mb-0">{{$t('total')}}</h2>
                                                     </div>
                                                 </v-col>
                                                 <v-col md="8" sm="8" col="8" class="pa-2 px-0 py-0">
-                                                    <div class="ma-1 ml-0 pr-2" style="background-color: #c7c6c6;text-align: right;">
-                                                        <h2 class="text-white font_20 mb-0">{{numberFormat(invoice.total)}}</h2>
+                                                    <div class="ma-1 ml-0 pr-2" style="text-align: right;">
+                                                        <h2 class="primary--text font_20 mb-0">{{numberFormat(invoice.total)}}</h2>
                                                     </div>
                                                 </v-col>
                                             </v-row>
                                         </v-col>
-                                        <v-col sm="12" cols="12" class="pl-4 py-0">
+                                        <v-col sm="12" cols="12" class="py-0">
                                             <v-row>
                                                 <!-- reward -->
                                                 <v-col md="3" v-show="func.reward" sm="3" col="3" class="pa-1">
@@ -1688,7 +1687,7 @@
                                                 <v-col md="4" sm="3" cols="12" class="pa-1 pl-0">
                                                     <v-row class="mx-0" style="height: 100%;">
                                                         <!-- cash -->
-                                                        <v-col sm="6" cols="6" class="pa-1 pt-0 pb-0 mt-1" >
+                                                        <v-col sm="6" cols="6" class="pa-1" >
                                                             <template>
                                                                 <div justify="center" style="height: 100%;">
                                                                     <v-dialog
@@ -1708,7 +1707,7 @@
                                                                                 style="height:100% !important;">
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 40px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-cash">
                                                                                     </v-icon>
@@ -2406,7 +2405,7 @@
                                                             </template>
                                                         </v-col>
                                                         <!-- card -->
-                                                        <v-col sm="6" cols="6" class="pa-1 pt-0 pb-0 mt-1" >
+                                                        <v-col sm="6" cols="6" class="pa-1" >
                                                             <template>
                                                                 <div justify="center" style="height: 100%;">
                                                                     <v-dialog
@@ -2426,7 +2425,7 @@
                                                                                 style="height:100% !important;">
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 40px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-loyalty">
                                                                                     </v-icon>
@@ -3011,7 +3010,7 @@
                                                         </template>
 
                                                         <!-- bank -->
-                                                        <v-col sm="6" cols="6" class="pa-1 mt-1" >
+                                                        <v-col sm="6" cols="6" class="pa-1" >
                                                             <template>
                                                                 <div justify="center" style="height: 100%;">
                                                                     <v-dialog
@@ -3032,7 +3031,7 @@
 
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 40px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-banking">
                                                                                     </v-icon>
@@ -3957,7 +3956,7 @@
                                                         </template>
 
                                                         <!-- qrcode -->
-                                                        <v-col sm="6" cols="6" class="pa-1 mt-1" >
+                                                        <v-col sm="6" cols="6" class="pa-1" >
                                                             <template>
                                                                 <div justify="center" style="height: 100%;">
                                                                     <v-dialog
@@ -3978,7 +3977,7 @@
                                                                                 
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 40px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-payment">
                                                                                     </v-icon>
@@ -4433,7 +4432,7 @@
                                                         
                                                     </v-row>
                                                 </v-col>
-                                                <v-col md="8" sm="9" cols="12" class="pa-1 pl-0 float-right text-right">
+                                                <v-col md="5" sm="5" cols="12" class="pa-1 pl-0 float-right text-right">
                                                         <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             1
                                                         </v-btn>
@@ -4447,18 +4446,9 @@
                                                         </v-btn>
 
                                                         <v-btn class="rounded-0 calculator-btn-1">
-                                                            qty
-                                                        </v-btn>
-                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
-                                                            modi.
-                                                        </v-btn>
-
-                                                        <br>
-
-                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             4
                                                         </v-btn>
-                                                            
+                                                        <br>
                                                         <v-btn class="rounded-0 calculator-btn-1">
                                                             5
                                                         </v-btn>
@@ -4466,35 +4456,18 @@
                                                         <v-btn class="rounded-0 calculator-btn-1">
                                                             6
                                                         </v-btn>
-
+                                                       
                                                         <v-btn class="rounded-0 calculator-btn-1">
-                                                            dis.
-                                                        </v-btn>
-                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
-                                                           emp.
-                                                        </v-btn>
-                                                        <br>
-                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             7
                                                         </v-btn>
-                                                            
                                                         <v-btn class="rounded-0 calculator-btn-1">
                                                             8
                                                         </v-btn>
-
+                                                        <br>
                                                         <v-btn class="rounded-0 calculator-btn-1">
                                                             9
                                                         </v-btn>
-
                                                         <v-btn class="rounded-0 calculator-btn-1">
-                                                            price
-                                                        </v-btn>
-                                                        
-                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
-                                                            uom
-                                                        </v-btn>
-                                                        <br>   
-                                                        <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             0
                                                         </v-btn>
                                                             
@@ -4505,15 +4478,30 @@
                                                         <v-btn class="rounded-0 calculator-btn-1">
                                                             c
                                                         </v-btn>
+                                                    
+                                                </v-col>
+                                                <v-col md="3" sm="3" cols="12" class="pa-1 pr-0 text-right">
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        qty
+                                                    </v-btn>
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        modi.
+                                                    </v-btn>
 
-                                                        <v-btn class="rounded-0 calculator-btn-1">
-                                                           
-                                                        </v-btn>
-                                                        
-                                                        <v-btn class="rounded-0 calculator-btn-1 mr-0">
-                                                            
-                                                        </v-btn>
-                                                        
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        dis.
+                                                    </v-btn>
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        emp.
+                                                    </v-btn>
+
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        price
+                                                    </v-btn>
+                                                    
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                        uom
+                                                    </v-btn>
                                                 </v-col>
                                             </v-row> 
                                         </v-col>
@@ -4525,17 +4513,17 @@
                         <v-col md="5" sm="12" cols="12" class=" sidebar-left2 pt-0" style="overflow-y: auto;">
                             <v-row>
                                 <v-col sm="12" cols="12" class="pa-0">
-                                    <v-card flat height="98vh" class="card-item" style=""> 
-                                        <v-card-text class="py-0">
-                                            <v-row class="px-6" style=" margin: auto;">
-                                                <v-col sm="3" cols="6" class="pa-1 py-0 pr-0">
+                                    <v-card flat height="98vh" class="card-item px-0" style=""> 
+                                        <v-card-text class="pa-0">
+                                             <v-row class="" style=" margin: auto;">
+                                                <v-col sm="4" cols="4" class="py-0 px-1">
                                                     <v-select class="mt-1 rounded-0 "
                                                             clearable
                                                             outlined
                                                             :label="$t('code')"
                                                     />
                                                 </v-col>
-                                                <v-col sm="9" cols="6" class="pa-1 py-0">
+                                                <v-col sm="8" cols="8"  class="py-0 px-1">
                                                     <v-text-field
                                                         class="mt-1 rounded-0 "
                                                         outlined
@@ -4549,7 +4537,7 @@
                                                     :myLoading="true" />
                                                 <!-- item -->
                                                 <div v-show="showItem" style="width: 100%;display: contents; text-align: center;">
-                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pa-1" v-for="item in items" :key="item.id">
+                                                    <v-col md="4" sm="4" xs="6" cols="12" class="pt-0 px-1" v-for="item in items" :key="item.id">
                                                         <v-card
                                                             class="pb-0"
                                                             elevation="0"
@@ -4571,7 +4559,7 @@
                                                                 contain
                                                                 :src="item.img"
                                                             ></v-img>
-                                                            <p class="pa-2 name-items mb-0" style="height: 50px;">{{ item.name }}</p>
+                                                            <p class="pa-2 px-1 name-items mb-0" style="height: 50px;line-height: 1.15;">{{ item.name }}</p>
                                                             <v-divider class="mx-4"></v-divider>
                                                             <v-card-text class="py-0 text-white" :style="'background-color: #898c8f;text-align: center;border-radius: 0;' + item.titleColor">
                                                                 <h2 class="text-white mb-0" style="font-size:18px;"> {{ item.price }} {{ item.uom[0].priceLevel.currency.symbol}}</h2>
@@ -4724,7 +4712,7 @@
                                     <div class="d-block">
                                         <i  class=" b-refresh" />
                                         <h6 class="letter_spacing">{{$t('pull_data')}}</h6>
-                                        <p class="font_10" style="letter-spacing: initial;">As of:<br> {{pullAsOf}}</p>
+                                        <p class="font_10 mb-0" style="letter-spacing: initial;">As of:<br> {{pullAsOf}}</p>
                                     </div>
                                 </v-btn>
                             </v-card>
@@ -6999,7 +6987,7 @@ export default {
         padding: 0 10px !important;
     }
     .calculator-btn-1{
-        min-width: 17% !important;
+        min-width: 20% !important;
         margin: 4px;
         padding: 0 2px !important;
         font-size: 13px !important;
