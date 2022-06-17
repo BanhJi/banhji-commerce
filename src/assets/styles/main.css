@@ -2811,3 +2811,10 @@ html, body {
 .loading_my div {
   background: #ED1A3A !important;
 }
+#pin >.v-input input {
+  text-align: center !important;
+  font-size: 35px !important;
+}
+#pin .v-messages {
+  text-align: center !important;
+}

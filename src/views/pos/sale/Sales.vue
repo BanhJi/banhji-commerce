@@ -6836,6 +6836,11 @@ export default {
 };
 </script>
 <style scoped>
+    #pin > .theme--light.v-input input {
+        max-height: 32px;
+        font-size: 2rem !important;
+        text-align: center;
+    }
     .v-image__image--cover {
         background-size: contain;
         margin-top: 5px;
