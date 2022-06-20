@@ -1,151 +1,161 @@
 <template>
-  <v-row>
-    <v-col sm="12" cols="12" class="">
-      <div style="background-color: #fff; padding: 0 0 5px;">
-        <v-tabs
-          vertical
-          class="tab_setting"
-          slider-color="grayBg"
-          slider-size="7"
-          :class="{
-            tab_product_service_hide: isHide,
-            tab_product_service_show: !isHide,
-          }"
-        >
-          <span class="hideAbs">
-            <v-icon size="16" class="arr_icon" @click="hideTabs" v-if="!isHide"
-              >mdi-chevron-left-circle
-            </v-icon>
-            <v-icon size="16" class="arr_icon1" @click="hideTabs" v-if="isHide"
-              >mdi-chevron-right-circle
-            </v-icon>
-          </span>
+<v-app class="zoom-in">
+        <v-container>
+            <v-row>
+                <v-col sm="12" cols="12" class="pb-0">
+                    <v-card color="white" class="pa-4 no_border" elevation="0">
+                      <v-row>
+                        <v-col sm="12" cols="12" class="">
+                          <div style="background-color: #fff; padding: 0 0 5px;">
+                            <v-tabs
+                              vertical
+                              class="tab_setting"
+                              slider-color="grayBg"
+                              slider-size="7"
+                              :class="{
+                                tab_product_service_hide: isHide,
+                                tab_product_service_show: !isHide,
+                              }"
+                            >
+                              <span class="hideAbs">
+                                <v-icon size="16" class="arr_icon" @click="hideTabs" v-if="!isHide"
+                                  >mdi-chevron-left-circle
+                                </v-icon>
+                                <v-icon size="16" class="arr_icon1" @click="hideTabs" v-if="isHide"
+                                  >mdi-chevron-right-circle
+                                </v-icon>
+                              </span>
 
-          <v-tab>
-            <span class="hidden-sm-and-up">
-              <v-icon left>mdi-pen</v-icon>
-            </span>
-            <span class="hidden-sm-and-down text-capitalize text-left">
-              {{ $t("warehouses") }}
-            </span>
-          </v-tab>
-<!--          <v-tab>-->
-<!--            <span class="hidden-sm-and-up">-->
-<!--              <v-icon left>mdi-pen</v-icon>-->
-<!--            </span>-->
-<!--            <span class="hidden-sm-and-down text-capitalize text-left">-->
-<!--              {{ $t("batch") }}-->
-<!--            </span>-->
-<!--          </v-tab>-->
-          <!--					<v-tab>-->
-          <!--                        <span class="hidden-sm-and-up">-->
-          <!--                            <v-icon left>mdi-pen</v-icon>-->
-          <!--                        </span>-->
-          <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-          <!--                            {{ $t('packing_order') }}-->
-          <!--                        </span>-->
-          <!--                    </v-tab>-->
-          <v-tab>
-            <span class="hidden-sm-and-up">
-              <v-icon left>mdi-pen</v-icon>
-            </span>
-            <span class="hidden-sm-and-down text-capitalize text-left">
-              {{ $t("tranfer_orders") }}
-            </span>
-          </v-tab>
-          <!--					<v-tab>-->
-          <!--                        <span class="hidden-sm-and-up">-->
-          <!--                            <v-icon left>mdi-pen</v-icon>-->
-          <!--                        </span>-->
-          <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-          <!--                            {{ $t('shelving_orders') }}-->
-          <!--                        </span>-->
-          <!--                    </v-tab>-->
-          <v-tab>
-            <span class="hidden-sm-and-up">
-              <v-icon left>mdi-pen</v-icon>
-            </span>
-            <span class="hidden-sm-and-down text-capitalize text-left">
-              {{ $t("receipt_orders") }}
-            </span>
-          </v-tab>
-          <v-tab>
-            <span class="hidden-sm-and-up">
-              <v-icon left>mdi-pen</v-icon>
-            </span>
-            <span class="hidden-sm-and-down text-capitalize text-left">
-              {{ $t("delivery_orders") }}
-            </span>
-          </v-tab>
-          <!--					<v-tab>-->
-          <!--                        <span class="hidden-sm-and-up">-->
-          <!--                            <v-icon left>mdi-pen</v-icon>-->
-          <!--                        </span>-->
-          <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-          <!--                            {{ $t('bin_locations') }}-->
-          <!--                        </span>-->
-          <!--                    </v-tab>-->
+                              <v-tab>
+                                <span class="hidden-sm-and-up">
+                                  <v-icon left>mdi-pen</v-icon>
+                                </span>
+                                <span class="hidden-sm-and-down text-capitalize text-left">
+                                  {{ $t("warehouses") }}
+                                </span>
+                              </v-tab>
+                    <!--          <v-tab>-->
+                    <!--            <span class="hidden-sm-and-up">-->
+                    <!--              <v-icon left>mdi-pen</v-icon>-->
+                    <!--            </span>-->
+                    <!--            <span class="hidden-sm-and-down text-capitalize text-left">-->
+                    <!--              {{ $t("batch") }}-->
+                    <!--            </span>-->
+                    <!--          </v-tab>-->
+                              <!--					<v-tab>-->
+                              <!--                        <span class="hidden-sm-and-up">-->
+                              <!--                            <v-icon left>mdi-pen</v-icon>-->
+                              <!--                        </span>-->
+                              <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
+                              <!--                            {{ $t('packing_order') }}-->
+                              <!--                        </span>-->
+                              <!--                    </v-tab>-->
+                              <v-tab>
+                                <span class="hidden-sm-and-up">
+                                  <v-icon left>mdi-pen</v-icon>
+                                </span>
+                                <span class="hidden-sm-and-down text-capitalize text-left">
+                                  {{ $t("tranfer_orders") }}
+                                </span>
+                              </v-tab>
+                              <!--					<v-tab>-->
+                              <!--                        <span class="hidden-sm-and-up">-->
+                              <!--                            <v-icon left>mdi-pen</v-icon>-->
+                              <!--                        </span>-->
+                              <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
+                              <!--                            {{ $t('shelving_orders') }}-->
+                              <!--                        </span>-->
+                              <!--                    </v-tab>-->
+                              <v-tab>
+                                <span class="hidden-sm-and-up">
+                                  <v-icon left>mdi-pen</v-icon>
+                                </span>
+                                <span class="hidden-sm-and-down text-capitalize text-left">
+                                  {{ $t("receipt_orders") }}
+                                </span>
+                              </v-tab>
+                              <v-tab>
+                                <span class="hidden-sm-and-up">
+                                  <v-icon left>mdi-pen</v-icon>
+                                </span>
+                                <span class="hidden-sm-and-down text-capitalize text-left">
+                                  {{ $t("delivery_orders") }}
+                                </span>
+                              </v-tab>
+                              <!--					<v-tab>-->
+                              <!--                        <span class="hidden-sm-and-up">-->
+                              <!--                            <v-icon left>mdi-pen</v-icon>-->
+                              <!--                        </span>-->
+                              <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
+                              <!--                            {{ $t('bin_locations') }}-->
+                              <!--                        </span>-->
+                              <!--                    </v-tab>-->
 
-          <v-tab-item>
-            <v-card flat>
-              <v-card-text class="pt-0">
-                <WarehouseReportTab />
-              </v-card-text>
-            </v-card>
-          </v-tab-item>
-<!--          <v-tab-item>-->
-<!--            <v-card flat>-->
-<!--              <v-card-text class="pt-0">-->
-<!--                <Batch />-->
-<!--              </v-card-text>-->
-<!--            </v-card>-->
-<!--          </v-tab-item>-->
-          <!--                    <v-tab-item>-->
-          <!--                        <v-row>-->
-          <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-          <!--                                <PackingOrders/>-->
-          <!--                            </v-col>-->
-          <!--                        </v-row>-->
-          <!--                    </v-tab-item>-->
-          <v-tab-item>
-            <v-card flat>
-              <v-card-text class="pt-0">
-                <TransferOrders />
-              </v-card-text>
-            </v-card>
-          </v-tab-item>
-          <!--                    <v-tab-item>-->
-          <!--                        <v-row>-->
-          <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-          <!--                                <ShelvingOrders/>-->
-          <!--                            </v-col>-->
-          <!--                        </v-row>-->
-          <!--                    </v-tab-item>-->
-          <v-tab-item>
-            <v-card flat>
-              <v-card-text class="pt-0">
-                <ReceiptOrders />
-              </v-card-text>
-            </v-card>
-          </v-tab-item>
-          <v-tab-item>
-            <v-card flat>
-              <v-card-text class="pt-0">
-                <DeliveryOrders />
-              </v-card-text>
-            </v-card>
-          </v-tab-item>
-          <!--                    <v-tab-item>-->
-          <!--                        <v-row>-->
-          <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-          <!--                                <BinLocation/>-->
-          <!--                            </v-col>-->
-          <!--                        </v-row>-->
-          <!--                    </v-tab-item>-->
-        </v-tabs>
-      </div>
-    </v-col>
-  </v-row>
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text class="pt-0">
+                                    <WarehouseReportTab />
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                    <!--          <v-tab-item>-->
+                    <!--            <v-card flat>-->
+                    <!--              <v-card-text class="pt-0">-->
+                    <!--                <Batch />-->
+                    <!--              </v-card-text>-->
+                    <!--            </v-card>-->
+                    <!--          </v-tab-item>-->
+                              <!--                    <v-tab-item>-->
+                              <!--                        <v-row>-->
+                              <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
+                              <!--                                <PackingOrders/>-->
+                              <!--                            </v-col>-->
+                              <!--                        </v-row>-->
+                              <!--                    </v-tab-item>-->
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text class="pt-0">
+                                    <TransferOrders />
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                              <!--                    <v-tab-item>-->
+                              <!--                        <v-row>-->
+                              <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
+                              <!--                                <ShelvingOrders/>-->
+                              <!--                            </v-col>-->
+                              <!--                        </v-row>-->
+                              <!--                    </v-tab-item>-->
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text class="pt-0">
+                                    <ReceiptOrders />
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                              <v-tab-item>
+                                <v-card flat>
+                                  <v-card-text class="pt-0">
+                                    <DeliveryOrders />
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                              <!--                    <v-tab-item>-->
+                              <!--                        <v-row>-->
+                              <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
+                              <!--                                <BinLocation/>-->
+                              <!--                            </v-col>-->
+                              <!--                        </v-row>-->
+                              <!--                    </v-tab-item>-->
+                            </v-tabs>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+  </v-app>
 </template>
 
 <script>
