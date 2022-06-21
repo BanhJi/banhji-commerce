@@ -420,9 +420,9 @@ export default {
         id: 10,
         class: "",
         activeClass: "",
-        name: "warehouses",
+        name: "store",
         menuTex: "store",
-        path: "/warehouses",
+        path: "/store_center",
         icon: "",
       },
       {

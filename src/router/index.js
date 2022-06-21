@@ -356,14 +356,33 @@ const routes = [{
                             title: 'Services & Project',
                         }
                     },
+                    // {
+                    //     path: 'warehouses',
+                    //     name: 'Warehouse Management',
+                    //     component: load('products/warehouses/WarehouseManagement'),
+                    //     meta: {
+                    //         moduleId: 5,
+                    //         mainMenu: 'warehouses',
+                    //         title: 'Products',
+                    //     }
+                    // },
                     {
-                        path: 'warehouses',
-                        name: 'Warehouse Management',
-                        component: load('products/warehouses/WarehouseManagement'),
+                        path: 'store/:id?',
+                        name: 'Store Management',
+                        component: load('products/store/Store'),
+                        props: true,
                         meta: {
-                            moduleId: 5,
-                            mainMenu: 'warehouses',
-                            title: 'Products',
+                            mainMenu: 'store',
+                            title: 'store',
+                        }
+                    },
+                    {
+                        path: 'store_center',
+                        name: 'Store Management',
+                        component: load('products/store/StoreTab'),
+                        meta: {
+                            mainMenu: 'store',
+                            title: 'store',
                         }
                     },
                     {

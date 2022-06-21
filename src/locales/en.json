@@ -4314,9 +4314,11 @@
     "to_use": "To use",
     "bank_wallets": "Bank wallets",
     "pull_data": "Pull data",
-    "switch_layout": "Switch layout"
-
-
-
+    "switch_layout": "Switch layout",
+    "total_stores": "Total stores",
+    "select_warehouse": "Select warehouse",
+    "select_segment": "Select segment",
+    "select_user": "Select User",
+    "add_store": "Add store"
 
 }
