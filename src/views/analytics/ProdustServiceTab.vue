@@ -19,22 +19,8 @@
             mdi-chevron-right-circle
           </v-icon>
         </span>
+       
         <v-tab>
-          <span class="text-capitalize text-left">
-            {{ $t("product_center") }}
-          </span>
-        </v-tab>
-        <v-tab>
-          <span class="text-capitalize text-left">
-            {{ $t("product_varaint") }}
-          </span>
-        </v-tab>
-        <v-tab>
-          <span class="text-capitalize text-left">
-            {{ $t("variant_directory") }}
-          </span>
-        </v-tab>
-        <!-- <v-tab>
           <span class="text-capitalize text-left">
             {{ $t("price_margin") }}
           </span>
@@ -51,37 +37,34 @@
           <span class="hidden-sm-and-down text-capitalize text-left">
             {{ $t("product_analysis") }}
           </span>
-        </v-tab> -->
-        <v-tab>
-          <span class="hidden-sm-and-up">
-            <v-icon left>mdi-attachment</v-icon>
-          </span>
-          <span class="hidden-sm-and-down text-capitalize text-left">
-            {{ $t("item_modifiers") }}
-          </span>
         </v-tab>
+
+        <v-tab>
+            <span class="hidden-sm-and-up">
+              <v-icon left>mdi-pen</v-icon>
+            </span>
+            <span class="hidden-sm-and-down text-capitalize text-left">
+              {{ $t("service_report") }}
+            </span>
+          </v-tab>
+          <v-tab>
+            <span class="hidden-sm-and-up">
+              <v-icon left>mdi-pen</v-icon>
+            </span>
+            <span class="hidden-sm-and-down text-capitalize text-left">
+              {{ $t("margin_analysis_service") }}
+            </span>
+          </v-tab>
+          <v-tab>
+            <span class="hidden-sm-and-up">
+              <v-icon left>mdi-pen</v-icon>
+            </span>
+            <span class="hidden-sm-and-down text-capitalize text-left">
+              {{ $t("service_categories_report") }}
+            </span>
+          </v-tab>
+
         <v-tab-item>
-          <v-card flat>
-            <v-card-text class="py-0 pr-0">
-              <ProudctCenter />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text class="py-0 pr-0">
-              <ProductVariants />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text class="py-0 pr-0">
-              <ProductDiretory />
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-        <!-- <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
               <PriceMargin />
@@ -101,14 +84,29 @@
               <ProductAnalysisTab />
             </v-card-text>
           </v-card>
-        </v-tab-item> -->
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text class="py-0 pr-0">
-              <ItemModifiers />
-            </v-card-text>
-          </v-card>
         </v-tab-item>
+
+        <v-tab-item>
+            <v-card flat>
+              <v-card-text class="py-0 pr-0">
+                <ServicesSaleTransactions />
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card flat>
+              <v-card-text class="py-0 pr-0">
+                <MarginAnalysis/>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-card flat>
+              <v-card-text class="py-0 pr-0">
+                <CategoriesReports/>
+              </v-card-text>
+            </v-card>
+          </v-tab-item>
       </v-tabs>
     </v-col>
   </v-row>
@@ -118,15 +116,15 @@
 export default {
   name: "",
   components: {
-    ProductVariants: () => import("./product_variants/ProductVariants"),
-    // CatalogsBundledTab: () => import("./product_list_catalog/CatalogsBundledTab"),
-    // BundledProducts: () => import("@/views/products/product/product_variants/products/Products.vue"),
-    ItemModifiers: () => import("./ItemModifiers"),
-    // StockReport: () => import("./StockReport"),
-    // PriceMargin: () => import("./price_margin/PriceMargin"),
-    // ProductAnalysisTab: () => import("./product_analysis/ProductAnalysisTab"),
-    ProudctCenter: () => import("./product_center/ProudctCenter"),
-    ProductDiretory: ()=> import("./ProductDiretory")
+  
+    StockReport: () => import("../products/product/StockReport"),
+    PriceMargin: () => import("../products/product/price_margin/PriceMargin"),
+    ProductAnalysisTab: () => import("../products/product/product_analysis/ProductAnalysisTab"),
+
+    MarginAnalysis: () => import('../services_projects/items/MarginAnalysis'),
+    ServicesSaleTransactions: () => import("../services_projects/items/ServicesSaleTransactions"),
+    CategoriesReports: ()=> import("../services_projects/items/CategoriesReports")
+  
 
   },
   data: () => ({

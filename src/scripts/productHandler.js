@@ -72,3 +72,19 @@ module.exports.center = async (data) => {
         window.console.error(error)
     }
 }
+// Product Center URL v2
+module.exports.centerURL =  () => {
+    try {
+        return apiUrl.product.product_center
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+// Import Product
+module.exports.importProduct = async (data) => {
+    try {
+        return await axios.post(apiUrl.product.import_product, data)
+    } catch (error) {
+        window.console.error(error)
+    }
+}

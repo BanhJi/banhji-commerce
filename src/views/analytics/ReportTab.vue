@@ -34,6 +34,11 @@
                           {{ $t("sales") }}
                         </span>
                       </v-tab>
+                      <v-tab>
+                        <span class="">
+                          {{ $t("product_service") }}
+                        </span>
+                      </v-tab>
                       
                      
                     </v-col>
@@ -59,10 +64,18 @@
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
-                <v-tab-item>
+                  <v-tab-item>
                     <v-card flat>
                       <v-card-text>
                         <SaleReportTab />
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
+              
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text>
+                        <ProdustServiceTab />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -86,7 +99,7 @@ export default {
     PrincingTab: () => import("./PrincingTab"),
     OrderReportTab: () => import("../order_sale/OrderReportTab"),
     SaleReportTab: () => import("../order_sale/SaleReportTab"),
-
+    ProdustServiceTab: () => import("./ProdustServiceTab.vue"),
 
   },
   computed: {

@@ -51,100 +51,11 @@ const routes = [{
                             title: i18n.t('sale_channels')
                         }
                     },
-                    
-                    {
-                        path: 'sale_order/:id?',
-                        name: 'Sale Order',
-                        props: true,
-                        component: () => import('../views/customers/SaleOrder'),
-                        meta: {
-                            code: 1.3,
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: true,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    {
-                        path: 'sale_order_view/:id?',
-                        name: 'Sale Order View',
-                        props: true,
-                        component: () => import('../views/customers/SaleOrderView'),
-                        meta: {
-                            code: 1.2,
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: true,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    {
-                        path: 'sale_deposit/:id?',
-                        name: 'Sale Deposit',
-                        component: () => import('../views/customers/SaleDeposit'),
-                        props: true,
-                        meta: {
-                            code: 1.4,
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: true,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    {
-                        path: 'sale_deposit_view/:id?',
-                        name: 'Sale Deposit View',
-                        component: () => import('../views/customers/SaleDepositView'),
-                        props: true,
-                        meta: {
-                            code: 1.4,
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: true,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    
-                    {
-                        path: 'sale_return_view/:id?',
-                        name: 'Sale Return View',
-                        component: () => import('../views/customers/SaleReturnView'),
-                        props: true,
-                        meta: {
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: true,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    {
-                        path: 'customer_directory',
-                        name: 'customer_directory',
-                        component: () => import('../views/customers/customer/CustomerDirectory'),
-                        props: true,
-                        meta: {
-                            mainMenu: 'customer_directory',
-                            miniSideBar: false,
-                            title: i18n.t('customer_directory')
-                        }
-                    },
-                    {
-                        path: 'company_customer/:id?',
-                        name: 'Company Customer',
-                        component: () => import('../views/customers/CompanyCustomer'),
-                        props: true,
-                        meta: {
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: false,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
-                    
             
                     {
                         path: 'individual_customer/:id?',
                         name: 'Individual Customer',
-                        component: () => import('../views/customers/IndividualCustomer'),
+                        component: () => import('../views/contacts/customer/IndividualCustomer'),
                         props: true,
                         meta: {
                             mainMenu: 'receivables_revenue',
@@ -475,7 +386,7 @@ const routes = [{
                     {
                         path: 'marketing_promotions',
                         name: 'marketing_promotions',
-                        component: load('customers/MarketingPromotions'),
+                        component: load('marketing/MarketingPromotions'),
                         meta: {
                             moduleId: 4,
                             mainMenu: 'marketing_promotions',
@@ -515,18 +426,7 @@ const routes = [{
                         }
                     },
                     
-                    {
-                        path: 'payment_option/:id?',
-                        name: 'Payment Option',
-                        component: load('customers/PaymentOption'),
-                        props: true,
-                        meta: {
-                            moduleId: 2,
-                            mainMenu: 'receivables_revenue',
-                            miniSideBar: false,
-                            title: i18n.t('receivables_revenue')
-                        }
-                    },
+                    
                     {
                         path: 'payment_option_vendor/:id?',
                         name: 'Payment Option Vendor',
@@ -765,10 +665,10 @@ const routes = [{
                         }
                     },
                     {
-                        path: 'analytics',
+                        path: 'reports',
                         name: 'analytics',
                         props: true,
-                        component: load('reports/ReportTab'),
+                        component: load('analytics/ReportTab'),
                         meta: {
                             mainMenu: 'analytics',
                             title: 'analytics'

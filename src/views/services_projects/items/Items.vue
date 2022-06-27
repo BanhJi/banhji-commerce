@@ -36,7 +36,7 @@
               {{ $t("service_directory") }}
             </span>
           </v-tab>
-          <v-tab>
+          <!-- <v-tab>
             <span class="hidden-sm-and-up">
               <v-icon left>mdi-pen</v-icon>
             </span>
@@ -59,7 +59,7 @@
             <span class="hidden-sm-and-down text-capitalize text-left">
               {{ $t("service_categories_report") }}
             </span>
-          </v-tab>
+          </v-tab> -->
           <v-tab>
             <span class="hidden-sm-and-up">
               <v-icon left>mdi-pen</v-icon>
@@ -82,7 +82,7 @@
               </v-card-text>
             </v-card>
           </v-tab-item>
-          <v-tab-item>
+          <!-- <v-tab-item>
             <v-card flat>
               <v-card-text class="py-0 pr-0">
                 <ServicesSaleTransactions />
@@ -102,7 +102,7 @@
                 <CategoriesReports/>
               </v-card-text>
             </v-card>
-          </v-tab-item>
+          </v-tab-item> -->
           <v-tab-item>
             <v-card flat>
               <v-card-text class="py-0 pr-0">
@@ -130,12 +130,12 @@ export default {
   },
   components: {
     // ServicesInsight: () => import('./ServicesInsight'),
-    MarginAnalysis: () => import('./MarginAnalysis'),
+    // MarginAnalysis: () => import('./MarginAnalysis'),
     ServicesDirectory: () => import('./ServiceDiretory'),
     ServicesItems: () => import("./services_items/ServicesItems"),
     TransactionItems: () => import("./TransactionItems"),
-    ServicesSaleTransactions: () => import("./ServicesSaleTransactions"),
-    CategoriesReports: ()=> import("./CategoriesReports")
+    // ServicesSaleTransactions: () => import("./ServicesSaleTransactions"),
+    // CategoriesReports: ()=> import("./CategoriesReports")
   },
 };
 </script>

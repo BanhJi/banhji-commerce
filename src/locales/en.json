@@ -4321,6 +4321,8 @@
     "select_user": "Select User",
     "add_store": "Add store",
     "channel_report": "Channel report",
-    "service_margin_analysis": "Service Margin Analysis"
+    "service_margin_analysis": "Service Margin Analysis",
+    "campaign_info": "Campaign info",
+    "campaign_rule": "Campaign rule"
 
 }
