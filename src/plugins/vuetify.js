@@ -20,10 +20,10 @@ export default new Vuetify({
                 grey: "#898C8F"
             },
             dark:{
-                primary: '#ED1A3A',
+                primary: '#4d4848',
                 secondary: '#4d4848',
                 third: '#4d4948',
-                grayBg:"#000000",
+                grayBg:"#121212",
                 black: "#ffffff",
                 white: "#363636",
                 grey: "#898C8F"

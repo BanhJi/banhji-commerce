@@ -120,7 +120,7 @@
                                                                         style=" background-color: #fff;border-radius: 5px;">
 
                                                                         <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
                                                                     </v-col>
                                                                 </template>
                                                                 <v-card style="background-color: #f8f8f9;">
@@ -162,7 +162,7 @@
                                                                         style=" background-color: #fff;border-radius: 5px;">
 
                                                                         <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
                                                                     </v-col>
                                                                 </template>
                                                                 <v-card style="background-color: #f8f8f9;">
@@ -204,7 +204,7 @@
                                                                         style=" background-color: #fff;border-radius: 5px;">
 
                                                                         <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        <h2 class="notification px-2 font_14 ml-2 float-right" style="border-radius: 5px;">20</h2>
                                                                     </v-col>
                                                                 </template>
                                                                 <v-card style="background-color: #f8f8f9;">
@@ -263,7 +263,7 @@
                                             />
                                             <v-divider />
                                             <div class=" v-list-item py-1">
-                                                <p class="mb-0 font_12 mt-3 pl-2">
+                                                <p class="mb-0 font_14 mt-3 pl-2">
                                                     © {{ year }} {{ $t("banhji_name_desc") }}
                                                 </p>
                                             </div>
@@ -276,7 +276,7 @@
                         <v-col md="5" sm="12" cols="12" class="py-0 ">
                             <div class="" style="height: 98vh;background-color: #ffff;display: flex; flex-direction: column;">
                                 <!-- sale transation -->
-                                <div sm="12" cols="12" style="flex-grow: 1; overflow-y: scroll;overflow-x: hidden;">
+                                <div  class="" style="flex-grow: 1; overflow-y: scroll;overflow-x: hidden;" >
                                     <v-card color="white" class="px-2 no_border" elevation="0">
                                         <v-row>
                                             <v-col sm="12" cols="12" class="pt-3 pb-0">
@@ -284,7 +284,7 @@
                                             </v-col>
                                         </v-row>
                                         <v-row>
-                                            <v-col sm="12" cols="12" class="py-0" style="overflow-y: scroll;">
+                                            <v-col sm="12" cols="12" class="py-0" style="">
                                                 <template>
                                                     <kendo-datasource 
                                                         ref="lineDS"
@@ -336,7 +336,6 @@
                                                             :template="'<span>#=kendo.toString(price || 0, decimalFormat)#</span>'"
                                                             :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
                                                         <kendo-grid-column
-                                                            :hidden="true"
                                                             :field="'discountAmount'"
                                                             :title="`Dis.`"
                                                             :template="'<span>#=kendo.toString(discountAmount || 0, decimalFormat)#</span>'"
@@ -659,7 +658,7 @@
                                         </v-row>
                                     </template> 
                                 </div>
-                                <div sm="12" cols="12" class="pt-0">
+                                <div  class="" style="">
                                     <v-row class="px-4">
                                         <v-col sm="12" cols="12" class="py-0" style="border-top: 1px solid lightblue;">
                                             <v-row>
@@ -1708,7 +1707,7 @@
                                                                                 style="height:100% !important;">
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 30px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-cash">
                                                                                     </v-icon>
@@ -2426,7 +2425,7 @@
                                                                                 style="height:100% !important;">
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 30px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-loyalty">
                                                                                     </v-icon>
@@ -3032,7 +3031,7 @@
 
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 30px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-banking">
                                                                                     </v-icon>
@@ -3978,7 +3977,7 @@
                                                                                 
                                                                                 <div style="display: inline-grid;">
                                                                                     <v-icon
-                                                                                        style="font-size: 30px;"
+                                                                                        style="font-size: 35px;"
                                                                                         color="primary"
                                                                                         class="b-payment">
                                                                                     </v-icon>
@@ -4428,58 +4427,12 @@
                                                                     </v-dialog>
                                                                 </div>
                                                             </template>
+                                                            
                                                         </v-col>
+                                                        
                                                     </v-row>
                                                 </v-col>
-                                                <v-col v-if="activeKeyPad" md="5" sm="5" cols="12" class="pa-1 pl-0 float-right text-right">
-                                                        <v-btn @click="keyPad(1)" class="rounded-0 calculator-btn-1 ml-0 third" style="color: #fff;">
-                                                            1
-                                                        </v-btn>
-                                                            
-                                                        <v-btn @click="keyPad(2)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            2
-                                                        </v-btn>
-
-                                                        <v-btn @click="keyPad(3)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            3
-                                                        </v-btn>
-
-                                                        <v-btn @click="keyPad(4)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            4
-                                                        </v-btn>
-                                                        <br>
-                                                        <v-btn @click="keyPad(5)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            5
-                                                        </v-btn>
-
-                                                        <v-btn @click="keyPad(6)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            6
-                                                        </v-btn>
-                                                       
-                                                        <v-btn @click="keyPad(7)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            7
-                                                        </v-btn>
-                                                        <v-btn @click="keyPad(8)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            8
-                                                        </v-btn>
-                                                        <br>
-                                                        <v-btn @click="keyPad(9)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            9
-                                                        </v-btn>
-                                                        <v-btn @click="keyPad(0)" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            0
-                                                        </v-btn>
-                                                            
-                                                        <v-btn @click="keyPad('.')" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            .
-                                                        </v-btn>
-
-                                                        <v-btn @click="keyPad('c')" class="rounded-0 calculator-btn-1 third" style="color: #fff;">
-                                                            c
-                                                        </v-btn>
-                                                    
-                                                </v-col>
-                                                <v-col v-else md="5" sm="5" cols="12" class="pa-1 pl-0 float-right text-right">
+                                                <v-col md="5" sm="5" cols="12" class="pa-1 pl-0 float-right text-right">
                                                         <v-btn class="rounded-0 calculator-btn-1 ml-0">
                                                             1
                                                         </v-btn>
@@ -4528,29 +4481,21 @@
                                                     
                                                 </v-col>
                                                 <v-col md="3" sm="3" cols="12" class="pa-1 pr-0 text-right">
-                                                    <v-btn v-if="activeQty" @click="enterQty" class="rounded-0 calculator-btn-1 primary" style="width: 43%;">
-                                                        Enter
-                                                    </v-btn>
-                                                    <v-btn v-else @click="qtyOnItem" class="rounded-0 calculator-btn-1" style="width: 43%;">
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
                                                         qty
                                                     </v-btn>
-                                                    
                                                     <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
                                                         modi.
                                                     </v-btn>
-                                                    <v-btn v-if="activeDiscount" @click="enterDis" class="rounded-0 calculator-btn-1 primary" style="width: 43%;">
-                                                        Enter
-                                                    </v-btn>
-                                                    <v-btn v-else @click="disOnItem" class="rounded-0 calculator-btn-1" style="width: 43%;">
+
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
                                                         dis.
                                                     </v-btn>
                                                     <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
                                                         emp.
                                                     </v-btn>
-                                                    <v-btn v-if="activePrice" @click="enterPrice" class="rounded-0 calculator-btn-1 primary" style="width: 43%;">
-                                                        Enter
-                                                    </v-btn>
-                                                    <v-btn v-else @click="priceOnItem" class="rounded-0 calculator-btn-1" style="width: 43%;">
+
+                                                    <v-btn class="rounded-0 calculator-btn-1" style="width: 43%;">
                                                         price
                                                     </v-btn>
                                                     
@@ -4803,7 +4748,6 @@ import InvoiceModel from "@/scripts/invoice/model/Invoice"
 const invoiceModel = new InvoiceModel({})
 const accountHandler = require("@/scripts/handler/accounting/account")
 import CustomerModel from "@/scripts/model/Customer"
-const discountItemHandler = require("@/scripts/discountItemHandler")
 export default {
     data: () => ({
         disPriceLevel: false,
@@ -4991,13 +4935,6 @@ export default {
         //customer
         customerPoint: 0,
         customer: new CustomerModel({}),
-        // keypayd
-        activeKeyPad: false,
-        activeQty: false,
-        keyPadAmount: 0,
-        activePrice: false,
-        activeDiscount: false,
-        discountItems: [],
     }),  
     methods: {
         // guest count
@@ -5988,63 +5925,59 @@ export default {
                     }
                 } else if (item.type === "Variant") {
                     if (item.hasOwnProperty("incomeAcc")) {
-                        if (item.incomeAcc.hasOwnProperty("id")) {
-                            if(item.incomeAcc.id !== ""){
-                                const incomeAcc = item.incomeAcc || {};
-                                const account = this.mappingAccount(this.coa, incomeAcc.id);
-                                window.console.log(account, item.incomeAcc, item, 'acc account')
-                                this.jRaw.push({
-                                    id: account.id + "-" + nature,
-                                    // line: new ItemLineModel(value),
-                                    description: this.invoice.journalNote,
-                                    account: account,
-                                    accountId: account.id,
-                                    amount: amt * -1,
-                                    exchangeAmount: xAmount,
-                                    type: nature,
-                                    typeAs: "item",
-                                    cashBasic: 1,
-                                });
-                            }
-                        }
+                    if (item.incomeAcc.hasOwnProperty("id")) {
+                        const incomeAcc = item.incomeAcc || {};
+                        const account = this.mappingAccount(this.coa, incomeAcc.id);
+                        this.jRaw.push({
+                            id: account.id + "-" + nature,
+                            // line: new ItemLineModel(value),
+                            description: this.invoice.journalNote,
+                            account: account,
+                            accountId: account.id,
+                            amount: amt * -1,
+                            exchangeAmount: xAmount,
+                            type: nature,
+                            typeAs: "item",
+                            cashBasic: 1,
+                        });
+                    }
                     }
                     if (item.hasOwnProperty("inventoryAcc")) {
-                        if (item.inventoryAcc.hasOwnProperty("id")) {
-                            if(item.inventoryAcc.id != ""){
-                                const inventoryAcc = item.inventoryAcc || {};
-                                const account = this.mappingAccount(this.coa, inventoryAcc.id);
-                                this.jRaw.push({
-                                id: inventoryAcc.id + "-" + "cr",
-                                // line: new ItemLineModel(value),
-                                description: this.invoice.journalNote,
-                                account: account,
-                                accountId: account.id,
-                                amount: itemAmount * -1, // qty*avg_cost ,
-                                exchangeAmount: itemAmount * -1, //xAmount,
-                                type: "cr",
-                                typeAs: "item",
-                                });
-                            }
-                        }
+                    if (item.inventoryAcc.hasOwnProperty("id")) {
+                        const inventoryAcc = item.inventoryAcc || {};
+                        const account = this.mappingAccount(this.coa, inventoryAcc.id);
+                        this.jRaw.push({
+                        id: inventoryAcc.id + "-" + "cr",
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: itemAmount * -1, // qty*avg_cost ,
+                        exchangeAmount: itemAmount * -1, //xAmount,
+                        type: "cr",
+                        typeAs: "item",
+                        });
+                    }
                     }
                     if (item.hasOwnProperty("costOfGoodsSoldAcc")) {
-                        if (item.costOfGoodsSoldAcc.hasOwnProperty("id")) {
-                            if(item.costOfGoodsSoldAcc.id != ""){
-                                const costOfGoodsSoldAcc = item.costOfGoodsSoldAcc || {};
-                                const account = this.mappingAccount(this.coa, costOfGoodsSoldAcc.id);
-                                this.jRaw.push({
-                                    id: account.id + "-" + "dr",
-                                    // line: new ItemLineModel(value),
-                                    description: this.invoice.journalNote,
-                                    account: account,
-                                    accountId: account.id,
-                                    amount: itemAmount, // qty*avg_cost ,
-                                    exchangeAmount: itemAmount, //xAmount,
-                                    type: "dr",
-                                    typeAs: "item",
-                                });
-                            }
-                        }
+                    if (item.costOfGoodsSoldAcc.hasOwnProperty("id")) {
+                        const costOfGoodsSoldAcc = item.costOfGoodsSoldAcc || {};
+                        const account = this.mappingAccount(
+                        this.coa,
+                        costOfGoodsSoldAcc.id
+                        );
+                        this.jRaw.push({
+                        id: account.id + "-" + "dr",
+                        // line: new ItemLineModel(value),
+                        description: this.invoice.journalNote,
+                        account: account,
+                        accountId: account.id,
+                        amount: itemAmount, // qty*avg_cost ,
+                        exchangeAmount: itemAmount, //xAmount,
+                        type: "dr",
+                        typeAs: "item",
+                        });
+                    }
                     }
                 } else if (item.type === "Fixed Asset") {
                     if (item.hasOwnProperty("assetAcc")) {
@@ -6601,19 +6534,6 @@ export default {
         numberFormat(value) {
             return kendo.toString(value, `n${this.saleFormContent.decimal}`);
         },
-        loadDiscountItem(){
-            this.showLoading = true;
-            this.discountItems = []
-            discountItemHandler.list("?type=Sale").then((res) => {
-                this.showLoading = false;
-                if (res.data.statusCode === 200){ 
-                    this.discountItems = res.data.data;
-                    if(this.discountItems.length > 0){
-                        this.c.discountItem = this.discountItems[0]
-                    }
-                }
-            });
-        },
         //pull data
         async pullData(){
             this.loadPullData = true
@@ -6806,7 +6726,17 @@ export default {
                 this.lineDS.push(itemLine)
                 this.autoCalculate()
             }
-            this.inactiveKeyPad()
+            // this.lineDS.push({
+            //     itemId: item.id,
+            //     amount: item.price,
+            //     price: item.price,
+            //     qty: 1,
+            //     description: item.saleDescription ? item.saleDescription : item.name,
+            //     uom: item.uom,
+            //     discount: 0,
+            //     employees: [],
+            //     modifier: [],
+            // })
         },
         // line
         lineChange(){
@@ -6859,7 +6789,7 @@ export default {
                 dataSource = grid.dataSource,
                 dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
             dataSource.remove(dataItem);
-            this.removeLine(dataItem.id)
+            this.removeLine(dataItem)
             setTimeout(() => {
                 this.autoCalculate();
             }, 500)
@@ -6872,126 +6802,7 @@ export default {
                 }
                 i++
             })
-            window.console.log(index, ritm)
             this.lineDS.splice(index, 1);
-        },
-        // keynote function
-        enterQty(){
-            this.activeKeyPad = false
-            this.activeQty = false
-            window.console.log(this.keyPadAmount)
-            this.lineDS.forEach(itemLine => {
-                if(itemLine.id == this.selectItem.id){
-                    if(itemLine.qty == ''){
-                        itemLine.qty = 0
-                    }
-                    let amount = parseFloat(itemLine.uom.price) * parseFloat(itemLine.qty)
-                    let xAmount = amount * parseFloat(this.invoice.txnRate)
-                    itemLine.price = parseFloat(itemLine.uom.price)
-                    itemLine.amount = amount
-                    itemLine.exchangeAmount = xAmount
-                }
-            })
-            setTimeout(()=>{
-                this.autoCalculate()
-            }, 300)
-        },
-        qtyOnItem(){
-            window.console.log(this.selectItem)
-            if(this.selectItem.hasOwnProperty('id')){
-                this.activeKeyPad = true
-                this.activeQty = true
-                this.activePrice = false
-                this.activeDiscount = false
-                this.keyPadAmount = this.selectItem.qty.toString()
-            }
-        },
-        enterPrice(){
-            this.activeKeyPad = false
-            this.activePrice = false
-            window.console.log(this.keyPadAmount)
-            this.lineDS.forEach(itemLine => {
-                if(itemLine.id == this.selectItem.id){
-                    if(itemLine.price == ''){
-                        itemLine.price = 0
-                    }
-                    let amount = parseFloat(itemLine.uom.price) * parseFloat(itemLine.qty)
-                    let xAmount = amount * parseFloat(this.invoice.txnRate)
-                    itemLine.price = parseFloat(itemLine.uom.price)
-                    itemLine.amount = amount
-                    itemLine.exchangeAmount = xAmount
-                }
-            })
-            setTimeout(()=>{
-                this.autoCalculate()
-            }, 300)
-        },
-        priceOnItem(){
-            window.console.log(this.selectItem)
-            if(this.selectItem.hasOwnProperty('id')){
-                this.activeKeyPad = true
-                this.activeQty = false
-                this.activePrice = true
-                this.activeDiscount = false
-                this.keyPadAmount = this.selectItem.price.toString()
-            }
-        },
-        enterDis(){
-            this.activeKeyPad = false
-            this.activePrice = false
-            window.console.log(this.keyPadAmount)
-            this.lineDS.forEach(itemLine => {
-                if(itemLine.id == this.selectItem.id){
-                    if(itemLine.discountAmount == ''){
-                        itemLine.discountAmount = 0
-                    }
-                    let amount = (parseFloat(itemLine.uom.price) * parseFloat(itemLine.qty)) - parseFloat(itemLine.discountAmount)
-                    let xAmount = amount * parseFloat(this.invoice.txnRate)
-                    itemLine.price = parseFloat(itemLine.uom.price)
-                    itemLine.amount = amount
-                    itemLine.exchangeAmount = xAmount
-                }
-            })
-            setTimeout(()=>{
-                this.autoCalculate()
-            }, 300)
-        },
-        disOnItem(){
-            window.console.log(this.selectItem)
-            if(this.selectItem.hasOwnProperty('id')){
-                this.activeKeyPad = true
-                this.activeQty = false
-                this.activePrice = false
-                this.activeDiscount = true
-                this.keyPadAmount = this.selectItem.discountAmount.toString()
-            }
-        },
-        keyPad(value){
-            if(value == 'c'){
-                this.keyPadAmount = ''
-            }else{
-                var amt = "";
-                if(this.keyPadAmount != "") amt = this.keyPadAmount;
-                this.keyPadAmount = amt + value.toString()
-            }
-            window.console.log(this.keyPadAmount, 'key amount')
-            this.lineDS.forEach(e => {
-                if(e.id == this.selectItem.id){
-                    e.qty = parseFloat(this.keyPadAmount)
-                }
-            })
-            if(this.activeQty){
-                $('.k-state-selected td[data-field=qty]')[0].textContent = this.keyPadAmount
-            }else if(this.activePrice){
-                $('.k-state-selected td[data-field=price]')[0].textContent = this.keyPadAmount
-            }else if(this.activeDiscount){
-                $('.k-state-selected td[data-field=discountAmount]')[0].textContent = this.keyPadAmount
-            }
-        },
-        inactiveKeyPad(){
-            this.selectItem = {}
-            this.activeKeyPad = false
-            this.activeQty = false
         },
     },
     components: {
@@ -7020,7 +6831,6 @@ export default {
         }
         await this.loadSaleFormContent()
         await this.loadAccount()
-        await this.loadDiscountItem()
     },
     
 };
@@ -7066,7 +6876,7 @@ export default {
         height: 12% !important;
         text-align: center;
         padding: 0 3px !important;
-        border-radius: 0px !important;  
+       
     }
     .v-tab {
         justify-content: left;
@@ -7549,9 +7359,6 @@ export default {
     }
     .v-list-item-left {
         padding: 0 0px 0 16px !important;
-    }
-    .theme--light.v-divider{
-        border-color: rgb(0 0 0 / 0%);
     }
 
 

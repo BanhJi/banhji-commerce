@@ -461,7 +461,6 @@ h1.ml-2 a {
 
 .theme--light.v-application {
   background-color: #f8f8f9 !important;
-  margin-top: -10px;
 }
 
 .card__actions > .borderAll {
@@ -2817,4 +2816,14 @@ html, body {
 }
 #pin .v-messages {
   text-align: center !important;
+}
+
+.theme--dark.v-app-bar.v-toolbar.v-sheet {
+  transition: 0.001s;
+  background-color: #121212;
+  border: #121212;
+}
+.theme--dark .my_dropdown .dropdown_nav {
+  background: #5a5959;
+
 }

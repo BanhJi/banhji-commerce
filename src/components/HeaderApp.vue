@@ -5,6 +5,7 @@
             app
             class="no_border  header-app px-0"
             color="grayBg"
+            style="background-color: #12121200;"
             v-bind:class="{ sidebar_small: miniVariant }">
             <span class="px-0">
                 <a @click="close()">
@@ -16,12 +17,14 @@
                 </a>
                 <v-spacer/>
             </span>
+
             <h3 class="ml-2 ml-4 py-4 pl-4" style="font-size: 18px;border-left: 1px solid gainsboro;">{{disc}}</h3> 
             <h1 v-if="this.$route.meta.logo" class="ml-2 hidden-sm-and-down">
                 <img style="height: 50px;" :src="'/images/' + this.$route.meta.logo"/>
             </h1>
-            <v-spacer/>
             
+            <v-spacer/>
+            <v-switch v-model="darkmode" color="primary" class="mt-6"/>
             <li class="my_dropdown" style="display: initial !important;">
                 <a href="#" class="pr-2 font_16 d-flex flex-column">
                 <span class="fontLight font_10 line_12">
@@ -61,6 +64,8 @@
                 @detected-condition="amIOnline">
             </v-offline>
            
+           
+           
         </v-app-bar>
     </v-container>
 </template>
@@ -74,6 +79,7 @@
 
     export default {
         data: () => ({
+            darkmode: false,
             isOnline: false,
             drawer: null,
             miniVariant: false,
@@ -360,6 +366,17 @@
                     this.isApp = false;
                 }
             },
+            handledarkmode () {
+                if (process.browser) {
+                    if (this.darkmode === true) {
+                        this.$vuetify.theme.dark = true
+                        localStorage.setItem('DarkMode', true)
+                    } else if (this.darkmode === false) {
+                        this.$vuetify.theme.dark = false
+                        localStorage.setItem('DarkMode', false)
+                    }
+                }
+            }
         },
         components: {
             VOffline
@@ -402,8 +419,20 @@
         },
         watch: {
             $route: "miniSideInFunction",
+            darkmode (oldval, newval) {
+                this.handledarkmode(),
+                window.console.log(oldval, newval)
+            }
         },
         created() {
+            if (process.browser) {
+                if (localStorage.getItem('DarkMode')) {
+                    const cookieValue = localStorage.getItem('DarkMode') === 'true'
+                    this.darkmode = cookieValue
+                } else {
+                    this.handledarkmode()
+                }
+            }
         }
     };
 
