@@ -4246,7 +4246,10 @@
     "select_warehouse": "Select warehouse",
     "select_segment": "Select segment",
     "select_user": "Select User",
-    "add_store": "Add store"
+    "add_store": "Add store",
+    "channel_report": "Channel report",
+    "service_margin_analysis": "ការវិភាគអត្រាចំណេញដុលរបស់សេវាកម្ម"
+
 
 
 } 

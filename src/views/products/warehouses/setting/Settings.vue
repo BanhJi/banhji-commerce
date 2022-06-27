@@ -75,8 +75,8 @@
 <!--                    </v-card>-->
 <!--                </v-tab-item>-->
                 <v-tab-item>
-                              <v-card flat>
-              <v-card-text class="pt-0">
+                    <v-card flat class="px-5 custom_vcard">
+                        <v-card-text class="pt-0">
                             <Zone/>
                         </v-card-text>
                     </v-card>

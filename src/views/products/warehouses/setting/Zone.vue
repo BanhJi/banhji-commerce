@@ -1,5 +1,5 @@
 <template>
-    <v-row class="">
+     <v-row class="">
         <v-col sm="12" cols="12" class="pa-0">
             <h2 class="mb-0">{{ $t('zone') }}</h2>
             <v-dialog v-model="dialog" max-width="380px">

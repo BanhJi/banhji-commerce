@@ -45,7 +45,7 @@ const routes = [{
                     {
                         path: 'sale_channels',
                         name: 'sale_channels',
-                        component: () => import('../views/customers/SaleChannels'),
+                        component: () => import('../views/commerce/ChannelsTab'),
                         meta: {
                             mainMenu: 'sale_channels',
                             title: i18n.t('sale_channels')
@@ -155,7 +155,7 @@ const routes = [{
                     {
                         path: 'app_connection/:id?',
                         name: 'appConnection',
-                        component: load('customers/sales/sale_channels/app_connetion/AppConnected'),
+                        component: load('commerce/app_connetion/AppConnected'),
                         props: true,
                         meta: {
                             code: 1.10,
@@ -168,7 +168,7 @@ const routes = [{
                     {
                         path: 'set_price/:id?',
                         name: 'Set Price',
-                        component: load('pricing_management/SetPrice'),
+                        component: load('commerce/pricing_management/SetPrice'),
                         props: true,
                         meta: {
                             moduleId: 18,
@@ -181,7 +181,7 @@ const routes = [{
                     {
                         path: 'pricing',
                         name: 'pricing',
-                        component: load('pricing_management/PricingManagement'),
+                        component: load('commerce/pricing_management/PricingManagement'),
                         meta: {
                             mainMenu: 'pricing_management',
                             title: 'Pricing Management'
@@ -356,16 +356,16 @@ const routes = [{
                             title: 'Services & Project',
                         }
                     },
-                    // {
-                    //     path: 'warehouses',
-                    //     name: 'Warehouse Management',
-                    //     component: load('products/warehouses/WarehouseManagement'),
-                    //     meta: {
-                    //         moduleId: 5,
-                    //         mainMenu: 'warehouses',
-                    //         title: 'Products',
-                    //     }
-                    // },
+                    {
+                        path: 'warehouses',
+                        name: 'Warehouse Management',
+                        component: load('products/warehouses/WarehouseTab'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            title: 'Products',
+                        }
+                    },
                     {
                         path: 'store/:id?',
                         name: 'Store Management',
@@ -542,7 +542,7 @@ const routes = [{
                     {
                         path: 'set_price/:id?',
                         name: 'Set Price',
-                        component: load('customers/pricing_management/SetPrice'),
+                        component: load('commerce/pricing_management/SetPrice'),
                         props: true,
                         meta: {
                             moduleId: 2,
@@ -623,7 +623,7 @@ const routes = [{
                     {
                         path: 'partners/:id?',
                         name: 'partners',
-                        component: load('customers/sales/sale_channels/partners_center/Partners'),
+                        component: load('commerce/partners_center/Partners'),
                         props: true,
                         meta: {
                             mainMenu: 'partners',
@@ -762,6 +762,36 @@ const routes = [{
                             mainMenu: 'services_projects_non',
                             type: 'project',
                             title: 'Services & Project'
+                        }
+                    },
+                    {
+                        path: 'analytics',
+                        name: 'analytics',
+                        props: true,
+                        component: load('reports/ReportTab'),
+                        meta: {
+                            mainMenu: 'analytics',
+                            title: 'analytics'
+                        }
+                    },
+                    {
+                        path: 'products_services',
+                        name: 'product_service',
+                        props: true,
+                        component: load('product_service/ProductServiceTab'),
+                        meta: {
+                            mainMenu: 'product_service',
+                            title: 'product_service'
+                        }
+                    },
+                    {
+                        path: 'contacts',
+                        name: 'contacts',
+                        props: true,
+                        component: load('contacts/ContactsTab'),
+                        meta: {
+                            mainMenu: 'contacts',
+                            title: 'contacts'
                         }
                     },
                     
