@@ -26,4 +26,7 @@ module.exports = {
     deletePartner                               : url + 'partner/' + instituteId + '/del',
     getAllItem                                  : url + 'allitem/' + instituteId + '/list',
     getPLItem                                   : url + 'allpricegets/' + instituteId + '/list',
+    storeCreate                                 : url + 'store/' + instituteId + '/create',
+    storeGet                                    : url + 'store/' + instituteId + '/get',
+    storeGets                                   : url + 'store/' + instituteId + '/list',
 }

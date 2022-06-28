@@ -6608,9 +6608,7 @@ export default {
                 this.showLoading = false;
                 if (res.data.statusCode === 200){ 
                     this.discountItems = res.data.data;
-                    if(this.discountItems.length > 0){
-                        this.c.discountItem = this.discountItems[0]
-                    }
+                    localStorage.setItem(instituteId + 'commRDisItem', JSON.stringify(res.data.data));
                 }
             });
         },
@@ -6623,6 +6621,7 @@ export default {
             await this.loadSetting()
             await this.loadCategory()
             await this.loadPriceLevel(1)
+            await this.loadDiscountItem()
             localStorage.setItem(instituteId + 'commRActiveDate', new Date().toISOString().substr(0, 10))
             localStorage.setItem(instituteId + 'commRPullDataAt', new Date().getTime())
         },
@@ -6679,6 +6678,10 @@ export default {
             this.bindItems()
             this.bindCategory()
             this.loadPriceLevel(2)
+            this.bindDiscountItem()
+        },
+        bindDiscountItem(){
+            this.discountItems = JSON.parse(localStorage.getItem(instituteId + 'commRDisItem'))
         },
         checkOtherFunction(){
             this.g.otherFunction.forEach(e => {
@@ -7020,7 +7023,6 @@ export default {
         }
         await this.loadSaleFormContent()
         await this.loadAccount()
-        await this.loadDiscountItem()
     },
     
 };

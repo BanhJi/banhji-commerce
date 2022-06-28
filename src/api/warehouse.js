@@ -5,8 +5,8 @@
  * Github Profile : https://github.com/Darith-Mokpost
  * Instagram Profile : https://www.instagram.com/chandarith_chea
  */
-const store = require("@/institute.js")
-const { instituteId } = store.default.state.cookies
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie();
 
 const myUrl = require("@/url")
 let baseUrl = myUrl.url

@@ -179,3 +179,30 @@ module.exports.getPLItem = async function (data) {
         window.console.log(error)
     }
 }
+module.exports.storeCreate = async (data) => {
+    try {
+        // window.console.log(data, 'handler')
+        const response = await axios.post(apiUrl.commerce.storeCreate, data)
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+module.exports.storeGets = async function () {
+    try {
+        const response = await axios.get(apiUrl.commerce.storeGets)
+
+        return response
+    } catch (error) {
+        window.console.log(error)
+    }
+}
+module.exports.storeGet = async function (id) {
+    try {
+        const response = await axios.get(apiUrl.commerce.storeGet + '/' + id)
+
+        return response
+    } catch (error) {
+        window.console.error(error)
+    }
+}
