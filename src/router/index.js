@@ -307,6 +307,50 @@ const routes = [{
                             title: 'Products',
                         }
                     },
+                    {
+                        path: 'shelving_order',
+                        name: 'Shelving Order',
+                        component: load('products/warehouses/operations/ShelvingOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            miniSideBar: true,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'transfer_order',
+                        name: 'Transfer Order',
+                        component: load('products/warehouses/operations/TransferOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'packing_order',
+                        name: 'Packing order',
+                        component: load('products/warehouses/operations/PackingOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
+                    {
+                        path: 'receipt_order',
+                        name: 'Receipt Order',
+                        component: load('products/warehouses/operations/ReceiptOrder'),
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'warehouses',
+                            miniSideBar: false,
+                            title: 'Products',
+                        }
+                    },
             
                     {
                         path: 'cash_transactions',
@@ -575,13 +619,13 @@ const routes = [{
                         }
                     },
                     {
-                        path: 'point_of_sales',
-                        name: 'point_of_sales',
-                        component: load('pos/Pos'),
+                        path: 'stores',
+                        name: 'store',
+                        component: load('products/store/StoreDashboard'),
                         props: true,
                         meta: {
-                            mainMenu: 'point_of_sales',
-                            title: i18n.t('point_of_sales')
+                            mainMenu: 'store',
+                            title: i18n.t('store')
                         }
                     },
                     

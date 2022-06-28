@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="12">
+        <v-col cols="12" sm="8">
           <v-card
             outlined
             dense
@@ -21,7 +21,7 @@
               </v-card>
               <v-card outlined dense class="px-3 no_border" color="grayBg">
                 <v-row>
-                  <v-col sm="6" cols="6" class="pb-0">
+                  <v-col sm="12" cols="12" class="pb-0">
                     <label class="label mb-0">{{ $t("name") }}</label>
                     <v-text-field
                       class="pt-1"
@@ -31,7 +31,7 @@
                       required
                     />
                   </v-col>
-                  <v-col sm="6" cols="6" class="pb-0">
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("code") }}</label>
                     <v-text-field
                       class="pt-1"
@@ -41,7 +41,7 @@
                       required
                     />
                   </v-col>
-                  <v-col sm="6" cols="6" class="pb-0">
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment"
                         >refresh</v-icon
                       ></label>
@@ -54,7 +54,7 @@
                       v-model="s.segmentId"
                     />
                   </v-col>
-                  <v-col sm="6" cols="6" class="pl-0">
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("warehouse") }}<v-icon size="18" color="red" @click="loadWarehouses"
                         >refresh</v-icon
                       ></label>
@@ -67,7 +67,7 @@
                       item-text="name"
                     />
                   </v-col>
-                  <v-col sm="6" cols="6" class="pb-0">
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("sale_channel") }}<v-icon size="18" color="red" @click="loadSaleChannel"
                         >refresh</v-icon
                       ></label>
@@ -80,9 +80,10 @@
                       outlined
                     />
                   </v-col>
-                  <v-col sm="6" cols="6" class="pb-0">
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("address") }}</label>
                     <v-textarea
+                      height="50"
                       counter
                       :value="s.address"
                     ></v-textarea>

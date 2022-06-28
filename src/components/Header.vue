@@ -459,9 +459,9 @@ export default {
         id: 13,
         class: "text-green sidebar_regular",
         activeClass: "",
-        name: "point_of_sales",
+        name: "store",
         menuTex: "store",
-        path: "/point_of_sales",
+        path: "/stores",
         icon: "b-pos",
       },
       {
