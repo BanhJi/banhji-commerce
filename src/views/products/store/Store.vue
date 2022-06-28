@@ -42,7 +42,9 @@
                     />
                   </v-col>
                   <v-col sm="6" cols="6" class="pb-0">
-                    <label class="label mb-0">{{ $t("segment") }}</label>
+                    <label class="label mb-0">{{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment"
+                        >refresh</v-icon
+                      ></label>
                     <v-select
                       class="mt-1"
                       outlined
@@ -53,7 +55,9 @@
                     />
                   </v-col>
                   <v-col sm="6" cols="6" class="pl-0">
-                    <label class="label mb-0">{{ $t("warehouse") }}</label>
+                    <label class="label mb-0">{{ $t("warehouse") }}<v-icon size="18" color="red" @click="loadWarehouses"
+                        >refresh</v-icon
+                      ></label>
                     <v-select
                       class="mt-1"
                       outlined
@@ -64,7 +68,9 @@
                     />
                   </v-col>
                   <v-col sm="6" cols="6" class="pb-0">
-                    <label class="label mb-0">{{ $t("sale_channel") }}</label>
+                    <label class="label mb-0">{{ $t("sale_channel") }}<v-icon size="18" color="red" @click="loadSaleChannel"
+                        >refresh</v-icon
+                      ></label>
                     <v-select
                       v-model="s.saleChannelId"
                       class="mt-1"
@@ -194,10 +200,11 @@ export default {
       })
     },
     async loadWarehouses() {
+      this.showLoading = true
       this.warehouses = []
       await warehouseHandler.getWarehouseSettingAll().then((res) => {
+        this.showLoading = false
         this.warehouses = res;
-       
         if (res.length > 0 && this.isEdit == false) {
           this.s.warehouseId = res[0].id
            window.console.log(this.s.warehouseId, 'ware house')
