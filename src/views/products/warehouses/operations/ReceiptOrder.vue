@@ -43,7 +43,7 @@
                                                     style="margin-top:1px;"
                                                     class="kendo_dropdown_custom pl-0 pb-4 pr-0  pt-0"
                                                 >
-                                                    <dropdownlist
+                                                    <!-- <dropdownlist
                                                         :data-items="supplierList"
                                                         @change="onChange"
                                                         v-model="receiptOrder.supplier"
@@ -52,6 +52,21 @@
                                                         :text-field="textField"
                                                         :default-item="defaultItem"
                                                         :filterable="true"
+                                                        @filterchange="onFilterChange"
+                                                    >
+                                                    </dropdownlist> -->
+                                                    <dropdownlist
+                                                        class="v-input__slot"
+                                                        :data-items="supplierList"
+                                                        @change="onChange"
+                                                        :value="receiptOrder.supplier"
+                                                        :data-item-key="dataItemKey"
+                                                        :text-field="textField"
+                                                        :default-item="defaultItem"
+                                                        :filterable="true"
+                                                        :required="true"
+                                                        :loading="loading"
+                                                        :valid="valid1"
                                                         @filterchange="onFilterChange"
                                                     >
                                                     </dropdownlist>
@@ -654,6 +669,7 @@ export default {
         // "app-monthpicker": MonthOfPicker,
     },
     data: () => ({
+        loading: false,
         menu2: false,
         isEdit: false,
         dialog: false,
@@ -706,9 +722,16 @@ export default {
         isClose: true,
         dialogS: false,
         hideS: true,
+        supBaseUrl: supplierHandler.search(),
         transactionTypes: []
     }),
-    computed: {},
+    computed: {
+        valid1: function () {
+            let supplier = this.receiptOrder.supplier;
+            window.console.log(1, supplier.id);
+            return supplier.id !== undefined && supplier.id !== null;
+        },
+    },
     beforeRouteLeave(to, from, next) {
         if (this.isClose) {
             this.$swal({
@@ -1395,7 +1418,7 @@ export default {
         },
         onFilterChange(event) {
             const filter = event.filter.value;
-            this.requestData(0, filter, this.supplierBaseUrl);
+            this.requestData(0, filter, this.supBaseUrl);
             this.filter = filter;
         },
         requestData(skip, filter, baseUrl) {
@@ -1583,7 +1606,7 @@ export default {
         // this.loadObj()
     },
     async mounted() {
-        this.requestData(0, "", supplierHandler.url());
+        this.requestData(0, this.filter, this.supBaseUrl);
         this.addRow();
         await this.loadPrefix();
     },
