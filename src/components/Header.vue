@@ -25,6 +25,7 @@
                   alt="BanhJi Logo"
                 />
                 <p class="sub_type">{{ planName }}</p>
+                <p class="sub_type">{{$t('commerce')}}</p>
               </div>
             </a>
             <a v-if="!isAccountLogo" href="/" class="">
@@ -68,6 +69,7 @@
               />
             </a>
             <p class="black--text mt-n3 mb-0 ml-3">{{ planName }}</p>
+           
           </div>
           <div class="block_menu">
             <template v-for="item in items">
