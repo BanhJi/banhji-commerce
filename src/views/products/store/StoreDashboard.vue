@@ -5,8 +5,37 @@
         <v-col sm="12" md="12" cols="12" class="pr-2">
        
             <v-row>
-
-              <v-col sm="3" cols="12" class="">
+              <v-col sm="12" cols="12" class="py-0 mt-1 d-flex">
+                  <div style="width:85%" class="mr-2">
+                    <v-text-field
+                      outlined
+                      :placeholder="$t('search')"
+                      clearable/>
+                  </div>
+                  <div style="width:15%; float: right;">
+                    <v-btn
+                        to="store"
+                        class="mr-2"
+                        style="border: 1px solid gainsboro;background: #ffff;width: 47%;"
+                    >
+                        <i
+                            class="b-add"
+                            style="font-size: 18px;"
+                        />
+                    </v-btn>
+                    <v-btn
+                        color="primary white--text"
+                        style="width: 47%;"
+                        @click="searchTransaction"
+                    >
+                        <i
+                            class="b-search"
+                            style="font-size: 18px; color:#fff !important;"
+                        />
+                    </v-btn>
+                  </div>
+              </v-col>
+              <v-col sm="4" cols="12" class="">
                 <v-card
                   outlined
                   dense
@@ -61,14 +90,6 @@
                       </v-simple-table>
                       <v-divider />
                       <v-card outlined dense class="no_border function_footer">
-                      
-                        <v-btn
-                          to="store"
-                          color="primary"
-                          class="float-right white--text text-capitalize"
-                        >
-                          {{ $t("add") }}
-                        </v-btn>
                         <v-btn
                           color="secondary"
                           style="margin-right: 10px !important"
@@ -81,7 +102,7 @@
                 </v-card>
                   
               </v-col>
-              <v-col sm="3" cols="12" class="">
+              <v-col sm="4" cols="12" class="">
                 <v-card
                   outlined
                   dense
@@ -138,13 +159,6 @@
                       <v-card outlined dense class="no_border function_footer">
                       
                         <v-btn
-                          to="store"
-                          color="primary"
-                          class="float-right white--text text-capitalize"
-                        >
-                          {{ $t("add") }}
-                        </v-btn>
-                        <v-btn
                           color="secondary"
                           style="margin-right: 10px !important"
                           class="white--text float-right text-capitalize"
@@ -156,7 +170,7 @@
                 </v-card>
                   
               </v-col>
-               <v-col sm="3" cols="12" class="">
+              <v-col sm="4" cols="12" class="">
                 <v-card
                   outlined
                   dense
@@ -211,14 +225,6 @@
                       </v-simple-table>
                       <v-divider />
                       <v-card outlined dense class="no_border function_footer">
-                      
-                        <v-btn
-                          to="store"
-                          color="primary"
-                          class="float-right white--text text-capitalize"
-                        >
-                          {{ $t("add") }}
-                        </v-btn>
                         <v-btn
                           color="secondary"
                           style="margin-right: 10px !important"

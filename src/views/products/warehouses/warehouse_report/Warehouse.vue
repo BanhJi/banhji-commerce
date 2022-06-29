@@ -148,7 +148,7 @@
                 </v-col>
             </v-row>
 
-            <div class="reports_table">
+            <!-- <div class="reports_table">
                 <template>
                     <v-simple-table class="attachment_table">
                         <template v-slot:default>
@@ -181,14 +181,90 @@
                         </template>
                     </v-simple-table>
                 </template>
-            </div>
+            </div> -->
+
+             <v-row class="">
+                <v-col sm="12" cols="12">
+                    <LoadingMe
+                        :isLoading="showLoading"
+                        :fullPage="false"
+                        type="loading"
+                        :myLoading="true"
+                    />
+                    <template>
+                        <kendo-datasource/>
+                        <kendo-grid
+                            id="gridWarehouse"
+                            class="grid-function"
+                            :editable="false"
+                            :toolbar="toolbarTemplate"
+                            :excel-export="excelExport"
+                            :excel-file-name="'gridWarehouse.xlsx'"
+                            :excel-filterable="true"
+                            :scrollable-virtual="true">
+                            <kendo-grid-column
+                                :field="'no'"
+                                :title="$t('no')"
+                                :template="rowNumberTmpl"
+                                :width="40"
+                                :column-menu="false"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center', }"
+                                :attributes="{ style: 'text-align: center' }"
+                            />
+                            <kendo-grid-column
+                                :field="'code'"
+                                :title="$t('code')"
+                                :width="100"
+                                :template="'<span>#=name#</span>'"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                            <kendo-grid-column
+                                :field="'name'"
+                                :title="$t('name')"
+                                :width="100"
+                                :template="'<span>#=name#</span>'"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                            <kendo-grid-column
+                                :field="'type'"
+                                :title="$t('type')"
+                                :width="100"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                            <kendo-grid-column
+                                :field="'address'"
+                                :title="$t('address')"
+                                :width="100"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                            <kendo-grid-column
+                                :field="'business_unit'"
+                                :title="$t('business_unit')"
+                                :width="100"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                            <kendo-grid-column
+                                :field="'action'"
+                                :title="$t('action')"
+                                :width="100"
+                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                            />
+                        </kendo-grid>
+                    </template>
+                </v-col>
+            </v-row>
         </v-col>
     </v-row>
 </template>
 
 <script>
+import kendo from "@progress/kendo-ui";
+const $ = kendo.jQuery
 import {i18n} from "@/i18n";
 import LoadingMe from "@/components/Loading";
+import JSZip from "jszip";
+
+window.JSZip = JSZip;
 
 /* Cookie */
 const cookieJS = require("@/cookie.js");
@@ -289,6 +365,49 @@ export default {
                 this.warehouses = res;
             });
             window.console.log(this.warehouses);
+        },
+        excelExport: function (e) {
+            // const pivot = this.$refs.gridTransactionDS.kendoWidget()
+            // pivot.saveAsExcel()
+            window.console.log(e.data);
+        },
+        initToolbar(that) {
+            let grid = $("#gridWarehouse").data("kendoGrid");
+            let gridElement = grid.element;
+            let toolbarElement = gridElement.find(".k-grid-toolbar");
+            toolbarElement.on("click", ".k-pager-refresh", function (e) {
+                e.preventDefault();
+                onReloadData(that);
+            });
+            toolbarElement.on("click", ".k-pager-excel", function (e) {
+                e.preventDefault();
+                onExportExcel(that);
+            });
+
+            function onReloadData(that) {
+                that.loadItemModifiers();
+            }
+
+            function onExportExcel(that) {
+                that.exportToExcel();
+            }
+        },
+        exportToExcel() {
+            const grid = $("#gridWarehouse").data("kendoGrid")
+            grid.saveAsExcel()
+        },
+        toolbarTemplate: function () {
+            const templateHtml =
+                '<span>' +
+                '<a class="k-pager-excel k-link k-button excel" title="Export to Excel"> <span class="k-icon k-i-excel"></span>Export to excel </a>' +
+                '</span><span>&nbsp;&nbsp;</span>' +
+                '<span style="position:absolute; right:5px">' +
+                '</span>' +
+                '<span>' +
+                '<a class="k-pager-refresh k-link k-button reload" title="Refresh"><span class="k-icon k-i-reload"></span> Refresh </a>' +
+                '</span>'
+
+            return kendo.template(templateHtml)
         },
     },
     async mounted() {

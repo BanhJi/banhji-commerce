@@ -143,6 +143,10 @@
                                                 v-on:databound="dataBound"
                                                 :editable="true"
                                                 :scrollable-virtual="true"
+                                                :excel-file-name="$t('delivery_orders')+'.xlsx'"
+                                                :excel-filterable="true"
+                                                :excel-all-pages="true"
+                                                :toolbar="['excel']"
                                             >
                                                 <kendo-grid-column
                                                     :command="{
@@ -687,6 +691,10 @@ const keyField = "id";
 const textField = "name";
 const emptyItem = {[textField]: "loading ..."};
 const itemLinePrefix = "lin-";
+
+import JSZip from "jszip";
+
+window.JSZip = JSZip;
 export default {
     name: "CreditPurchase",
     components: {

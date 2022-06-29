@@ -7,32 +7,6 @@
                         <h2 class="mb-0 font_20">{{ $t('delivery_orders') }}</h2>
                     </v-col>
                     <v-col sm="7" cols="12">
-    <!--                    <v-row class="">-->
-    <!--                        <v-col class="py-0" sm="6" cols="12">-->
-    <!--                            <v-card outlined dense class="px-2 no_border" color="secondary" min-height="53px">-->
-    <!--                                <v-row class="">-->
-    <!--                                    <v-col class="py-1" sm="6" cols="12">-->
-    <!--                                        <p class="white&#45;&#45;text mb-0 text-uppercase">{{$t('ready_for_delivery')}}</p>-->
-    <!--                                    </v-col>-->
-    <!--                                    <v-col class="py-1" sm="6" cols="12">-->
-    <!--                                        <h3 class="white&#45;&#45;text mt-3 text-right">100</h3>-->
-    <!--                                    </v-col>-->
-    <!--                                </v-row>-->
-    <!--                            </v-card>-->
-    <!--                        </v-col>-->
-    <!--                        <v-col class="py-0" sm="6" cols="12">-->
-    <!--                            <v-card outlined dense class="px-2 no_border" color="third" min-height="53px">-->
-    <!--                                <v-row class="">-->
-    <!--                                    <v-col class="py-1" sm="6" cols="12">-->
-    <!--                                        <p class="white&#45;&#45;text mb-0 text-uppercase">{{$t('outgoing_return')}}</p>-->
-    <!--                                    </v-col>-->
-    <!--                                    <v-col class="py-1" sm="6" cols="12">-->
-    <!--                                        <h3 class="white&#45;&#45;text mt-3 text-right">100</h3>-->
-    <!--                                    </v-col>-->
-    <!--                                </v-row>-->
-    <!--                            </v-card>-->
-    <!--                        </v-col>-->
-    <!--                    </v-row>-->
                     </v-col>
                 </v-row>
                 <v-row class="mt-0">
@@ -72,7 +46,7 @@
                     </v-col>
                 </v-row>
 
-                <v-row class="mt-0">
+                <!-- <v-row class="mt-0">
                     <v-col sm="12" cols="12" class="py-0">
                         <template>
                             <v-simple-table class="attachment_table">
@@ -105,6 +79,83 @@
                             </v-simple-table>
                         </template>
                     </v-col>
+                </v-row> -->
+
+                <v-row>
+                    <v-col sm="12" cols="12" class="py-0">
+                        <kendo-datasource 
+                            ref="dataSource" 
+                            :group="group" 
+                            :data="txnWh"/>
+                            <kendo-grid 
+                                id="gridDeliveryOrder" 
+                                class="grid-function" 
+                                :data-source-ref="'dataSource'" 
+                                :sortable="false"
+                                :groupable="true"
+                                :noRecords="true" 
+                                :filterable="true" 
+                                :column-menu="true" 
+                                :editable="false" 
+                                :scrollable-virtual="true"
+                                :excel-file-name="$t('delivery_order')+'.xlsx'"
+                                :excel-filterable="true"
+                                :excel-all-pages="true"
+                                :toolbar="['excel']"
+                                >
+                                <kendo-grid-column 
+                                    :field="'date'" 
+                                    :title="$t('date')" 
+                                    :width="100" 
+                                    :template="DateTemplate"
+                                    :headerAttributes="{style: 'background-color: #EDF1F5;',class: 'text-variants'}"/>
+                                <kendo-grid-column 
+                                    :field="'number'" 
+                                    :template="NumTemplate" 
+                                    :title="$t('number')" 
+                                    :width="100" 
+                                    :headerAttributes="{
+                                        style: 'background-color: #EDF1F5'
+                                    }"/>
+                                <kendo-grid-column 
+                                    :field="'name'" 
+                                    :template="'<span>#=item.name#</span>'" 
+                                    :title="$t('name')" 
+                                    :width="100" 
+                                    :headerAttributes="{
+                                        style: 'background-color: #EDF1F5'
+                                    }"/>
+                                
+                                <kendo-grid-column 
+                                    :field="'type'" 
+                                    :title="$t('type')" 
+                                    :width="100"
+                                    :headerAttributes="{
+                                            style: 'text-align: right; background-color: #EDF1F5'
+                                        }" :attributes="{
+                                            style: 'text-align: right'
+                                        }"/>
+                                <kendo-grid-column 
+                                    :field="'status'" 
+                                    :title="$t('status')" 
+                                    :width="90"
+                                    :headerAttributes="{
+                                    style: 'text-align: right; background-color: #EDF1F5'
+                                        }" :attributes="{
+                                            style: 'text-align: right'
+                                        }"/>
+                                <kendo-grid-column 
+                                    :field="'action'" 
+                                    :title="$t('action')" 
+                                    :width="90"
+                                    :headerAttributes="{
+                                    style: 'text-align: right; background-color: #EDF1F5'
+                                        }" :attributes="{
+                                            style: 'text-align: right'
+                                        }"/>
+        
+                            </kendo-grid>
+                    </v-col>
                 </v-row>
             </v-card>
         </v-col>
@@ -114,6 +165,10 @@
 import DatePickerComponent from '@/components/custom_templates/DatePickerComponent'
 import kendo from "@progress/kendo-ui";
 const deliveryOrderHandler = require("@/scripts/deliveryOrderHandler")
+
+import JSZip from "jszip";
+
+window.JSZip = JSZip;
 export default {
     data: () => ({
         // Search transaction dates

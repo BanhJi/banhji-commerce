@@ -78,94 +78,9 @@
                                 </v-row>
                             </dialog-actions-bar>
                         </k-dialog>
-                        <!--                    <v-dialog v-model="dialogm2" max-width="380px" eager>-->
-                        <!--                        <template v-slot:activator="{ on }">-->
-                        <!--                            <v-btn color="primary" @click="addAgency"-->
-                        <!--                                   class="white&#45;&#45;text text-capitalize  float-right" v-on="on">-->
-                        <!--                                {{ $t('create_new') }}-->
-                        <!--                            </v-btn>-->
-                        <!--                        </template>-->
-                        <!--                        <v-card>-->
-                        <!--                            <v-card-title>{{ $t('warehouse_location') }}</v-card-title>-->
-                        <!--                            <v-icon class="btn_close" @click="dialogm2 = false">close</v-icon>-->
-                        <!--                            <v-divider/>-->
-                        <!--                            <v-card-text style="background-color: #EDF1F5; color: #333;">-->
-                        <!--                                <v-row>-->
-                        <!--                                    <v-col sm="6" cols="12" class="my_radio">-->
-                        <!--                                        <input id="radio1" name="radio" type="radio" value=1-->
-                        <!--                                               v-model="deliveryAgency.type"> <label-->
-                        <!--                                        for="radio1">{{ $t('batch_tracked') }}</label>-->
-
-                        <!--                                    </v-col>-->
-                        <!--                                    <v-col sm="6" cols="12" class="my_radio">-->
-                        <!--                                        <input id="radio2" name="radio" type="radio" value=2-->
-                        <!--                                               v-model="deliveryAgency.type"> <label-->
-                        <!--                                        for="radio2">{{ $t('serial_number') }}</label>-->
-                        <!--                                    </v-col>-->
-                        <!--                                    <v-col sm="12" cols="12">-->
-                        <!--                                        <label class="label mb-0">{{ $t('customer') }}</label>-->
-                        <!--                                        <v-col sm="12" cols="12"-->
-                        <!--                                               class="kendo_dropdown_custom px-0 pb-3 pt-0">-->
-                        <!--                                            <dropdownlist-->
-                        <!--                                                style="width: 100%"-->
-                        <!--                                                class=""-->
-                        <!--                                                :data-items="customerList"-->
-                        <!--                                                @change="onChange"-->
-                        <!--                                                :value="mCustomer"-->
-                        <!--                                                :data-item-key="'id'"-->
-                        <!--                                                :text-field="'name'"-->
-                        <!--                                                :default-item="defaultItem"-->
-                        <!--                                                :filterable="true"-->
-                        <!--                                                @filterchange="onCustomerFilterChanged">-->
-                        <!--                                            </dropdownlist>-->
-                        <!--                                        </v-col>-->
-                        <!--                                    </v-col>-->
-                        <!--                                    <v-col sm="12" cols="12">-->
-                        <!--                                        <label class="label  mb-0">{{ $t('supplier') }}</label>-->
-                        <!--                                        <v-col sm="12" cols="12"-->
-                        <!--                                               class="kendo_dropdown_custom px-0 pb-3 pt-0">-->
-                        <!--                                            <dropdownlist-->
-                        <!--                                                :data-items="vendorList"-->
-                        <!--                                                @change="onChange_"-->
-                        <!--                                                :value="mSupplier"-->
-                        <!--                                                :data-item-key="dataItemKey_"-->
-                        <!--                                                :text-field="textField_"-->
-                        <!--                                                :default-item="defaultItem_"-->
-                        <!--                                                :filterable="true"-->
-                        <!--                                                @filterchange="onFilterChange_">-->
-                        <!--                                            </dropdownlist>-->
-                        <!--                                        </v-col>-->
-                        <!--                                    </v-col>-->
-                        <!--                                </v-row>-->
-                        <!--                            </v-card-text>-->
-                        <!--                            <v-divider/>-->
-                        <!--                            <v-card-actions class="pa-5">-->
-                        <!--                                <v-row>-->
-                        <!--                                    <v-col sm="6" cols="6" class="py-0 text-left">-->
-                        <!--                                        <v-btn color="black" outlined-->
-                        <!--                                               class=" text-capitalize  black&#45;&#45;text float-left"-->
-                        <!--                                               @click="dialogm2 = false">{{ $t('cancel') }}-->
-                        <!--                                        </v-btn>-->
-                        <!--                                    </v-col>-->
-                        <!--                                    <v-col sm="6" cols="6" class="py-0 text-right">-->
-                        <!--                                        <v-btn @click="addWhSetting" color="primary"-->
-                        <!--                                               class="px-3  white&#45;&#45;text text-capitalize">{{-->
-                        <!--                                                $t('save_close')-->
-                        <!--                                            }}-->
-                        <!--                                        </v-btn>-->
-                        <!--                                    </v-col>-->
-                        <!--                                </v-row>-->
-                        <!--                                &lt;!&ndash;                        <v-btn color="white" class=" black&#45;&#45;text float-left" @click="dialogm2 = false">{{$t('cancel')}}</v-btn>&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                        <v-btn color="blue" class=" white&#45;&#45;text text-capitalize float-right" >{{$t('save_new')}}&ndash;&gt;-->
-                        <!--                                &lt;!&ndash;                        </v-btn>&ndash;&gt;-->
-
-                        <!--                            </v-card-actions>-->
-
-                        <!--                        </v-card>-->
-                        <!--                    </v-dialog>-->
                     </v-col>
                 </v-row>
-                <v-row class="mt-0">
+                <!-- <v-row class="mt-0">
                     <v-col sm="12" cols="12" class="py-0">
                         <template>
                             <v-simple-table class="attachment_table">
@@ -194,6 +109,66 @@
                                 </template>
                             </v-simple-table>
                         </template>
+                    </v-col>
+                </v-row> -->
+
+                <v-row>
+                    <v-col sm="12" cols="12" class="py-0">
+                        <kendo-datasource 
+                            ref="dataSource" 
+                            :group="group" 
+                            :data="txnWh"/>
+                            <kendo-grid 
+                                id="gridDeliveryAgency" 
+                                class="grid-function" 
+                                :data-source-ref="'dataSource'" 
+                                :sortable="false"
+                                :groupable="true"
+                                :noRecords="true" 
+                                :filterable="true" 
+                                :column-menu="true" 
+                                :editable="false" 
+                                :scrollable-virtual="true"
+                                :excel-file-name="$t('delivery_agency')+'.xlsx'"
+                                :excel-filterable="true"
+                                :excel-all-pages="true"
+                                :toolbar="['excel']"
+                                >
+                                <kendo-grid-column 
+                                    :field="'no'" 
+                                    :title="$t('no')" 
+                                    :width="100" 
+                                    :template="DateTemplate"
+                                    :headerAttributes="{style: 'background-color: #EDF1F5;',class: 'text-variants'}"/>
+                                <kendo-grid-column 
+                                    :field="'name'" 
+                                    :template="'<span>#=item.name#</span>'" 
+                                    :title="$t('name')" 
+                                    :width="100" 
+                                    :headerAttributes="{
+                                        style: 'background-color: #EDF1F5'
+                                    }"/>
+                                
+                                <kendo-grid-column 
+                                    :field="'type'" 
+                                    :title="$t('type')" 
+                                    :width="100"
+                                    :headerAttributes="{
+                                            style: 'text-align: right; background-color: #EDF1F5'
+                                        }" :attributes="{
+                                            style: 'text-align: right'
+                                        }"/>
+                                <kendo-grid-column 
+                                    :field="'action'" 
+                                    :title="$t('action')" 
+                                    :width="90"
+                                    :headerAttributes="{
+                                    style: 'text-align: right; background-color: #EDF1F5'
+                                        }" :attributes="{
+                                            style: 'text-align: right'
+                                        }"/>
+        
+                            </kendo-grid>
                     </v-col>
                 </v-row>
             </v-card>

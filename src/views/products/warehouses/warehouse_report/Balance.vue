@@ -31,6 +31,10 @@
                                     :columns="columns"
                                     :column-menu="true"
                                     :editable="false"
+                                    :excel-file-name="$t('balance_warehouse')+'.xlsx'"
+                                    :excel-filterable="true"
+                                    :excel-all-pages="true"
+                                    :toolbar="['excel']"
                                     :scrollable-virtual="true">
 <!--                            <kendo-grid-column :field="'name'" :template="'<span>#=name#</span>'" :title="$t('product')" :width="100" :column-menu="'false'"-->
 <!--                                               :headerAttributes="{-->
@@ -63,6 +67,10 @@
 import DatePickerComponent from '@/components/custom_templates/DatePickerComponent'
 import {i18n} from "@/i18n";
 const warehouseHandler = require("@/scripts/warehouseHandler")
+
+import JSZip from "jszip";
+
+window.JSZip = JSZip;
 export default {
     data: () => ({
         showLoading: false,
