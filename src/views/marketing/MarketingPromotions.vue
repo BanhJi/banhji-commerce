@@ -19,23 +19,12 @@
                           {{ $t("campaigns") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="1"> 
-                        <span>
-                          {{ $t("campaign_report") }}
-                        </span>
-                      </v-tab>
-                      <v-tab :key="2">
+                      <v-tab :key="1">
                         <span>
                           {{ $t("discount_items") }}
                         </span>
                       </v-tab>
-
-                      <v-tab :key="3">
-                        <span>
-                          {{ $t("discount_report") }}
-                        </span>
-                      </v-tab>
-                      <v-tab :key="4">
+                      <v-tab :key="2">
                         <span>
                           {{ $t("settings") }}
                         </span>
@@ -51,25 +40,11 @@
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <CampaignReport />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
 
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
                         <DiscountItem />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Report />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -99,9 +74,7 @@ export default {
   name: "Customers",
   components: {
     Campaigns: () => import("./Campaigns"),
-    CampaignReport: () => import("./CampaignReport"),
-    DiscountItem: () => import("./DiscountItem"),
-    Report: () => import("./Report"),
+    DiscountItem: () => import("../commerce/sale_discounts/DiscountItem"),
     Setting: () => import("./Setting"),
   },
   data: () => ({

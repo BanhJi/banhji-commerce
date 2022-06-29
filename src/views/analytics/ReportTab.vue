@@ -39,6 +39,11 @@
                           {{ $t("product_service") }}
                         </span>
                       </v-tab>
+                      <v-tab>
+                        <span class="">
+                          {{ $t("discount_report") }}
+                        </span>
+                      </v-tab>
                       
                      
                     </v-col>
@@ -79,6 +84,13 @@
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
+                  <v-tab-item>
+                    <v-card flat>
+                      <v-card-text>
+                        <Report />
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
                 </v-tabs>
               </v-col>
             </v-row>
@@ -100,6 +112,7 @@ export default {
     OrderReportTab: () => import("../order_sale/OrderReportTab"),
     SaleReportTab: () => import("../order_sale/SaleReportTab"),
     ProdustServiceTab: () => import("./ProdustServiceTab.vue"),
+    Report: () => import("../commerce/sale_discounts/Report"),
 
   },
   computed: {
