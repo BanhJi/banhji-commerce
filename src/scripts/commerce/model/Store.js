@@ -8,6 +8,7 @@ export default class Store {
         this.saleChannelId = data.saleChannelId || ''
         this.address = data.address || ''
         this.user = data.user || {}
+        this.lockDelete = data.lockDelete || 'no'
     }
 
     constuct(data) {
