@@ -136,7 +136,7 @@
                                                                                         <v-textarea
                                                                                             v-model="c.description"
                                                                                             class="mt-4"
-                                                                                            solo
+                                                                                            outlined
                                                                                             :label="$t('description')+'...'"
                                                                                             name="input-7-4">
                                                                                         </v-textarea>

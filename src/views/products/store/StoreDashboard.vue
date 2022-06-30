@@ -54,7 +54,7 @@
                         elevation="0"
                         style=" display: flex;background: #ed1a3a;"
                       >
-                        <i style="font-size: 50px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
+                        <i style="font-size: 65px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
                         <h1 class="line_22 font_22 white--text ml-4">
                         {{ $t("pos_for_retail") }}
                         </h1>
@@ -121,7 +121,7 @@
                         elevation="0"
                         style=" display: flex;background: #ed1a3a;"
                       >
-                        <i style="font-size: 50px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
+                        <i style="font-size: 65px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
                         <h1 class="line_22 font_22 white--text ml-4">
                         {{ $t("pos_for_resturant") }}
                         </h1>
@@ -189,7 +189,7 @@
                         elevation="0"
                         style=" display: flex;background: #ed1a3a;"
                       >
-                        <i style="font-size: 50px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
+                        <i style="font-size: 65px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
                         <h1 class="line_22 font_22 white--text ml-4">
                         {{ $t("pos_for_service") }}
                         </h1>

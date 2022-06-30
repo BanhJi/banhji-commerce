@@ -24,11 +24,6 @@
                           {{ $t("discount_items") }}
                         </span>
                       </v-tab>
-                      <v-tab :key="2">
-                        <span>
-                          {{ $t("settings") }}
-                        </span>
-                      </v-tab>
                
                     </v-col>
                   </v-row>
@@ -45,13 +40,6 @@
                     <v-card flat>
                       <v-card-text class="">
                         <DiscountItem />
-                      </v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item >
-                    <v-card flat>
-                      <v-card-text class="">
-                        <Setting />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -75,7 +63,6 @@ export default {
   components: {
     Campaigns: () => import("./Campaigns"),
     DiscountItem: () => import("../commerce/sale_discounts/DiscountItem"),
-    Setting: () => import("./Setting"),
   },
   data: () => ({
     // active_tab: data.customer_tab.main

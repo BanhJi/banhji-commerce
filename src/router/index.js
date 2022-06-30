@@ -738,6 +738,26 @@ const routes = [{
                             title: 'contacts'
                         }
                     },
+                    {
+                        path: 'sale_plan',
+                        name: 'sale_plan',
+                        props: true,
+                        component: load('sale_plan/SalePlanTab'),
+                        meta: {
+                            mainMenu: 'sale_plan',
+                            title: 'sale_plan'
+                        }
+                    },
+                    {
+                        path: 'sale_plans',
+                        name: 'sale_plans',
+                        props: true,
+                        component: load('sale_plan/SalePlan'),
+                        meta: {
+                            mainMenu: 'sale_plan',
+                            title: 'sale_plan'
+                        }
+                    },
                     
                     
                 ]

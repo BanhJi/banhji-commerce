@@ -4323,6 +4323,25 @@
     "channel_report": "Channel report",
     "service_margin_analysis": "Service Margin Analysis",
     "campaign_info": "Campaign info",
-    "campaign_rule": "Campaign rule"
+    "campaign_rule": "Campaign rule",
+    "list_budget": "List of Budgets",
+    "breakdown_budget": "Breakdown",
+    "budget_performance_report_by_segment": "Budget Performance Report by Segment",
+    "budget_performance_report_by_business_unit": "Budget Performance Report by business unit",
+    "budget_performance_report_by_segment_dis": "A comparison between actual and single budget statement of profit or loss by segment",
+    "store": "Store",
+    "budgeted_by": "Budgeted by",
+    "grouped_by": "Grouped by",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "coupon_number": "Coupon number",
+    "it_almost_end_date": "it almost end date",
+    "fixed": "Fixed",
+    "varian": "Variable",
+    "is_end_date": "Is end date",
+    "amount_per_point": "Amount per point",
+    "point_per_reward": "Point per reward",
+    "reward_info": "Reward info",
+    "reward_rule": "Reward rule"
 
 }

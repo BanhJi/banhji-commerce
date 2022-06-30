@@ -80,7 +80,7 @@
           <v-tab-item>
             <v-card flat>
               <v-card-text class="pt-0 pr-0">
-                <SalePerformance />
+                <BudgetPerformance />
               </v-card-text>
             </v-card>
           </v-tab-item>
@@ -123,7 +123,7 @@ export default {
     ByProductsServices: () =>import("./sale_reports_analysis/ByProductsServices"),
     CategoriesReport:()=> import('./sale_reports_analysis/CategoriesReport'),
     SaleTargets:()=> import('./sale_reports_analysis/SaleTargets'),
-    SalePerformance:()=> import('./sale_reports_analysis/SalePerformance'),
+    BudgetPerformance:()=> import('../sale_plan/budgets/BudgetPerformance'),
   },
 };
 </script>

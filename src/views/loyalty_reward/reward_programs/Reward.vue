@@ -66,7 +66,7 @@
                                                         <v-col cols="12" class="pb-0" @stepOne="nextStpes($event, 1)" ref="">
                                                             <v-row>
                                                                 <v-col sm="12" cols="12" class="py-0">
-                                                                    <h2 class="primary--text font_20 mb-0">{{$t('step_one')}}</h2>
+                                                                    <h2 class="primary--text font_20 mb-0">{{$t('reward_info')}}</h2>
                                                                 </v-col>
                                                                 <v-col sm="12" cols="12" class="py-0">
                                                                     <v-card outlined dense class="no_border" color="white">
@@ -117,8 +117,8 @@
                                                                                         <label class="label mb-0">{{ $t('description') }}</label>
                                                                                         <v-textarea
                                                                                             v-model="c.description"
+                                                                                            outlined
                                                                                             class="mt-4"
-                                                                                            solo
                                                                                             :label="$t('description')+'...'"
                                                                                             name="input-7-4">
                                                                                         </v-textarea>
@@ -144,7 +144,7 @@
                                                         <v-col cols="12" class="pb-0" @stepTwo="nextStpes($event,2)"  ref="">
                                                             <v-row>
                                                                 <v-col sm="12" cols="12" class="py-0">
-                                                                    <h2 class="primary--text font_20 mb-0">{{$t('step_two')}}</h2>
+                                                                    <h2 class="primary--text font_20 mb-0">{{$t('reward_rule')}}</h2>
                                                                 </v-col>
                                                                 <v-col sm="12" cols="12" class="py-0">
                                                                     <v-card outlined dense class="no_border" color="white">
@@ -202,7 +202,7 @@
                                                         <v-col cols="12" class="pb-0"  @finish="finish($event)"   ref="">
                                                             <v-row>
                                                                 <v-col sm="12" cols="12" class="py-0">
-                                                                    <h2 class="primary--text font_20 mb-0">{{$t('step_tree')}}</h2>
+                                                                    <h2 class="primary--text font_20 mb-0">{{$t('reward')}}</h2>
                                                                 </v-col>
                                                                 <v-col sm="12" cols="12" class="pb-0">
                                                                     <v-card outlined dense class="no_border" color="white">

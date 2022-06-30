@@ -4250,8 +4250,25 @@
     "channel_report": "Channel report",
     "service_margin_analysis": "ការវិភាគអត្រាចំណេញដុលរបស់សេវាកម្ម",
     "campaign_info": "Campaign info",
-    "campaign_rule": "Campaign rule"
-
-
+    "campaign_rule": "Campaign rule",
+    "list_budget": "តារាងថវិការ",
+    "breakdown_budget": "លំអិតថវិការ",
+    "budget_performance_report_by_segment": "របាយការណ៍លទ្ធផលថវិការ​លំអិតតាមផ្នែកអាជីវកម្ម",
+    "budget_performance_report_by_business_unit": "របាយការណ៍លទ្ធផលថវិការ​លំអិតតាមអង្គភាពអាជីវកម្ម",
+    "budget_performance_report_by_segment_dis": "របាយការណ៍ប្រៀបធៀបរវាង លទ្ធផលជាគ់ស្តែង ជាមួយផែនការថវិការតាម​ផ្នែកអាជីវកម្ម",
+    "store": "Store",
+    "budgeted_by": "Budgeted by",
+    "grouped_by": "Grouped by",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "coupon_number": "Coupon number",
+    "it_almost_end_date": "it almost end date",
+    "fixed": "Fixed",
+    "varian": "Variable",
+    "is_end_date": "Is end date",
+    "amount_per_point": "Amount per point",
+    "point_per_reward": "Point per reward",
+    "reward_info": "Reward info",
+    "reward_rule": "Reward rule"
 
 } 
