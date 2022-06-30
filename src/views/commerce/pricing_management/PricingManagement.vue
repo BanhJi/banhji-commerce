@@ -8,17 +8,17 @@
                 <v-col sm="12" cols="12" class="py-0">
                     <v-tabs>
                       <v-tab>
-                        <span class="text-uppercase text-left">
-                          {{ $t("setting") }}
+                        <span class="text-left">
+                          {{ $t("price_setting") }}
                         </span>
                       </v-tab>
                       <v-tab>
-                        <span class="text-uppercase text-left">
-                          {{ $t("book") }}
+                        <span class="text-left">
+                          {{ $t("price_book") }}
                         </span>
                       </v-tab>
                       <v-tab>
-                        <span class="text-uppercase text-left">
+                        <span class="text-left">
                           {{ $t("pricing_analysis") }}
                         </span>
                       </v-tab>
