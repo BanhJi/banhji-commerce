@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="sale-container py-0">
+    <v-container fluid class="py-0" :class="miniVariant == true ? 'pl-9' : ''">
         <v-row>
             <v-col sm="12" cols="12" class="pb-0">
                 <v-card color="#f8f8f9" class="pa-0 no_border" elevation="0">
@@ -12,268 +12,305 @@
                         :fullPage="false"
                         :myLoading="true" />
                     <v-row>
-                        <v-col md="2" cols="2" class="pa-0 sidebar-left hidden-sm-and-down">
-                            <div class="d-flex flex-column" style="height: 98vh;background-color: rgb(248 248 249);">
-                                <div sm="12" cols="12" class=" flex-1">
-                                    <v-card flat color="" style="background-color: rgb(248 248 249);">
-                                        <span class="hidden-sm-and-down">
-                                            <a class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
-                                            <div class="mb-0">
-                                                <img
-                                                    src="@/assets/images/banhji-logo-r.png"
-                                                    width="100%"
-                                                    height="auto"
-                                                    alt="BanhJi Logo"
-                                                />
-                                            </div>
-                                            </a>
-                                            <a v-if="!isAccountLogo" href="" class="">
-                                            <h1 class="mb-0">
-                                                <img
-                                                    class="small_img fade-in"
-                                                    src="@/assets/images/banhji_icon.png"
-                                                    height="40"
-                                                    alt="BanhJi Logo"
-                                                />
+                        <!-- Sidebar -->
+                        <div
+                            class="sidebar"
+                            v-on:mouseover="onMouseOver"
+                            v-on:mouseleave="onMouseLeave"
+                            >
+                            <v-navigation-drawer
+                                :class="{ miniWith: minWidth }"
+                                v-model="drawer"
+                                :mini-variant="miniVariant"
+                                :expand-on-hover="handOver"
+                                :mini-variant-width="40"
+                                :app="isApp"
+                                :fixed="isAbsolute"
+                                color="#F8F8F9"
+                                width="240"
+                            >
+                                <div class="d-flex flex-column" style="height: 98vh;background-color: rgb(248 248 249);">
+                                    <div sm="12" cols="12" class=" flex-1">
+                                        <v-card flat color="" style="background-color: rgb(248 248 249);">
+                                            <span class="hidden-sm-and-down">
+                                                <a  v-if="isAccountLogo" class="main_logo  d-flex pl-6 py-3" style="background-color: rgb(248 248 249);">
+                                                <div class="mb-0">
+                                                    <img
+                                                        src="@/assets/images/banhji-logo-r.png"
+                                                        width="100%"
+                                                        height="auto"
+                                                        alt="BanhJi Logo"
+                                                    />
+                                                </div>
+                                                </a>
+                                                <a v-if="!isAccountLogo" href="" class="">
+                                                <h1 class="mb-0">
+                                                    <img
+                                                        class="small_img fade-in"
+                                                        src="@/assets/images/banhji_icon.png"
+                                                        height="40"
+                                                        alt="BanhJi Logo"
+                                                    />
+                                                    
+                                                </h1>
+                                                </a>
+                                            </span>
+                                            <span
+                                                v-bind:class="{
+                                                    angle_action_small: miniVariant,
+                                                    angle_action: !miniVariant,
+                                                }">
+                                                <v-icon
+                                                    size="16"
+                                                    class="arr_icon"
+                                                    @click="hideSidebar"
+                                                    v-if="!miniVariant"
+                                                    >mdi-chevron-left-circle</v-icon
+                                                >
+                                                <v-icon
+                                                    size="16"
+                                                    class="arr_icon"
+                                                    @click="hideSidebar"
+                                                    v-if="miniVariant"
+                                                    >mdi-chevron-right-circle</v-icon
+                                                >
+                                            </span>
+                                            
+                                            <div v-if="isAccountLogo" class="block_menu" style="background-color: rgb(248 248 249);">
                                                 
-                                            </h1>
-                                            </a>
-                                        </span>
-                                        
-                                        <div class="block_menu" style="background-color: rgb(248 248 249);">
-                                            
-                                            <div v-if="g.allowSelectCustomer" class="v-list-item v-list-item-left  d-block mr-0 pr-0">
+                                                <div v-if="g.allowSelectCustomer" class="v-list-item v-list-item-left  d-block mr-0 pr-0">
+                                                    
+                                                    <v-col cols="12" class="py-0">
+                                                        <v-row>
+                                                            <v-text-field
+                                                            class="pl-2"
+                                                            outlined
+                                                            :placeholder="$t('search')"
+                                                            clearable
+                                                            style="width: 50px"/>
+                                                            <v-btn class=" rounded-0 ml-1" color="primary" style="min-width: 25px">
+                                                                <i  class=" b-search" />
+                                                            </v-btn>
+                                                        </v-row>
+                                                    </v-col>
                                                 
-                                                <v-col cols="12" class="py-0">
-                                                    <v-row>
-                                                        <v-text-field
-                                                        class="pl-2"
-                                                        outlined
-                                                        :placeholder="$t('search')"
-                                                        clearable
-                                                        style="width: 50px"/>
-                                                        <v-btn class=" rounded-0 ml-1" color="primary" style="min-width: 25px">
-                                                            <i  class=" b-search" />
-                                                        </v-btn>
-                                                    </v-row>
-                                                </v-col>
-                                            
-                                            </div>
-                                            
-                                            <div class="v-list-item v-list-item-left  d-block mr-0">
-                                                <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
-                                                <h2 class="pl-2">{{customer.name}}</h2>
-                                            </div>
-                                            <div class="v-list-item v-list-item-left  d-block mr-0">
-                                                <span class="pl-2 dark_grey">{{$t('points')}}</span><br>
-                                                <h2 class="pl-2 border-b">{{customerPoint}}</h2>
-                                            </div>
-                                            <!-- <div class="v-list-item v-list-item-left  d-block mr-0">
-                                                <span class="pl-2 dark_grey">{{$t('loyalty_program')}}</span><br>
-                                                <h2 class="pl-2 border-b">10%</h2>
-                                            </div>
-                                            <div class="v-list-item v-list-item-left  d-block mr-0">
-                                                <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
-                                                <h2 class="pl-2 border-b">123456789</h2>
-                                            </div> -->
-                                            <div class="v-list-item v-list-item-left  d-block mr-0">
-                                                <span class="pl-2 dark_grey">{{$t('cashier_name')}}</span><br>
-                                                <h2 class="pl-2 border-b">{{activePin.name}}</h2>
-                                            </div>
-                                        <v-divider />
-
-                                            <div class="v-list-item v-list-item-left  d-block mr-0 pt-2" style="">
-                                                <span class="pl-2 dark_grey">{{$t('partner')}}</span><br>
-                                                <h2 class="pl-2 border-b  primary--text">foodpada</h2>
-                                            </div>
-                                            <div class="v-list-item  v-list-item-left d-block mr-0" style="">
-                                                <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
-                                                <h2 class="pl-2 border-b  primary--text">12345678</h2>
-                                            </div>
-                                            <div class="v-list-item  v-list-item-left d-block mr-0" style="">
-                                                <span class="pl-2 dark_grey">{{$t('price_level')}}</span><br>
-                                                <v-select
-                                                    class="mt-1"
-                                                    v-model="g.defaultPriceLevel"
-                                                    :items="priceLevels"
-                                                    :disabled="!g.allowSelectPriceLevel"
-                                                    item-value="id"
-                                                    item-text="name"
-                                                    placeholder="Price Level"
-                                                    tage="Default Price Level"
-                                                    outlined
-                                                />
-                                            </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-0" style="min-height: 40px;">
-                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <template>
-                                                        <div justify="center" style="height: 100%;width:100%">
-                                                            <v-dialog
-                                                                v-model="dialogParksale"
-                                                                fullscreen
-                                                                hide-overlay
-                                                                transition="dialog-bottom-transition"
-                                                            >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
-                                                                        cols="12" class="py-2"
-                                                                        style=" background-color: #fff;border-radius: 5px;">
-
-                                                                        <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                                    </v-col>
-                                                                </template>
-                                                                <v-card style="background-color: #f8f8f9;">
-                                                                    <v-container>
-                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
-                                                                            <div class="modal_header">
-                                                                                <v-card-title>{{ $t("parksale") }}</v-card-title>
-                                                                                <v-icon
-                                                                                    @click="dialogParksale = false"
-                                                                                    style="cursor: pointer; font-size: 40px;"
-                                                                                    color="grey"
-                                                                                    class="float-right mt-n1">close
-                                                                                </v-icon>
-                                                                            </div>
-                                                                            <v-card-text class="modal_text_content">
-                                                                                <Parksale/>
-                                                                            </v-card-text>
-                                                                        </v-card>
-                                                                    </v-container>
-                                                                </v-card>
-                                                            </v-dialog>
-                                                        </div>
-                                                    </template>
-                                                </v-row>
-                                            </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0" style="min-height: 40px;">
-                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <template>
-                                                        <div justify="center" style="height: 100%;width:100%">
-                                                            <v-dialog
-                                                                v-model="dialogInvoice"
-                                                                fullscreen
-                                                                hide-overlay
-                                                                transition="dialog-bottom-transition"
-                                                            >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
-                                                                        cols="12" class="py-2"
-                                                                        style=" background-color: #fff;border-radius: 5px;">
-
-                                                                        <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                                    </v-col>
-                                                                </template>
-                                                                <v-card style="background-color: #f8f8f9;">
-                                                                    <v-container>
-                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
-                                                                            <div class="modal_header">
-                                                                                <v-card-title>{{ $t("invoice") }}</v-card-title>
-                                                                                <v-icon
-                                                                                    @click="dialogInvoice = false"
-                                                                                    style="cursor: pointer; font-size: 40px;"
-                                                                                    color="grey"
-                                                                                    class="float-right mt-n1">close
-                                                                                </v-icon>
-                                                                            </div>
-                                                                            <v-card-text class="modal_text_content">
-                                                                                <InvoiceReport/>
-                                                                            </v-card-text>
-                                                                        </v-card>
-                                                                    </v-container>
-                                                                </v-card>
-                                                            </v-dialog>
-                                                        </div>
-                                                    </template>
-                                                </v-row>
-                                            </div>
-                                            <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1" style="min-height: 40px;">
-                                                <v-row class="ml-1 mr-1" style="cursor: pointer;">
-                                                    <template>
-                                                        <div justify="center" style="height: 100%;width:100%">
-                                                            <v-dialog
-                                                                v-model="dialogOrderReport"
-                                                                fullscreen
-                                                                hide-overlay
-                                                                transition="dialog-bottom-transition"
-                                                            >
-                                                                <template v-slot:activator="{ on, attrs }">
-                                                                    <v-col  v-bind="attrs" v-on="on" sm="12" 
-                                                                        cols="12" class="py-2"
-                                                                        style=" background-color: #fff;border-radius: 5px;">
-
-                                                                        <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
-                                                                        <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
-                                                                    </v-col>
-                                                                </template>
-                                                                <v-card style="background-color: #f8f8f9;">
-                                                                    <v-container>
-                                                                        <v-card outlined dense class="px-3 no_border mt-4" color="white">
-                                                                            <div class="modal_header">
-                                                                                <v-card-title>{{ $t("order") }}</v-card-title>
-                                                                                <v-icon
-                                                                                    @click="dialogOrderReport = false"
-                                                                                    style="cursor: pointer; font-size: 40px;"
-                                                                                    color="grey"
-                                                                                    class="float-right mt-n1">close
-                                                                                </v-icon>
-                                                                            </div>
-                                                                            <v-card-text class="modal_text_content">
-                                                                                <OrderReport/>
-                                                                            </v-card-text>
-                                                                        </v-card>
-                                                                    </v-container>
-                                                                </v-card>
-                                                            </v-dialog>
-                                                        </div>
-                                                    </template>
-                                                </v-row>
-                                            </div>
-
-                                            <!-- <div class="v-list-item d-block ma-3 mb-0 mr-0 v-divider"></div> -->
-
-                                            <div class="v-list-item v-list-item-left  d-block mr-0 pt-2">
-                                                <v-row>
-                                                    <v-col md="6" cols="12" class="pr-0">
-                                                        <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
-                                                        <small class="pl-2">{{session.name}}</small>
-                                                    </v-col>
-                                                    <v-col md="6" cols="12" class="px-0">
-                                                        <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
-                                                        <small class="pl-2">{{session.startDate}}</small>
-                                                    </v-col>
-                                                </v-row>
-                                            </div>
-                                            
-                                            
-                                        </div>
-                                    </v-card>
-                                </div>
-                                <div sm="12" cols="12" class="">
-                                    <v-card flat color="" style="background-color: rgb(248 248 249);">
-                                        <div
-                                            class="">
-                                            <img
-                                            class="mt-1 v-list-item v-list-item-left "
-                                            src="@/assets/images/made_in_cambodia.png"
-                                            width="100%"
-                                            height="auto"
-                                            alt=""
-                                            />
+                                                </div>
+                                                
+                                                <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                    <span class="pl-2 dark_grey">{{$t('customer_name')}}</span> <br>
+                                                    <h2 class="pl-2">{{customer.name}}</h2>
+                                                </div>
+                                                <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                    <span class="pl-2 dark_grey">{{$t('points')}}</span><br>
+                                                    <h2 class="pl-2 border-b">{{customerPoint}}</h2>
+                                                </div>
+                                                <!-- <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                    <span class="pl-2 dark_grey">{{$t('loyalty_program')}}</span><br>
+                                                    <h2 class="pl-2 border-b">10%</h2>
+                                                </div>
+                                                <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                    <span class="pl-2 dark_grey">{{$t('loyalty_num')}}</span><br>
+                                                    <h2 class="pl-2 border-b">123456789</h2>
+                                                </div> -->
+                                                <div class="v-list-item v-list-item-left  d-block mr-0">
+                                                    <span class="pl-2 dark_grey">{{$t('cashier_name')}}</span><br>
+                                                    <h2 class="pl-2 border-b">{{activePin.name}}</h2>
+                                                </div>
                                             <v-divider />
-                                            <div class=" v-list-item py-1">
-                                                <p class="mb-0 font_12 mt-3 pl-2">
-                                                    © {{ year }} {{ $t("banhji_name_desc") }}
-                                                </p>
+
+                                                <div class="v-list-item v-list-item-left  d-block mr-0 pt-2" style="">
+                                                    <span class="pl-2 dark_grey">{{$t('partner')}}</span><br>
+                                                    <h2 class="pl-2 border-b  primary--text">foodpada</h2>
+                                                </div>
+                                                <div class="v-list-item  v-list-item-left d-block mr-0" style="">
+                                                    <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
+                                                    <h2 class="pl-2 border-b  primary--text">12345678</h2>
+                                                </div>
+                                                <div class="v-list-item  v-list-item-left d-block mr-0" style="">
+                                                    <span class="pl-2 dark_grey">{{$t('price_level')}}</span><br>
+                                                    <v-select
+                                                        class="mt-1"
+                                                        v-model="g.defaultPriceLevel"
+                                                        :items="priceLevels"
+                                                        :disabled="!g.allowSelectPriceLevel"
+                                                        item-value="id"
+                                                        item-text="name"
+                                                        placeholder="Price Level"
+                                                        tage="Default Price Level"
+                                                        outlined
+                                                    />
+                                                </div>
+                                                <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1 mt-0" style="min-height: 40px;">
+                                                    <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                        <template>
+                                                            <div justify="center" style="height: 100%;width:100%">
+                                                                <v-dialog
+                                                                    v-model="dialogParksale"
+                                                                    fullscreen
+                                                                    hide-overlay
+                                                                    transition="dialog-bottom-transition"
+                                                                >
+                                                                    <template v-slot:activator="{ on, attrs }">
+                                                                        <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                            cols="12" class="py-2"
+                                                                            style=" background-color: #fff;border-radius: 5px;">
+
+                                                                            <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        </v-col>
+                                                                    </template>
+                                                                    <v-card style="background-color: #f8f8f9;">
+                                                                        <v-container>
+                                                                            <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                                <div class="modal_header">
+                                                                                    <v-card-title>{{ $t("parksale") }}</v-card-title>
+                                                                                    <v-icon
+                                                                                        @click="dialogParksale = false"
+                                                                                        style="cursor: pointer; font-size: 40px;"
+                                                                                        color="grey"
+                                                                                        class="float-right mt-n1">close
+                                                                                    </v-icon>
+                                                                                </div>
+                                                                                <v-card-text class="modal_text_content">
+                                                                                    <Parksale/>
+                                                                                </v-card-text>
+                                                                            </v-card>
+                                                                        </v-container>
+                                                                    </v-card>
+                                                                </v-dialog>
+                                                            </div>
+                                                        </template>
+                                                    </v-row>
+                                                </div>
+                                                <div class="v-list-item v-list-item-left  d-block mb-1 mr-0" style="min-height: 40px;">
+                                                    <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                        <template>
+                                                            <div justify="center" style="height: 100%;width:100%">
+                                                                <v-dialog
+                                                                    v-model="dialogInvoice"
+                                                                    fullscreen
+                                                                    hide-overlay
+                                                                    transition="dialog-bottom-transition"
+                                                                >
+                                                                    <template v-slot:activator="{ on, attrs }">
+                                                                        <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                            cols="12" class="py-2"
+                                                                            style=" background-color: #fff;border-radius: 5px;">
+
+                                                                            <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        </v-col>
+                                                                    </template>
+                                                                    <v-card style="background-color: #f8f8f9;">
+                                                                        <v-container>
+                                                                            <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                                <div class="modal_header">
+                                                                                    <v-card-title>{{ $t("invoice") }}</v-card-title>
+                                                                                    <v-icon
+                                                                                        @click="dialogInvoice = false"
+                                                                                        style="cursor: pointer; font-size: 40px;"
+                                                                                        color="grey"
+                                                                                        class="float-right mt-n1">close
+                                                                                    </v-icon>
+                                                                                </div>
+                                                                                <v-card-text class="modal_text_content">
+                                                                                    <InvoiceReport/>
+                                                                                </v-card-text>
+                                                                            </v-card>
+                                                                        </v-container>
+                                                                    </v-card>
+                                                                </v-dialog>
+                                                            </div>
+                                                        </template>
+                                                    </v-row>
+                                                </div>
+                                                <div class="v-list-item v-list-item-left  d-block mb-1 mr-0 pr-1" style="min-height: 40px;">
+                                                    <v-row class="ml-1 mr-1" style="cursor: pointer;">
+                                                        <template>
+                                                            <div justify="center" style="height: 100%;width:100%">
+                                                                <v-dialog
+                                                                    v-model="dialogOrderReport"
+                                                                    fullscreen
+                                                                    hide-overlay
+                                                                    transition="dialog-bottom-transition"
+                                                                >
+                                                                    <template v-slot:activator="{ on, attrs }">
+                                                                        <v-col  v-bind="attrs" v-on="on" sm="12" 
+                                                                            cols="12" class="py-2"
+                                                                            style=" background-color: #fff;border-radius: 5px;">
+
+                                                                            <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                        </v-col>
+                                                                    </template>
+                                                                    <v-card style="background-color: #f8f8f9;">
+                                                                        <v-container>
+                                                                            <v-card outlined dense class="px-3 no_border mt-4" color="white">
+                                                                                <div class="modal_header">
+                                                                                    <v-card-title>{{ $t("order") }}</v-card-title>
+                                                                                    <v-icon
+                                                                                        @click="dialogOrderReport = false"
+                                                                                        style="cursor: pointer; font-size: 40px;"
+                                                                                        color="grey"
+                                                                                        class="float-right mt-n1">close
+                                                                                    </v-icon>
+                                                                                </div>
+                                                                                <v-card-text class="modal_text_content">
+                                                                                    <OrderReport/>
+                                                                                </v-card-text>
+                                                                            </v-card>
+                                                                        </v-container>
+                                                                    </v-card>
+                                                                </v-dialog>
+                                                            </div>
+                                                        </template>
+                                                    </v-row>
+                                                </div>
+
+                                                <!-- <div class="v-list-item d-block ma-3 mb-0 mr-0 v-divider"></div> -->
+
+                                                <div class="v-list-item v-list-item-left  d-block mr-0 pt-2">
+                                                    <v-row>
+                                                        <v-col md="6" cols="12" class="pr-0">
+                                                            <small class="pl-2 dark_grey">{{$t('operator')}}</small><br>
+                                                            <small class="pl-2">{{session.name}}</small>
+                                                        </v-col>
+                                                        <v-col md="6" cols="12" class="px-0">
+                                                            <small class="pl-2 dark_grey">{{$t('session')}}</small><br>
+                                                            <small class="pl-2">{{session.startDate}}</small>
+                                                        </v-col>
+                                                    </v-row>
+                                                </div>
+                                                
+                                                
                                             </div>
-                                        </div>
-                                    </v-card>
+                                        </v-card>
+                                    </div>
+                                    <div v-if="isAccountLogo" sm="12" cols="12" class="">
+                                        <v-card flat color="" style="background-color: rgb(248 248 249);">
+                                            <div
+                                                class="">
+                                                <img
+                                                class="mt-1 v-list-item v-list-item-left "
+                                                src="@/assets/images/made_in_cambodia.png"
+                                                width="100%"
+                                                height="auto"
+                                                alt=""
+                                                />
+                                                <v-divider />
+                                                <div class=" v-list-item py-1">
+                                                    <p class="mb-0 font_12 mt-3 pl-2">
+                                                        © {{ year }} {{ $t("banhji_name_desc") }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </v-card>
+                                    </div>
                                 </div>
-                            </div>
-                        </v-col>
+                            </v-navigation-drawer>
+                        </div>
                         <!-- function -->
-                        <v-col md="5" sm="12" cols="12" class="py-0 ">
+                        <v-col md="6" sm="12" cols="12" class="py-0 ">
                             <div class="" style="height: 98vh;background-color: #ffff;display: flex; flex-direction: column;">
                                 <!-- sale transation -->
                                 <div sm="12" cols="12" style="flex-grow: 1; overflow-y: scroll;overflow-x: hidden;">
@@ -311,7 +348,7 @@
                                                                 className: 'btn-plus isEditable',
                                                             }"
                                                             :title="''"
-                                                            :width="63"
+                                                            :width="40"
                                                             :headerAttributes="{
                                                                 style:
                                                                 'text-align: left; background-color: #EDF1F5',
@@ -325,16 +362,16 @@
                                                         <kendo-grid-column
                                                             :field="'qty'"
                                                             :title="$t('qty')"
-                                                            :width="100"
+                                                            :width="60"
                                                             :attributes="{ style: 'text-align: center' }"
-                                                            :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
+                                                            :headerAttributes="{ style: 'text-align: center'}"/>
                                                         <kendo-grid-column
                                                             :field="'price'"
                                                             :title="$t('price')"
                                                             :width="100"
                                                             :attributes="{ style: 'text-align: right' }"
                                                             :template="'<span>#=kendo.toString(price || 0, decimalFormat)#</span>'"
-                                                            :headerAttributes="{ style: 'background-color: #EDF1F5, color: green !important' }"/>
+                                                            :headerAttributes="{ style: 'text-align: right' }"/>
                                                         <kendo-grid-column
                                                             :hidden="true"
                                                             :field="'discountAmount'"
@@ -342,14 +379,14 @@
                                                             :template="'<span>#=kendo.toString(discountAmount || 0, decimalFormat)#</span>'"
                                                             :width="100"
                                                             :attributes="{ style: 'text-align: right' }"
-                                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                                            :headerAttributes="{ style: 'text-align: right' }"/>
                                                         <kendo-grid-column
                                                             :field="'amount'"
                                                             :title="$t('amount')"
                                                             :template="'<span>#=kendo.toString(amount || 0, decimalFormat)#</span>'"
                                                             :width="100"
                                                             :attributes="{ style: 'text-align: right' }"
-                                                            :headerAttributes="{ style: 'background-color: #EDF1F5' }"/>
+                                                            :headerAttributes="{ style: 'text-align: right' }"/>
                                                     </kendo-grid>
                                                 </template>
                                             </v-col>
@@ -4565,7 +4602,7 @@
                             </div>         
                         </v-col>
                         <!-- items list -->
-                        <v-col md="5" sm="12" cols="12" class=" sidebar-left2 pt-0" style="overflow-y: auto;">
+                        <v-col md="5" sm="12" cols="12" class="pt-0" style="overflow-y: auto;">
                             <v-row>
                                 <v-col sm="12" cols="12" class="pa-0">
                                     <v-card flat height="98vh" class="card-item px-0" style=""> 
@@ -4725,7 +4762,7 @@
                             </v-row>
                         </v-col>
                         <!-- right sidebar -->
-                        <v-col sm="1" cols="1" class=" sidebar-left3 pa-0">
+                        <v-col sm="1" cols="1" class="pa-0">
                             <v-card flat  height="98vh" color="">
                                 <v-btn class=" rounded-0  btn-right" icon @click="toggle">
                                     <i   
@@ -4998,8 +5035,48 @@ export default {
         activePrice: false,
         activeDiscount: false,
         discountItems: [],
+
+        // sidebar
+        minWidth: false,
+        drawer: null,
+        miniVariant: false,
+        handOver: false,
+        isApp: true,
+        isAbsolute: false,
     }),  
     methods: {
+        // sidebar
+        onMouseOver() {
+        if (this.miniVariant) {
+            this.isAccountLogo = true;
+            this.backHoverColor = "";
+        }
+        this.minWidth = false;
+        },
+        onMouseLeave: function () {
+        if (this.miniVariant) {
+            this.isAccountLogo = false;
+            this.backHoverColor = "#F8F8F9 !important";
+        }
+        this.minWidth = false;
+        },
+        hideSidebar() {
+            this.miniVariant = !this.miniVariant;
+            this.miniVariant ? (this.handOver = true) : (this.handOver = false);
+            if (this.miniVariant) {
+                this.isAbsolute = true;
+                this.isAccountLogo = true;
+                this.isApp = false;
+
+                window.console.log(this.miniVariant,'abc')
+            } else {
+                this.isAbsolute = false;
+                this.isAccountLogo = false;
+                this.isApp = true;
+            }
+            this.isAccountLogo = true;
+        },
+
         // guest count
         guestIncLocalMen(){
             this.guestCount.localMen += 1
@@ -7550,7 +7627,7 @@ export default {
       border-top: thin solid rgba(0, 0, 0, 0.12) !important;  
     }
     .v-list-item-left {
-        padding: 0 0px 0 16px !important;
+        padding: 0 10px !important;
     }
     .theme--light.v-divider{
         border-color: rgb(0 0 0 / 0%);
@@ -7592,6 +7669,18 @@ export default {
         .calculator-btn{
             font-size: 12px;
         }
+    }
+    .angle_action {
+        right: 0;
+        z-index: 10;
+        position: absolute;
+        top: 60px;
+    }
+    .angle_action_small {
+        right: 12px;
+        z-index: 10;
+        position: absolute;
+        top: 60px;
     }
     
 

@@ -4269,6 +4269,13 @@
     "amount_per_point": "Amount per point",
     "point_per_reward": "Point per reward",
     "reward_info": "Reward info",
-    "reward_rule": "Reward rule"
+    "reward_rule": "Reward rule",
+    "store_name": "Store name",
+    "insight_report": "Insight & reports",
+    "loyalty_promotion": "Loyalty & promotion",
+    "delivery_management": "Delivery management",
+    "invoice_parksale": "Invoice parksale"
+
+
 
 } 

@@ -3,93 +3,97 @@
     <v-container class="big-widht">
         <!-- pos for retail -->
         <v-row v-if="this.$route.name == 'dashboard_pos'" class="mx-6 mt-0">
-            <v-col sm="4" cols="12" class="">
-                <v-row>
-                    <v-col sm="12" cols="12" class="pa-2">
-                        <v-card
-                            outlined
-                            dense
-                            class="mx-auto pa-4" 
-                            min-height="390"
-                        >
-                            <h1 class=" third--text">
-                                {{ $t("welcome") }}
-                            </h1>
-                            <p class="mb-1 mt-3 niradei_light">{{$t('name')}}</p>
-                            <h1 class="font_22">
-                            choun mart
-                            </h1>
-                            <p class="mb-1 mt-3 niradei_light">{{$t('status')}}</p>
-                            <v-card color="primary" class="pa-3 white--text no_border">
-                            <h3 class="text-uppercase">Action</h3>
-                            </v-card>
-                            <p class="mb-2 mt-4 niradei_light">{{$t('segment')}}</p>
-                            <v-card @click="copyTextClip" color="third" class="pa-3 white--text no_border">
-                            <h3 id="institute" class="font_24">ABCD</h3>
-                            </v-card>
-                            <p class=" mt-2 mb-0 niradei_light" :class="{'line_16':this.$i18n.locale=='kh'}">{{$t('overview_desc')}}</p>
-                        </v-card>
-                    </v-col>
-                    <v-col sm="12" cols="12" class="pa-2">
-                        <v-card
-                            class="mx-auto d-flex"
-                            max-width="465"
-                            min-height="60"
-                            outlined
-                            :to="lang+'/pos/setting'"
-                        >
-                            <v-list-item three-line>
-                                <v-list-item-content>
-                                    <v-row>
-                                        <v-col sm="5" cols="5" class="py-0">
-                                            <img
-                                                class="img-1"
-                                                src="@/assets/images/coo_setting.png"
-                                                width="80%"
-                                            />
-                                        </v-col>
-                                         <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                            <v-list-item-title class=" mb-1  business">{{$t('setting')}}</v-list-item-title>
-                                        </v-col>
-                                    </v-row>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-card>
-                    </v-col> 
-                </v-row>
-            </v-col>
-            <v-col sm="8" cols="12" class="py-0">
+            <v-col sm="12" cols="12" class="py-0">
                 <v-row>
                     <v-col sm="12" cols="12" class="py-0">
                         <v-row>
-                            <v-col sm="6" cols="6" class="pb-0">
+                            <v-col sm="8" cols="8" class="pb-0">
                                 <v-row style="height: 100%;">
-                                    <v-col sm="12" cols="12" class="pa-2">
+                                    <v-col sm="6" cols="6" class="pa-2">
+                                        <v-card
+                                            outlined
+                                            dense
+                                            class="mx-auto pa-4  d-flex" 
+                                            min-height="100%"
+                                        >
+                                            <v-list-item three-line class="d-block">
+                                                <p class="mb-1 mt-3 niradei_light">{{$t('store_name')}}</p>
+                                                <h1 class="headline mb-1 primary--text">
+                                                choun mart
+                                                </h1>
+                                              
+                                                <v-col sm="12" cols="12" class="pa-0">
+                                                    <v-simple-table>
+                                                        <template v-slot:default>
+                                                            <tbody class="sale_table">
+                                                                <tr>
+                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('status') }}</td>
+                                                                    <td class="text-bold px-0">:</td>
+                                                                    <td class="text-left text-bold"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('warehouse') }}</td>
+                                                                    <td class="text-bold px-0">:</td>
+                                                                    <td class="text-left text-bold"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('segment') }}</td>
+                                                                    <td class="text-bold px-0">:</td>
+                                                                    <td class="text-left text-bold"></td>
+                                                                </tr>
+                                                                
+                                                            </tbody>
+                                                        </template>
+                                                    </v-simple-table>
+                                                </v-col>
+                                                
+                                            </v-list-item>
+                                        </v-card>
+                                    </v-col>
+                                    <v-col sm="6" cols="6" class="pa-2">
                                         <v-card
                                             class="mx-auto d-flex"
                                             max-width="465"
                                             min-height="100%"
                                             outlined
+                                            color="primary"
                                             @click="goPos('started')"
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content class="pk-3">
                                                 
                                                     <v-row>
-                                                        <v-col sm="5" cols="5" class="">
-                                                            <img
-                                                                class="img-1"
-                                                                src="@/assets/images/coo_pos.png"
-                                                                width="80%"
-                                                            />
-                                                        </v-col>
-                                                        <v-col sm="7" cols="7" class="pl-0">
-                                                            <v-list-item-title class="headline mb-1 primary--text">
+                                                        <v-col sm="12" cols="12" class="py-0">
+                                                            <v-list-item-title class="headline mb-1 text-white">
                                                                 {{$t('sale')}}
                                                             </v-list-item-title>
-                                                            <div class="overline mb-4 business">
+                                                            <div class="overline mb-4 business text-white">
                                                             {{$t('point_of_sale')}}
                                                             </div>
+                                                        </v-col>
+                                                        <v-col sm="12" cols="12" class="py-0">
+                                                            <v-simple-table>
+                                                                <template v-slot:default>
+                                                                    <tbody class="sale_table">
+                                                                        <tr>
+                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('session') }}</td>
+                                                                            <td class="text-bold px-0 text-white">:</td>
+                                                                            <td class="text-left text-bold text-white"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('date') }}</td>
+                                                                            <td class="text-bold px-0 text-white">:</td>
+                                                                            <td class="text-left text-bold text-white"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('time') }}</td>
+                                                                            <td class="text-bold px-0 text-white">:</td>
+                                                                            <td class="text-left text-bold text-white"></td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </template>
+                                                            </v-simple-table>
                                                         </v-col>
                                                     </v-row>
                                                 </v-list-item-content>
@@ -98,7 +102,7 @@
                                     </v-col>
                                 </v-row>
                             </v-col>
-                            <v-col sm="6" cols="6" class="pb-0">
+                            <v-col sm="4" cols="4" class="pb-0">
                                 <v-row>
                                     <v-col sm="12" cols="12" class="pa-2">
                                         <v-card
@@ -121,7 +125,7 @@
                                                             </v-col>
                                                             <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                                 <v-list-item-title class=" mb-1  business">
-                                                                {{$t('orders')}}
+                                                                {{$t('offline_online')}}
                                                                 </v-list-item-title>
                                                             </v-col>
                                                         </v-row>
@@ -150,7 +154,7 @@
                                                             </v-col>
                                                             <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                             <v-list-item-title class=" mb-1  business">
-                                                                    {{$t('invoice')}}
+                                                                    {{$t('invoice_parksale')}}
                                                                 </v-list-item-title>
                                                             </v-col>
                                                         </v-row>
@@ -164,120 +168,167 @@
                     </v-col>
                     <v-col sm="12" cols="12" class="py-0">
                         <v-row>
-                            <v-col sm="6" cols="6" class="pt-0">
-                                <v-row>
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                        <v-card
-                                            class="mx-auto  d-flex"
-                                            max-width="465"
-                                            min-height="60"
-                                            outlined
-                                            :to="lang+'/pos/session'"
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content>
-                                                    <v-row>
-                                                        <v-col sm="5" cols="5" class="py-0">
-                                                            <img
-                                                                class="img-1"
-                                                                src="@/assets/images/coo_session.png"
-                                                                width="80%"
-                                                            />
-                                                        </v-col>
-                                                        <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                            <v-list-item-title class=" mb-1 business">{{$t('session')}}</v-list-item-title>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
-                                        </v-card>
-                                    </v-col>
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                        <v-card
-                                            class="mx-auto  d-flex"
-                                            max-width="465"
-                                            min-height="60"
-                                            outlined
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content>
-                                                    <v-row>
-                                                        <v-col sm="5" cols="5" class="py-0">
-                                                            <img
-                                                                class="img-1"
-                                                                src="@/assets/images/coo_loyalty.png"
-                                                                width="80%"
-                                                            />
-                                                        </v-col>
-                                                        <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                            <v-list-item-title class=" mb-1 business">{{$t('loyalty')}}</v-list-item-title>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
-                                        </v-card>
-                                    </v-col> 
-                                </v-row>
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                    :to="lang+'/pos/setting'"
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content>
+                                            <v-row>
+                                                <v-col sm="5" cols="5" class="py-0">
+                                                    <img
+                                                        class="img-1"
+                                                        src="@/assets/images/coo_setting.png"
+                                                        width="80%"
+                                                    />
+                                                </v-col>
+                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
+                                                    <v-list-item-title class=" mb-1  business">{{$t('setting')}}</v-list-item-title>
+                                                </v-col>
+                                            </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
+                            </v-col> 
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto  d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                    :to="lang+'/pos/session'"
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content>
+                                            <v-row>
+                                                <v-col sm="5" cols="5" class="py-0">
+                                                    <img
+                                                        class="img-1"
+                                                        src="@/assets/images/coo_session.png"
+                                                        width="80%"
+                                                    />
+                                                </v-col>
+                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
+                                                    <v-list-item-title class=" mb-1 business">{{$t('session_management')}}</v-list-item-title>
+                                                </v-col>
+                                            </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
                             </v-col>
-                            <v-col sm="6" cols="6" class="pt-0">
-                                <v-row>
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                        <v-card
-                                            class="mx-auto d-flex"
-                                            max-width="465"
-                                            min-height="60"
-                                            outlined
-                                            :to="lang+'/pos/delivery'"
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content class="pk-3">
-                                                        
-                                                        <v-row>
-                                                            <v-col sm="5" cols="5" class="py-0">
-                                                                <img
-                                                                    class="img-1"
-                                                                    src="@/assets/images/coo_delivery.png"
-                                                                    width="76%"
-                                                                />
-                                                            </v-col>
-                                                            <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                            <v-list-item-title class=" mb-1  business">
-                                                                {{$t('delivery')}}
-                                                                </v-list-item-title>
-                                                            </v-col>
-                                                        </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
-                                        </v-card>
-                                    </v-col>
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                        <v-card
-                                            class="mx-auto d-flex"
-                                            max-width="465"
-                                            min-height="60"
-                                            outlined
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content>
-                                                    <v-row>
-                                                        <v-col sm="5" cols="5" class="py-0">
-                                                            <img
-                                                                class="img-1"
-                                                                src="@/assets/images/coo_report.png"
-                                                                width="80%"
-                                                            />
-                                                        </v-col>
-                                                        <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                            <v-list-item-title class=" mb-1  business">
-                                                                {{$t('parksale')}}
-                                                            </v-list-item-title>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
-                                        </v-card>
-                                    </v-col>
-                                </v-row>
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                    :to="lang+'/pos/delivery'"
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content class="pk-3">
+                                                
+                                                <v-row>
+                                                    <v-col sm="5" cols="5" class="py-0">
+                                                        <img
+                                                            class="img-1"
+                                                            src="@/assets/images/coo_delivery.png"
+                                                            width="76%"
+                                                        />
+                                                    </v-col>
+                                                    <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
+                                                    <v-list-item-title class=" mb-1  business">
+                                                        {{$t('delivery_management')}}
+                                                        </v-list-item-title>
+                                                    </v-col>
+                                                </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
+                            </v-col>
+                            
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto  d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content>
+                                            <v-row>
+                                                <v-col sm="12" cols="12" class="">
+                                                    <div
+                                                        class="">
+                                                        <img
+                                                        class="mt-1 v-list-item v-list-item-left "
+                                                        src="@/assets/images/made_in_cambodia.png"
+                                                        width="85%"
+                                                        height="auto"
+                                                        alt=""
+                                                        />
+                                                    </div>
+                                                </v-col>
+                                            </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
+                            </v-col>  
+                            
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto  d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content>
+                                            <v-row>
+                                                <v-col sm="5" cols="5" class="py-0">
+                                                    <img
+                                                        class="img-1"
+                                                        src="@/assets/images/coo_loyalty.png"
+                                                        width="80%"
+                                                    />
+                                                </v-col>
+                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
+                                                    <v-list-item-title class=" mb-1 business">{{$t('loyalty_promotion')}}</v-list-item-title>
+                                                </v-col>
+                                            </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" cols="4" class="pa-2">
+                                <v-card
+                                    class="mx-auto d-flex"
+                                    max-width="465"
+                                    min-height="60"
+                                    outlined
+                                >
+                                    <v-list-item three-line>
+                                        <v-list-item-content>
+                                            <v-row>
+                                                <v-col sm="5" cols="5" class="py-0">
+                                                    <img
+                                                        class="img-1"
+                                                        src="@/assets/images/coo_report.png"
+                                                        width="80%"
+                                                    />
+                                                </v-col>
+                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
+                                                    <v-list-item-title class=" mb-1  business">
+                                                        {{$t('insight_report')}}
+                                                    </v-list-item-title>
+                                                </v-col>
+                                            </v-row>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-card>
                             </v-col>
                         </v-row>
                     </v-col>
@@ -810,7 +861,7 @@ body {
     letter-spacing: normal !important;
     line-height: 2rem;
     text-transform: uppercase;
-    font-family: 'Niradei-Medium' !important;
+    font-family: 'Niradei-Heavy' !important;
 }
 .v-application .mb-4 {
     margin-bottom: 5px !important;
@@ -1167,6 +1218,9 @@ body {
     #pin >.v-input input {
         text-align: center !important;
         font-size: 35px !important;
+    }
+    .v-data-table{
+        background-color: #ffffff00;
     }
     
     

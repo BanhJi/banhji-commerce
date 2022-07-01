@@ -462,7 +462,7 @@ export default {
         class: "text-green sidebar_regular",
         activeClass: "",
         name: "store",
-        menuTex: "store",
+        menuTex: "stores",
         path: "/stores",
         icon: "b-pos",
       },
