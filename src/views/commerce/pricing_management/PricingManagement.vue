@@ -5,7 +5,7 @@
           <v-col sm="12" cols="12">
             <v-card color="white" class="pa-4 no_border" elevation="0">
               <v-row>
-                <v-col sm="12" cols="12" class="py-0">
+                <v-col sm="12" cols="12" class=" tab_wrapper py-0">
                     <v-tabs>
                       <v-tab>
                         <span class="text-left">
@@ -108,7 +108,7 @@ export default {
 
   .v-tab {
     min-width: 30px;
-    font-size: 17px;
+    font-size: 20px;
     text-transform: capitalize;
   }
 
