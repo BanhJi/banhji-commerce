@@ -279,9 +279,9 @@ export default {
         },
     },
     mounted() {
-        this.loadZon()
-        this.loadZot()
-        this.loadWhSetting()
+        // this.loadZon()
+        // this.loadZot()
+        // this.loadWhSetting()
     },
     computed: {},
     components: {},

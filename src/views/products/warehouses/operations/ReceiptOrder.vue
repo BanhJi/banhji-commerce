@@ -43,18 +43,6 @@
                                                     style="margin-top:1px;"
                                                     class="kendo_dropdown_custom pl-0 pb-4 pr-0  pt-0"
                                                 >
-                                                    <!-- <dropdownlist
-                                                        :data-items="supplierList"
-                                                        @change="onChange"
-                                                        v-model="receiptOrder.supplier"
-                                                        :value="receiptOrder.supplier"
-                                                        :data-item-key="dataItemKey"
-                                                        :text-field="textField"
-                                                        :default-item="defaultItem"
-                                                        :filterable="true"
-                                                        @filterchange="onFilterChange"
-                                                    >
-                                                    </dropdownlist> -->
                                                     <dropdownlist
                                                         class="v-input__slot"
                                                         :data-items="supplierList"
@@ -155,9 +143,9 @@
                                                     :title="'&nbsp;'"
                                                     :width="60"
                                                     :headerAttributes="{
-                            style:
-                              'text-align: right; background-color: #EDF1F5',
-                          }"
+                                                        style:
+                                                        'text-align: right; background-color: #EDF1F5',
+                                                    }"
                                                 />
                                                 <kendo-grid-column
                                                     :title="$t('no.')"
@@ -165,9 +153,9 @@
                                                     :template="rowNumber"
                                                     :column-menu="false"
                                                     :headerAttributes="{
-                            style: 'background-color: #EDF1F5;',
-                            class: 'text-variants',
-                          }"
+                                                        style: 'background-color: #EDF1F5;',
+                                                        class: 'text-variants',
+                                                    }"
                                                     :attributes="{ style: 'text-align: variants' }"
                                                 />
                                                 <kendo-grid-column
@@ -177,8 +165,8 @@
                                                     :template="'<span>#=item.name#</span>'"
                                                     :editor="ItemDropDownEditor"
                                                     :headerAttributes="{
-                            style: 'background-color: #EDF1F5',
-                          }"
+                                                        style: 'background-color: #EDF1F5',
+                                                    }"
                                                 />
                                                 <kendo-grid-column
                                                     :field="'description'"
@@ -254,9 +242,10 @@
                                                 <v-col sm="12" cols="12" class="py-0">
                                                     <v-row>
                                                         <v-col sm="4" cols="12" class="pb-0">
-                                                            <label class="label  mb-0">{{
-                                                                    $t("delivered_by")
-                                                                }}</label>
+                                                            <label class="label  mb-0">
+                                                                {{ $t("delivered_by") }}
+                                                                <v-icon size="18" color="red" @click="onloadDeliveryAgency">refresh</v-icon>
+                                                            </label>
                                                             <v-select
                                                                 class="mt-1"
                                                                 :items="deliveryAgencies"
@@ -268,7 +257,6 @@
                                                                 return-object
                                                                 outlined
                                                             />
-
                                                         </v-col>
                                                         <v-col sm="3" cols="10" class="pb-0">
                                                             <label class="label mb-0">{{ $t("time") }}</label>
@@ -336,28 +324,6 @@
                                     </v-row>
                                     <v-divider/>
                                     <v-card outlined dense class="no_border function_footer">
-                                        <v-menu>
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn
-                                                    class="mr-2 text-capitalize  black--text float-left"
-                                                    v-on="on"
-                                                >
-                                                    {{ $t("select_template") }}
-                                                    <v-icon size="" class="ma-1">expand_more</v-icon>
-                                                </v-btn>
-                                            </template>
-                                            <v-list>
-                                                <v-list-item
-                                                    v-for="(item, index) in templates"
-                                                    :key="index"
-                                                >
-                                                    <v-list-item-title>{{
-                                                            item.title
-                                                        }}
-                                                    </v-list-item-title>
-                                                </v-list-item>
-                                            </v-list>
-                                        </v-menu>
                                         <v-btn
                                             @click="cancel"
                                             color="black"
@@ -365,42 +331,12 @@
                                             class="text-capitalize  black--text float-left"
                                         >{{ $t("cancel") }}
                                         </v-btn>
-                                        <!-- <v-menu>
-                                          <template v-slot:activator="{ on }">
-                                            <v-btn
-                                              color="primary"
-                                              class="ml-2 float-right text-capitalize  white--text"
-                                              v-on="on"
-                                            >
-                                              {{ $t("save_option") }}
-                                              <v-icon size="" class="ma-1">expand_more</v-icon>
-                                            </v-btn>
-                                          </template>
-                                          <v-list rounded>
-                                            <v-list-item-group>
-                                              <v-list-item>
-                                                <v-list-item-content>
-                                                  <v-list-item-title>
-                                                    {{ $t("save_new") }}
-                                                  </v-list-item-title>
-                                                </v-list-item-content>
-                                              </v-list-item>
-                                              <v-list-item>
-                                                <v-list-item-content>
-                                                  <v-list-item-title
-                                                    >{{ $t("save_print") }}
-                                                  </v-list-item-title>
-                                                </v-list-item-content>
-                                              </v-list-item>
-                                            </v-list-item-group>
-                                          </v-list>
-                                        </v-menu> -->
                                         <v-btn
                                             @click="saveNew"
                                             color="primary"
                                             class="float-right white--text text-capitalize "
                                         >
-                                            {{ $t("save_new") }}
+                                            {{ $t("save_close") }}
                                         </v-btn>
                                     </v-card>
                                 </v-form>
@@ -535,9 +471,9 @@
                                                 :title="'&nbsp;'"
                                                 :width="50"
                                                 :headerAttributes="{
-                            style:
-                              'text-align: right; background-color: #EDF1F5',
-                          }"
+                                                    style:
+                                                    'text-align: right; background-color: #EDF1F5',
+                                                }"
                                             />
                                             <kendo-grid-column
                                                 :title="$t('no.')"
@@ -631,15 +567,10 @@ import DatePickerComponent from "@/components/custom_templates/DatePickerCompone
 import ReceiptOrder from "@/scripts/model/ReceiptOrder";
 import kendo from "@progress/kendo-ui";
 import {DropDownList} from "@progress/kendo-vue-dropdowns";
-// import MonthOfPicker from "@/components/kendo_templates/MonthOfPicker";
 import {ShowResource} from "@/observable/store";
 import {uuid} from "vue-uuid";
 import $ from "jquery";
 import ItemLineModel from "@/scripts/invoice/model/ItemLine";
-
-// const transactionHandler = require("@/scripts/transactionHandler");
-
-// const batchHandler = require("@/scripts/batchHandler");
 const warehouseHandler = require("@/scripts/warehouseHandler");
 
 const purchaseHandler = require("@/scripts/purchase/handler/billingHandler");
@@ -649,15 +580,11 @@ const productVariantHandler = require("@/scripts/productVariantHandler");
 const prefixHandler = require("@/scripts/prefixHandler");
 const billingHandler = require("@/scripts/invoice/handler/billingHandler");
 const supplierHandler = require("@/scripts/supplierHandler");
-// const settingsHandler = require("@/scripts/settingsHandler");
-// const saleChannelHandler = require("@/scripts/saleChannelHandler");
-// const locationHandler = require("@/scripts/locationHandler");
-// const projectHandler = require("@/scripts/projectHandler");
 const uomPriceHandler = require("@/scripts/uomPriceHandler");
 const saleOrderHandler = require("@/scripts/transactionHandler");
 const receiptOrder = new ReceiptOrder({});
 const keyField = "id";
-const textField = "name";
+const textField = "numberName";
 const emptyItem = {[textField]: "loading ..."};
 const itemLinePrefix = "lin-";
 export default {
@@ -684,7 +611,6 @@ export default {
         files: [],
         // Form validation
         valid: true,
-
         templates: [
             {title: "Draft"},
             {title: "Open"},
@@ -694,13 +620,11 @@ export default {
         col_expand: 9,
         col_hide: 3,
         isHideBar: false,
-
         serials: [],
         batchs: [],
         warehouses: [],
         receiptOrder: receiptOrder,
         deliveryAgencies: [],
-
         itemBatch: {},
         uomBatch: {},
         amtBatch: 0,
@@ -712,7 +636,7 @@ export default {
         poItemLine: [],
         supplierList: [],
         dataItemKey: "id",
-        textField: "name",
+        textField: "numberName",
         defaultItem: {[textField]: "Select supplier...", [keyField]: null},
         supplierBaseUrl: supplierHandler.url(),
         filter: "",
@@ -848,12 +772,13 @@ export default {
                         supplierId = this.receiptOrder.supplier.id;
                     }
                     if (this.receiptOrder.warehouse) {
-                        whId = this.receiptOrder.warehouse.id
+                        whId = this.receiptOrder.warehouse.pk
                     }
                     if (this.receiptOrder.date) {
                         txnDate = this.receiptOrder.date;
                     }
                     let strFilter = "";
+                    window.console.log(this.receiptOrder.warehouse, 'warehouse query sale order')
                     if (supplierId !== "" && txnDate !== "" && whId !== "") {
                         strFilter = "?id=" + supplierId + "&whId=" + whId + '&wType=RO&type=Purchase Order'
                     }
@@ -1132,8 +1057,14 @@ export default {
             }
         },
         async onloadDeliveryAgency() {
+            this.showLoading = true
+            this.deliveryAgencies = []
             await deliveryOrderHandler.getAllAgency().then((res) => {
-                this.deliveryAgencies = res;
+                this.showLoading = false
+                if(res.length > 0){
+                    this.deliveryAgencies = res;
+                    this.receiptOrder.deliveredBy = res[0]
+                }
             });
         },
         numberEditor(container, options) {
@@ -1477,6 +1408,7 @@ export default {
             this.receiptOrder.sequcencing = data.sequcencing;
             this.receiptOrder.type = data.type;
             this.receiptOrder.transactionDate = data.transactionDate;
+            window.console.log(data, 'generate number')
             billingHandler
                 .lastNumber(data)
                 .then((response) => {

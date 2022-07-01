@@ -3,49 +3,7 @@
         <v-col cols="12" sm="12">
             <!-- loading -->
             <LoadingMe :isLoading="showLoading" :fullPage="false" :myLoading="true"/>
-            <!-- <v-row>
-                      <v-col class="py-0" cols="">
-                          <v-card outlined dense color="secondary" class="pa-3 white--text mb-3 no_border d-flex justify-space-between align-center" height="70">
-                              <h3 class="text-left text-uppercase font_13 flex-1">
-                                  {{$t('incoming_transfer')}}</h3>
-                              <h3 class="text-right font_20 mb-0 flex-1">100</h3>
-                          </v-card>
-                      </v-col>
-                      <v-col class="py-0" cols="">
-                          <v-card outlined dense color="third" class="pa-3 white--text mb-3 no_border d-flex justify-space-between align-center" height="70">
-                              <h3 class="text-left text-uppercase font_13 flex-1">
-                                  {{$t('incoming_receipt')}}</h3>
-                              <h3 class="text-right font_20 mb-0 flex-1">100</h3>
-                          </v-card>
-                      </v-col>
-                      <v-col class="py-0" cols="">
-                          <v-card outlined dense color="grayBg" class="pa-3 black--text mb-3 no_border d-flex justify-space-between align-center" height="70">
-                              <h3 class="text-left text-uppercase font_13 flex-1">
-                                  {{$t('incoming_delivery')}}</h3>
-                              <h3 class="text-right font_20 mb-0  flex-1">100</h3>
-                          </v-card>
-                      </v-col>
-                  </v-row> -->
-
             <v-row class="">
-                <v-col sm="3" cols="12" class="py-0">
-                    <!--                    <v-select class="mt-1"-->
-                    <!--                              :items="dateSorters"-->
-                    <!--                              @change="onSorterChanges"-->
-                    <!--                              clearable-->
-                    <!--                              outlined-->
-                    <!--                              placeholder="ALL"-->
-                    <!--                    />-->
-                </v-col>
-
-                <v-col sm="3" cols="12" class="py-0">
-                    <!--                    <app-datepicker :initialDate="start_date" @emitDate="start_date = $event"/>-->
-                </v-col>
-
-                <v-col sm="3" cols="12" class="py-0">
-                    <!--                    <app-datepicker :initialDate="end_date" @emitDate="end_date = $event"/>-->
-                </v-col>
-
                 <v-col sm="1" cols="1" class="pt-1">
                 </v-col>
                 <v-col sm="2" cols="1" class="pt-1">
@@ -63,7 +21,7 @@
                         </template>
                         <v-card>
                             <div class="modal_header">
-                                <v-card-title>{{ $t("warehouse_location") }}</v-card-title>
+                                <v-card-title>{{ $t("warehouse") }}</v-card-title>
                                 <v-icon @click="onClose">close</v-icon>
                             </div>
                             <v-card-text class="modal_text_content">
@@ -74,6 +32,7 @@
                                             class=" mt-1"
                                             v-model="wh.name"
                                             outlined
+                                            :rules="[(v) => !!v || 'Name is required']"
                                             placeholder=""
                                         />
                                     </v-col>
@@ -83,6 +42,7 @@
                                             class="mt-1"
                                             v-model="wh.code"
                                             outlined
+                                            :rules="[(v) => !!v || 'Code is required']"
                                             placeholder=""
                                         />
                                     </v-col>
@@ -92,14 +52,11 @@
                                             class="mt-1"
                                             id="acc_type_selector"
                                             :items="whTypes"
-                                            v-model="wh.type"
-                                            tage="Warehouse Type"
+                                            v-model="wh.typeId"
                                             item-text="name"
                                             item-value="id"
                                             outlined
-                                            return-object
                                         />
-
                                         <label class="label">{{ $t("address") }}</label>
                                         <v-text-field
                                             class="mt-1"
@@ -107,17 +64,17 @@
                                             outlined
                                             placeholder=""
                                         />
-                                        <label class="label">{{ $t("location") }}</label>
+                                        <label class="label">
+                                            {{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment">refresh</v-icon
+                                        >
+                                        </label>
                                         <v-select
                                             class=" mt-1"
-                                            id="acc_type_selector"
-                                            :items="locations"
-                                            v-model="location"
-                                            tage="location"
+                                            :items="segments"
+                                            v-model="wh.segmentId"
                                             item-text="name"
                                             item-value="id"
                                             outlined
-                                            return-object
                                         />
                                     </v-col>
                                 </v-row>
@@ -147,43 +104,7 @@
                     </v-dialog>
                 </v-col>
             </v-row>
-
-            <!-- <div class="reports_table">
-                <template>
-                    <v-simple-table class="attachment_table">
-                        <template v-slot:default>
-                            <thead>
-                            <tr>
-                                <th>{{ $t("no") }}</th>
-                                <th>{{ $t("code") }}</th>
-                                <th>{{ $t("name") }}</th>
-                                <th>{{ $t("type") }}</th>
-                                <th>{{ $t("address") }}</th>
-                                <th>{{ $t("location") }}</th>
-                                <th>{{ $t("action") }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="(w, index) in warehouses" v-bind:key="w.id">
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ w.code }}</td>
-                                <td class="text-bold">{{ w.name }}</td>
-                                <td>{{ w.type ? wh.type.name : "" }}</td>
-                                <td>{{ w.address }}</td>
-                                <td>{{ w.location ? w.location.name : "" }}</td>
-                                <td>
-                                    <v-btn @click="onEdit(w)" color="primary" class="rounded-4">
-                                        {{ $t('edit') }}
-                                    </v-btn>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </template>
-                    </v-simple-table>
-                </template>
-            </div> -->
-
-             <v-row class="">
+            <v-row class="">
                 <v-col sm="12" cols="12">
                     <LoadingMe
                         :isLoading="showLoading"
@@ -192,14 +113,18 @@
                         :myLoading="true"
                     />
                     <template>
-                        <kendo-datasource/>
+                        <kendo-datasource
+                            :data="warehouses"
+                            ref="gridCollectionDS"
+                        />
                         <kendo-grid
                             id="gridWarehouse"
                             class="grid-function"
+                            :data-source-ref="'gridCollectionDS'"
                             :editable="false"
                             :toolbar="toolbarTemplate"
                             :excel-export="excelExport"
-                            :excel-file-name="'gridWarehouse.xlsx'"
+                            :excel-file-name="'Warehouse.xlsx'"
                             :excel-filterable="true"
                             :scrollable-virtual="true">
                             <kendo-grid-column
@@ -215,7 +140,7 @@
                                 :field="'code'"
                                 :title="$t('code')"
                                 :width="100"
-                                :template="'<span>#=name#</span>'"
+                                :template="'<span>#=code#</span>'"
                                 :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                             />
                             <kendo-grid-column
@@ -226,8 +151,9 @@
                                 :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                             />
                             <kendo-grid-column
-                                :field="'type'"
+                                :field="'typeId'"
                                 :title="$t('type')"
+                                :template="typeTmpl"
                                 :width="100"
                                 :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                             />
@@ -238,8 +164,9 @@
                                 :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                             />
                             <kendo-grid-column
-                                :field="'business_unit'"
-                                :title="$t('business_unit')"
+                                :field="'segmentId'"
+                                :title="$t('segment')"
+                                :template="segmentTmpl"
                                 :width="100"
                                 :headerAttributes="{ style: 'background-color: #EDF1F5' }"
                             />
@@ -247,7 +174,11 @@
                                 :field="'action'"
                                 :title="$t('action')"
                                 :width="100"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                :command="{  
+                                text: textReview,
+                                click: onEdit, class: 'btn-plus' }"
+                                :attributes="{style: 'text-align: center'}"
+                                :headerAttributes="{style: 'text-align: center; background-color: #EDF1F5'}"
                             />
                         </kendo-grid>
                     </template>
@@ -269,13 +200,9 @@ window.JSZip = JSZip;
 /* Cookie */
 const cookieJS = require("@/cookie.js");
 const cookie = cookieJS.getCookie();
-
-// const $ = require("jquery")
-// const accountTypeHandler = require("@/scripts/handler/accounting/accountType.js")
-// const accountHandler = require("@/scripts/handler/accounting/account.js")
-
+import WarehouseModel from "@/scripts/warehouse/model/Warehouse"
 const warehouseHandler = require("@/scripts/warehouseHandler");
-const locationHandler = require("@/scripts/locationHandler");
+const settingsHandler = require("@/scripts/settingsHandler")
 export default {
     name: "Cash",
     components: {
@@ -284,87 +211,124 @@ export default {
     data: () => ({
         warehouses: [],
         showLoading: false,
-        wh: {},
-        whTypes: [],
+        wh: new WarehouseModel({}),
+        whTypes: [
+            {
+                "id": "wht-0833a2a1-ec60-11ec-9075-97f88415bcc2",
+                "name": "Vendor Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a2-ec60-11ec-9075-97f88415bcc2",
+                "name": "Virtual Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a3-ec60-11ec-9075-97f88415bcc2",
+                "name": "Internal Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a4-ec60-11ec-9075-97f88415bcc2",
+                "name": "Customer Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a5-ec60-11ec-9075-97f88415bcc2",
+                "name": "Transit Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a6-ec60-11ec-9075-97f88415bcc2",
+                "name": "Production Location",
+                "isSystem": 1
+            },
+            {
+                "id": "wht-0833a2a7-ec60-11ec-9075-97f88415bcc2",
+                "name": "Consignment",
+                "isSystem": 1
+            }
+        ],
         dialogm2: false,
-        locations: [],
-        location: {},
+        segments: [],
+        loggedUser: {
+            id: cookie.creator,
+            name: cookie.email
+        },
     }),
     methods: {
+        rowNumberTmpl(dataItem) {
+            let ds = this.$refs.gridCollectionDS.kendoWidget(),
+                index = ds.indexOf(dataItem);
+            return index + 1;
+        },
+        typeTmpl(dataItem) {
+            let gen = ''
+            let t = this.whTypes.filter((m) => { return m.id == dataItem.typeId})
+            if(t.length > 0){
+                gen = t[0].name
+            }
+            return gen
+        },
+        segmentTmpl(dataItem) {
+            let gen = ''
+            let t = this.segments.filter((m) => { return m.id == dataItem.segmentId})
+            if(t.length > 0){
+                gen = t[0].name
+            }
+            return gen
+        },
         onClose() {
             this.dialogm2 = false
             this.onClear()
         },
-        onEdit(item) {
-            item.location.id = item.location.pk
-            this.location = item.location
-            this.wh = item
+        onEdit(e) {
+            e.preventDefault();
+            const grid = $("#gridWarehouse").data("kendoGrid"),
+                dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
+            window.console.log(dataItem)
+            this.wh = new WarehouseModel(dataItem)
+            this.wh.id = dataItem.pk
             this.dialogm2 = true
         },
-        async loadLocation() {
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve("resolved");
-                    this.locations = [];
-                    locationHandler
-                        .list()
-                        .then((res) => {
-                            this.showLoading = true;
-                            if (res.data.statusCode === 200) {
-                                this.showLoading = false;
-                                this.locations = res.data.data;
-                                if (this.locations.length > 0) {
-                                    this.location = this.locations[0];
-                                }
-                                // this.segmentList = res.data.data
-                            }
-                        })
-                        .catch();
-                    {
-                        this.showLoading = false;
-                    }
-                }, 300);
-            });
-        },
         onClear() {
-            this.wh = {};
-            this.location = {};
+            this.wh = new WarehouseModel({});
+            if(this.whTypes.length > 0){
+                this.wh.typeId = this.whTypes[0].id
+            }
+            if(this.segments.length > 0){
+                this.wh.segmentId = this.segments[0].id
+            }
         },
         async addWhSetting() {
-            window.console.log(this.wh, " hhh");
-            let data = {
-                name: this.wh.name,
-                code: this.wh.code,
-                address: this.wh.address,
-                type: this.wh.type,
-                location: this.location,
-            };
-            warehouseHandler
-                .saveWarehouseSetting(data)
-                .then((response) => {
-                    this.warehouses.push(response.data.data);
-                    this.dialogm2 = false;
-                    this.onClear();
-                    window.console.log(response, "wh");
+            this.showLoading = true
+            this.wh.user = this.loggedUser
+            warehouseHandler.saveWarehouseSetting(new WarehouseModel(this.wh)).then(() => {
+                this.dialogm2 = false;
+                this.showLoading = false;
+                this.loadWarehouses();
+                this.$swal({
+                    position: 'products',
+                    icon: 'success',
+                    title: i18n.t('your_work_has_been_saved'),
+                    showConfirmButton: true,
+                    confirmButtonColor: '#4d4848',
+                    cancelButtonColor: '#ED1A3A',
+                    confirmButtonText: i18n.t('ok')
                 })
-                .catch((error) => {
-                    self.alertError(error);
-                });
+            })
         },
         async getWht() {
             this.onClear();
-            warehouseHandler.getWhtAll().then((res) => {
-                if (res.data) {
-                    this.whTypes = res.data;
-                    window.console.log("dsa", this.whTypes);
-                }
-            });
         },
         async loadWarehouses() {
+            this.warehouse = []
+            this.showLoading = true
             await warehouseHandler.getWarehouseSettingAll().then((res) => {
+                this.showLoading = false;
+                window.console.log(res, 'gets warehouse')
                 this.warehouses = res;
             });
-            window.console.log(this.warehouses);
         },
         excelExport: function (e) {
             // const pivot = this.$refs.gridTransactionDS.kendoWidget()
@@ -385,7 +349,7 @@ export default {
             });
 
             function onReloadData(that) {
-                that.loadItemModifiers();
+                that.loadWarehouses();
             }
 
             function onExportExcel(that) {
@@ -409,11 +373,20 @@ export default {
 
             return kendo.template(templateHtml)
         },
+        loadSegment(){
+            this.showLoading = true;
+            settingsHandler.getSeg().then((res) => {
+                this.showLoading = false;
+                if (res.data.statusCode === 200) {
+                  this.segments = res.data.data;
+                }
+            })
+        }
     },
     async mounted() {
-        await this.loadWarehouses();
-        await this.loadLocation();
-        // Call Account Type List
+        await this.loadSegment()
+        await this.loadWarehouses()
+        await this.initToolbar(this)
     },
     computed: {
         plan() {
@@ -429,6 +402,9 @@ export default {
                 {text: i18n.t("credit"), value: "cr"},
             ];
         },
+        textReview(){
+            return i18n.t('edit')
+        }
     },
 };
 </script>

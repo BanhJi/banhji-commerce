@@ -20,11 +20,11 @@
                           {{ $t("warehouse") }}
                         </span>
                       </v-tab>
-                      <v-tab>
+                      <!-- <v-tab>
                         <span>
                           {{ $t("settings") }}
                         </span>
-                      </v-tab>
+                      </v-tab> -->
                     </v-col>
                   </v-row>
 
