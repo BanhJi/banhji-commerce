@@ -427,7 +427,7 @@ export default {
         name: "analytics",
         menuTex: "analytics",
         path: "/reports",
-        icon: "",
+        icon: "b-report",
       },
       {
         id: 10,
@@ -436,7 +436,7 @@ export default {
         name: "marketing & promotions",
         menuTex: "promotions",
         path: "/marketing_promotions",
-        icon: "",
+        icon: "b-promotion",
       },
       {
         id: 11,
@@ -445,7 +445,7 @@ export default {
         name: "loyalty_reward",
         menuTex: "loyalty",
         path: "/loyalty_reward",
-        icon: "",
+        icon: "b-loyalty",
       },
       { id: 30, class: "mx-3 my-1 v-divider side_devider", icon: "" },
       {
@@ -455,7 +455,7 @@ export default {
         name: "franchise",
         menuTex: "franchise",
         path: "/franchise",
-        icon: "b-pos",
+        icon: "b-franchise",
       },
       {
         id: 13,

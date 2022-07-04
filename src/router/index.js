@@ -624,8 +624,8 @@ const routes = [{
                         component: load('products/store/StoreDashboard'),
                         props: true,
                         meta: {
-                            mainMenu: 'store',
-                            title: i18n.t('store')
+                            mainMenu: i18n.t('store'),
+                            title: i18n.t('stores')
                         }
                     },
                     

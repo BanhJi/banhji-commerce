@@ -60,6 +60,11 @@
 		'b-favorite': '&#xe92c;',
 		'b-catagories': '&#xe92d;',
 		'b-refresh': '&#xe92e;',
+		'b-franchise': '&#xe92f;',
+		'b-promotion': '&#xe930;',
+		'b-reward_s': '&#xe931;',
+		'b-count_guest': '&#xe932;',
+		'b-order_type': '&#xe933;',
 		'0': 0
 		},
 		els = document.getElementsByTagName('*'),

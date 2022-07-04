@@ -14,7 +14,7 @@
                     <v-row>
                         <!-- Sidebar -->
                         <div
-                            class="sidebar"
+                            class="sidebar hidden-sm-and-down"
                             v-on:mouseover="onMouseOver"
                             v-on:mouseleave="onMouseLeave"
                             >
@@ -743,7 +743,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-percent</v-icon>
+                                                                    <i  class=" b-reward_s" style=""/>
                                                                     <span class="text-bold letter_spacing">{{$t('reward')}}</span>
                         
                                                                 </v-btn>
@@ -1012,7 +1012,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-ticket-percent</v-icon>
+                                                                    <i  class="b-promotion" style=""/>
                                                                     <span class="text-bold letter_spacing">{{$t('promotion')}}</span>
                                                                 </v-btn>
                                                             </template>
@@ -1282,7 +1282,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-percent</v-icon>
+                                                                    <i  class="b-order_type" style=""/>
                                                                     <span class="text-bold letter_spacing">{{$t('order_type')}}</span>
                         
                                                                 </v-btn>
@@ -1458,7 +1458,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-account-group</v-icon>
+                                                                    <i  class="b-count_guest" style=""/>
                                                                     <span class="text-bold letter_spacing">{{$t('count_guest')}}</span>
                         
                                                                 </v-btn>
@@ -7682,6 +7682,25 @@ export default {
         position: absolute;
         top: 60px;
     }
-    
+    .b-reward_s:before {
+        content: "\e931";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-promotion:before {
+        content: "\e930";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-count_guest:before {
+        content: "\e932";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-order_type:before {
+        content: "\e933";
+        color: #ffffff;
+        font-size: 22px;
+    }
 
 </style>

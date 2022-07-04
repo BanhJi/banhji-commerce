@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?lt46em');
-  src:  url('fonts/banhji-accounting-icon.eot?lt46em#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?lt46em') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?lt46em') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?lt46em#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?at6bht');
+  src:  url('fonts/banhji-accounting-icon.eot?at6bht#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?at6bht') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?at6bht') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?at6bht#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -211,5 +211,25 @@
 }
 .b-refresh:before {
   content: "\e92e";
+  color: #474747;
+}
+.b-franchise:before {
+  content: "\e92f";
+  color: #474747;
+}
+.b-promotion:before {
+  content: "\e930";
+  color: #474747;
+}
+.b-reward_s:before {
+  content: "\e931";
+  color: #474747;
+}
+.b-count_guest:before {
+  content: "\e932";
+  color: #474747;
+}
+.b-order_type:before {
+  content: "\e933";
   color: #474747;
 }
