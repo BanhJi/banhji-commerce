@@ -841,6 +841,42 @@ const routes = [{
                         title: 'delivery',
                     }
                 },
+                {
+                    path: 'orders_report',
+                    name: 'Offline & Online Order',
+                    component: load('pos/report/Order'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: i18n.t('offline_online'),
+                    }
+                },
+                {
+                    path: 'invoice_parksale',
+                    name: 'Invoice & Parksale',
+                    component: load('pos/report/Invoice'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: i18n.t('invoice_parksale'),
+                    }
+                },
+                {
+                    path: 'invoice_parksale',
+                    name: 'Invoice & Parksale',
+                    component: load('pos/report/Invoice'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: i18n.t('invoice_parksale'),
+                    }
+                },
+                {
+                    path: 'loyalty_promotion',
+                    name: 'Loyalty & Promotion',
+                    component: load('pos/report/Loyalty'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: i18n.t('loyalty_promotion'),
+                    }
+                },
                 
             ]
 

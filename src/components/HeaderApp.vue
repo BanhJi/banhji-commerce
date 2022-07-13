@@ -17,8 +17,10 @@
                 </a>
                 <v-spacer/>
             </span>
-
-            <h3 class="ml-2 ml-4 py-4 pl-4" style="font-size: 18px;border-left: 1px solid gainsboro;">{{disc}}</h3> 
+            <div>
+                <h3 class="ml-4 pl-4" style="font-size: 18px;border-left: 1px solid gainsboro; text-transform: uppercase;">{{$t('point_of_sales')}}</h3>
+                <span class="ml-4 pl-4" style="font-size: 18px;">{{disc}}</span> 
+            </div>
             <h1 v-if="this.$route.meta.logo" class="ml-2 hidden-sm-and-down">
                 <img style="height: 50px;" :src="'/images/' + this.$route.meta.logo"/>
             </h1>

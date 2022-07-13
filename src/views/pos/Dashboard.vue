@@ -110,7 +110,7 @@
                                             max-width="465"
                                             min-height="60"
                                             outlined
-                                            :to="lang+'/orders'"
+                                            :to="lang+'/pos/orders_report'"
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content class="pk-3">
@@ -135,7 +135,7 @@
                                                 max-width="465"
                                                 min-height="60"
                                                 outlined
-                                                :to="lang+'/invoice_sale'"
+                                                :to="lang+'/pos/invoice_parksale'"
                                             >
                                                 <v-list-item three-line>
                                                     <v-list-item-content class="pk-3">
@@ -236,6 +236,7 @@
                                     max-width="465"
                                     min-height="60"
                                     outlined
+                                    
                                 >
                                     <v-list-item three-line>
                                         <v-list-item-content>
@@ -264,6 +265,7 @@
                                     max-width="465"
                                     min-height="60"
                                     outlined
+                                    :to="lang+'/pos/loyalty_promotion'"
                                 >
                                     <v-list-item three-line>
                                         <v-list-item-content>
