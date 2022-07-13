@@ -190,7 +190,7 @@
                             color="primary"
                             outlined
                             dense
-                            :to="lang + '/point_of_sales'"
+                            :to="lang + '/stores'"
                             class="pa-4 mx-2 raduis_10 pop no_border d-flex"
                             min-height="160"
                           >
@@ -200,7 +200,7 @@
                                 </v-col>
                                 <v-col md="8" sm="12" cols="12" class="pb-0">
                                     <h1 class="font_size_overview  white--text" :class="{'line_25':this.$i18n.locale=='kh'}">
-                                      {{ $t("point_of_sale") }}
+                                      {{ $t("stores") }}
                                     </h1>
                                     <p class="mt-2 niradei_light  niradei_light_1 mb-0 white--text">
                                       {{ $t("point_of_sale_desc2") }}

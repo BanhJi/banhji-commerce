@@ -1128,7 +1128,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-note</v-icon>
+                                                                    <i  class=" b-note_s" style=""/>
                                                                      <span class="text-bold letter_spacing">{{$t('note')}}</span>
                                                                 </v-btn>
                                                             </template>
@@ -1178,7 +1178,7 @@
                                                             >
                                                             <template v-slot:activator="{ on, attrs }">
                                                                 <v-btn v-bind="attrs"  v-on="on" color=third class="white--text rounded-0 btn-funtion" style="">
-                                                                    <v-icon left class="mr-0">mdi-bike-fast</v-icon>
+                                                                    <i  class=" b-delivery_s" style=""/>
                                                                      <span class="text-bold letter_spacing">{{$t('delivery')}}</span>
                                                                 </v-btn>
                                                             </template>
@@ -1254,14 +1254,14 @@
                                                 <!-- parksale -->
                                                 <v-col md="3" v-show="func.parksale" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0  btn-funtion" style="">
-                                                        <v-icon left class="mr-0">mdi-parking</v-icon>
+                                                        <i  class=" b-parksale" style=""/>
                                                          <span class="text-bold letter_spacing">{{$t('parksale')}}</span>
                                                     </v-btn>
                                                 </v-col>
                                                 <!-- invoice -->
                                                 <v-col md="3" v-show="func.invoice" sm="3" col="3" class="pa-1">
                                                     <v-btn color=third class="white--text rounded-0 btn-funtion" style="">
-                                                        <v-icon left class="mr-0">mdi-receipt</v-icon>
+                                                        <i  class=" b-invoice_s" style=""/>
                                                          <span class="text-bold letter_spacing">{{$t('invoice')}}</span>
                                                     </v-btn>
                                                 </v-col>
@@ -7682,23 +7682,43 @@ export default {
         position: absolute;
         top: 60px;
     }
+    .b-order_type:before {
+        content: "\e933";
+        color: #ffffff;
+        font-size: 22px;
+    }
     .b-reward_s:before {
-        content: "\e931";
+        content: "\e937";
         color: #ffffff;
         font-size: 22px;
     }
     .b-promotion:before {
-        content: "\e930";
+        content: "\e936";
         color: #ffffff;
         font-size: 22px;
     }
     .b-count_guest:before {
+        content: "\e935";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-note_s:before {
         content: "\e932";
         color: #ffffff;
         font-size: 22px;
     }
-    .b-order_type:before {
-        content: "\e933";
+    .b-delivery_s:before {
+        content: "\e931";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-parksale:before {
+        content: "\e934";
+        color: #ffffff;
+        font-size: 22px;
+    }
+    .b-invoice_s:before {
+        content: "\e930";
         color: #ffffff;
         font-size: 22px;
     }

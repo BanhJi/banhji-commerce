@@ -4347,6 +4347,12 @@
     "insight_report": "Insight & reports",
     "loyalty_promotion": "Loyalty & promotion",
     "delivery_management": "Delivery management",
-    "invoice_parksale": "Invoice parksale"
+    "invoice_parksale": "Invoice parksale",
+    "allow_order_flow": "Allow order flow",
+    "favorite": "Favorite",
+    "booking": "Booking",
+    "other_function": "Other function",
+    "category_list": "Category list",
+    "setting_configurations": "Setting & Configurations"
 
 }

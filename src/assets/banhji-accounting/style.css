@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'banhji-accounting-icon';
-  src:  url('fonts/banhji-accounting-icon.eot?at6bht');
-  src:  url('fonts/banhji-accounting-icon.eot?at6bht#iefix') format('embedded-opentype'),
-    url('fonts/banhji-accounting-icon.ttf?at6bht') format('truetype'),
-    url('fonts/banhji-accounting-icon.woff?at6bht') format('woff'),
-    url('fonts/banhji-accounting-icon.svg?at6bht#banhji-accounting-icon') format('svg');
+  src:  url('fonts/banhji-accounting-icon.eot?rwzl4n');
+  src:  url('fonts/banhji-accounting-icon.eot?rwzl4n#iefix') format('embedded-opentype'),
+    url('fonts/banhji-accounting-icon.ttf?rwzl4n') format('truetype'),
+    url('fonts/banhji-accounting-icon.woff?rwzl4n') format('woff'),
+    url('fonts/banhji-accounting-icon.svg?rwzl4n#banhji-accounting-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -169,6 +169,10 @@
   content: "\e924";
   color: #474747;
 }
+.b-invoice_s:before {
+  content: "\e930";
+  color: #474747;
+}
 .b-sale_channel:before {
   content: "\e926";
   color: #474747;
@@ -217,19 +221,43 @@
   content: "\e92f";
   color: #474747;
 }
-.b-promotion:before {
-  content: "\e930";
-  color: #474747;
-}
-.b-reward_s:before {
+.b-delivery_s:before {
   content: "\e931";
   color: #474747;
 }
-.b-count_guest:before {
+.b-note_s:before {
   content: "\e932";
   color: #474747;
 }
 .b-order_type:before {
   content: "\e933";
+  color: #474747;
+}
+.b-parksale:before {
+  content: "\e934";
+  color: #474747;
+}
+.b-count_guest:before {
+  content: "\e935";
+  color: #474747;
+}
+.b-promotion:before {
+  content: "\e936";
+  color: #474747;
+}
+.b-reward_s:before {
+  content: "\e937";
+  color: #474747;
+}
+.b-offline_online:before {
+  content: "\e938";
+  color: #474747;
+}
+.b-sestion:before {
+  content: "\e939";
+  color: #474747;
+}
+.b-setting:before {
+  content: "\e93a";
   color: #474747;
 }

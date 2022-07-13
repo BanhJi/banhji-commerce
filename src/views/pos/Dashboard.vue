@@ -116,12 +116,8 @@
                                                 <v-list-item-content class="pk-3">
                                                     
                                                         <v-row>
-                                                            <v-col sm="5" cols="5" class="py-0">
-                                                                <img
-                                                                    class="img-1"
-                                                                    src="@/assets/images/coo_order.png"
-                                                                    width="80%"
-                                                                />
+                                                            <v-col sm="5" cols="5" class="py-2">
+                                                                <i  class=" b-offline_online" style="font-size:75px;"/>
                                                             </v-col>
                                                             <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                                 <v-list-item-title class=" mb-1  business">
@@ -145,12 +141,8 @@
                                                     <v-list-item-content class="pk-3">
                                                         
                                                         <v-row>
-                                                            <v-col sm="5" cols="5" class="py-0">
-                                                                <img
-                                                                    class="img-1"
-                                                                    src="@/assets/images/coo_invoice.png"
-                                                                    width="80%"
-                                                                />
+                                                            <v-col sm="5" cols="5" class="py-2">
+                                                                <i  class=" b-billing" style="font-size:75px;"/>
                                                             </v-col>
                                                             <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                             <v-list-item-title class=" mb-1  business">
@@ -179,15 +171,11 @@
                                     <v-list-item three-line>
                                         <v-list-item-content>
                                             <v-row>
-                                                <v-col sm="5" cols="5" class="py-0">
-                                                    <img
-                                                        class="img-1"
-                                                        src="@/assets/images/coo_setting.png"
-                                                        width="80%"
-                                                    />
+                                                <v-col sm="5" cols="5" class="py-2">
+                                                    <i  class=" b-setting" style="font-size:75px;"/>
                                                 </v-col>
                                                 <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1  business">{{$t('setting')}}</v-list-item-title>
+                                                    <v-list-item-title class=" mb-1  business">{{$t('setting_configurations')}}</v-list-item-title>
                                                 </v-col>
                                             </v-row>
                                         </v-list-item-content>
@@ -205,12 +193,8 @@
                                     <v-list-item three-line>
                                         <v-list-item-content>
                                             <v-row>
-                                                <v-col sm="5" cols="5" class="py-0">
-                                                    <img
-                                                        class="img-1"
-                                                        src="@/assets/images/coo_session.png"
-                                                        width="80%"
-                                                    />
+                                                <v-col sm="5" cols="5" class="py-2">
+                                                    <i  class=" b-sestion" style="font-size:75px;"/>
                                                 </v-col>
                                                 <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                     <v-list-item-title class=" mb-1 business">{{$t('session_management')}}</v-list-item-title>
@@ -229,15 +213,11 @@
                                     :to="lang+'/pos/delivery'"
                                 >
                                     <v-list-item three-line>
-                                        <v-list-item-content class="pk-3">
+                                        <v-list-item-content class="">
                                                 
                                                 <v-row>
-                                                    <v-col sm="5" cols="5" class="py-0">
-                                                        <img
-                                                            class="img-1"
-                                                            src="@/assets/images/coo_delivery.png"
-                                                            width="76%"
-                                                        />
+                                                    <v-col sm="5" cols="5" class="py-2">
+                                                       <i  class=" b-delivery_s" style="font-size:75px;"/>
                                                     </v-col>
                                                     <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                     <v-list-item-title class=" mb-1  business">
@@ -266,7 +246,7 @@
                                                         <img
                                                         class="mt-1 v-list-item v-list-item-left "
                                                         src="@/assets/images/made_in_cambodia.png"
-                                                        width="85%"
+                                                        width="75%"
                                                         height="auto"
                                                         alt=""
                                                         />
@@ -288,12 +268,8 @@
                                     <v-list-item three-line>
                                         <v-list-item-content>
                                             <v-row>
-                                                <v-col sm="5" cols="5" class="py-0">
-                                                    <img
-                                                        class="img-1"
-                                                        src="@/assets/images/coo_loyalty.png"
-                                                        width="80%"
-                                                    />
+                                                <v-col sm="5" cols="5" class="py-2">
+                                                    <i  class=" b-loyalty" style="font-size:75px;"/>
                                                 </v-col>
                                                 <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                     <v-list-item-title class=" mb-1 business">{{$t('loyalty_promotion')}}</v-list-item-title>
@@ -313,12 +289,8 @@
                                     <v-list-item three-line>
                                         <v-list-item-content>
                                             <v-row>
-                                                <v-col sm="5" cols="5" class="py-0">
-                                                    <img
-                                                        class="img-1"
-                                                        src="@/assets/images/coo_report.png"
-                                                        width="80%"
-                                                    />
+                                                <v-col sm="5" cols="5" class="py-2">
+                                                    <i  class=" b-report" style="font-size:75px;"/>
                                                 </v-col>
                                                 <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
                                                     <v-list-item-title class=" mb-1  business">
@@ -452,7 +424,7 @@
                                     {{$t('point_of_sale')}}
                                     </div>
                                     <v-row>
-                                        <v-col sm="5" cols="5" class="">
+                                        <v-col sm="5" cols="5" class="py-2">
                                             <img
                                                 class="img-1"
                                                 src="@/assets/images/coo_pos.png"
@@ -483,7 +455,7 @@
                                         {{$t('reports')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_invoice.png"
@@ -514,7 +486,7 @@
                                             {{$t('offline_online')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_order.png"
@@ -545,7 +517,7 @@
                                         {{$t('reports')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_delivery.png"
@@ -680,7 +652,7 @@
                                     {{$t('point_of_sale')}}
                                     </div>
                                     <v-row>
-                                        <v-col sm="5" cols="5" class="">
+                                        <v-col sm="5" cols="5" class="py-2">
                                             <img
                                                 class="img-1"
                                                 src="@/assets/images/coo_pos.png"
@@ -711,7 +683,7 @@
                                         {{$t('reports')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_invoice.png"
@@ -742,7 +714,7 @@
                                             {{$t('offline_online')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_order.png"
@@ -773,7 +745,7 @@
                                         {{$t('reports')}}
                                         </div>
                                         <v-row>
-                                            <v-col sm="5" cols="5" class="">
+                                            <v-col sm="5" cols="5" class="py-2">
                                                 <img
                                                     class="img-1"
                                                     src="@/assets/images/coo_delivery.png"
@@ -1221,6 +1193,12 @@ body {
     }
     .v-data-table{
         background-color: #ffffff00;
+    }
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+        background: none;
+    }
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td, .v-data-table > .v-data-table__wrapper > table > thead > tr > td, .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
+        height: 40px !important;
     }
     
     
