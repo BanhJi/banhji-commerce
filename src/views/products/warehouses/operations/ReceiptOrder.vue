@@ -195,14 +195,6 @@
                                                     :headerAttributes="{style: 'background-color: #EDF1F5'}"
                                                 />
                                                 <kendo-grid-column
-                                                    :field="'totalReceived'"
-                                                    :title="$t('total_received')"
-                                                    :width="180"
-                                                    :editable="function() {return false}"
-                                                    :headerAttributes="{style:'text-align: right; background-color: #EDF1F5', }"
-                                                    :attributes="{style: 'text-align: right'}"
-                                                />
-                                                <kendo-grid-column
                                                     :field="'qtyReceived'"
                                                     :title="$t('qty_received')"
                                                     :width="160"
@@ -593,7 +585,6 @@ export default {
         LoadingMe: LoadingMe,
         "app-datepicker": DatePickerComponent,
         dropdownlist: DropDownList,
-        // "app-monthpicker": MonthOfPicker,
     },
     data: () => ({
         loading: false,
@@ -647,7 +638,8 @@ export default {
         dialogS: false,
         hideS: true,
         supBaseUrl: supplierHandler.search(),
-        transactionTypes: []
+        transactionTypes: [],
+        activeItem: {}
     }),
     computed: {
         valid1: function () {
@@ -708,7 +700,7 @@ export default {
             }
             if (dataRow.length > 0) {
                 const instituteId = this.$store.state.institute.institute.id
-                receiptOrderHandler.getBatch(dataRow[0].item.id, this.receiptOrder.warehouse.id, instituteId, 'serial').then(res => {
+                receiptOrderHandler.getBatch(dataRow[0].item.id, this.receiptOrder.warehouse.pk, instituteId, 'serial').then(res => {
                     if (res.length > 0) {
                         dataRow.forEach((i) => {
                             if (i.serialNumber1 !== '') {
@@ -716,7 +708,7 @@ export default {
                                 this.itemLinesS.push({
                                     id: r.length > 0 ? r[0].linId : i.id,
                                     item: i.item,
-                                    whId: this.receiptOrder.warehouse.id,
+                                    whId: this.receiptOrder.warehouse.pk,
                                     serialNumber1: i.serialNumber1,
                                     serialNumber2: i.serialNumber2,
                                     type: 'serial',
@@ -734,7 +726,7 @@ export default {
                                     id: i.id,
                                     item: i.item,
                                     uom: i.uom,
-                                    whId: this.receiptOrder.warehouse.id,
+                                    whId: this.receiptOrder.warehouse.pk,
                                     serialNumber1: i.serialNumber1,
                                     serialNumber2: i.serialNumber2,
                                     type: 'serial',
@@ -759,6 +751,8 @@ export default {
                     source: 'purchase order'
                 })
             })
+            window.console.log(this.purchaseOrder, 'purchase change')
+            this.receiptOrder.referenceNo = this.purchaseOrder.referenceNo
             window.console.log(this.receiptOrder.itemLines, 'itemline')
         },
         async loadPurchaseOrders() {
@@ -816,7 +810,7 @@ export default {
                     uom: uom,
                     serialNumber1: '',
                     serialNumber2: '',
-                    whId: this.receiptOrder.warehouse.id,
+                    whId: this.receiptOrder.warehouse.pk,
                     status: 1
                 };
                 let ds = this.$refs.dataSource1.kendoWidget(),
@@ -892,49 +886,69 @@ export default {
         async getDataSourceB() {
             let ds = this.$refs.dataSource2.kendoWidget();
             let dataRow = ds.data();
+            window.console.log(dataRow, 'sav bach')
             if (dataRow.length > 0) {
-                const instituteId = this.$store.state.institute.institute.id
-                receiptOrderHandler.getBatch(dataRow[0].item.id, this.receiptOrder.warehouse.id, instituteId, 'batch').then(res => {
-                    if (res.length > 0) {
-                        dataRow.forEach((i) => {
-                            if (i.qty > 0) {
-                                const r = res.filter(p => p.number === i.number)
-                                this.itemLinesBatch.push({
-                                    id: r.length > 0 ? r[0].linId : i.id,
-                                    item: i.item,
-                                    uom: i.uom,
-                                    number: i.number,
-                                    whId: this.receiptOrder.warehouse.id,
-                                    expirationDate: i.expirationDate,
-                                    qty: r.length > 0 ? r[0].qty + i.qty : i.qty,
-                                    DQty: r.length > 0 ? r[0].DQty : 0,
-                                    type: 'batch',
-                                    status: i.status,
-                                    createdAt: r.length > 0 ? r[0].createdAt : '',
-                                    pk: r.length > 0 ? r[0].id : ''
-                                });
-                            }
+                 dataRow.forEach((i) => {
+                    if (i.qty > 0) {
+                        this.itemLinesBatch.push({
+                            id: this.activeItem.id,
+                            item: i.item,
+                            uom: i.uom,
+                            number: i.number,
+                            whId: this.receiptOrder.warehouse.pk,
+                            expirationDate: i.expirationDate,
+                            qty: i.qty,
+                            DQty: 0,
+                            type: 'batch',
+                            status: i.status,
+                            pk: ''
                         });
-                    } else {
-                        dataRow.forEach((i) => {
-                            if (i.qty > 0) {
-                                this.itemLinesBatch.push({
-                                    id: i.id,
-                                    item: i.item,
-                                    uom: i.uom,
-                                    number: i.number,
-                                    whId: this.receiptOrder.warehouse.id,
-                                    expirationDate: i.expirationDate,
-                                    qty: i.qty,
-                                    DQty: 0,
-                                    type: 'batch',
-                                    status: i.status,
-                                    pk: ''
-                                });
-                            }
-                        })
                     }
                 })
+                // const instituteId = this.$store.state.institute.institute.id
+                // receiptOrderHandler.getBatch(dataRow[0].item.id, this.receiptOrder.warehouse.pk, instituteId, 'batch').then(res => {
+                //     if (res.length > 0) {
+                //         dataRow.forEach((i) => {
+                //             if (i.qty > 0) {
+                //                 const r = res.filter(p => p.number === i.number)
+                //                 this.itemLinesBatch.push({
+                //                     id: r.length > 0 ? r[0].linId : i.id,
+                //                     lineId: r.length > 0 ? r[0].linId : i.id,
+                //                     item: i.item,
+                //                     uom: i.uom,
+                //                     number: i.number,
+                //                     whId: this.receiptOrder.warehouse.pk,
+                //                     expirationDate: i.expirationDate,
+                //                     qty: r.length > 0 ? r[0].qty + i.qty : i.qty,
+                //                     DQty: r.length > 0 ? r[0].DQty : 0,
+                //                     type: 'batch',
+                //                     status: i.status,
+                //                     createdAt: r.length > 0 ? r[0].createdAt : '',
+                //                     pk: r.length > 0 ? r[0].id : ''
+                //                 });
+                //             }
+                //         });
+                //     } else {
+                //         dataRow.forEach((i) => {
+                //             if (i.qty > 0) {
+                //                 this.itemLinesBatch.push({
+                //                     id: i.id,
+                //                     lineId: i.id,
+                //                     item: i.item,
+                //                     uom: i.uom,
+                //                     number: i.number,
+                //                     whId: this.receiptOrder.warehouse.pk,
+                //                     expirationDate: i.expirationDate,
+                //                     qty: i.qty,
+                //                     DQty: 0,
+                //                     type: 'batch',
+                //                     status: i.status,
+                //                     pk: ''
+                //                 });
+                //             }
+                //         })
+                //     }
+                // })
             }
             this.onCloseBatch()
         },
@@ -973,12 +987,21 @@ export default {
                     max: this.totalBatch
                 });
         },
+        checkDoublicate(number){
+            this.showLoading = true
+            window.console.log(this.receiptOrder, 'recepiporder')
+            warehouseHandler.checkNumber(this.receiptOrder.warehouse.pk, number, this.activeItem.item.id).then((res) => {
+                this.showLoading = false
+                window.console.log(res)
+            })
+        },
         dataSourceChangedB(e) {
             if (e.field) {
                 let dataRow = e.items[0];
                 window.console.log(e, "data source change");
                 switch (e.field) {
                     case "number":
+                        this.checkDoublicate(dataRow.number)
                         kendo
                             .jQuery("tr[data-uid='" + dataRow.uid + "']")
                             .find(".expirationDate")
@@ -1026,7 +1049,7 @@ export default {
                 uom: this.uomBatch,
                 number: '',
                 expirationDate: '',
-                whId: this.receiptOrder.warehouse.id,
+                whId: this.receiptOrder.warehouse.pk,
                 qty: 0,
                 status: 1
             };
@@ -1038,22 +1061,32 @@ export default {
             e.preventDefault();
             let grid = kendo.jQuery("#grid").data("kendoGrid")
             let dataItem = grid.dataItem($(e.currentTarget).closest("tr"))
+            this.activeItem = dataItem
             this.itemBatch = dataItem.item
             this.uomBatch = dataItem.uom
             if (dataItem.item.batchOrSerial == 1 && dataItem.qtyReceived > 0) {
                 this.amtBatch = dataItem.qtyReceived;
-                if (this.itemLinesBatch.length > 0) {
+                let fineBItem = this.itemLinesBatch.filter((m) => {return m.id == dataItem.id})
+                window.console.log(fineBItem, dataItem.id, this.itemLinesBatch)
+                if (fineBItem.length > 0) {
                     let amount = 0
-                    this.batchs = this.itemLinesBatch.filter(p => p.item.id === dataItem.item.id)
+                    this.batchs = fineBItem
                     this.batchs.forEach(p => {
                         amount += p.qty
                     })
                     this.totalBatch = this.amtBatch - amount || 0
                 } else {
+                    window.console.log(dataItem.qtyReceived)
+                    this.qtyReceived = 0
+                    this.amtBatch = dataItem.qtyReceived
+                    this.totalBatch = dataItem.qtyReceived
                     this.addRowB()
-                    this.totalBatch = dataItem.qtyReceived;
                 }
                 this.dialog = true
+            }else{
+                this.$snotify.error(
+                "QTY Received mush over then 0!"
+                );
             }
         },
         async onloadDeliveryAgency() {
@@ -1197,6 +1230,51 @@ export default {
                 .kendoDatePicker();
         },
         ItemDropDownEditor(container, options) {
+            let field = "name";
+            kendo
+                .jQuery('<input name="' + options.field + '"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                autoBind: true,
+                autoWidth: true,
+                height: 400,
+                filter: "contains",
+                dataTextField: "name",
+                dataValueField: "id",
+                headerTemplate: "",
+                template: `<span>#=${field}#</span>`,
+                optionLabel: "--- Select ---",
+                dataSource: new kendo.data.DataSource({
+                    serverFiltering: true,
+                    transport: {
+                    read: {
+                        url: productVariantHandler.itemSearchURLV2(
+                        "?filterBy=Name"
+                        ),
+                    },
+                    dataType: "json",
+                    },
+                    schema: {
+                    model: {
+                        id: "id",
+                        fields: {
+                        id: { type: "string" },
+                        name: { type: "string" },
+                        sku: { type: "string" },
+                        },
+                    },
+                    data: function (response) {
+                        return response.data;
+                    },
+                    total: function (response) {
+                        return response.data.count;
+                    },
+                    },
+                    // data: this.variants
+                }),
+            });
+        },
+        ItemDropDownEditorbk(container, options) {
             kendo
                 .jQuery('<input name="' + options.field + '"/>')
                 .appendTo(container)
@@ -1327,7 +1405,7 @@ export default {
             });
         },
         async onChangeWarehouse() {
-            // await this.loadZone(receiptOrder.warehouse.id)
+            // await this.loadZone(receiptOrder.warehouse.pk)
         },
         async onChange(event) {
             const value = event.value;
@@ -1475,7 +1553,14 @@ export default {
             });
         },
         async saveNew() {
-            this.showLoading = true;
+            if (!this.$refs.form.validate()) {
+                // this.$refs.form.validate()
+                window.scrollTo({ behavior: "smooth", top: 20 });
+                this.$snotify.error(
+                "Field is required, please check field each of tabs!"
+                );
+                return;
+            }
             await this.getDataSource();
             window.console.log(this.poItemLine, this.purchaseOrder.id, 'poItemLine')
             if (this.poItemLine.length > 0) {
@@ -1491,6 +1576,26 @@ export default {
             this.receiptOrder.itemLinesSerial = this.itemLinesS
             this.receiptOrder.itemLinesBatch = this.itemLinesBatch
             this.receiptOrder.transactionDate = this.receiptOrder.date;
+            this.showLoading = true;
+            //check line
+            if(this.receiptOrder.itemLines.length <= 0){
+                this.$snotify.error('Please select product!!!')
+                return
+            }else{
+                this.receiptOrder.itemLines.forEach((value, index) => {
+                    if (
+                        value.item.id == undefined ||
+                        value.uom.id == undefined ||
+                        value.item.id == "" ||
+                        value.uom.id == ""
+                        ) {
+                        this.$snotify.error(
+                            "Please check Item or Uom  on row " + (index + 1)
+                        );
+                        return
+                    }
+                })
+            }
             receiptOrderHandler.save(this.receiptOrder).then((res) => {
                 window.console.log(res);
                 this.isClose = false

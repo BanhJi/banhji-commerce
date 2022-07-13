@@ -70,5 +70,9 @@ module.exports = {
 
     product_category_segment_report     : url + 'category-segment-report/institute/' + instituteId + '/report',
     product_center                      : url + 'product/institute/' + instituteId + '/center',
-    import_product                      : url + 'import-product/institute/' + instituteId + '/add'
+    import_product                      : url + 'import-product/institute/' + instituteId + '/add',
+
+    // Nature
+    nature_post                         : url + 'nature/institute/' + instituteId + '/nature-add',
+    nature_get                          : url + 'nature/institute/' + instituteId + '/nature-list'
 }

@@ -20,6 +20,15 @@ module.exports.itemSearchURL = function (strFilter = '') {
         window.console.error(error)
     }
 }
+// All Items search v2
+module.exports.itemSearchURLV2 = function (strFilter = '') {
+    try {
+        // return apiUrl.product.product_variant_list
+        return apiUrl.item.item_searchv2 + strFilter
+    } catch (error) {
+        window.console.error(error)
+    }
+}
 // Item variant search
 module.exports.itemVariantSearchURL = function () {
     try {
@@ -124,8 +133,7 @@ module.exports.create = async (data) => {
 // Filter Item by Price level and UOM
 module.exports.itemByPriceLevel = async function (strFilter) {
     try {
-        const response = await axios.get(apiUrl.price_promotion.item_byPriceLevel + strFilter)
-        return response
+        return await axios.post(apiUrl.price_promotion.item_byPriceLevel, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -143,7 +151,7 @@ module.exports.itemSetPrice = async (data) => {
 // Transaction by Item
 module.exports.txnItem = async function (strFilter = '') {
     try {
-        return await axios.get(apiUrl.item.item_by_txn + '/' + strFilter)
+        return await axios.post(apiUrl.item.item_by_txn, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -152,7 +160,7 @@ module.exports.txnItem = async function (strFilter = '') {
 // item filter by category group subgroup /search
 module.exports.itemByCategory = async function (strFilter = '') {
     try {
-        return await axios.get(apiUrl.item.item_by_category  + strFilter)
+        return await axios.get(apiUrl.item.item_by_category + strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -161,7 +169,7 @@ module.exports.itemByCategory = async function (strFilter = '') {
 // Stock count adjustment
 module.exports.stockCountAdjustment = async function (strFilter = '') {
     try {
-        return await axios.get(apiUrl.item.stock_count_adjustment  + strFilter)
+        return await axios.get(apiUrl.item.stock_count_adjustment + strFilter)
     } catch (error) {
         window.console.error(error)
     }

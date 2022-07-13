@@ -14,9 +14,6 @@ if(process.env.VUE_APP_MODE == 'dev'){
     baseUrl = 'https://dev-apis.banhji.com'
 }
 const warehouseUrl          = baseUrl + '/warehouses/'
-// const warehouseUrl      = 'https://58jols35ri.execute-api.ap-southeast-1.amazonaws.com/dev/v1/entity-warehouse/'
-// const warehouseUrl      = 'https://dev-apis.banhji.com/entity-warehouses/'
-
 module.exports = {
     //Wh Setting
     wh_setting_post                     : warehouseUrl + 'warehouses/institute/' + instituteId + '/add',
@@ -85,6 +82,7 @@ module.exports = {
     receiptOrder_post                   : warehouseUrl + 'receipt-order/institute/' + instituteId + '/add',
     receiptOrder_get                    : warehouseUrl + 'receipt-order/institute/' + instituteId + '/list',
     receiptOrder_getById                : warehouseUrl + 'receipt-order/institute/' + instituteId + '/',
+    receiptOrder_batch                  : warehouseUrl + 'receiptorder/batch',
 
     //shelving order
     shelvingOrder_post                   : warehouseUrl + 'shelving-order/institute/' + instituteId + '/add',
@@ -119,5 +117,8 @@ module.exports = {
 
     balance_get                          : warehouseUrl + 'warehouse-balance/institute/' + instituteId + '/item/',
     balance_getAll                       : warehouseUrl + 'warehouse-balance-all/institute/' + instituteId + '/list',
-    txn_get                              : warehouseUrl + 'warehouse-txn/institute/' + instituteId + '/list'
+    txn_get                              : warehouseUrl + 'warehouse-txn/institute/' + instituteId + '/list',
+
+    //PO ItemLine
+    itemline_add                         : warehouseUrl + 'receiptorder/txn/'
 }

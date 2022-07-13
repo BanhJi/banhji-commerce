@@ -12,12 +12,12 @@
             <v-row class="">
                 <v-col sm="3" cols="12" class="py-0">
                     <v-text-field class=""
-                                  outlined
-                                  :placeholder="$t('name')"
-                                  append-icon="search"
-                                  v-model="search"
-                                  @change="onCategoryChanged"
-                                  clearable/>
+                    outlined
+                    :placeholder="$t('name')"
+                    append-icon="search"
+                    v-model="search"
+                    @change="onCategoryChanged"
+                    clearable/>
                 </v-col>
                 <v-col sm="3" cols="12" class="py-0">
                     <v-select class=""

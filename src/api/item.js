@@ -39,13 +39,14 @@ module.exports = {
     itemModifier_list                   : url + 'item-modifier/institute/' + instituteId + '/list',
     itemModifier_search                 : url + 'item-modifier/institute/' + instituteId + '/search',
     item_search                         : url + 'item/institute/' + instituteId + '/filter/',
+    item_searchv2                       : url + 'item-v2/institute/' + instituteId + '/filter/',
     item_variant_search                 : url + 'item/institute/' + instituteId + '/item/',
 
-    discount_item_report                : url + 'discount-item-txn/institute/' + instituteId + '/list',
-    sale_channel_report                 : url + 'sale-channel-txn/institute/' + instituteId + '/list',
-    sale_unit_report                    : url + 'saleunit-item-txn/institute/' + instituteId + '/list',
-    other_charge_report                 : url + 'other-charge-txn/institute/' + instituteId + '/list',
-    price_level_report                  : url + 'price-level-txn/institute/' + instituteId + '/list',
+    discount_item_report                : url + 'discount-item-txn/institute/' + instituteId + '/discount-item-txn',
+    sale_channel_report                 : url + 'sale-channel-txn/institute/' + instituteId + '/sale-channel-txn',
+    sale_unit_report                    : url + 'saleunit-item-txn/institute/' + instituteId + '/saleunit-item-txn',
+    other_charge_report                 : url + 'other-charge-txn/institute/' + instituteId + '/other-charge-txn',
+    price_level_report                  : url + 'price-level-txn/institute/' + instituteId + '/price-level-txn',
 
     item_by_txn                         : url + 'item-txn/institute/' + instituteId + '/list',
     item_by_category                    : url + 'item/institute/' + instituteId + '/itemByCategory',
@@ -53,4 +54,5 @@ module.exports = {
     item_by_license                     : url + 'item-by-license/institute/' + instituteId + '/list',
 
     variant_one                         : url + 'variant/institute/' + instituteId + '/item',
+    import_service                      : url + 'import-service/institute/' + instituteId + '/add'
 }
