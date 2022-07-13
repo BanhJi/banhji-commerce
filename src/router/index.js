@@ -278,6 +278,17 @@ const routes = [{
                         }
                     },
                     {
+                        path: 'product_variant/:id?',
+                        name: 'Product Variant',
+                        component: load('products/product/product_variants/products/ProductVariant'),
+                        props: true,
+                        meta: {
+                            moduleId: 5,
+                            mainMenu: 'products',
+                            title: 'Products',
+                        }
+                    },
+                    {
                         path: 'store/:id?',
                         name: 'Store Management',
                         component: load('products/store/Store'),

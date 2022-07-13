@@ -14,8 +14,7 @@
                 <h2 class="mb-0">{{ $t("import_product") }}</h2>
                 <v-icon
                   @click="cancel()"
-                  style="cursor: pointer; color: #333; font-size: 40px"
-                  class="float-right"
+                  class="float-right close_icon"
                   >close
                 </v-icon>
               </v-card>

@@ -9,7 +9,11 @@
                                 <v-tabs v-model="active_in_tabs">
                                     <v-row>
                                         <v-col sm="10" cols="10" class="py-0 pr-0" style="display: inherit;">
-                                      
+                                            <v-tab>
+                                                <span>
+                                                    {{ $t('insights') }}
+                                                </span>
+                                            </v-tab>
                                             <v-tab>
                                                 <span>
                                                     {{ $t('products') }}
@@ -78,6 +82,13 @@
                                     <v-tab-item>
                                         <v-card flat>
                                             <v-card-text class="">
+                                                <Insight/>
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-tab-item>
+                                    <v-tab-item>
+                                        <v-card flat>
+                                            <v-card-text class="">
                                                 <Product/>
                                             </v-card-text>
                                         </v-card>
@@ -133,6 +144,7 @@ import {dataStore, data} from '@/observable/store'
 export default {
     name: "",
     components: {
+        Insight: () => import('./Insight.vue'),
         Product: () => import('./product/Products.vue'),
         // ProductionTab: () => import('./production/ProductionTab.vue'),
         // WarehouseManagement: () => import('./warehouses/WarehouseManagement.vue'),

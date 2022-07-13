@@ -123,6 +123,7 @@
             ref="productCenterDS"
             :data="productCenterList"
             :schema="gridSchema"
+            :sort="sortDefinition"
           >
           </kendo-datasource>
           <kendo-grid
@@ -199,6 +200,7 @@ export default {
     toalPerPage: 0,
     paging: {},
     action: "",
+    sortDefinition: [{ field: "sku", dir: "asc" },],
     params: {},
     switchModel: 0,
   }),

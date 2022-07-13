@@ -1,18 +1,28 @@
 export default class ProductVariants {
     constructor(data = {}) {
-        if (!data) {
             this.id = data.id || ''
+            this.productId = data.productId || ''
             this.name = data.name || ''
             this.sku = data.sku || ''
             this.type = data.type || {}
+            this.category = data.category || {}
+            this.group = data.group || {}
             this.product = data.product || {}
-            this.variant = data.variant || {}
+            this.subGroup = data.subGroup || {}
+            this.warehouse = data.warehouse || {}
+            this.inventoryAcc = data.inventoryAcc || {}
+            this.incomeAcc = data.incomeAcc || {}
+            this.costOfGoodsSoldAcc = data.costOfGoodsSoldAcc || {}
+
+            this.attribute = data.attribute || {}
             this.uom = data.uom || {}
+            this.priceLevel = data.priceLevel || {}
             this.reOrderQty = data.reOrderQty || 0
             this.saleDescription = data.saleDescription || ''
+            this.description = data.description || ''
             this.brand = data.brand || {}
             this.countryOrigin = data.countryOrigin || {}
-            this.supplier = data.supplier || {}
+           
             this.barcode = data.barcode || ''
             this.isForPOS = data.isForPOS || false
             this.useAsFavorite = data.useAsFavorite || false
@@ -21,32 +31,15 @@ export default class ProductVariants {
             this.isNegativeSaleForSaleChannel = data.isNegativeSaleForSaleChannel || false
             this.minOrderQty = data.minOrderQty || 0
             this.maxOnlineStock = data.maxOnlineStock || 0
-            this.images = data.images || {}
             this.reUsed = data.reUsed || false
-        } else {
-            this.id = ''
-            this.name = ''
-            this.sku = ''
-            this.product = {}
-            this.variant = {}
-            this.type =  {}
-            this.uom = {}
-            this.reOrderQty = 0
-            this.saleDescription = ''
-            this.brand = {}
-            this.countryOrigin = {}
-            this.supplier = {}
-            this.barcode = ''
-            this.isForPOS = true
-            this.useAsFavorite = false
-            this.isNegativeSale = false
-            this.isForEcommerce = false
-            this.isNegativeSaleForSaleChannel = false
-            this.minOrderQty = 0
-            this.maxOnlineStock = 0
-            this.images = {}
-            this.reUsed = false
-        }
+            this.status = data.status || 1
+
+            this.isFavorite = data.isFavorite || false
+            this.thumb = data.thumb || ''
+
+            this.price = data.price || 0,
+            this.cost = data.cost || 0
+            this.nature = data.nature || {}
     }
 
     construct(data) {

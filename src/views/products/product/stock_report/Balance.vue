@@ -98,8 +98,10 @@
                 :data-source-ref="'balanceSummaryDS'"
                 :sortable="true"
                 :filterable="true"
+                :hidden="true"
                 :column-menu="true"
                 :editable="false"
+                :groupable="true"
                 :resizable="true"
                 :style="{ width: '100%' }"
                 :noRecords="true"
@@ -138,6 +140,7 @@
                   :width="150"
                   :filterable="false"
                   :sortable="false"
+                  :hidden="true"
                   :attributes="{ style: 'text-align: right; ' }"
                   :template="'<span>#=kendo.toString(committedStock, decimalFormat)#</span>'"
                   :headerAttributes="{

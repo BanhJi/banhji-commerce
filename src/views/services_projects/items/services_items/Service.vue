@@ -14,8 +14,7 @@
                 <h2 class="mb-0">{{ $t("service") }}</h2>
                 <v-icon
                   @click="cancel()"
-                  style="cursor: pointer; color: #333; font-size: 40px"
-                  class="float-right"
+                  class="float-right close_icon"
                   >close
                 </v-icon>
               </v-card>
@@ -81,6 +80,18 @@
                       clearable
                       :item-text="(item) => `${item.abbr} - ${item.name}`"
                       required
+                    />
+                    <label class="label">{{ $t("nature") }}</label>
+                    <v-select
+                      class="pt-1"
+                      outlined
+                      tage="Nature"
+                      :placeholder="$t('select_nature')"
+                      v-model="service.nature"
+                      :items="natures"
+                      item-value="id"
+                      :item-text="(item) => `${item.code} - ${item.name}`"
+                      return-object
                     />
                   </v-col>
                   <v-col sm="4" cols="12" class="pl-0">
@@ -461,7 +472,7 @@ import ServiceItem from "@/scripts/model/ServiceItem";
 import { i18n } from "@/i18n";
 
 let serviceItem = new ServiceItem({});
-
+const attributeHandler = require("@/scripts/attributeHandler");
 const accountHandler = require("@/scripts/handler/accounting/account");
 const categoryHandler = require("@/scripts/categoryHandler");
 const groupHandler = require("@/scripts/groupHandler");
@@ -524,8 +535,21 @@ export default {
     disabled: true,
     disabledS: true,
     coa: [],
+    natures: [],
   }),
   methods: {
+    async loadNatures() {
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("resolved");
+          this.showLoading = true;
+          attributeHandler.natureList().then((res) => {
+            this.showLoading = false;
+            this.natures = res.data.data;
+          });
+        }, 10);
+      });
+    },
     autoPrice() {
       const value = this.service.value || 0;
       let base = this.service.base || 0;
@@ -604,6 +628,7 @@ export default {
             value: this.service.value,
             incomeAcc: this.mIncomeAcc,
             costOfGoodsSoldAcc: this.mAccCostOfGoodSold,
+            nature: this.service.nature,
             // defaultTax: this.defaultTax,
             // purchaseTax: this.mPurchaseTax,
             // specificTax: this.mSpecificTax,
@@ -778,7 +803,10 @@ export default {
             this.showLoading = false;
             this.coa = res.data;
             const accRevenue = res.data
-              .filter((m) => m.account_type.number === 32)
+              .filter(
+                (m) =>
+                  m.account_type.number === 32 || m.account_type.number === 40
+              )
               .map((item) => {
                 return {
                   id: item.uuid,
@@ -1123,6 +1151,7 @@ export default {
     await this.loadCategory();
     await this.loadGroup();
     await this.loadPriceLevel();
+    await this.loadNatures()
   },
   computed: {
     amountType() {

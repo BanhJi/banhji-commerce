@@ -32,3 +32,20 @@ module.exports.update = async (id, data) => {
         window.console.error(error)
     }
 }
+
+// Create 
+module.exports.natureCreate = async function (data) {
+    try {
+        return await axios.post(apiUrl.product.nature_post, data)
+    } catch (error) {
+        window.console.error(error)
+    }
+}
+// List 
+module.exports.natureList = async function (strFilter = '') {
+    try {
+        return await axios.get(apiUrl.product.nature_get + strFilter)
+    } catch (error) {
+        window.console.error(error)
+    }
+}

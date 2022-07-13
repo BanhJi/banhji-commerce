@@ -67,6 +67,14 @@
             {{ $t("brand") }}
           </span>
         </v-tab>
+        <v-tab>
+          <span class="hidden-sm-and-up">
+            <v-icon left>mdi-pen</v-icon>
+          </span>
+          <span class="hidden-sm-and-down text-capitalize">
+            {{ $t("nature") }}
+          </span>
+        </v-tab>
 
         <!-- service setting -->
         <v-tab>
@@ -93,14 +101,14 @@
             {{ $t("service_sub_group") }}
           </span>
         </v-tab>
-         <v-tab v-if="appType === 'Cooperative'">
+         <!-- <v-tab v-if="appType === 'Cooperative'">
           <span class="hidden-sm-and-up">
             <v-icon left>mdi-pen</v-icon>
           </span>
           <span class="hidden-sm-and-down text-capitalize">
             {{ $t("transaction_items") }}
           </span>
-        </v-tab>
+        </v-tab> -->
        
         <v-tab-item>
           <v-card flat>
@@ -145,6 +153,13 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
+         <v-tab-item>
+          <v-card flat>
+            <v-card-text class="py-0 pr-0">
+              <Natures />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
 
         <!-- service setting -->
         <v-tab-item>
@@ -168,13 +183,13 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
-        <v-tab-item v-if="appType === 'Cooperative'">
+        <!-- <v-tab-item v-if="appType === 'Cooperative'">
           <v-card flat>
             <v-card-text class="">
               <TxnItem />
             </v-card-text>
           </v-card>
-        </v-tab-item>
+        </v-tab-item> -->
        
       </v-tabs>
     </v-col>
@@ -201,12 +216,13 @@ export default {
     Categories: () => import("../products/setting/Categories"),
     Group: () => import("../products/setting/Group"),
     SubGroup: () => import("../products/setting/SubGroup"),
-
+    Natures: () => import("../products/setting/Natures"),
+    
     Categoriess: () => import("../services_projects/setting/new/Categoriess"),
     Groups: () => import("../services_projects/setting/new/Groups"),
     SubGroups: () => import("../services_projects/setting/new/SubGroups"),
-    TxnItem: () =>
-      import("@/views/services_projects/items/TransactionItems.vue"),
+    // TxnItem: () =>
+    //   import("@/views/services_projects/items/TransactionItems.vue"),
   },
 };
 </script>

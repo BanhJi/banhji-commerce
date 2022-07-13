@@ -83,6 +83,14 @@
             {{ $t("brand") }}
           </span>
         </v-tab>
+        <v-tab>
+          <span class="hidden-sm-and-up">
+            <v-icon left>mdi-pen</v-icon>
+          </span>
+          <span class="hidden-sm-and-down text-capitalize">
+            {{ $t("nature") }}
+          </span>
+        </v-tab>
         <!-- <v-tab>
 					<span class="hidden-sm-and-up">
 						<v-icon left>mdi-pen</v-icon>
@@ -195,6 +203,13 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text class="py-0 pr-0">
+              <Natures />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
         <!-- <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
@@ -232,6 +247,7 @@ export default {
     // Form: () => import("./Form"),
     Group: () => import("./Group"),
     SubGroup: () => import("./SubGroup"),
+    Natures: () => import("./Natures"),
     // Warehouse: () => import("./Warehouse.vue"),
     // WarrantyConditions: () => import("./WarrantyConditions.vue"),
     // BinLocation: () => import("./bin_location/BinLocation.vue"),

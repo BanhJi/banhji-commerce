@@ -119,6 +119,7 @@
             ref="productVariantCenterDS"
             :data="VariantCenterList"
             :schema="gridSchema"
+            :sort="sortDefinition"
           >
           </kendo-datasource>
           <kendo-grid
@@ -303,6 +304,7 @@ export default {
     subGroup: [],
     subGroups: [],
     search: "",
+    sortDefinition: [{ field: "sku", dir: "asc" },],
     gridSchema: {
       model: {
         id: "id",

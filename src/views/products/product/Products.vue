@@ -34,7 +34,7 @@
             {{ $t("variant_directory") }}
           </span>
         </v-tab>
-        <!-- <v-tab>
+        <v-tab>
           <span class="text-capitalize text-left">
             {{ $t("price_margin") }}
           </span>
@@ -51,7 +51,7 @@
           <span class="hidden-sm-and-down text-capitalize text-left">
             {{ $t("product_analysis") }}
           </span>
-        </v-tab> -->
+        </v-tab>
         <v-tab>
           <span class="hidden-sm-and-up">
             <v-icon left>mdi-attachment</v-icon>
@@ -81,7 +81,7 @@
             </v-card-text>
           </v-card>
         </v-tab-item>
-        <!-- <v-tab-item>
+        <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
               <PriceMargin />
@@ -101,7 +101,7 @@
               <ProductAnalysisTab />
             </v-card-text>
           </v-card>
-        </v-tab-item> -->
+        </v-tab-item>
         <v-tab-item>
           <v-card flat>
             <v-card-text class="py-0 pr-0">
@@ -122,9 +122,9 @@ export default {
     // CatalogsBundledTab: () => import("./product_list_catalog/CatalogsBundledTab"),
     // BundledProducts: () => import("@/views/products/product/product_variants/products/Products.vue"),
     ItemModifiers: () => import("./ItemModifiers"),
-    // StockReport: () => import("./StockReport"),
-    // PriceMargin: () => import("./price_margin/PriceMargin"),
-    // ProductAnalysisTab: () => import("./product_analysis/ProductAnalysisTab"),
+    StockReport: () => import("./StockReport"),
+    PriceMargin: () => import("./price_margin/PriceMargin"),
+    ProductAnalysisTab: () => import("./product_analysis/ProductAnalysisTab"),
     ProudctCenter: () => import("./product_center/ProudctCenter"),
     ProductDiretory: ()=> import("./ProductDiretory")
 
