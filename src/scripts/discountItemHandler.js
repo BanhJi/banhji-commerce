@@ -43,9 +43,7 @@ module.exports.create = async (data) => {
 }
 module.exports.discountItemReport = async function (strFilter = '') {
     try {
-        const response = await axios.get(apiUrl.item.discount_item_report + strFilter)
-
-        return response
+        return await axios.post(apiUrl.item.discount_item_report, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -53,9 +51,7 @@ module.exports.discountItemReport = async function (strFilter = '') {
 
 module.exports.saleChannelReport = async function (strFilter = '') {
     try {
-        const response = await axios.get(apiUrl.item.sale_channel_report + strFilter)
-
-        return response
+        return await axios.post(apiUrl.item.sale_channel_report, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -63,9 +59,7 @@ module.exports.saleChannelReport = async function (strFilter = '') {
 
 module.exports.saleUnitReport = async function (strFilter = '') {
     try {
-        const response = await axios.get(apiUrl.item.sale_unit_report + strFilter)
-
-        return response
+        return await axios.post(apiUrl.item.sale_unit_report, strFilter)
     } catch (error) {
         window.console.error(error)
     }
@@ -73,16 +67,14 @@ module.exports.saleUnitReport = async function (strFilter = '') {
 
 module.exports.otherChargeReport = async function (strFilter = '') {
     try {
-        const response = await axios.get(apiUrl.item.other_charge_report + strFilter)
-
-        return response
+        return await axios.post(apiUrl.item.other_charge_report, strFilter)
     } catch (error) {
         window.console.error(error)
     }
 }
 module.exports.priceLevelReport = async function (strFilter = '') {
     try {
-        const response = await axios.get(apiUrl.item.price_level_report + strFilter)
+        const response = await axios.post(apiUrl.item.price_level_report , strFilter)
 
         return response
     } catch (error) {

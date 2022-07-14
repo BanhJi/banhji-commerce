@@ -4354,6 +4354,10 @@
     "other_function": "Other function",
     "category_list": "Category list",
     "setting_configurations": "Setting & Configurations",
-    "select_nature": "Select nature"
+    "select_nature": "Select nature",
+    "sale_units_management": "Sale units management",
+    "sale_unit_items_desc": "List of sale unit items that can be used to track detail sale transactions",
+    "sale_unit_report": "Sale Units Report",
+    "sale_unit_report_desc": "List of detail sale unit transactions"
 
 }

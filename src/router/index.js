@@ -888,6 +888,17 @@ const routes = [{
                         title: i18n.t('loyalty_promotion'),
                     }
                 },
+                {
+                    path: 'sale_unit',
+                    name: 'Sale unit',
+                    component: load('pos/sale_unit_items/SaleUnitItemsTab'),
+                    meta: {
+                        mainMenu: 'point_of_sales',
+                        title: i18n.t('sale_unit'),
+                        description: i18n.t('pos_f_b_dis')
+                        
+                    }
+                },
                 
             ]
 

@@ -48,31 +48,7 @@
                                         ></v-select>
                                     </v-col>
                                     <v-col md="4" sm="4" cols="12" class="py-0">
-                                        <label class="label">{{ $t("sale_channels") }}</label>
-                                        <v-select  
-                                            class="mt-1"
-                                            label=""
-                                            outlined
-                                        ></v-select>
-                                    </v-col>
-                                    <v-col md="4" sm="4" cols="12" class="py-0">
                                         <label class="label">{{ $t("budgeted_by") }}</label>
-                                        <v-select  
-                                            class="mt-1"
-                                            label=""
-                                            outlined
-                                        ></v-select>
-                                    </v-col>
-                                    <v-col md="4" sm="4" cols="12" class="py-0">
-                                        <label class="label">{{ $t("grouped_by") }}</label>
-                                        <v-select  
-                                            class="mt-1"
-                                            label=""
-                                            outlined
-                                        ></v-select>
-                                    </v-col>
-                                    <v-col md="4" sm="4" cols="12" class="py-0">
-                                        <label class="label">{{ $t("period") }}</label>
                                         <v-select  
                                             class="mt-1"
                                             label=""
@@ -107,13 +83,13 @@
                                             {{ $t("generate") }}
                                         </v-btn>
                                     </v-col>
-                                    <v-col md="2" sm="2" cols="12" class="py-0">
+                                    <!-- <v-col md="2" sm="2" cols="12" class="py-0">
                                             <app-reporting-language
                                                 :initLanguage="reportingLanguage"
                                                 @emitLanguage="reportingLanguage = $event"
                                                 @onChanged="onReportingLanguageChanges"
                                             />
-                                    </v-col>
+                                    </v-col> -->
                                 </v-row>
                             </v-card>
                             
@@ -246,7 +222,7 @@ export default {
     },
     components: {
         "LoadingMe": () => import('@/components/Loading'),
-        "app-reporting-language": () => import("@/components/kendo_templates/ReportingLanguageDropDownList"),
+        // "app-reporting-language": () => import("@/components/kendo_templates/ReportingLanguageDropDownList"),
     },
     data: () => ({
         // Obj

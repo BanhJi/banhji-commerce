@@ -5,303 +5,276 @@
         <v-row v-if="this.$route.name == 'dashboard_pos'" class="mx-6 mt-0">
             <v-col sm="12" cols="12" class="py-0">
                 <v-row>
-                    <v-col sm="12" cols="12" class="py-0">
+                    <v-col sm="5" cols="4" class="">
                         <v-row>
-                            <v-col sm="8" cols="8" class="pb-0">
-                                <v-row style="height: 100%;">
-                                    <v-col sm="6" cols="6" class="pa-2">
-                                        <v-card
-                                            outlined
-                                            dense
-                                            class="mx-auto pa-4  d-flex" 
-                                            min-height="100%"
-                                        >
-                                            <v-list-item three-line class="d-block">
-                                                <p class="mb-1 mt-3 niradei_light">{{$t('store_name')}}</p>
-                                                <h1 class="headline mb-1 primary--text">
-                                                choun mart
-                                                </h1>
-                                              
-                                                <v-col sm="12" cols="12" class="pa-0">
-                                                    <v-simple-table>
-                                                        <template v-slot:default>
-                                                            <tbody class="sale_table">
-                                                                <tr>
-                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('status') }}</td>
-                                                                    <td class="text-bold px-0">:</td>
-                                                                    <td class="text-left text-bold"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('warehouse') }}</td>
-                                                                    <td class="text-bold px-0">:</td>
-                                                                    <td class="text-left text-bold"></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td style="width:40%;" class="text-uppercase pl-0">{{ $t('segment') }}</td>
-                                                                    <td class="text-bold px-0">:</td>
-                                                                    <td class="text-left text-bold"></td>
-                                                                </tr>
-                                                                
-                                                            </tbody>
-                                                        </template>
-                                                    </v-simple-table>
-                                                </v-col>
-                                                
-                                            </v-list-item>
+                            <v-col sm="12" cols="12" class="py-0">
+                                <v-card
+                                    outlined
+                                    dense
+                                    class="mx-auto pa-4  d-flex" 
+                                    min-height="100%"
+                                >
+                                    <v-list-item three-line class="d-block">
+                                        <p class="mb-3">{{ time }}</p>
+                                        <h1 class="third--text">
+                                            {{ $t("welcome") }}
+                                        </h1>
+                                        <p class="mb-1 mt-3 niradei_light">{{$t('store_name')}}</p>
+                                        <h1 class="font_22">
+                                        choun mart
+                                        </h1>
+                                        <p class="mb-1 mt-3 niradei_light">
+                                            {{ $t("your_entity_name") }}
+                                        </p>
+                                        <h1 class="font_22">
+                                            {{ mInstitute.name }}
+                                        </h1>
+                                        <p class="mb-1 mt-3 niradei_light">
+                                            {{ $t("subscribed_edition") }}
+                                        </p>
+                                        <v-card color="primary" class="pa-3 white--text no_border">
+                                            <h3 class="text-uppercase">{{ planName }} Edition</h3>
                                         </v-card>
-                                    </v-col>
-                                    <v-col sm="6" cols="6" class="pa-2">
+
+                                        <p class="mb-2 mt-4 niradei_light">
+                                            {{ $t("your_entity_banhji_id") }}
+                                        </p>
                                         <v-card
-                                            class="mx-auto d-flex"
-                                            max-width="465"
-                                            min-height="100%"
-                                            outlined
-                                            color="primary"
-                                            @click="goPos('started')"
+                                            @click="copyTextClip"
+                                            color="third"
+                                            class="pa-3 white--text no_border copy"
                                         >
-                                            <v-list-item three-line>
-                                                <v-list-item-content class="pk-3">
-                                                
-                                                    <v-row>
-                                                        <v-col sm="12" cols="12" class="py-0">
-                                                            <v-list-item-title class="headline mb-1 text-white">
-                                                                {{$t('sale')}}
-                                                            </v-list-item-title>
-                                                            <div class="overline mb-4 business text-white">
-                                                            {{$t('point_of_sale')}}
-                                                            </div>
-                                                        </v-col>
-                                                        <v-col sm="12" cols="12" class="py-0">
-                                                            <v-simple-table>
-                                                                <template v-slot:default>
-                                                                    <tbody class="sale_table">
-                                                                        <tr>
-                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('session') }}</td>
-                                                                            <td class="text-bold px-0 text-white">:</td>
-                                                                            <td class="text-left text-bold text-white"></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('date') }}</td>
-                                                                            <td class="text-bold px-0 text-white">:</td>
-                                                                            <td class="text-left text-bold text-white"></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td style="width:40%;" class="text-uppercase pl-0 text-white">{{ $t('time') }}</td>
-                                                                            <td class="text-bold px-0 text-white">:</td>
-                                                                            <td class="text-left text-bold text-white"></td>
-                                                                        </tr>
-                                                                        
-                                                                    </tbody>
-                                                                </template>
-                                                            </v-simple-table>
-                                                        </v-col>
-                                                    </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
+                                            <span class="copy_t" id="copy_t">Copy</span>
+                                            <h3 id="institute" class="font_24">
+                                            {{
+                                                mInstitute.instituteId
+                                                ? mInstitute.instituteId
+                                                    .split("-")[1]
+                                                    .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                                                : ""
+                                            }}
+                                            </h3>
                                         </v-card>
-                                    </v-col>
-                                </v-row>
-                            </v-col>
-                            <v-col sm="4" cols="4" class="pb-0">
-                                <v-row>
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                        <v-card
-                                            class="mx-auto d-flex"
-                                            max-width="465"
-                                            min-height="60"
-                                            outlined
-                                            :to="lang+'/pos/orders_report'"
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content class="pk-3">
-                                                    
-                                                        <v-row>
-                                                            <v-col sm="5" cols="5" class="py-2">
-                                                                <i  class=" b-offline_online" style="font-size:75px;"/>
-                                                            </v-col>
-                                                            <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                                <v-list-item-title class=" mb-1  business">
-                                                                {{$t('offline_online')}}
-                                                                </v-list-item-title>
-                                                            </v-col>
-                                                        </v-row>
-                                                </v-list-item-content>
-                                            </v-list-item>
-                                        </v-card>
-                                    </v-col> 
-                                    <v-col sm="12" cols="12" class="pa-2">
-                                            <v-card
-                                                class="mx-auto d-flex"
-                                                max-width="465"
-                                                min-height="60"
-                                                outlined
-                                                :to="lang+'/pos/invoice_parksale'"
-                                            >
-                                                <v-list-item three-line>
-                                                    <v-list-item-content class="pk-3">
+                                        
+                                        <v-col sm="12" cols="12" class="pa-0">
+                                            <v-simple-table>
+                                                <template v-slot:default>
+                                                    <tbody class="sale_table">
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('status') }}</td>
+                                                            <td class="text-bold px-0">:</td>
+                                                            <td class="text-left text-bold"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('warehouse') }}</td>
+                                                            <td class="text-bold px-0">:</td>
+                                                            <td class="text-left text-bold"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('segment') }}</td>
+                                                            <td class="text-bold px-0">:</td>
+                                                            <td class="text-left text-bold"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('session') }}</td>
+                                                            <td class="text-bold px-0 ">:</td>
+                                                            <td class="text-left text-bold"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('date') }}</td>
+                                                            <td class="text-bold px-0">:</td>
+                                                            <td class="text-left text-bold"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width:40%;" class="text-uppercase pl-0">{{ $t('time') }}</td>
+                                                            <td class="text-bold px-0">:</td>
+                                                            <td class="text-left text-bold "></td>
+                                                        </tr>
                                                         
-                                                        <v-row>
-                                                            <v-col sm="5" cols="5" class="py-2">
-                                                                <i  class=" b-billing" style="font-size:75px;"/>
-                                                            </v-col>
-                                                            <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                            <v-list-item-title class=" mb-1  business">
-                                                                    {{$t('invoice_parksale')}}
-                                                                </v-list-item-title>
-                                                            </v-col>
-                                                        </v-row>
-                                                    </v-list-item-content>
-                                                </v-list-item>
-                                            </v-card>
-                                    </v-col> 
-                                </v-row>
+                                                    </tbody>
+                                                </template>
+                                            </v-simple-table>
+                                        </v-col>
+                                        
+                                    </v-list-item>
+                                </v-card>
                             </v-col>
                         </v-row>
                     </v-col>
-                    <v-col sm="12" cols="12" class="py-0">
+                    <v-col sm="7" cols="8" class="pb-0">
                         <v-row>
-                            <v-col sm="4" cols="4" class="pa-2">
+                            <v-col class="pa-0" sm="4" cols="12">
                                 <v-card
-                                    class="mx-auto d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
-                                    :to="lang+'/pos/setting'"
+                                color="white"
+                                outlined
+                                dense
+                                @click="goPos('started')"
+                                class="pa-6 pb-3 raduis_10 mr-2 ml-2 pop no_border pop"
+                                :min-height="this.$i18n.locale == 'kh' ? 183 : 181"
                                 >
-                                    <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <v-row>
-                                                <v-col sm="5" cols="5" class="py-2">
-                                                    <i  class=" b-setting" style="font-size:75px;"/>
-                                                </v-col>
-                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1  business">{{$t('setting_configurations')}}</v-list-item-title>
-                                                </v-col>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </v-card>
-                            </v-col> 
-                            <v-col sm="4" cols="4" class="pa-2">
-                                <v-card
-                                    class="mx-auto  d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
-                                    :to="lang+'/pos/session'"
-                                >
-                                    <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <v-row>
-                                                <v-col sm="5" cols="5" class="py-2">
-                                                    <i  class=" b-sestion" style="font-size:75px;"/>
-                                                </v-col>
-                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1 business">{{$t('session_management')}}</v-list-item-title>
-                                                </v-col>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
+                                <img
+                                    class="image_logo"
+                                    src="@/assets/images/Vertical-DarkBlue.png"
+                                />
                                 </v-card>
                             </v-col>
-                            <v-col sm="4" cols="4" class="pa-2">
+                            <v-col sm="4" class="pa-0" cols="12">
                                 <v-card
-                                    class="mx-auto d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
-                                    :to="lang+'/pos/delivery'"
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/orders_report'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
                                 >
-                                    <v-list-item three-line>
-                                        <v-list-item-content class="">
-                                                
-                                                <v-row>
-                                                    <v-col sm="5" cols="5" class="py-2">
-                                                       <i  class=" b-delivery_s" style="font-size:75px;"/>
-                                                    </v-col>
-                                                    <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1  business">
-                                                        {{$t('delivery_management')}}
-                                                        </v-list-item-title>
-                                                    </v-col>
-                                                </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
+                                <i style="font-size: 75px" class="red_icon b-offline_online" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("offline_online") }}
+                                    </h1>
+                                </div>
                                 </v-card>
                             </v-col>
-                            
-                            <v-col sm="4" cols="4" class="pa-2">
+                            <v-col sm="4" class="pa-0" cols="12">
                                 <v-card
-                                    class="mx-auto  d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
-                                    
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/invoice_parksale'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
                                 >
-                                    <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <v-row>
-                                                <v-col sm="12" cols="12" class="">
-                                                    <div
-                                                        class="">
-                                                        <img
-                                                        class="mt-1 v-list-item v-list-item-left "
-                                                        src="@/assets/images/made_in_cambodia.png"
-                                                        width="75%"
-                                                        height="auto"
-                                                        alt=""
-                                                        />
-                                                    </div>
-                                                </v-col>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
-                                </v-card>
-                            </v-col>  
-                            
-                            <v-col sm="4" cols="4" class="pa-2">
-                                <v-card
-                                    class="mx-auto  d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
-                                    :to="lang+'/pos/loyalty_promotion'"
-                                >
-                                    <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <v-row>
-                                                <v-col sm="5" cols="5" class="py-2">
-                                                    <i  class=" b-loyalty" style="font-size:75px;"/>
-                                                </v-col>
-                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1 business">{{$t('loyalty_promotion')}}</v-list-item-title>
-                                                </v-col>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
+                                <i style="font-size: 75px" class="red_icon b-billing" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("invoice_parksale") }}
+                                    </h1>
+                                </div>
                                 </v-card>
                             </v-col>
-                            <v-col sm="4" cols="4" class="pa-2">
+                            <v-col sm="4" class="px-0" cols="12">
                                 <v-card
-                                    class="mx-auto d-flex"
-                                    max-width="465"
-                                    min-height="60"
-                                    outlined
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/session'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
                                 >
-                                    <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <v-row>
-                                                <v-col sm="5" cols="5" class="py-2">
-                                                    <i  class=" b-report" style="font-size:75px;"/>
-                                                </v-col>
-                                                <v-col sm="7" cols="7" class="pl-0 d-flex k-align-items-center py-0">
-                                                    <v-list-item-title class=" mb-1  business">
-                                                        {{$t('insight_report')}}
-                                                    </v-list-item-title>
-                                                </v-col>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
+                                <i style="font-size: 75px" class="red_icon b-sestion" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("session_management") }}
+                                    </h1>
+                                </div>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" class="px-0" cols="12">
+                                <v-card
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/delivery'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
+                                >
+                                <i style="font-size: 75px" class="red_icon b-delivery_s" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("delivery_management") }}
+                                    </h1>
+                                </div>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" class="px-0" cols="12">
+                                <v-card
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/loyalty_promotion'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
+                                >
+                                <i style="font-size: 75px" class="red_icon b-loyalty" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("loyalty_promotion") }}
+                                    </h1>
+                                </div>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" class="pa-0" cols="12">
+                                <v-card
+                                color="white"
+                                outlined
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
+                                >
+                                <i style="font-size: 75px" class="red_icon b-report" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("insight_report") }}
+                                    </h1>
+                                </div>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" class="pa-0" cols="12">
+                                <v-card
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/sale_unit'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
+                                >
+                                <i style="font-size: 75px" class="red_icon b-budget" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("sale_units_management") }}
+                                    </h1>
+                                </div>
+                                </v-card>
+                            </v-col>
+                            <v-col sm="4" class="pa-0" cols="12">
+                                <v-card
+                                color="white"
+                                outlined
+                                :to="lang+'/pos/setting'"
+                                dense
+                                class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                min-height="181"
+                                >
+                                <i style="font-size: 75px" class="red_icon b-setting" />
+                                <div>
+                                    <h1
+                                    class="font_size_overview third--text"
+                                    :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                    >
+                                    {{ $t("setting_configurations") }}
+                                    </h1>
+                                </div>
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -769,10 +742,16 @@
 </template>
 
 <script>
+    /* Cookie */
+    const cookieJS = require("@/cookie.js");
+    const cookie = cookieJS.getCookie();
     import {i18n} from "@/i18n";
     // import {  data } from '@/observable/store'
     export default {
         data: ()=> ({
+            time: "",
+            mInstitute: cookie,
+            planName: "",
         }),
     components: {
     },
@@ -783,6 +762,38 @@
 
     },
     methods:{
+        setTime() {
+        this.interval = setInterval(() => {
+            this.time = Intl.DateTimeFormat(navigator.language, {
+            day: "2-digit",
+            month: "short",
+            weekday: "long",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            }).format();
+        }, 1000);
+        },
+
+        copyTextClip() {
+        /* Get the text field */
+        var copyText = document.getElementById("institute");
+        var status = document.getElementById("copy_t");
+        navigator.clipboard
+            .writeText(copyText.innerHTML.replace(/\s/gm, ""))
+            .then(
+            function () {
+                status.innerText = "Copied";
+                setTimeout(() => {
+                status.innerText = "Copy";
+                }, 3000);
+            },
+            function (err) {
+                status.innerText = "Failded";
+                window.console.error("Async: Could not copy text: ", err);
+            }
+            );
+        },
         goPos(){
         let routeData = this.$router.resolve({name: '_sale'});
         window.open(routeData.href, '_blank');
@@ -790,12 +801,43 @@
 
     },
     mounted(){
-        window.console.log(this.$route)
+        window.console.log(this.$route),
+        this.setTime();
+        if (this.mInstitute.plan == 1) {
+        this.planName = "Standard";
+        } else if (this.mInstitute.plan == 2) {
+        this.planName = "Premium";
+        } else if (this.mInstitute.plan == 3) {
+        this.planName = "Advanced";
+        } else if (this.mInstitute.plan == 4) {
+        this.planName = "Cooperative";
+        } else if (this.mInstitute.plan == 6) {
+        this.planName = "Nonprofit";
+        } else if (this.mInstitute.plan == 7) {
+        this.planName = "Public Sector";
+        } else if (this.mInstitute.plan == 8) {
+        this.planName = "Micro Edition";
+        }
     }
         
     }
 </script>
 <style scoped>
+.copy_t {
+  visibility: hidden;
+  position: absolute;
+  right: 6px;
+}
+.image_logo {
+    height: 130px;
+    margin: auto;
+}
+.font_size_overview {
+  font-family: "Niradei-Medium" !important;
+  font-size: 18px !important;
+  line-height: 20px;
+  margin-top: 10px;
+}
 body {
     font-family: "Niradei-Regular";
 }
