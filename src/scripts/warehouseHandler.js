@@ -254,9 +254,12 @@ module.exports.addItemLine = async (txnId, data) => {
 }
 module.exports.checkNumber = async (whId, num, itmId) => {
     try {
-        // return  await axios.post(apiUrl.warehouse.itemline_add + txnId + '/add', data)
-        window.console.log(whId, num, itmId)
-        return 'ok';
+        let data = {
+            whId: whId,
+            itemId: itmId,
+            number: num
+        }
+        return  await axios.post(apiUrl.warehouse.checknumber, data)
     } catch (error) {
         window.console.error(error)
     }

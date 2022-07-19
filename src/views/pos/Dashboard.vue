@@ -21,7 +21,7 @@
                                         </h1>
                                         <p class="mb-1 mt-3 niradei_light">{{$t('store_name')}}</p>
                                         <h1 class="font_22">
-                                        choun mart
+                                        {{activeStore.name}}
                                         </h1>
                                         <p class="mb-1 mt-3 niradei_light">
                                             {{ $t("your_entity_name") }}
@@ -33,7 +33,7 @@
                                             {{ $t("subscribed_edition") }}
                                         </p>
                                         <v-card color="primary" class="pa-3 white--text no_border">
-                                            <h3 class="text-uppercase">{{ planName }} Edition</h3>
+                                            <h3 class="text-uppercase">POS for {{ $t(activeStore.nature) }}</h3>
                                         </v-card>
 
                                         <p class="mb-2 mt-4 niradei_light">
@@ -63,17 +63,17 @@
                                                         <tr>
                                                             <td style="width:40%;" class="text-uppercase pl-0">{{ $t('status') }}</td>
                                                             <td class="text-bold px-0">:</td>
-                                                            <td class="text-left text-bold"></td>
+                                                            <td class="text-left text-bold">{{$t('active')}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="width:40%;" class="text-uppercase pl-0">{{ $t('warehouse') }}</td>
                                                             <td class="text-bold px-0">:</td>
-                                                            <td class="text-left text-bold"></td>
+                                                            <td class="text-left text-bold">{{ activeStore.warehouse }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="width:40%;" class="text-uppercase pl-0">{{ $t('segment') }}</td>
                                                             <td class="text-bold px-0">:</td>
-                                                            <td class="text-left text-bold"></td>
+                                                            <td class="text-left text-bold">{{ activeStore.segment }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="width:40%;" class="text-uppercase pl-0">{{ $t('session') }}</td>
@@ -104,18 +104,32 @@
                     <v-col sm="7" cols="8" class="pb-0">
                         <v-row>
                             <v-col class="pa-0" sm="4" cols="12">
+                                </v-card>
                                 <v-card
-                                color="white"
-                                outlined
-                                dense
-                                @click="goPos('started')"
-                                class="pa-6 pb-3 raduis_10 mr-2 ml-2 pop no_border pop"
-                                :min-height="this.$i18n.locale == 'kh' ? 183 : 181"
-                                >
-                                <img
-                                    class="image_logo"
-                                    src="@/assets/images/Vertical-DarkBlue.png"
-                                />
+                                    color="primary"
+                                    outlined
+                                    @click="goPos('started')"
+                                    dense
+                                    class="pa-6 mx-2 raduis_10 pop no_border pop"
+                                    min-height="181"
+                                    >
+                                    <i style="font-size: 75px" class="white_icon b-pos" />
+                                    <div>
+                                        <h1
+                                        class="font_30 white--text mt-4"
+                                        :class="{ line_25: this.$i18n.locale == 'kh' }"
+                                        style="text-transform: uppercase;">
+                                        {{ $t("sale") }}
+                                        </h1>
+                                    </div>
+                                    <v-icon
+                                        size="30"
+                                        color="white"
+                                        class="insight_reload"
+                                        style="right: 0 !important;top: 0 !important;"
+                                    >
+                                        mdi-open-in-new
+                                    </v-icon>
                                 </v-card>
                             </v-col>
                             <v-col sm="4" class="pa-0" cols="12">
@@ -745,6 +759,7 @@
     /* Cookie */
     const cookieJS = require("@/cookie.js");
     const cookie = cookieJS.getCookie();
+    const { instituteId } = cookieJS.getCookie()
     import {i18n} from "@/i18n";
     // import {  data } from '@/observable/store'
     export default {
@@ -752,6 +767,7 @@
             time: "",
             mInstitute: cookie,
             planName: "",
+            activeStore: localStorage.getItem(instituteId + 'commStore') != null ? JSON.parse(localStorage.getItem(instituteId + 'commStore')) : {}
         }),
     components: {
     },
@@ -801,23 +817,7 @@
 
     },
     mounted(){
-        window.console.log(this.$route),
-        this.setTime();
-        if (this.mInstitute.plan == 1) {
-        this.planName = "Standard";
-        } else if (this.mInstitute.plan == 2) {
-        this.planName = "Premium";
-        } else if (this.mInstitute.plan == 3) {
-        this.planName = "Advanced";
-        } else if (this.mInstitute.plan == 4) {
-        this.planName = "Cooperative";
-        } else if (this.mInstitute.plan == 6) {
-        this.planName = "Nonprofit";
-        } else if (this.mInstitute.plan == 7) {
-        this.planName = "Public Sector";
-        } else if (this.mInstitute.plan == 8) {
-        this.planName = "Micro Edition";
-        }
+        window.console.log(JSON.parse(localStorage.getItem(instituteId + 'commStore')), 'aactive store')
     }
         
     }
@@ -1243,6 +1243,9 @@ body {
     }
     .v-data-table > .v-data-table__wrapper > table > tbody > tr > td, .v-data-table > .v-data-table__wrapper > table > thead > tr > td, .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
         height: 40px !important;
+    }
+    .white_icon:before {
+        color: #ffff !important;
     }
     
     

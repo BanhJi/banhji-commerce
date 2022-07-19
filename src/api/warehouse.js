@@ -120,5 +120,7 @@ module.exports = {
     txn_get                              : warehouseUrl + 'warehouse-txn/institute/' + instituteId + '/list',
 
     //PO ItemLine
-    itemline_add                         : warehouseUrl + 'receiptorder/txn/'
+    itemline_add                         : warehouseUrl + 'receiptorder/txn/',
+    //check number
+    checknumber                          : warehouseUrl + 'checknumber/' + instituteId + '/search',
 }

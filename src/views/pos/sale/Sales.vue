@@ -120,11 +120,11 @@
 
                                                 <div class="v-list-item v-list-item-left  d-block mr-0 pt-2" style="">
                                                     <span class="pl-2 dark_grey">{{$t('partner')}}</span><br>
-                                                    <h2 class="pl-2 border-b  primary--text">foodpada</h2>
+                                                    <h2 class="pl-2 border-b  primary--text"></h2>
                                                 </div>
                                                 <div class="v-list-item  v-list-item-left d-block mr-0" style="">
                                                     <span class="pl-2 dark_grey">{{$t('order_number')}}</span><br>
-                                                    <h2 class="pl-2 border-b  primary--text">12345678</h2>
+                                                    <h2 class="pl-2 border-b  primary--text">00001</h2>
                                                 </div>
                                                 <div class="v-list-item  v-list-item-left d-block mr-0" style="">
                                                     <span class="pl-2 dark_grey">{{$t('price_level')}}</span><br>
@@ -156,7 +156,7 @@
                                                                             style=" background-color: #fff;border-radius: 5px;">
 
                                                                             <span class="font_14 text-bold text-uppercase">{{$t('parksale')}}</span>
-                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">0</h2>
                                                                         </v-col>
                                                                     </template>
                                                                     <v-card style="background-color: #f8f8f9;">
@@ -198,7 +198,7 @@
                                                                             style=" background-color: #fff;border-radius: 5px;">
 
                                                                             <span class="font_14 text-bold text-uppercase">{{$t('invoice')}}</span>
-                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">0</h2>
                                                                         </v-col>
                                                                     </template>
                                                                     <v-card style="background-color: #f8f8f9;">
@@ -240,7 +240,7 @@
                                                                             style=" background-color: #fff;border-radius: 5px;">
 
                                                                             <span class="font_14 text-bold text-uppercase">{{$t('order')}}</span>
-                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">20</h2>
+                                                                            <h2 class="notification px-2 font_12 ml-2 float-right" style="border-radius: 5px;">0</h2>
                                                                         </v-col>
                                                                     </template>
                                                                     <v-card style="background-color: #f8f8f9;">

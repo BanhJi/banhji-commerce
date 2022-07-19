@@ -10,6 +10,7 @@
                     <v-text-field
                       outlined
                       :placeholder="$t('search')"
+                      v-model="searchStoreText"
                       clearable/>
                   </div>
                   <div style="width:15%; float: right;">
@@ -26,7 +27,7 @@
                     <v-btn
                         color="primary white--text"
                         style="width: 47%;"
-                        @click="searchTransaction"
+                        @click="searchStore"
                     >
                         <i
                             class="b-search"
@@ -35,7 +36,7 @@
                     </v-btn>
                   </div>
               </v-col>
-              <v-col sm="4" cols="12" class="">
+              <v-col sm="4" cols="12" class="" v-for="d in stores" v-bind:key="d.pk">
                 <v-card
                   outlined
                   dense
@@ -48,7 +49,7 @@
                       <a
                         width="100%"
                         min-height="80"
-                        @click="goDashoardPos('started')"
+                        @click="goDashoardPos(d)"
                         color="primary"
                         class="pa-3 text-bold text-capitalize"
                         elevation="0"
@@ -56,7 +57,7 @@
                       >
                         <i style="font-size: 65px;color: #ffffff;" class="b-commerce mr-2 white_icon"/>
                         <h1 class="line_22 font_22 white--text ml-4">
-                        {{ $t("pos_for_retail") }}
+                          {{$t(d.nature)}}
                         </h1>
                       </a>
                   </v-col>
@@ -67,22 +68,22 @@
                                   <tr>
                                       <td style="width:55%;" class="text-uppercase pl-0">{{ $t('name') }}</td>
                                       <td class="text-bold px-0">:</td>
-                                      <td class="text-left text-bold"></td>
+                                      <td class="text-left text-bold">{{d.name}}</td>
                                   </tr>
                                   <tr>
                                       <td style="width:55%;" class="text-uppercase pl-0">{{ $t('segment') }}</td>
                                       <td class="text-bold px-0">:</td>
-                                      <td class="text-left text-bold"></td>
+                                      <td class="text-left text-bold">{{d.segment}}</td>
                                   </tr>
                                   <tr>
                                       <td style="width:55%;" class="text-uppercase pl-0">{{ $t('warehouses') }}</td>
                                       <td class="text-bold px-0">:</td>
-                                      <td class="text-left text-bold"></td>
+                                      <td class="text-left text-bold">{{d.warehouse}}</td>
                                   </tr>
                                   <tr>
                                       <td style="width:55%;" class="text-uppercase pl-0">{{ $t('status') }}</td>
                                       <td class="text-bold px-0">:</td>
-                                      <td class="text-left text-bold"></td>
+                                      <td class="text-left text-bold">{{$t('active')}}</td>
                                   </tr>
                                  
                               </tbody>
@@ -102,7 +103,7 @@
                 </v-card>
                   
               </v-col>
-              <v-col sm="4" cols="12" class="">
+              <!-- <v-col sm="4" cols="12" class="">
                 <v-card
                   outlined
                   dense
@@ -236,7 +237,7 @@
                 </v-row>
                 </v-card>
                   
-              </v-col>
+              </v-col> -->
             
             </v-row>
         </v-col>
@@ -246,10 +247,16 @@
 </template>
 <script>
 // import { i18n } from "@/i18n";
-
+const commerceHandler = require("@/scripts/commerce/handler/commerceHandler")
+const segmentHandler = require("@/scripts/segmentHandler")
+const warehouseHandler = require("@/scripts/warehouseHandler")
+const cookieJS = require("@/cookie.js");
+const { instituteId } = cookieJS.getCookie()
 export default {
   data: () => ({
+    searchStoreText: '',
     isOverlay: false,
+    showLoading: false,
     showLoadingSaleAnalysis: false,
     items: [
       {
@@ -262,9 +269,16 @@ export default {
         src: require('@/assets/images/slide1.jpg')
       },
     ],
+    stores: [],
+    segments: [],
+    warehouses: [],
   }),
   methods: {
-    goDashoardPos(){
+    searchStore(){
+      window.console.log(this.searchStoreText)
+    },
+    goDashoardPos(store){
+      localStorage.setItem(instituteId + 'commStore', JSON.stringify(store))
       let routeData = this.$router.resolve({name: 'dashboard_pos'});
       window.open(routeData.href, '_blank');
     },
@@ -276,10 +290,65 @@ export default {
       let routeData = this.$router.resolve({name: 'dashboard_3'});
       window.open(routeData.href, '_blank');
     },
-    
+    async loadWarehouses() {
+      this.showLoading = true
+      this.warehouses = []
+      await warehouseHandler.getWarehouseSettingAll().then((res) => {
+        this.showLoading = false
+        this.warehouses = res;
+      });
+    },
+    async loadSegment() {
+      this.showLoading = true;
+      this.segments = []
+      segmentHandler.getAll().then((res) => {
+        this.showLoading = false;
+        if (res.data.statusCode === 200) {
+          this.segments = res.data.data
+        }
+      })
+    },
+    loadStore(){
+      this.showLoading = true
+      this.stores = []
+      commerceHandler.storeGets().then((res) => {
+        this.showLoading = false
+        let d = res.data.data
+        if(d.length > 0){
+          let store = []
+          d.forEach(a => {
+            let segment = this.segments.filter((o) => {return o.id == a.segmentId})
+            let s = ''
+            if(segment.length > 0){
+              s = segment[0].name
+            }
+            window.console.log(this.warehouses, a, 'wwww')
+            let wa = this.warehouses.filter((b) => {return b.pk == a.warehouseId})
+            let w = ''
+            if(wa.length > 0){
+              w = wa[0].name
+            }
+            store.push({
+              pk: a.pk,
+              name: a.name,
+              nature: a.nature,
+              segment: s,
+              warehouse: w
+            })
+          })
+          this.stores = store
+        }
+        window.console.log(this.stores, 'store')
+      })
+    }
   },
   components: {
   },
+  created: async function () {
+    await this.loadSegment()
+    await this.loadWarehouses()
+    await this.loadStore()
+  }
 };
 </script>
 <style scoped>

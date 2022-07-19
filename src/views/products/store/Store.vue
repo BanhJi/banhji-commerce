@@ -42,6 +42,19 @@
                     />
                   </v-col>
                   <v-col sm="12" cols="12" class="py-0">
+                    <label class="label mb-0">{{ $t("nature_type") }}<v-icon size="18" color="red" @click="loadSegment"
+                        >refresh</v-icon
+                      ></label>
+                    <v-select
+                      class="mt-1"
+                      outlined
+                      item-value="name"
+                      item-text="name"
+                      :items="natures"
+                      v-model="s.nature"
+                    />
+                  </v-col>
+                  <v-col sm="12" cols="12" class="py-0">
                     <label class="label mb-0">{{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment"
                         >refresh</v-icon
                       ></label>
@@ -63,7 +76,7 @@
                       outlined
                       :items="warehouses"
                       v-model="s.warehouseId"
-                      item-value="id"
+                      item-value="pk"
                       item-text="name"
                     />
                   </v-col>
@@ -84,8 +97,7 @@
                     <label class="label mb-0">{{ $t("address") }}</label>
                     <v-textarea
                       height="50"
-                      counter
-                      :value="s.address"
+                      v-model="s.address"
                     ></v-textarea>
                   </v-col>
                 </v-row>
@@ -139,13 +151,18 @@ export default {
     saleChannels: [],
     warehouses: [],
     s: new StoreModel({}),
+    natures: [
+      {name: 'retail'},
+      {name: 'restaurant'},
+      {name: 'service'}
+    ],
     isEdit: false,
     valid: true,
   }),
   methods: {
     cancel(){
       this.s = new StoreModel({})
-      this.$router.push(`${i18n.locale}` + '/store')
+      this.$router.push(`${i18n.locale}` + '/stores')
     },
     save(){
       if (!this.$refs.form.validate()) {

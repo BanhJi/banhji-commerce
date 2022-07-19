@@ -3,6 +3,7 @@ export default class Store {
         this.id = data.id || ''
         this.name = data.name || ''
         this.code = data.code || ''
+        this.nature = data.nature || 'retail'
         this.segmentId = data.segmentId || ''
         this.warehouseId = data.warehouseId || ''
         this.saleChannelId = data.saleChannelId || ''

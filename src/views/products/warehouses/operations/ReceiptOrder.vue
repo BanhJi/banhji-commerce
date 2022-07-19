@@ -903,52 +903,11 @@ export default {
                             status: i.status,
                             pk: ''
                         });
+                        let chck = this.checkDoublicate(dataRow.number)
+                        window.console.log(chck, 'chcccc')
                     }
                 })
-                // const instituteId = this.$store.state.institute.institute.id
-                // receiptOrderHandler.getBatch(dataRow[0].item.id, this.receiptOrder.warehouse.pk, instituteId, 'batch').then(res => {
-                //     if (res.length > 0) {
-                //         dataRow.forEach((i) => {
-                //             if (i.qty > 0) {
-                //                 const r = res.filter(p => p.number === i.number)
-                //                 this.itemLinesBatch.push({
-                //                     id: r.length > 0 ? r[0].linId : i.id,
-                //                     lineId: r.length > 0 ? r[0].linId : i.id,
-                //                     item: i.item,
-                //                     uom: i.uom,
-                //                     number: i.number,
-                //                     whId: this.receiptOrder.warehouse.pk,
-                //                     expirationDate: i.expirationDate,
-                //                     qty: r.length > 0 ? r[0].qty + i.qty : i.qty,
-                //                     DQty: r.length > 0 ? r[0].DQty : 0,
-                //                     type: 'batch',
-                //                     status: i.status,
-                //                     createdAt: r.length > 0 ? r[0].createdAt : '',
-                //                     pk: r.length > 0 ? r[0].id : ''
-                //                 });
-                //             }
-                //         });
-                //     } else {
-                //         dataRow.forEach((i) => {
-                //             if (i.qty > 0) {
-                //                 this.itemLinesBatch.push({
-                //                     id: i.id,
-                //                     lineId: i.id,
-                //                     item: i.item,
-                //                     uom: i.uom,
-                //                     number: i.number,
-                //                     whId: this.receiptOrder.warehouse.pk,
-                //                     expirationDate: i.expirationDate,
-                //                     qty: i.qty,
-                //                     DQty: 0,
-                //                     type: 'batch',
-                //                     status: i.status,
-                //                     pk: ''
-                //                 });
-                //             }
-                //         })
-                //     }
-                // })
+                
             }
             this.onCloseBatch()
         },
@@ -987,21 +946,28 @@ export default {
                     max: this.totalBatch
                 });
         },
-        checkDoublicate(number){
+        async checkDoublicate(number){
             this.showLoading = true
             window.console.log(this.receiptOrder, 'recepiporder')
-            warehouseHandler.checkNumber(this.receiptOrder.warehouse.pk, number, this.activeItem.item.id).then((res) => {
+            let isEx = false
+            await warehouseHandler.checkNumber(this.receiptOrder.warehouse.pk, number, this.activeItem.item.id).then((res) => {
                 this.showLoading = false
-                window.console.log(res)
+                window.console.log(res.data.data.Items.length)
+                let d = res.data.data.Items
+                if(d.length > 0){
+                    this.$snotify.error(
+                        "Batch Number is exist!"
+                    );
+                    isEx = true
+                }
             })
+            return isEx
         },
         dataSourceChangedB(e) {
             if (e.field) {
                 let dataRow = e.items[0];
-                window.console.log(e, "data source change");
                 switch (e.field) {
                     case "number":
-                        this.checkDoublicate(dataRow.number)
                         kendo
                             .jQuery("tr[data-uid='" + dataRow.uid + "']")
                             .find(".expirationDate")
