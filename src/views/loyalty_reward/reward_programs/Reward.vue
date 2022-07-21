@@ -163,12 +163,13 @@
                                                                                         />
                                                                                         <v-select
                                                                                             class="mt-1"
-                                                                                            v-model="c.rewardAmountType"
-                                                                                            :items="rewardAmountTypes"
+                                                                                            v-model="c.currency"
+                                                                                            :items="currencyList"
                                                                                             item-value="id"
                                                                                             item-text="name"
                                                                                             placeholder="Select"
                                                                                             style="width: 30%; float: right;"
+                                                                                            return-object
                                                                                             outlined=""
                                                                                         />
                                                                                     </v-col>
@@ -182,6 +183,62 @@
                                                                                             required
                                                                                         />
                                                                                     </v-col>
+                                                                                    <v-col sm="4" cols="12" class="pb-0">
+                                                                                        <label class="label ">{{ $t('for_rank_promotion') }}</label>
+                                                                                        <v-switch
+                                                                                            v-model="c.isRankPromotion"
+                                                                                            color="primary"
+                                                                                            :label="c.isRankPromotion ? $t('yes') : $t('no')"
+                                                                                        />
+                                                                                    </v-col>
+                                                                                    <v-col sm="4" cols="12" class="pb-0" v-show="c.isRankPromotion">
+                                                                                        <label class="label">{{ $t('calculate_point_by') }}</label>
+                                                                                        <v-select
+                                                                                            class="mt-1"
+                                                                                            v-model="c.rankPromotionBy"
+                                                                                            :items="rankPromotionBys"
+                                                                                            item-value="id"
+                                                                                            item-text="name"
+                                                                                            placeholder="Select"
+                                                                                            style="width: 30%; float: right;"
+                                                                                            outlined=""
+                                                                                        />
+                                                                                    </v-col>
+                                                                                    <v-col sm="4" cols="12" class="pb-0" v-show="c.isRankPromotion">
+                                                                                        <label class="label ">{{ $t('please_read_description') }}</label>
+                                                                                        <p>{{$t('is_rank_promotion_desc') }}</p>
+                                                                                    </v-col>
+                                                                                    <v-row v-show="!c.isRankPromotion">
+                                                                                        <v-col sm="4" cols="12" class="pb-0">
+                                                                                            <label class="label ">{{ $t('is_earn_point_expire') }}</label>
+                                                                                            <v-switch
+                                                                                                v-model="c.isPointExpire"
+                                                                                                color="primary"
+                                                                                                :label="c.isPointExpire ? $t('yes') : $t('no')"
+                                                                                            />
+                                                                                        </v-col>
+                                                                                        <v-col sm="4" cols="12" class="pb-0" v-show="c.isPointExpire">
+                                                                                            <label class="label">{{ $t('expire_after') }}</label>
+                                                                                            <v-text-field
+                                                                                                class="mt-1"
+                                                                                                style="width: 68%; float: left;"
+                                                                                                v-model="c.expireAmount"
+                                                                                                type="number"
+                                                                                                outlined
+                                                                                                required
+                                                                                            />
+                                                                                            <v-select
+                                                                                                class="mt-1"
+                                                                                                v-model="c.expireBy"
+                                                                                                :items="rankPromotionBys"
+                                                                                                item-value="id"
+                                                                                                item-text="name"
+                                                                                                placeholder="Select"
+                                                                                                style="width: 30%; float: right;"
+                                                                                                outlined=""
+                                                                                            />
+                                                                                        </v-col>
+                                                                                    </v-row>
                                                                                     <v-col sm="12" cols="12" class=" pt-0 text-right">
                                                                                         <v-divider/>
                                                                                         <v-btn color="primary" class="mt-2 px-3  white--text text-capitalize"
@@ -202,7 +259,7 @@
                                                         <v-col cols="12" class="pb-0"  @finish="finish($event)"   ref="">
                                                             <v-row>
                                                                 <v-col sm="12" cols="12" class="py-0">
-                                                                    <h2 class="primary--text font_20 mb-0">{{$t('reward')}}</h2>
+                                                                    <h2 class="primary--text font_20 mb-0">{{ isOneReward }} {{$t('reward')}}</h2>
                                                                 </v-col>
                                                                 <v-col sm="12" cols="12" class="pb-0">
                                                                     <v-card outlined dense class="no_border" color="white">
@@ -217,6 +274,7 @@
                                                                                     item-value="id"
                                                                                     item-text="name"
                                                                                     placeholder="Select"
+                                                                                    :disabled="c.isRankPromotion"
                                                                                     outlined=""
                                                                                 />
                                                                             </v-col>
@@ -231,6 +289,7 @@
                                                                                     item-value="id"
                                                                                     item-text="name"
                                                                                     placeholder="Select"
+                                                                                    :disabled="c.isRankPromotion"
                                                                                     outlined=""
                                                                                 />
                                                                                 <v-col class="px-0" v-if="c.rewardType == `fixed`">
@@ -272,7 +331,7 @@
                                                                                                 :headerAttributes="{style:'text-align: left; background-color: #EDF1F5'}"/>
                                                                                             <kendo-grid-column
                                                                                                 :field="'conditionAmount'"
-                                                                                                :title="$t('condition_amount')"
+                                                                                                :title="$t('reward_amount')"
                                                                                                 :width="100"
                                                                                                 :format="'{0:n}'"
                                                                                                 :headerAttributes="{style: 'background-color: #EDF1F5'}"
@@ -578,6 +637,7 @@
     const customerTypeHandler = require("@/scripts/customerTypeHandler");
     const priceLevelHandler = require("@/scripts/priceLevelHandler");
     const productVariantHandler = require("@/scripts/productVariantHandler");
+    const currencyHandler = require("@/scripts/currency/handler/currencyHandler");
     export default {
         name: "AddProduct",
         props: ['dataUpdate'],
@@ -605,8 +665,7 @@
             check3: false,
             typeApp: '',
             authorize: '',
-
-
+            isOneReward: '',
             timeF: false,
             timeT: false,
             timeFr: null,
@@ -671,7 +730,8 @@
             //coupon
             couponAmount: 1,
             coupons: [],
-
+            //currency
+            currencyList: [],
         }),
         methods:{
             finish(){
@@ -755,6 +815,17 @@
                             confirmButtonText: i18n.t('ok'),
                         })
                         return
+                    }
+                    // check rank promotion
+                    if(this.c.isRankPromotion){
+                        this.c.rewardBase = 'amountBase'
+                        this.c.rewardType = 'varian'
+                        this.c.isPointExpire = false
+                        this.rewardTypeChange()
+                    }else{
+                        this.c.rewardBase = 'amountBase'
+                        this.c.rewardType = 'fixed'
+                        this.rewardTypeChange()
                     }
                 }
                 this.steps += 1;
@@ -1023,10 +1094,13 @@
             //reward varian
             rewardTypeChange(){
                 if(this.c.rewardType == 'varian'){
+                    this.isOneReward = ''
                     this.rewardVarian = []
                     setTimeout(() => {
                         this.addVarianRow()
                     }, 500)
+                }else{
+                    this.isOneReward = '1'
                 }
             },
             removeVarianRow(e){
@@ -1336,6 +1410,7 @@
                 await this.loadDiscountItem()
                 await this.loadSaleChannel()
                 await this.loadPriceLevel()
+                await this.loadCurrencyData()
                 if (this.$route.params.id !== undefined) {
                     this.isEdit = true
                     await this.loadCampaign()
@@ -1618,6 +1693,21 @@
             destroy() {
                 this.$destroy();
             },
+            async loadCurrencyData() {
+                currencyHandler
+                .list("fun-c")
+                .then((response) => {
+                    if (response.data.statusCode === 200) {
+                        this.currencyList = response.data.data;
+                        if(this.currencyList.length > 0){
+                            this.c.currency = this.currencyList[0]
+                        }
+                        this.showLoading = false;
+                    } else {
+                        this.showLoading = false;
+                    }
+                })
+            },
         },
         computed: {
             // reward
@@ -1632,6 +1722,13 @@
                 return [
                     {id: 'amountBase', name: i18n.t('amount_base')},
                     {id: 'productBase', name: i18n.t('product_base')}
+                ]
+            },
+            rankPromotionBys(){
+                return [
+                    {id: 'daily', name: i18n.t('daily')},
+                    {id: 'monthly', name: i18n.t('monthly')},
+                    {id: 'yearly', name: i18n.t('yearly')}
                 ]
             },
             rewardTypes(){

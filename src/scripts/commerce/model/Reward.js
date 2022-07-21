@@ -9,18 +9,25 @@ export default class Reward {
         this.description = data.description || ''
         // Rule
         this.amountPerPoint = data.amountPerPoint || 1
-        this.amountPerPointType = data.amountPerPointType || 'percentage'
+        this.currency = data.currency || {}
         this.pointPerReward = data.pointPerReward || 1
         // Reward
         this.rewardBase = data.rewardBase || 'amountBase'
         this.rewardType = data.rewardType || 'fixed'
-        this.rewardAmount = data.rewardAmount || 0
-        this.rewardAmountType = data.rewardAmountType || 'percentage'
+        this.rewardAmount = data.rewardAmount || 1
+        this.rewardAmountType = data.rewardAmountType || 'amount'
         this.rewardVarian = data.rewardVarian || []
         this.productBaseOn = data.productBaseOn || 'all'
         this.rewardProductCategory = data.rewardProductCategory || []
         this.rewardProductGroup = data.rewardProductGroup || []
         this.rewardProduct = data.rewardProduct || []
+        // Rank promotion
+        this.isRankPromotion = data.isRankPromotion || false
+        this.rankPromotionBy = data.rankPromotionBy || 'daily'
+        // Expire
+        this.isPointExpire = data.isPointExpire || false
+        this.expireAmount = data.expireAmount || 1
+        this.expireBy = data.expireBy || 'daily'
         // Branch
         this.branches = data.branches || []
         this.user = data.user || {}
