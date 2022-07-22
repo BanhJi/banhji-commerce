@@ -104,7 +104,7 @@
                                                                                         <v-switch
                                                                                             v-model="c.isEndDate"
                                                                                             color="primary"
-                                                                                            :label="c.isEndDate ? $t('open') : $t('close')"
+                                                                                            :label="c.isEndDate ? $t('yes') : $t('no_')"
                                                                                         />
                                                                                     </v-col>
                                                                                     <v-col sm="4" cols="12" class="pb-0" v-show="c.isEndDate">
@@ -183,50 +183,56 @@
                                                                                             required
                                                                                         />
                                                                                     </v-col>
-                                                                                    <v-col sm="4" cols="12" class="pb-0">
+                                                                                    <v-col sm="6" cols="12" class="pb-0">
                                                                                         <label class="label ">{{ $t('for_rank_promotion') }}</label>
                                                                                         <v-switch
                                                                                             v-model="c.isRankPromotion"
                                                                                             color="primary"
-                                                                                            :label="c.isRankPromotion ? $t('yes') : $t('no')"
+                                                                                            :label="c.isRankPromotion ? $t('yes') : $t('no_')"
                                                                                         />
                                                                                     </v-col>
-                                                                                    <v-col sm="4" cols="12" class="pb-0" v-show="c.isRankPromotion">
-                                                                                        <label class="label">{{ $t('calculate_point_by') }}</label>
-                                                                                        <v-select
-                                                                                            class="mt-1"
-                                                                                            v-model="c.rankPromotionBy"
-                                                                                            :items="rankPromotionBys"
-                                                                                            item-value="id"
-                                                                                            item-text="name"
-                                                                                            placeholder="Select"
-                                                                                            style="width: 30%; float: right;"
-                                                                                            outlined=""
-                                                                                        />
-                                                                                    </v-col>
-                                                                                    <v-col sm="4" cols="12" class="pb-0" v-show="c.isRankPromotion">
-                                                                                        <label class="label ">{{ $t('please_read_description') }}</label>
+                                                                                    <v-row  v-show="c.isRankPromotion">
+                                                                                        <v-col sm="12" cols="12" class="pb-0" v-show="c.isRankPromotion">
+                                                                                            <label class="label">{{ $t('calculate_point_by') }}</label>
+                                                                                            <v-select
+                                                                                                class="mt-1"
+                                                                                                v-model="c.rankPromotionBy"
+                                                                                                :items="rankPromotionBys"
+                                                                                                item-value="id"
+                                                                                                item-text="name"
+                                                                                                placeholder="Select"
+                                                                                                outlined=""
+                                                                                            />
+                                                                                        </v-col>
+                                                                                        
+                                                                                    </v-row>
+                                                                                    <v-col sm="12" cols="12" class="pb-0" v-show="c.isRankPromotion">
+                                                                                        <label class="label ">{{ $t('description') }}</label>
                                                                                         <p>{{$t('is_rank_promotion_desc') }}</p>
                                                                                     </v-col>
-                                                                                    <v-row v-show="!c.isRankPromotion">
-                                                                                        <v-col sm="4" cols="12" class="pb-0">
+
+
+                                                                                    <v-col sm="6" cols="12" class="pb-0" v-show="!c.isRankPromotion">
                                                                                             <label class="label ">{{ $t('is_earn_point_expire') }}</label>
                                                                                             <v-switch
                                                                                                 v-model="c.isPointExpire"
                                                                                                 color="primary"
-                                                                                                :label="c.isPointExpire ? $t('yes') : $t('no')"
+                                                                                                :label="c.isPointExpire ? $t('yes') : $t('no_')"
                                                                                             />
-                                                                                        </v-col>
-                                                                                        <v-col sm="4" cols="12" class="pb-0" v-show="c.isPointExpire">
+                                                                                    </v-col>
+                                                                                    <v-row  v-show="!c.isRankPromotion" class="px-3">
+                                                                                        <v-col sm="6" cols="12" class="pb-0" v-show="c.isPointExpire">
                                                                                             <label class="label">{{ $t('expire_after') }}</label>
                                                                                             <v-text-field
                                                                                                 class="mt-1"
-                                                                                                style="width: 68%; float: left;"
                                                                                                 v-model="c.expireAmount"
                                                                                                 type="number"
                                                                                                 outlined
                                                                                                 required
                                                                                             />
+                                                                                        </v-col>
+                                                                                        <v-col sm="6" cols="12" class="pb-0" v-show="c.isPointExpire">
+                                                                                            <label class="label">{{ $t('by') }}</label>
                                                                                             <v-select
                                                                                                 class="mt-1"
                                                                                                 v-model="c.expireBy"
@@ -234,11 +240,11 @@
                                                                                                 item-value="id"
                                                                                                 item-text="name"
                                                                                                 placeholder="Select"
-                                                                                                style="width: 30%; float: right;"
                                                                                                 outlined=""
                                                                                             />
                                                                                         </v-col>
                                                                                     </v-row>
+
                                                                                     <v-col sm="12" cols="12" class=" pt-0 text-right">
                                                                                         <v-divider/>
                                                                                         <v-btn color="primary" class="mt-2 px-3  white--text text-capitalize"

@@ -4285,6 +4285,22 @@
     "sale_units_management": "Sale units management",
     "sale_unit_items_desc": "តារាងឯកតាលក់ដែលអាចប្រើក្នុងការវិភាគបន្ថែមលើប្រតិបត្តិការលក់",
     "sale_unit_report": "របាយការណ៍ឯកតាលក់",
-    "sale_unit_report_desc": "របាយការណ៍ប្រតិបត្តិការឯកតាលក់លំអិត"
+    "sale_unit_report_desc": "របាយការណ៍ប្រតិបត្តិការឯកតាលក់លំអិត",
+    "nature_type": "Nature type",
+    "your_work_has_been_saved": "Your work has been saved",
+    "for_rank_promotion": "For rank promotion",
+    "is_earn_point_expire": "Is earn point expire",
+    "calculate_point_by": "Calculate point by",
+    "yes": "Yes",
+    "no_": "No",
+    "expire_after": "Expire after",
+    "reward_amount": "Reward amount",
+    "condition_type": "Condition type",
+    "this_month": "This month",
+    "this_week": "This week",
+    "this_year": "This year",
+    "today": "Today"
+
+
 
 } 

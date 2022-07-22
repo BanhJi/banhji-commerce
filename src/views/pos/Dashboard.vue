@@ -104,7 +104,6 @@
                     <v-col sm="7" cols="8" class="pb-0">
                         <v-row>
                             <v-col class="pa-0" sm="4" cols="12">
-                                </v-card>
                                 <v-card
                                     color="primary"
                                     outlined

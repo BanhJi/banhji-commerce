@@ -1,189 +1,189 @@
 <template>
     <v-row>
-        <v-col cols="12" sm="12">
-            <!-- loading -->
-            <LoadingMe :isLoading="showLoading" :fullPage="false" :myLoading="true"/>
-            <v-row class="">
-                <v-col sm="1" cols="1" class="pt-1">
-                </v-col>
-                <v-col sm="2" cols="1" class="pt-1">
-                    <v-dialog v-model="dialogm2" max-width="400px">
-                        <template v-slot:activator="{ on }">
-                            <v-btn
-                                color="primary"
-                                @click="getWht"
-                                v-if="plan > 1"
-                                class="white--text text-capitalize  float-right"
-                                v-on="on"
-                            >
-                                {{ $t("create_new") }}
-                            </v-btn>
-                        </template>
-                        <v-card>
-                            <div class="modal_header">
-                                <v-card-title>{{ $t("warehouse") }}</v-card-title>
-                                <v-icon @click="onClose">close</v-icon>
-                            </div>
-                            <v-card-text class="modal_text_content">
-                                <v-row>
-                                    <v-col sm="6" cols="6" class="pb-0">
-                                        <label class="label">{{ $t("name") }}</label>
-                                        <v-text-field
-                                            class=" mt-1"
-                                            v-model="wh.name"
-                                            outlined
-                                            :rules="[(v) => !!v || 'Name is required']"
-                                            placeholder=""
-                                        />
-                                    </v-col>
-                                    <v-col sm="6" cols="6" class="pb-0">
-                                        <label class="label">{{ $t("code") }}</label>
-                                        <v-text-field
-                                            class="mt-1"
-                                            v-model="wh.code"
-                                            outlined
-                                            :rules="[(v) => !!v || 'Code is required']"
-                                            placeholder=""
-                                        />
-                                    </v-col>
-                                    <v-col sm="12" cols="12" class="py-0">
-                                        <label class="label">{{ $t("warehouse_type") }}</label>
-                                        <v-select
-                                            class="mt-1"
-                                            id="acc_type_selector"
-                                            :items="whTypes"
-                                            v-model="wh.typeId"
-                                            item-text="name"
-                                            item-value="id"
-                                            outlined
-                                        />
-                                        <label class="label">{{ $t("address") }}</label>
-                                        <v-text-field
-                                            class="mt-1"
-                                            v-model="wh.address"
-                                            outlined
-                                            placeholder=""
-                                        />
-                                        <label class="label">
-                                            {{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment">refresh</v-icon
-                                        >
-                                        </label>
-                                        <v-select
-                                            class=" mt-1"
-                                            :items="segments"
-                                            v-model="wh.segmentId"
-                                            item-text="name"
-                                            item-value="id"
-                                            outlined
-                                        />
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                            <v-card-actions class="modal_footer">
-                                <v-row>
-                                    <v-col sm="6" cols="6" class="py-0 text-left">
-                                        <v-btn
-                                            color="black"
-                                            outlined
-                                            class=" text-capitalize  black--text float-left"
-                                            @click="dialogm2 = false"
-                                        >{{ $t("cancel") }}
-                                        </v-btn>
-                                    </v-col>
-                                    <v-col sm="6" cols="6" class="py-0 text-right">
-                                        <v-btn
-                                            @click="addWhSetting"
-                                            color="primary"
-                                            class="px-3  white--text text-capitalize"
-                                        >{{ $t("save_close") }}
-                                        </v-btn>
-                                    </v-col>
-                                </v-row>
-                            </v-card-actions>
-                        </v-card>
-                    </v-dialog>
-                </v-col>
-            </v-row>
-            <v-row class="">
-                <v-col sm="12" cols="12">
-                    <LoadingMe
-                        :isLoading="showLoading"
-                        :fullPage="false"
-                        type="loading"
-                        :myLoading="true"
-                    />
-                    <template>
-                        <kendo-datasource
-                            :data="warehouses"
-                            ref="gridCollectionDS"
+        <v-col sm="12" cols="12" class="grayBg px-3">
+            <v-card color="white" class="pa-3 no_border" elevation="0">
+                <!-- loading -->
+                <LoadingMe :isLoading="showLoading" :fullPage="false" :myLoading="true"/>
+                <v-row class="">
+                    <v-col sm="12" cols="12" class="pt-1">
+                        <v-dialog v-model="dialogm2" max-width="400px">
+                            <template v-slot:activator="{ on }">
+                                <v-btn
+                                    color="primary"
+                                    @click="getWht"
+                                    v-if="plan > 1"
+                                    class="white--text text-capitalize  float-right"
+                                    v-on="on"
+                                >
+                                    {{ $t("create_new") }}
+                                </v-btn>
+                            </template>
+                            <v-card>
+                                <div class="modal_header">
+                                    <v-card-title>{{ $t("warehouse") }}</v-card-title>
+                                    <v-icon @click="onClose">close</v-icon>
+                                </div>
+                                <v-card-text class="modal_text_content">
+                                    <v-row>
+                                        <v-col sm="6" cols="6" class="pb-0">
+                                            <label class="label">{{ $t("name") }}</label>
+                                            <v-text-field
+                                                class=" mt-1"
+                                                v-model="wh.name"
+                                                outlined
+                                                :rules="[(v) => !!v || 'Name is required']"
+                                                placeholder=""
+                                            />
+                                        </v-col>
+                                        <v-col sm="6" cols="6" class="pb-0">
+                                            <label class="label">{{ $t("code") }}</label>
+                                            <v-text-field
+                                                class="mt-1"
+                                                v-model="wh.code"
+                                                outlined
+                                                :rules="[(v) => !!v || 'Code is required']"
+                                                placeholder=""
+                                            />
+                                        </v-col>
+                                        <v-col sm="12" cols="12" class="py-0">
+                                            <label class="label">{{ $t("warehouse_type") }}</label>
+                                            <v-select
+                                                class="mt-1"
+                                                id="acc_type_selector"
+                                                :items="whTypes"
+                                                v-model="wh.typeId"
+                                                item-text="name"
+                                                item-value="id"
+                                                outlined
+                                            />
+                                            <label class="label">{{ $t("address") }}</label>
+                                            <v-text-field
+                                                class="mt-1"
+                                                v-model="wh.address"
+                                                outlined
+                                                placeholder=""
+                                            />
+                                            <label class="label">
+                                                {{ $t("segment") }}<v-icon size="18" color="red" @click="loadSegment">refresh</v-icon
+                                            >
+                                            </label>
+                                            <v-select
+                                                class=" mt-1"
+                                                :items="segments"
+                                                v-model="wh.segmentId"
+                                                item-text="name"
+                                                item-value="id"
+                                                outlined
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                </v-card-text>
+                                <v-card-actions class="modal_footer">
+                                    <v-row>
+                                        <v-col sm="6" cols="6" class="py-0 text-left">
+                                            <v-btn
+                                                color="black"
+                                                outlined
+                                                class=" text-capitalize  black--text float-left"
+                                                @click="dialogm2 = false"
+                                            >{{ $t("cancel") }}
+                                            </v-btn>
+                                        </v-col>
+                                        <v-col sm="6" cols="6" class="py-0 text-right">
+                                            <v-btn
+                                                @click="addWhSetting"
+                                                color="primary"
+                                                class="px-3  white--text text-capitalize"
+                                            >{{ $t("save_close") }}
+                                            </v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
+                    </v-col>
+                </v-row>
+                <v-row class="">
+                    <v-col sm="12" cols="12">
+                        <LoadingMe
+                            :isLoading="showLoading"
+                            :fullPage="false"
+                            type="loading"
+                            :myLoading="true"
                         />
-                        <kendo-grid
-                            id="gridWarehouse"
-                            class="grid-function"
-                            :data-source-ref="'gridCollectionDS'"
-                            :editable="false"
-                            :toolbar="toolbarTemplate"
-                            :excel-export="excelExport"
-                            :excel-file-name="'Warehouse.xlsx'"
-                            :excel-filterable="true"
-                            :scrollable-virtual="true">
-                            <kendo-grid-column
-                                :field="'no'"
-                                :title="$t('no')"
-                                :template="rowNumberTmpl"
-                                :width="40"
-                                :column-menu="false"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center', }"
-                                :attributes="{ style: 'text-align: center' }"
+                        <template>
+                            <kendo-datasource
+                                :data="warehouses"
+                                ref="gridCollectionDS"
                             />
-                            <kendo-grid-column
-                                :field="'code'"
-                                :title="$t('code')"
-                                :width="100"
-                                :template="'<span>#=code#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                            />
-                            <kendo-grid-column
-                                :field="'name'"
-                                :title="$t('name')"
-                                :width="100"
-                                :template="'<span>#=name#</span>'"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                            />
-                            <kendo-grid-column
-                                :field="'typeId'"
-                                :title="$t('type')"
-                                :template="typeTmpl"
-                                :width="100"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                            />
-                            <kendo-grid-column
-                                :field="'address'"
-                                :title="$t('address')"
-                                :width="100"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                            />
-                            <kendo-grid-column
-                                :field="'segmentId'"
-                                :title="$t('segment')"
-                                :template="segmentTmpl"
-                                :width="100"
-                                :headerAttributes="{ style: 'background-color: #EDF1F5' }"
-                            />
-                            <kendo-grid-column
-                                :field="'action'"
-                                :title="$t('action')"
-                                :width="100"
-                                :command="{  
-                                text: textReview,
-                                click: onEdit, class: 'btn-plus' }"
-                                :attributes="{style: 'text-align: center'}"
-                                :headerAttributes="{style: 'text-align: center; background-color: #EDF1F5'}"
-                            />
-                        </kendo-grid>
-                    </template>
-                </v-col>
-            </v-row>
+                            <kendo-grid
+                                id="gridWarehouse"
+                                class="grid-function"
+                                :data-source-ref="'gridCollectionDS'"
+                                :editable="false"
+                                :toolbar="toolbarTemplate"
+                                :excel-export="excelExport"
+                                :excel-file-name="'Warehouse.xlsx'"
+                                :excel-filterable="true"
+                                :scrollable-virtual="true">
+                                <kendo-grid-column
+                                    :field="'no'"
+                                    :title="$t('no')"
+                                    :template="rowNumberTmpl"
+                                    :width="40"
+                                    :column-menu="false"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5;', class: 'text-center', }"
+                                    :attributes="{ style: 'text-align: center' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'code'"
+                                    :title="$t('code')"
+                                    :width="100"
+                                    :template="'<span>#=code#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'name'"
+                                    :title="$t('name')"
+                                    :width="100"
+                                    :template="'<span>#=name#</span>'"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'typeId'"
+                                    :title="$t('type')"
+                                    :template="typeTmpl"
+                                    :width="100"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'address'"
+                                    :title="$t('address')"
+                                    :width="100"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'segmentId'"
+                                    :title="$t('segment')"
+                                    :template="segmentTmpl"
+                                    :width="100"
+                                    :headerAttributes="{ style: 'background-color: #EDF1F5' }"
+                                />
+                                <kendo-grid-column
+                                    :field="'action'"
+                                    :title="$t('action')"
+                                    :width="100"
+                                    :command="{  
+                                    text: textReview,
+                                    click: onEdit, class: 'btn-plus' }"
+                                    :attributes="{style: 'text-align: center'}"
+                                    :headerAttributes="{style: 'text-align: center; background-color: #EDF1F5'}"
+                                />
+                            </kendo-grid>
+                        </template>
+                    </v-col>
+                </v-row>
+            </v-card>
         </v-col>
     </v-row>
 </template>

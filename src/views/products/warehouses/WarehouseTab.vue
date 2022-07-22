@@ -20,25 +20,37 @@
                           {{ $t("warehouse") }}
                         </span>
                       </v-tab>
-                      <!-- <v-tab>
+                      <v-tab>
                         <span>
-                          {{ $t("settings") }}
+                          {{ $t("receipt_orders") }}
                         </span>
-                      </v-tab> -->
+                      </v-tab>
+                      <v-tab>
+                        <span>
+                          {{ $t("delivery_orders") }}
+                        </span>
+                      </v-tab>
                     </v-col>
                   </v-row>
 
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <WarehouseManagement />
+                        <WarehouseReportTab />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
                   <v-tab-item >
                     <v-card flat>
                       <v-card-text class="">
-                        <Settings />
+                        <ReceiptOrders />
+                      </v-card-text>
+                    </v-card>
+                  </v-tab-item>
+                  <v-tab-item >
+                    <v-card flat>
+                      <v-card-text class="">
+                        <DeliveryOrders />
                       </v-card-text>
                     </v-card>
                   </v-tab-item>
@@ -60,8 +72,9 @@ import { data, dataStore } from "@/observable/store";
 export default {
   name: "Customers",
   components: {
-    WarehouseManagement: () => import("./WarehouseManagement"),
-    Settings: () => import("./setting/Settings.vue"),
+    WarehouseReportTab: () => import("./warehouse_report/WarehouseReportTab"),
+    ReceiptOrders: () => import("./operations/ReceiptOrders"),
+    DeliveryOrders: () => import("./delivery_order/DeliveryOrderTab"),
   },
   data: () => ({
     // active_tab: data.customer_tab.main

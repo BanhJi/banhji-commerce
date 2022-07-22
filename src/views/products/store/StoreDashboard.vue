@@ -60,6 +60,14 @@
                           {{$t(d.nature)}}
                         </h1>
                       </a>
+                      <v-icon
+                          size="30"
+                          color="white"
+                          class="insight_reload"
+                          style="right: 15px !important;top: 15px !important;"
+                      >
+                          mdi-open-in-new
+                      </v-icon>
                   </v-col>
                   <v-col sm="12" cols="12" class="py-0">
                       <v-simple-table>
