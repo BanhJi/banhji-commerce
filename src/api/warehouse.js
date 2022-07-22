@@ -10,9 +10,9 @@ const { instituteId } = cookieJS.getCookie();
 
 const myUrl = require("@/url")
 let baseUrl = myUrl.url
-if(process.env.VUE_APP_MODE == 'dev'){
-    baseUrl = 'https://dev-apis.banhji.com'
-}
+// if(process.env.VUE_APP_MODE == 'dev'){
+//     baseUrl = 'https://dev-apis.banhji.com'
+// }
 const warehouseUrl          = baseUrl + '/warehouses/'
 module.exports = {
     //Wh Setting
