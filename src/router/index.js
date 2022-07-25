@@ -270,11 +270,11 @@ const routes = [{
                     {
                         path: 'warehouses',
                         name: 'Warehouse Management',
-                        component: load('products/warehouses/WarehouseTab'),
+                        component: load('warehouses/WarehouseTab'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
-                            title: 'Products',
+                            title: 'Warehouse Management',
                         }
                     },
                     {
@@ -310,18 +310,18 @@ const routes = [{
                     {
                         path: 'delivery_order',
                         name: 'Delivery Order',
-                        component: load('products/warehouses/operations/DeliveryOrder'),
+                        component: load('warehouses/operations/DeliveryOrder'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
                             miniSideBar: false,
-                            title: 'Products',
+                            title: 'Delivery Order',
                         }
                     },
                     {
                         path: 'shelving_order',
                         name: 'Shelving Order',
-                        component: load('products/warehouses/operations/ShelvingOrder'),
+                        component: load('warehouses/operations/ShelvingOrder'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
@@ -332,18 +332,18 @@ const routes = [{
                     {
                         path: 'transfer_order',
                         name: 'Transfer Order',
-                        component: load('products/warehouses/operations/TransferOrder'),
+                        component: load('warehouses/operations/TransferOrder'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
                             miniSideBar: false,
-                            title: 'Products',
+                            title: 'Transfer Order',
                         }
                     },
                     {
                         path: 'packing_order',
                         name: 'Packing order',
-                        component: load('products/warehouses/operations/PackingOrder'),
+                        component: load('warehouses/operations/PackingOrder'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
@@ -354,12 +354,12 @@ const routes = [{
                     {
                         path: 'receipt_order',
                         name: 'Receipt Order',
-                        component: load('products/warehouses/operations/ReceiptOrder'),
+                        component: load('warehouses/operations/ReceiptOrder'),
                         meta: {
                             moduleId: 5,
                             mainMenu: 'warehouses',
                             miniSideBar: false,
-                            title: 'Products',
+                            title: 'Receipt Order',
                         }
                     },
             

@@ -36,6 +36,14 @@
                                     >
                                         <v-row>
                                             <v-col sm="4" cols="12" class="pb-0">
+                                                <label class="label">{{ $t("receipt_from") }}</label>
+                                                <v-select 
+                                                    :items="receiptFroms" 
+                                                    @change="receiptFromChange"
+                                                    v-model="receiptFrom"
+                                                    item-text="name" 
+                                                    item-value="id" outlined
+                                                class="mt-1"/>
                                                 <label class="label">{{ $t("supplier") }}</label>
                                                 <v-col
                                                     sm="12"
@@ -639,13 +647,20 @@ export default {
         hideS: true,
         supBaseUrl: supplierHandler.search(),
         transactionTypes: [],
-        activeItem: {}
+        activeItem: {},
+        receiptFroms: 1,
     }),
     computed: {
         valid1: function () {
             let supplier = this.receiptOrder.supplier;
             window.console.log(1, supplier.id);
             return supplier.id !== undefined && supplier.id !== null;
+        },
+        receiptFroms() {
+            return [
+                {id: 1, name: i18n.t('vendor')},
+                {id: 2, name: i18n.t('warehouse')},
+            ]
         },
     },
     beforeRouteLeave(to, from, next) {
@@ -671,6 +686,9 @@ export default {
         }
     },
     methods: {
+        receiptFromChange(){
+            window.console.log(this.receiptFrom, 'r from')
+        },
         dataBoundS: function (e) {
             const grid = kendo.jQuery("#gridS").data("kendoGrid")
             const items = e.sender.items();
