@@ -643,7 +643,7 @@ const routes = [{
                     {
                         path: 'e_commerce',
                         name: 'e_commerce',
-                        component: load('e_commerce/CommerceTab'),
+                        component: load('e_commerce/Insight'),
                         props: true,
                         meta: {
                             mainMenu: 'e_commerce',
