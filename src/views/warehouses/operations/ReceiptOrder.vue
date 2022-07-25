@@ -42,31 +42,52 @@
                                                     @change="receiptFromChange"
                                                     v-model="receiptFrom"
                                                     item-text="name" 
-                                                    item-value="id" outlined
-                                                class="mt-1"/>
-                                                <label class="label">{{ $t("supplier") }}</label>
-                                                <v-col
-                                                    sm="12"
-                                                    cols="12"
-                                                    style="margin-top:1px;"
-                                                    class="kendo_dropdown_custom pl-0 pb-4 pr-0  pt-0"
-                                                >
-                                                    <dropdownlist
-                                                        class="v-input__slot"
-                                                        :data-items="supplierList"
-                                                        @change="onChange"
-                                                        :value="receiptOrder.supplier"
-                                                        :data-item-key="dataItemKey"
-                                                        :text-field="textField"
-                                                        :default-item="defaultItem"
-                                                        :filterable="true"
-                                                        :required="true"
-                                                        :loading="loading"
-                                                        :valid="valid1"
-                                                        @filterchange="onFilterChange"
+                                                    item-value="id" 
+                                                    outlined
+                                                    class="mt-1"/>
+                                                <v-row v-show="receiptFrom == 1 ? true : false">
+                                                    <label class="label">{{ $t("supplier") }}</label>
+                                                    <v-col
+                                                        sm="12"
+                                                        cols="12"
+                                                        style="margin-top:1px;"
+                                                        class="kendo_dropdown_custom pl-0 pb-4 pr-0  pt-0"
                                                     >
-                                                    </dropdownlist>
-                                                </v-col>
+                                                        <dropdownlist
+                                                            class="v-input__slot"
+                                                            :data-items="supplierList"
+                                                            @change="onChange"
+                                                            :value="receiptOrder.supplier"
+                                                            :data-item-key="dataItemKey"
+                                                            :text-field="textField"
+                                                            :default-item="defaultItem"
+                                                            :filterable="true"
+                                                            :required="true"
+                                                            :loading="loading"
+                                                            :valid="valid1"
+                                                            @filterchange="onFilterChange"
+                                                        >
+                                                        </dropdownlist>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row v-show="receiptFrom == 2 ? true : false">
+                                                    <label class="label">{{ $t("warehouse") }}</label>
+                                                    <v-col
+                                                        sm="12"
+                                                        cols="12"
+                                                        style="margin-top:1px;"
+                                                        class="kendo_dropdown_custom pl-0 pb-4 pr-0  pt-0"
+                                                    >
+                                                        <v-select 
+                                                            :items="warehouses" 
+                                                            @change="receiptWarehouseChange"
+                                                            v-model="receiptWarehouse"
+                                                            item-text="name" 
+                                                            item-value="id" 
+                                                            outlined
+                                                            class="mt-1"/>
+                                                    </v-col>
+                                                </v-row>
                                                 <label class="label">{{ $t("number") }}</label>
                                                 <div class="mt-1 d-flex">
                                                     <div class="code_text flex-1 text-bold">
@@ -648,7 +669,9 @@ export default {
         supBaseUrl: supplierHandler.search(),
         transactionTypes: [],
         activeItem: {},
-        receiptFroms: 1,
+        receiptFrom: 1,
+        receiptWarehouses: [],
+        receiptWarehouse: {}
     }),
     computed: {
         valid1: function () {
@@ -686,8 +709,14 @@ export default {
         }
     },
     methods: {
+        receiptWarehouseChange(){
+            window.console.log(this.receiptWarehouse, 'receipt warehouse')
+        },
         receiptFromChange(){
             window.console.log(this.receiptFrom, 'r from')
+            if(this.receiptFrom == 2){
+                this.receiptWarehouse = this.warehouses[0]
+            }
         },
         dataBoundS: function (e) {
             const grid = kendo.jQuery("#gridS").data("kendoGrid")
