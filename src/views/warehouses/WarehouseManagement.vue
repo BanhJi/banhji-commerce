@@ -30,22 +30,6 @@
                 {{ $t("warehouses") }}
               </span>
             </v-tab>
-  <!--          <v-tab>-->
-  <!--            <span class="hidden-sm-and-up">-->
-  <!--              <v-icon left>mdi-pen</v-icon>-->
-  <!--            </span>-->
-  <!--            <span class="hidden-sm-and-down text-capitalize text-left">-->
-  <!--              {{ $t("batch") }}-->
-  <!--            </span>-->
-  <!--          </v-tab>-->
-            <!--					<v-tab>-->
-            <!--                        <span class="hidden-sm-and-up">-->
-            <!--                            <v-icon left>mdi-pen</v-icon>-->
-            <!--                        </span>-->
-            <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-            <!--                            {{ $t('packing_order') }}-->
-            <!--                        </span>-->
-            <!--                    </v-tab>-->
             <!-- <v-tab>
               <span class="hidden-sm-and-up">
                 <v-icon left>mdi-pen</v-icon>
@@ -54,14 +38,6 @@
                 {{ $t("tranfer_orders") }}
               </span>
             </v-tab> -->
-            <!--					<v-tab>-->
-            <!--                        <span class="hidden-sm-and-up">-->
-            <!--                            <v-icon left>mdi-pen</v-icon>-->
-            <!--                        </span>-->
-            <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-            <!--                            {{ $t('shelving_orders') }}-->
-            <!--                        </span>-->
-            <!--                    </v-tab>-->
             <v-tab>
               <span class="hidden-sm-and-up">
                 <v-icon left>mdi-pen</v-icon>
@@ -78,14 +54,6 @@
                 {{ $t("delivery_orders") }}
               </span>
             </v-tab>
-            <!--					<v-tab>-->
-            <!--                        <span class="hidden-sm-and-up">-->
-            <!--                            <v-icon left>mdi-pen</v-icon>-->
-            <!--                        </span>-->
-            <!--                        <span class="hidden-sm-and-down text-capitalize text-left">-->
-            <!--                            {{ $t('bin_locations') }}-->
-            <!--                        </span>-->
-            <!--                    </v-tab>-->
 
             <v-tab-item>
               <v-card flat>
@@ -94,20 +62,6 @@
                 </v-card-text>
               </v-card>
             </v-tab-item>
-  <!--          <v-tab-item>-->
-  <!--            <v-card flat>-->
-  <!--              <v-card-text class="pt-0">-->
-  <!--                <Batch />-->
-  <!--              </v-card-text>-->
-  <!--            </v-card>-->
-  <!--          </v-tab-item>-->
-            <!--                    <v-tab-item>-->
-            <!--                        <v-row>-->
-            <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-            <!--                                <PackingOrders/>-->
-            <!--                            </v-col>-->
-            <!--                        </v-row>-->
-            <!--                    </v-tab-item>-->
             <!-- <v-tab-item>
               <v-card flat>
                 <v-card-text class="pt-0">
@@ -115,13 +69,6 @@
                 </v-card-text>
               </v-card>
             </v-tab-item> -->
-            <!--                    <v-tab-item>-->
-            <!--                        <v-row>-->
-            <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-            <!--                                <ShelvingOrders/>-->
-            <!--                            </v-col>-->
-            <!--                        </v-row>-->
-            <!--                    </v-tab-item>-->
             <v-tab-item>
               <v-card flat>
                 <v-card-text class="pt-0">
@@ -136,13 +83,6 @@
                 </v-card-text>
               </v-card>
             </v-tab-item>
-            <!--                    <v-tab-item>-->
-            <!--                        <v-row>-->
-            <!--                            <v-col sm="12" cols="12" class="pl-6 pt-0">-->
-            <!--                                <BinLocation/>-->
-            <!--                            </v-col>-->
-            <!--                        </v-row>-->
-            <!--                    </v-tab-item>-->
           </v-tabs>
         </div>
       </v-col>

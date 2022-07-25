@@ -1,6 +1,6 @@
 <template>
     <v-row class="">
-        <v-col sm="12" cols="12" class="grayBg px-6">
+        <v-col sm="12" cols="12" class="grayBg px-3">
             <v-card color="white" class="pa-3 no_border" elevation="0">
                 <v-row class="">
                     <v-col sm="5" cols="12" class="pt-1">

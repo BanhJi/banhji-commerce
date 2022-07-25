@@ -91,7 +91,7 @@ export default {
     name: "",
     components: {
         StoreCenter: () => import('./StoreCenter.vue'),
-        WarehouseManagement: () => import("../warehouses/WarehouseManagement"),
+        WarehouseManagement: () => import("../../warehouses/WarehouseManagement"),
 
     },
     computed: {
